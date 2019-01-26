@@ -77,3 +77,12 @@ loginbody {
 	border-top-left-radius: 0;
 	border-top-right-radius: 0;
 }
+
+.dashboardbg {
+	background-color: #f5f5f5;
+}
+
+a.custom-card,
+a.custom-card:hover {
+  color: inherit;
+}
