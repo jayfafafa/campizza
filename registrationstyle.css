@@ -10,7 +10,6 @@ body {
 .footer {
 	font-family: 'Raleway', sans-serif;
 	background-color: #221b23;
-	position: fixed;
 	bottom: 0;
 	width: 100%;
 	color: #FFFFFF;
@@ -32,4 +31,8 @@ body {
 	height: 45px;
 	left: 50%;
 	margin-left: -3px;
+}
+
+.top-buffer { 
+	margin-top:20px; 
 }
