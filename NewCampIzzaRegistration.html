@@ -229,78 +229,77 @@
 				</div>
 		<!--State-->
 				<div class="row initial-task-padding">
-					<div class="col-8">
+					<div class="col">
 						<p>State:</p>
+					</div>
+					<div class="col">
+						<p>Zip:</p>
 					</div>
 		  		</div>
 		  		<div class="row no-task-padding">
 			  		<div class="col">
-						<select style = "width: 60vw !important;">
-								<option value="AL" <?php if ($state == "AL")>&nbspAlabama</option>
-								<option value="AK" <?php if ($state == "AK")>&nbspAlaska</option>
-								<option value="AZ" <?php if ($state == "AZ")>&nbspArizona</option>
-								<option value="AR" <?php if ($state == "AR")>&nbspArkansas</option>
-								<option value="CA" <?php if ($state == "CA")>&nbspCalifornia</option>
-								<option value="CO" <?php if ($state == "CO")>&nbspColorado</option>
-								<option value="CT" <?php if ($state == "CT")>&nbspConnecticut</option>
-								<option value="DE" <?php if ($state == "DE")>&nbspDelaware</option>
-								<option value="DC" <?php if ($state == "DC")>&nbspDistrict of Columbia</option>
-								<option value="FL" <?php if ($state == "FL")>&nbspFlorida</option>
-								<option value="GA" <?php if ($state == "GA")>&nbspGeorgia</option>
-								<option value="HI" <?php if ($state == "HI")>&nbspHawaii</option>
-								<option value="ID" <?php if ($state == "ID")>&nbspIdaho</option>
-								<option value="IL" <?php if ($state == "IL")>&nbspIllinois</option>
-								<option value="IN" <?php if ($state == "IN")>&nbspIndiana</option>
-								<option value="IA" <?php if ($state == "IA")>&nbspIowa</option>
-								<option value="KS" <?php if ($state == "KS")>&nbspKansas</option>
-								<option value="KY" <?php if ($state == "KY")>&nbspKentucky</option>
-								<option value="LA" <?php if ($state == "LA")>&nbspLouisiana</option>
-								<option value="ME" <?php if ($state == "ME")>&nbspMaine</option>
-								<option value="MD" <?php if ($state == "MD")>&nbspMaryland</option>
-								<option value="MA" <?php if ($state == "MA")>&nbspMassachusetts</option>
-								<option value="MI" <?php if ($state == "MI")>&nbspMichigan</option>
-								<option value="MN" <?php if ($state == "MN")>&nbspMinnesota</option>
-								<option value="MS" <?php if ($state == "MS")>&nbspMississippi</option>
-								<option value="MO" <?php if ($state == "MO")>&nbspMissouri</option>
-								<option value="MT" <?php if ($state == "MT")>&nbspMontana</option>
-								<option value="NE" <?php if ($state == "NE")>&nbspNebraska</option>
-								<option value="NV" <?php if ($state == "NV")>&nbspNevada</option>
-								<option value="NH" <?php if ($state == "NH")>&nbspNew Hampshire</option>
-								<option value="NJ" <?php if ($state == "NJ")>&nbspNew Jersey</option>
-								<option value="NM" <?php if ($state == "NM")>&nbspNew Mexico</option>
-								<option value="NY" <?php if ($state == "NY")>&nbspNew York</option>
-								<option value="NC" <?php if ($state == "NC")>&nbspNorth Carolina</option>
-								<option value="ND" <?php if ($state == "ND")>&nbspNorth Dakota</option>
-								<option value="OH" <?php if ($state == "OH")>&nbspOhio</option>
-								<option value="OK" <?php if ($state == "OK")>&nbspOklahoma</option>
-								<option value="OR" <?php if ($state == "OR")>&nbspOregon</option>
-								<option value="PA" <?php if ($state == "PA")>&nbspPennsylvania</option>
-								<option value="RI" <?php if ($state == "RI")>&nbspRhode Island</option>
-								<option value="SC" <?php if ($state == "SC")>&nbspSouth Carolina</option>
-								<option value="SD" <?php if ($state == "SD")>&nbspSouth Dakota</option>
-								<option value="TN" <?php if ($state == "TN")>&nbspTennessee</option>
-								<option value="TX" <?php if ($state == "TX")>&nbspTexas</option>
-								<option value="UT" <?php if ($state == "UT")>&nbspUtah</option>
-								<option value="VT" <?php if ($state == "VT")>&nbspVermont</option>
-								<option value="VA" <?php if ($state == "VA")>&nbspVirginia</option>
-								<option value="WA" <?php if ($state == "WA")>&nbspWashington</option>
-								<option value="WV" <?php if ($state == "WV")>&nbspWest Virginia</option>
-								<option value="WI" <?php if ($state == "WI")>&nbspWisconsin</option>
-								<option value="WY" <?php if ($state == "WY")>&nbspWyoming</option>
-						</select>
+			  			<div class="dropdown">
+						  <button class="btn btn-secondary btn-md btn-block" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">State
+						  </button>
+						    <div class="dropdown-menu" aria-labelledby="dropdownMenu">
+							    <li><a href="#" data-value="Alabama">Alabama</a></li>
+							    <li><a href="#" data-value="Alaska">Alaska</a></li>
+							    <li><a href="#" data-value="Arizona">Arizona</a></li>
+							    <li><a href="#" data-value="Arkansas">Arkansas</a></li>
+							    <li><a href="#" data-value="California">California</a></li>
+							    <li><a href="#" data-value="Colorado">Colorado</a></li>
+							    <li><a href="#" data-value="Connecticut">Connecticut</a></li>
+							    <li><a href="#" data-value="Delaware">Delaware</a></li>
+							    <li><a href="#" data-value="Florida">Florida</a></li>
+							    <li><a href="#" data-value="Georgia">Georgia</a></li>
+							    <li><a href="#" data-value="Hawaii">Hawaii</a></li>
+							    <li><a href="#" data-value="Idaho">Idaho </a></li>
+							    <li><a href="#" data-value="Illinois">Illinois</a></li>
+							    <li><a href="#" data-value="Indiana">Indiana</a></li>
+							    <li><a href="#" data-value="Iowa">Iowa</a></li>
+							    <li><a href="#" data-value="Kansas">Kansas</a></li>
+							    <li><a href="#" data-value="Kentucky">Kentucky</a></li>
+							    <li><a href="#" data-value="Louisiana">Louisiana</a></li>
+							    <li><a href="#" data-value="Maine">Maine</a></li>
+							    <li><a href="#" data-value="Maryland">Maryland</a></li>
+							    <li><a href="#" data-value="Massachusetts">Massachusetts</a></li>
+							    <li><a href="#" data-value="Michigan">Michigan</a></li>
+							    <li><a href="#" data-value="Minnesota">Minnesota</a></li>
+							    <li><a href="#" data-value="Mississippi">Mississippi </a></li>
+							    <li><a href="#" data-value="Missouri">Missouri</a></li>
+							    <li><a href="#" data-value="Montana">Montana</a></li>
+							    <li><a href="#" data-value="Nebraska">Nebraska</a></li>
+							    <li><a href="#" data-value="Nevada">Nevada</a></li>
+							    <li><a href="#" data-value="New Hampshire">New Hampshire</a></li>
+							    <li><a href="#" data-value="New Jersey">New Jersey</a></li>
+							    <li><a href="#" data-value="New Mexico">New Mexico</a></li>
+							    <li><a href="#" data-value="New York">New York</a></li>
+							    <li><a href="#" data-value="North Carolina">North Carolina</a></li>
+							    <li><a href="#" data-value="North Dakota">North Dakota</a></li>
+							    <li><a href="#" data-value="Ohio">Ohio</a></li>
+							    <li><a href="#" data-value="Oklahoma">Oklahoma </a></li>
+							    <li><a href="#" data-value="Oregon">Oregon</a></li>
+							    <li><a href="#" data-value="Pennsylvania">Pennsylvania</a></li>
+							    <li><a href="#" data-value="Rhode Island">Rhode Island</a></li>
+							    <li><a href="#" data-value="South Carolina">South Carolina</a></li>
+							    <li><a href="#" data-value="South Dakota">South Dakota</a></li>
+							    <li><a href="#" data-value="Tennessee">Tennessee</a></li>
+							    <li><a href="#" data-value="Texas">Texas</a></li>
+							    <li><a href="#" data-value="Utah">Utah</a></li>
+							    <li><a href="#" data-value="Vermont">Vermont</a></li>
+							    <li><a href="#" data-value="Virginia">Virginia</a></li>
+							    <li><a href="#" data-value="Washington">Washington</a></li>
+							    <li><a href="#" data-value="West Virginia">West Virginia </a></li>
+							    <li><a href="#" data-value="Wisconsin">Wisconsin</a></li>
+							    <li><a href="#" data-value="Wyoming">Wyoming</a></li>
+							  </div>
+						</div>
+						
 					</div>
-				</div>
-		<!-- Zip -->
-			<div class="row initial-task-padding">
-					<div class="col">
-						<p>Zip:</p>
-					</div>
-		  	</div>
-		  	<div class="row no-task-padding">
-				<div class="col" style = "padding-bottom: 40px;">
+					<div class="col" style = "padding-bottom: 40px;">
 						<input type="text" times-label="Zip" class="form-control" >
 				</div>
-			</div>
+				</div>
 		</div>
 
 
