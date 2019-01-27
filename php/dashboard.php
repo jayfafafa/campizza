@@ -54,6 +54,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 				<h1> Welcome to your dashboard!</h1>
 			</div>
 			<div class="ml-auto">
+				<a class="btn btn-outline-warning top-buffer" href="changepassword.php" role="button">Change Password</a>
 				<input class="btn btn-outline-danger top-buffer" type="submit" value="Sign Out">
 			</div>
 		</div>
@@ -64,9 +65,9 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 	<div class="container">
 		<div class="row">
 			<div class="col">
-				<div class="card text-white bg-info mb-3">
-					<a class="cardlink" href="./managecampers"></a>
-					<img src="./icons/027-profile.png" class="card-img-top" alt="...">
+				<div class="card border-info mb-3 mx-auto">
+					<a class="cardlink" href="./childdisplay.php"></a>
+					<img src="027-profile.png" class="card-img-top" alt="...">
 					<div class="card-body">
 						<h5 class="card-title">Manage Campers</h5>
 						<p class="card-text">Add or manage your children.</p>
@@ -74,12 +75,12 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 				</div>
 			</div>
 			<div class="col">
-				<div class="card text-white bg-info mb-3">
+				<div class="card border-info mb-3 mx-auto">
 				<a class="cardlink" href="./editprofile"></a>
-					<img src="./icons/026-pencil.png" class="card-img-top" alt="...">
+					<img src="026-pencil.png" class="card-img-top" alt="...">
 					<div class="card-body">
 						<h5 class="card-title">Edit Profile</h5>
-						<p class="card-text">Change your personal account information.</p>
+						<p class="card-text">Change your account info.</p>
 					</div>
 				</div>
 			</div>
