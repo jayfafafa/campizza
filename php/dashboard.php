@@ -1,4 +1,15 @@
-<!doctype html>
+<?php 
+
+// Initialize the session
+session_start();
+ 
+// Check if the user is logged in, if not then redirect him to login page
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    header("location: login.php");
+    exit;
+}
+
+?>
 <html lang="en">
 
 <head>
@@ -36,7 +47,7 @@
 		
 		</div>
 	</nav>
-
+<form action="logout.php" method "post">
 	<div class="container">
 		<div class="row">
 			<div class="d-flex top-buffer">
@@ -48,6 +59,7 @@
 		</div>
 		<hr>
 	</div>
+</form>
 	
 	<div class="container">
 		<div class="row">

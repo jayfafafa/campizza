@@ -1,5 +1,5 @@
 <?php
-$servername = "rugged-sunbeam-229808:us-west2:campizza";
+$servername = "35.236.84.4";
 $username = "campizza";
 $password = "Yusuf20@";
 try {
