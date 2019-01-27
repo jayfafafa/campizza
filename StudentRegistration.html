@@ -11,6 +11,11 @@
 	<link rel="stylesheet" href="registrationstyle.css">
 	<link rel="stylesheet" href="StudentRegistration.css">
 
+	    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
 </head>
 
 <body>
@@ -31,7 +36,6 @@
 					<a class="nav-item nav-link" href="http://campizza.com/contact">Contact</a>
 				</div>
 			</div>
-		
 		</div>
 	</nav>
 <div class="container" style = "background: white; margin-top: 20px;">
@@ -75,16 +79,16 @@
 					<div class="dropdown">
 					  <button class="btn btn-light btn-md btn-block border-secondary" name="gender" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" required>Select One
 					  </button>
-					    <div class="dropdown-menu" aria-labelledby="dropdownMenu">
-						    <li><a data-value="a">Female</a></li>
-						    <li><a data-value="b">Male</a></li>
-						  </div>
+					    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+						    <a class="dropdown-item" data-value="a">Female</a>
+						    <a class="dropdown-item" data-value="b">Male</a>
+						</div>
 					</div>
 				</div>
 				<div class='col'>
 			            <div class="form-group">
-			                <div class='input-group date' id='datetimepicker1'>
-			                    <input type='text' name="dob" class="form-control" required />
+			                <div class='input-group date' >
+			                    <input type='date' name="dob" class="form-control" required />
 			                    <!-- <span class="input-group-addon">
 			                        <span class="glyphicon glyphicon-calendar"></span>
 			                    </span> -->
@@ -178,9 +182,9 @@
 						<div class="dropdown">
 						  <button class="btn btn-light btn-md btn-block border-secondary" name="medication" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" required>Select One
 						  </button>
-						    <div class="dropdown-menu" aria-labelledby="dropdownMenu">
-							    <li><a data-value="a">Yes</a></li>
-							    <li><a data-value="b">No</a></li>
+						    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+							    <a class="dropdown-item" data-value="a">Yes</a>
+							    <a class="dropdown-item" data-value="b">No</a>
 							  </div>
 						</div>
 					</div>
@@ -198,11 +202,11 @@
 		  		<div class="row no-task-padding">
 		  			<div class="col-4">
 						<div class="dropdown">
-						  <button class="btn btn-light btn-md btn-block border-secondary" name="activities" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" required>Select One
+						  <button class="btn btn-light btn-md btn-block border-secondary" name="medication" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" required>Select One
 						  </button>
-						    <div class="dropdown-menu" aria-labelledby="dropdownMenu">
-							    <li><a data-value="a">Yes</a></li>
-							    <li><a data-value="b">No</a></li>
+						    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+							    <a class="dropdown-item" data-value="a">Yes</a>
+							    <a class="dropdown-item" data-value="b">No</a>
 							  </div>
 						</div>
 					</div>
@@ -220,11 +224,11 @@
 		  		<div class="row no-task-padding">
 		  			<div class="col-4">
 						<div class="dropdown">
-						  <button class="btn btn-light btn-md btn-block border-secondary" name="medicaltreatments" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" required>Select One
+						  <button class="btn btn-light btn-md btn-block border-secondary" name="medication" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" required>Select One
 						  </button>
-						    <div class="dropdown-menu" aria-labelledby="dropdownMenu">
-							    <li><a data-value="a">Yes</a></li>
-							    <li><a data-value="b">No</a></li>
+						    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+							    <a class="dropdown-item" data-value="a">Yes</a>
+							    <a class="dropdown-item" data-value="b">No</a>
 							  </div>
 						</div>
 					</div>
@@ -242,11 +246,11 @@
 		  		<div class="row no-task-padding">
 		  			<div class="col-4">
 						<div class="dropdown">
-						  <button class="btn btn-light btn-md btn-block border-secondary" name="immunizations" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Select One
+						  <button class="btn btn-light btn-md btn-block border-secondary" name="medication" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" required>Select One
 						  </button>
-						    <div class="dropdown-menu" aria-labelledby="dropdownMenu">
-							    <li><a data-value="a">Yes</a></li>
-							    <li><a data-value="b">No</a></li>
+						    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+							    <a class="dropdown-item" data-value="a">Yes</a>
+							    <a class="dropdown-item" data-value="b">No</a>
 							  </div>
 						</div>
 					</div>
@@ -260,8 +264,8 @@
 		  		<div class="row no-task-padding">
 					<div class='col'>
 			            <div class="form-group">
-			                <div class='input-group date' id='datetimepicker1'>
-			                    <input type='text' name="tetanusdate" class="form-control" />
+			                <div class='input-group date'>
+			                    <input type='date' name="tetanusdate" class="form-control" />
 			                    <!-- <span class="input-group-addon">
 			                        <span class="glyphicon glyphicon-calendar"></span>
 			                    </span> -->
@@ -301,38 +305,13 @@
 	<!--Javascript here-->
 	<script type="text/javascript">
 
-		$(".dropdown-menu li a").click(function() {
+		$(".dropdown-menu a").click(function() {
 		  $(this).parents(".dropdown").find('.btn').html($(this).text());
 		  $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
 		});
 
-		$(function () {
-			$('#datetimepicker1').datetimepicker();
-		});
-
 	</script>
 
-    <script>
-			document.getElementsByClassName('tablinks')[0].click();
-			function openCity(evt, cityName) {
-			  var i, tabcontent, tablinks;
-			  tabcontent = document.getElementsByClassName("tabcontent");
-			  for (i = 0; i < tabcontent.length; i++) {
-			    tabcontent[i].style.display = "none";
-			  }
-			  tablinks = document.getElementsByClassName("tablinks");
-			  for (i = 0; i < tablinks.length; i++) {
-			    tablinks[i].className = tablinks[i].className.replace(" active", "");
-			  }
-			  document.getElementById(cityName).style.display = "block";
-			  evt.currentTarget.className += " active";
-			}
-		</script>
-
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 
 	<div class="footer top-buffer">
 		<div class="container">
