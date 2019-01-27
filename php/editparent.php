@@ -11,12 +11,13 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
 include('connection.php');
 
-$sql = "SELECT * FROM Parents WHERE id=".$_SESSION['id'];
+$sql = "SELECT * FROM Parents WHERE parentid=".$_SESSION['id'];
 
 $stmt = $conn->query($sql);
-$parent = $stmt->fetch(PDO:FETCH_ASSOC);
+$parent = $stmt->fetch(PDO::FETCH_ASSOC);
 
 ?>
+<!doctype html>
 <html lang="en">
 
 <head>
@@ -455,7 +456,7 @@ $parent = $stmt->fetch(PDO:FETCH_ASSOC);
 			</div>
 
 			<div class="form-check">
-			    <input type="checkbox" class="form-check-input" id="exampleCheck1" <?php if($parent['emergencyauthorized1'] != NULL){ echo "checked" }?> >
+			    <input type="checkbox" class="form-check-input" id="exampleCheck1" <?php if($parent['emergencyauthorized1'] != NULL){ echo "checked"; }?> >
 			    <label class="form-check-label" for="exampleCheck1">I give permission to this individual to pick up my child.</label>
 			  </div>
 	<!-- Emergency Contact Top Part -->
@@ -517,7 +518,7 @@ $parent = $stmt->fetch(PDO:FETCH_ASSOC);
 				</div>
 			</div>
 			<div class="form-check">
-			    <input type="checkbox" class="form-check-input" id="exampleCheck2" <?php if($parent['emergencyauthorized2'] != NULL){ echo "checked" }?> >
+			    <input type="checkbox" class="form-check-input" id="exampleCheck2" <?php if($parent['emergencyauthorized2'] != NULL){ echo "checked"; }?> >
 			    <label class="form-check-label" for="exampleCheck2">I give permission to this individual to pick up my child.</label>
 			</div>
 	<!-- Submit -->
