@@ -66,7 +66,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 			<div class="col">
 				<div class="card text-white bg-info mb-3">
 					<a class="cardlink" href="./managecampers"></a>
-					<img src="./icons/027-profile.png" class="card-img-top" alt="...">
+					<img src="027-profile.png" class="card-img-top" alt="...">
 					<div class="card-body">
 						<h5 class="card-title">Manage Campers</h5>
 						<p class="card-text">Add or manage your children.</p>
@@ -76,7 +76,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 			<div class="col">
 				<div class="card text-white bg-info mb-3">
 				<a class="cardlink" href="./editprofile"></a>
-					<img src="./icons/026-pencil.png" class="card-img-top" alt="...">
+					<img src="026-pencil.png" class="card-img-top" alt="...">
 					<div class="card-body">
 						<h5 class="card-title">Edit Profile</h5>
 						<p class="card-text">Change your personal account information.</p>
