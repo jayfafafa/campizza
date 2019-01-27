@@ -90,9 +90,9 @@ include ('connection.php');
 <?php
 $parentid=$_SESSION['id'];
 
-$stmt = $conn->query("SELECT Children.firstname, Children.lastname, ChildrenDynamic.week1am, ChildrenDynamic.week1pm, ChildrenDynamic.week2am, ChildrenDynamic.week2pm, ChildrenDynamic.week3am, ChildrenDynamic.week3pm, ChildrenDynamic.week4am, ChildrenDynamic.week4pm, ChildrenDynamic.week5am, ChildrenDynamic.week5pm, ChildrenDynamic.week6am, ChildrenDynamic.week6pm, ChildrenDynamic.week7am, ChildrenDynamic.week7pm, ChildrenDynamic.week8am, ChildrenDynamic.week8pm, ChildrenDynamic.extendedcare 
-	FROM Parents, Children, ChildrenDynamic 
-	WHERE Parents.parentid = Children.parentid AND Children.childid = ChildrenDynamic.childid AND Parents.parentid=" . $parentid);
+$stmt = $conn->query("SELECT Children.childid, Children.firstname, Children.lastname 
+	FROM Parents, Children
+	WHERE Parents.parentid = Children.parentid AND Parents.parentid=" . $parentid);
 
 $stmtAmount = $conn->query("SELECT activeweeks FROM YearlySessionWeeks");
 $row2 = $stmtAmount->fetch(PDO::FETCH_ASSOC);
@@ -125,24 +125,30 @@ while ( $row = $stmt->fetch(PDO::FETCH_ASSOC) ) {
 									  </thead>
 									  <tbody>
 <?php
+	$stmtDynamic = $conn->query("SELECT ChildrenDynamic.week1am, ChildrenDynamic.week1pm, ChildrenDynamic.week2am, ChildrenDynamic.week2pm, ChildrenDynamic.week3am, ChildrenDynamic.week3pm, ChildrenDynamic.week4am, ChildrenDynamic.week4pm, ChildrenDynamic.week5am, ChildrenDynamic.week5pm, ChildrenDynamic.week6am, ChildrenDynamic.week6pm, ChildrenDynamic.week7am, ChildrenDynamic.week7pm, ChildrenDynamic.week8am, ChildrenDynamic.week8pm, ChildrenDynamic.extendedcare
+	FROM Children, ChildDynamic, YearlySessionWeeks
+	WHERE Children.parentid = ChildrenDynamic.parentid AND Children.childid =".$row['childid']." AND ChildDynamic.registeredyear = YearlySessionWeeks.currentYear";
+	
+	$registerInfo = $stmDynamic->fetch(PDO::FETCH::ASSOC);
+
 	for($x = 1; $x <= $activeweeks; $x++){
 		echo '<tr>';
 		echo '<th scope="row">Week '.$x.'</th>';
-		if ($row['week'.$x.'am'] == 1)
+		if ($registerInfo['week'.$x.'am'] == 1)
 			echo '<td>R</td>';
-		elseif($row['week'.$x.'am'] == 2)
+		elseif($registerInfo['week'.$x.'am'] == 2)
 			echo '<td>W</td>';
 		else
 			echo '<td></td>';
 		
-		if ($row['week'.$x.'pm'] == 1)
+		if ($registerInfo['week'.$x.'pm'] == 1)
 			echo '<td>R</td>';
-		elseif($row['week'.$x.'pm'] == 2)
+		elseif($registerInfo['week'.$x.'pm'] == 2)
 			echo '<td>W</td>';
 		else
 			echo '<td></td>';
 		
-		if ($row['extendedcare'] == 1 && ($row['week'.$x.'pm'] == 1 || $row['week'.$x.'am'] == 1))
+		if ($registerInfo['extendedcare'] == 1 && ($registerInfo['week'.$x.'pm'] == 1 || $registerInfo['week'.$x.'am'] == 1))
 			echo '<td>YES</td>';
 		else
 			echo '<td>NO</td>';
