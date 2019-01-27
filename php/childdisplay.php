@@ -2,9 +2,10 @@
 session_start();
 
 // Check if the user is already logged in, if yes then redirect him to welcome page
-if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-    header("location: dashboard.php");
+if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true){
+    header("location: login.php");
     exit;
+}
 
 
 include ('connection.php');
@@ -57,9 +58,11 @@ include ('connection.php');
 					<div class="d-flex top-buffer">
 						<h3>Child Display</h3>
 					</div>
-					<div class="ml-auto">
-						<input class="btn btn-outline-danger top-buffer" type="submit" value="Sign Out">
-					</div>
+						<div class="ml-auto">
+							<form action="logout.php" method "post">
+							<input class="btn btn-outline-danger top-buffer" type="submit" value="Sign Out">
+							</form>
+						</div>
 				</div>
 				<div class="row"><p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspThis page allows you to add, remove, and edit your child information.</p>
 				</div>
@@ -77,7 +80,7 @@ include ('connection.php');
 								    </div>
 								</div>
 					            <div class="card-body text-center">
-					            	<a type="button" class="btn btn-sm btn-outline-secondary" style="text-align:center;border-color: white">Click Here to Add Child</a>
+					            	<a href="./childregistration.php" type="button" class="btn btn-sm btn-outline-secondary" style="text-align:center;border-color: white">Click Here to Add Child</a>
 					            </div>
 					        </div>
 					    </div>
@@ -86,20 +89,30 @@ include ('connection.php');
 				</div>
 <?php
 $parentid=$_SESSION['id'];
-$stmt = $conn->query("SELECT Children.firstname, Children.lastname, ChildrenDynamic.week1am, ChildrenDynamic.week1pm, ChildrenDynamic.week2am, ChildrenDynamic.week2pm, ChildrenDynamic.week3am, ChildrenDynamic.week3am, ChildrenDynamic.week4pm, ChildrenDynamic.week4pm, ChildrenDynamic.week5am, ChildrenDynamic.week5pm, ChildrenDynamic.week6am, ChildrenDynamic.week6pm, ChildrenDynamic.week7am, ChildrenDynamic.week7pm, ChildrenDynamic.week8am, ChildrenDynamic.week8pm, ChildrenDynamic.extendedcare 
+
+$stmt = $conn->query("SELECT Children.firstname, Children.lastname, ChildrenDynamic.week1am, ChildrenDynamic.week1pm, ChildrenDynamic.week2am, ChildrenDynamic.week2pm, ChildrenDynamic.week3am, ChildrenDynamic.week3pm, ChildrenDynamic.week4am, ChildrenDynamic.week4pm, ChildrenDynamic.week5am, ChildrenDynamic.week5pm, ChildrenDynamic.week6am, ChildrenDynamic.week6pm, ChildrenDynamic.week7am, ChildrenDynamic.week7pm, ChildrenDynamic.week8am, ChildrenDynamic.week8pm, ChildrenDynamic.extendedcare 
 	FROM Parents, Children, ChildrenDynamic 
 	WHERE Parents.parentid = Children.parentid AND Children.childid = ChildrenDynamic.childid AND Parents.parentid=" . $parentid);
 
 $stmtAmount = $conn->query("SELECT activeweeks FROM YearlySessionWeeks");
-$row2 = $stmtAmount->fetch(PDO:FETCH_ASSOC);
+$row2 = $stmtAmount->fetch(PDO::FETCH_ASSOC);
 $activeweeks = $row2["activeweeks"];
 
 while ( $row = $stmt->fetch(PDO::FETCH_ASSOC) ) {
-
 ?>
-				<div class="row">
+				<div class="row" style="padding-bottom:50px">
 					    <div class="col">
-							<div class="card">
+							<div class="card" style="border-color:grey">
+								<div class="card-body">
+					              <div class="d-flex justify-content-between align-items-center">
+					              	<p class="card-text"></p>
+					              	<h3><?php echo $row['firstname'] . " " . $row['lastname'] ?></h3>
+					                <div class="btn-group">
+						                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit </button>
+						                  <button type="button" class="btn btn-sm btn-outline-secondary">Delete</button>
+					                </div>
+					              </div>
+					            </div>
 					            <div class="card-header">
 					            	<table class="table table-bordered" style = "background: white;">
 									  <thead>
@@ -117,10 +130,22 @@ while ( $row = $stmt->fetch(PDO::FETCH_ASSOC) ) {
 		echo '<th scope="row">Week '.$x.'</th>';
 		if ($row['week'.$x.'am'] == 1)
 			echo '<td>R</td>';
+		elseif($row['week'.$x.'am'] == 2)
+			echo '<td>W</td>';
+		else
+			echo '<td></td>';
+		
+		if ($row['week'.$x.'pm'] == 1)
+			echo '<td>R</td>';
 		elseif($row['week'.$x.'pm'] == 2)
 			echo '<td>W</td>';
 		else
 			echo '<td></td>';
+		
+		if ($row['extendedcare'] == 1 && ($row['week'.$x.'pm'] == 1 || $row['week'.$x.'am'] == 1))
+			echo '<td>YES</td>';
+		else
+			echo '<td>NO</td>';
 		echo '</tr>';
 
 	}
@@ -131,21 +156,13 @@ while ( $row = $stmt->fetch(PDO::FETCH_ASSOC) ) {
 					            </div>
 
 					            <button type="button" class="btn btn-sm btn-outline-secondary" style="border-color: gray">Edit Schedule</button>
-					            <div class="card-body">
-					              <div class="d-flex justify-content-between align-items-center">
-					              	<p class="card-text"></p>
-					              	<h3><?php echo $row['firstname'] . " " . $row["lasstname"] ?></h3>
-					                <div class="btn-group">
-						                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit </button>
-						                  <button type="button" class="btn btn-sm btn-outline-secondary">Delete</button>
-					                </div>
-					              </div>
-					            </div>
+					            
 					        </div>
 					    </div>
 				</div>
 <?php
-} //end while
+}
+ //end while
 ?>
 
 
@@ -183,3 +200,7 @@ while ( $row = $stmt->fetch(PDO::FETCH_ASSOC) ) {
 </body>
 
 </html>
+
+<?php
+unset($conn);
+?>

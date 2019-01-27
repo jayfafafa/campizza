@@ -65,7 +65,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 		<div class="row">
 			<div class="col">
 				<div class="card text-white bg-info mb-3">
-					<a class="cardlink" href="./managecampers"></a>
+					<a class="cardlink" href="./childdisplay.php"></a>
 					<img src="027-profile.png" class="card-img-top" alt="...">
 					<div class="card-body">
 						<h5 class="card-title">Manage Campers</h5>
