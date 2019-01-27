@@ -126,10 +126,10 @@ while ( $row = $stmt->fetch(PDO::FETCH_ASSOC) ) {
 									  <tbody>
 <?php
 	$stmtDynamic = $conn->query("SELECT ChildrenDynamic.week1am, ChildrenDynamic.week1pm, ChildrenDynamic.week2am, ChildrenDynamic.week2pm, ChildrenDynamic.week3am, ChildrenDynamic.week3pm, ChildrenDynamic.week4am, ChildrenDynamic.week4pm, ChildrenDynamic.week5am, ChildrenDynamic.week5pm, ChildrenDynamic.week6am, ChildrenDynamic.week6pm, ChildrenDynamic.week7am, ChildrenDynamic.week7pm, ChildrenDynamic.week8am, ChildrenDynamic.week8pm, ChildrenDynamic.extendedcare
-	FROM Children, ChildDynamic, YearlySessionWeeks
-	WHERE Children.parentid = ChildrenDynamic.parentid AND Children.childid =".$row['childid']." AND ChildDynamic.registeredyear = YearlySessionWeeks.currentYear";
+	FROM Children, ChildrenDynamic, YearlySessionWeeks
+	WHERE Children.childid = ChildrenDynamic.childid AND Children.childid =".$row['childid']." AND ChildrenDynamic.registeredyear = YearlySessionWeeks.currentYear");
 	
-	$registerInfo = $stmDynamic->fetch(PDO::FETCH::ASSOC);
+	$registerInfo = $stmtDynamic->fetch(PDO::FETCH_ASSOC);
 
 	for($x = 1; $x <= $activeweeks; $x++){
 		echo '<tr>';
