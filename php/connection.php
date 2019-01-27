@@ -1,6 +1,6 @@
 <?php
-$servername = "omarezz.db.7287244.hostedresource.com";
-$username = "omarezz";
+$servername = "rugged-sunbeam-229808:us-west2:campizza";
+$username = "campizza";
 $password = "Yusuf20@";
 try {
     $conn = new PDO("mysql:host=$servername;dbname=$username", $username, $password);
