@@ -55,10 +55,10 @@
 	  		</div>
 	  		<div class="row no-task-padding">
 		  		<div class="col">
-					<input type="text" times-label="First Name" class="form-control">
+					<input type="text" name="firstname" times-label="First Name" class="form-control" required>
 				</div>
 				<div class="col">
-					<input type="text" times-label="Last Name" class="form-control">
+					<input type="text" name="lastname" times-label="Last Name" class="form-control" required>
 				</div>
 			</div>
     	<!-- Camper Gender/Camper Birthday -->
@@ -73,7 +73,7 @@
 			<div class="row">
 		  		<div class="col-5 button-padding">
 					<div class="dropdown">
-					  <button class="btn btn-light btn-md btn-block border-secondary" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Select One
+					  <button class="btn btn-light btn-md btn-block border-secondary" name="gender" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" required>Select One
 					  </button>
 					    <div class="dropdown-menu" aria-labelledby="dropdownMenu">
 						    <li><a data-value="a">Female</a></li>
@@ -84,7 +84,7 @@
 				<div class='col'>
 			            <div class="form-group">
 			                <div class='input-group date' id='datetimepicker1'>
-			                    <input type='text' class="form-control" />
+			                    <input type='text' name="dob" class="form-control" required />
 			                    <!-- <span class="input-group-addon">
 			                        <span class="glyphicon glyphicon-calendar"></span>
 			                    </span> -->
@@ -111,10 +111,10 @@
 		  		</div>
 		  		<div class="row no-task-padding">
 			  		<div class="col">
-						<input type="text" times-label="Full Name" class="form-control">
+						<input type="text" name="doctorname" times-label="Full Name" class="form-control" required>
 					</div>
 					<div class="col">
-						<input type="text" times-label="Physician Number" class="form-control">
+						<input type="text" name="doctorphone" times-label="Physician Number" class="form-control" required>
 					</div>
 				</div>
 
@@ -130,10 +130,10 @@
 	  		</div>
 	  		<div class="row no-task-padding">
 		  		<div class="col">
-					<input type="text" times-label="Insurance" class="form-control">
+					<input type="text" name="insurance" times-label="Insurance" class="form-control" required>
 				</div>
 				<div class="col">
-					<input type="text" times-label="PolicyHoldersName" class="form-control">
+					<input type="text" name="policyholder" times-label="PolicyHoldersName" class="form-control" required>
 				</div>
 			</div>
   
@@ -151,7 +151,7 @@
 		  		</div>
 		  		<div class="row no-task-padding">
 			  		<div class="col">
-						<input type="text" times-label="CCI" class="form-control">
+						<input type="text" name="illnesses" times-label="CCI" class="form-control">
 					</div>
 				</div>
 
@@ -163,7 +163,7 @@
 		  		</div>
 		  		<div class="row no-task-padding">
 			  		<div class="col">
-						<input type="text" times-label="CCI" class="form-control">
+						<input type="text" name="allergies" times-label="CCI" class="form-control">
 					</div>
 				</div>
 
@@ -176,7 +176,7 @@
 		  		<div class="row no-task-padding">
 		  			<div class="col-4">
 						<div class="dropdown">
-						  <button class="btn btn-light btn-md btn-block border-secondary" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Select One
+						  <button class="btn btn-light btn-md btn-block border-secondary" name="medication" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" required>Select One
 						  </button>
 						    <div class="dropdown-menu" aria-labelledby="dropdownMenu">
 							    <li><a data-value="a">Yes</a></li>
@@ -185,7 +185,7 @@
 						</div>
 					</div>
 			  		<div class="col">
-						<input type="text" times-label="CCI" class="form-control">
+						<input type="text" name="medicationnames" times-label="CCI" class="form-control">
 					</div>
 				</div>
 
@@ -198,7 +198,7 @@
 		  		<div class="row no-task-padding">
 		  			<div class="col-4">
 						<div class="dropdown">
-						  <button class="btn btn-light btn-md btn-block border-secondary" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Select One
+						  <button class="btn btn-light btn-md btn-block border-secondary" name="activities" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" required>Select One
 						  </button>
 						    <div class="dropdown-menu" aria-labelledby="dropdownMenu">
 							    <li><a data-value="a">Yes</a></li>
@@ -207,7 +207,7 @@
 						</div>
 					</div>
 			  		<div class="col">
-						<input type="text" times-label="CCI" class="form-control">
+						<input type="text" name="activitiesnames" times-label="CCI" class="form-control">
 					</div>
 				</div>
 
@@ -220,7 +220,7 @@
 		  		<div class="row no-task-padding">
 		  			<div class="col-4">
 						<div class="dropdown">
-						  <button class="btn btn-light btn-md btn-block border-secondary" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Select One
+						  <button class="btn btn-light btn-md btn-block border-secondary" name="medicaltreatments" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" required>Select One
 						  </button>
 						    <div class="dropdown-menu" aria-labelledby="dropdownMenu">
 							    <li><a data-value="a">Yes</a></li>
@@ -229,7 +229,7 @@
 						</div>
 					</div>
 			  		<div class="col">
-						<input type="text" times-label="CCI" class="form-control">
+						<input type="text" name="medicaltreatmentsnames" times-label="CCI" class="form-control">
 					</div>
 				</div>
 
@@ -242,7 +242,7 @@
 		  		<div class="row no-task-padding">
 		  			<div class="col-4">
 						<div class="dropdown">
-						  <button class="btn btn-light btn-md btn-block border-secondary" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Select One
+						  <button class="btn btn-light btn-md btn-block border-secondary" name="immunizations" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Select One
 						  </button>
 						    <div class="dropdown-menu" aria-labelledby="dropdownMenu">
 							    <li><a data-value="a">Yes</a></li>
@@ -261,7 +261,7 @@
 					<div class='col'>
 			            <div class="form-group">
 			                <div class='input-group date' id='datetimepicker1'>
-			                    <input type='text' class="form-control" />
+			                    <input type='text' name="tetanusdate" class="form-control" />
 			                    <!-- <span class="input-group-addon">
 			                        <span class="glyphicon glyphicon-calendar"></span>
 			                    </span> -->
@@ -283,7 +283,7 @@
 		</div>
 		<div class="row no-task-padding">
 			<div class="col">
-				<textarea class="form-control" placeholder="Comments."></textarea>
+				<textarea class="form-control" name="comments" placeholder="Comments."></textarea>
 			</div>
 		</div>
 	</div>

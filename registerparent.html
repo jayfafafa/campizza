@@ -36,7 +36,7 @@
 	</nav>
 
 
-
+<form role="form" method="post" action="parentdb.php">
 	<!-- Html Lookout -->
 <div class="container" style = "background: white; margin-top: 20px;">
 
@@ -60,7 +60,7 @@
 
 			<div class="row no-task-padding">
 				<div class="col">
-				    <input type="text" times-label="Email address" class="form-control">
+				    <input name="loginEmail" type="text" times-label="Email address" class="form-control" required>
 				</div>
 
 			</div>
@@ -73,7 +73,7 @@
 
 			<div class="row no-task-padding">
 				<div class="col">
-				    <input type="text" times-label="password" class="form-control">
+				    <input name="password" type="text" times-label="password" class="form-control" required>
 				</div>
 
 			</div>
@@ -86,7 +86,7 @@
 
 			<div class="row no-task-padding">
 				<div class="col">
-				    <input type="text" times-label="password" class="form-control">
+				    <input name="secondPassword" type="text" times-label="password" class="form-control" required>
 				</div>
 
 			</div>
@@ -107,10 +107,10 @@
 	  		</div>
 	  		<div class="row no-task-padding">
 		  		<div class="col">
-					<input type="text" times-label="First Name" class="form-control">
+					<input name="guardiannamefirst1" type="text" times-label="First Name" class="form-control" required>
 				</div>
 				<div class="col">
-					<input type="text" times-label="Last Name" class="form-control">
+					<input name="guardiannamelast1" type="text" times-label="Last Name" class="form-control" required>
 				</div>
 			</div>
 		<!-- Email and Phone number of Guardian-->
@@ -122,7 +122,7 @@
 
 			<div class="row no-task-padding">
 				<div class="col">
-				    <input type="text" times-label="Email address" class="form-control">
+				    <input name="email1" type="text" times-label="Email address" class="form-control" required>
 				</div>
 
 			</div>
@@ -130,7 +130,7 @@
 
 			<div class="row task-padding">
 				<div class="col">
-			    	<p>Phone Number: (e.g.1234567890)</p>
+			    	<p>Phone Number 1:</p>
 			    </div>
 			</div>
 
@@ -138,14 +138,36 @@
 				<div class="col">
 					<div class="input-group mb-3">
 					  <div class="input-group-prepend">
-					    <select>
+					    <select name="phonetype1">
 						  <option value="Type">Type</option>
 						  <option value="Home">Home</option>
 						  <option value="Cell">Cell</option>
 						  <option value="Work">Work</option>
 						</select>
 					  </div>
-					  <input type="text" class="form-control" aria-label="Text input with segmented dropdown button">
+					  <input name="guardianphone1" type="text" class="form-control" aria-label="Text input with segmented dropdown button" required>
+					</div>
+				</div>
+			</div>
+			
+			<div class="row task-padding">
+				<div class="col">
+			    	<p>Phone Number 2:</p>
+			    </div>
+			</div>
+
+			<div class="row no-task-padding">
+				<div class="col">
+					<div class="input-group mb-3">
+					  <div class="input-group-prepend">
+					    <select name="phonetype2">
+						  <option value="Type">Type</option>
+						  <option value="Home">Home</option>
+						  <option value="Cell">Cell</option>
+						  <option value="Work">Work</option>
+						</select>
+					  </div>
+					  <input name="guardianphone2" type="text" class="form-control" aria-label="Text input with segmented dropdown button" required>
 					</div>
 				</div>
 			</div>
@@ -166,10 +188,10 @@
 	  		</div>
 	  		<div class="row no-task-padding">
 		  		<div class="col">
-					<input type="text" times-label="First Name" class="form-control">
+					<input name="guardiannamefirst2" type="text" times-label="First Name" class="form-control">
 				</div>
 				<div class="col">
-					<input type="text" times-label="Last Name" class="form-control">
+					<input name="guardiannamelast2" type="text" times-label="Last Name" class="form-control">
 				</div>
 			</div>
 		<!-- Email and Phone number of Guardian-->
@@ -181,7 +203,7 @@
 
 			<div class="row no-task-padding">
 				<div class="col">
-				    <input type="text" times-label="Email address" class="form-control">
+				    <input name="email2" type="text" times-label="Email address" class="form-control">
 				</div>
 
 
@@ -189,7 +211,7 @@
 
 			<div class="row task-padding">
 				<div class="col">
-			    	<p>Phone Number: (e.g.1234567890)</p>
+			    	<p>Phone Number:</p>
 			    </div>
 			</div>
 
@@ -197,21 +219,21 @@
 				<div class="col">
 					<div class="input-group mb-3">
 					  <div class="input-group-prepend">
-					    <select>
+					    <select name="phonetype2">
 						  <option value="Type">Type</option>
 						  <option value="Home">Home</option>
 						  <option value="Cell">Cell</option>
 						  <option value="Work">Work</option>
 						</select>
 					  </div>
-					  <input type="text" class="form-control" aria-label="Text input with segmented dropdown button">
+					  <input name="phone2" type="text" class="form-control" aria-label="Text input with segmented dropdown button">
 					</div>
 				</div>
 			</div>
 	<!-- Address Part International/US Area-->
 		<div class="tab" style = "margin-top: 30px">
-		  <button class="tablinks" onclick="openCity(event, 'Us')">US Address</button>
-		  <button class="tablinks" onclick="openCity(event, 'International')">International  Address</button>
+		  <input type="button" class="tablinks" onclick="openCity(event, 'Us')" value="US Address">
+		  <input type="button" class="tablinks" onclick="openCity(event, 'International')" value="International  Address">
 		</div>
 
 
@@ -225,7 +247,7 @@
 
 				<div class="row no-task-padding">
 					<div class="col">
-					    <input type="text" times-label="Address 1" class="form-control">
+					    <input name="address1" type="text" times-label="Address 1" class="form-control">
 					</div>
 				</div>
 		<!-- Address 2 -->
@@ -237,7 +259,7 @@
 
 				<div class="row no-task-padding">
 					<div class="col">
-					    <input type="text" times-label="Address 2" class="form-control">
+					    <input name="address2" type="text" times-label="Address 2" class="form-control">
 					</div>
 				</div>
 		<!-- City-->
@@ -248,7 +270,7 @@
 		  		</div>
 		  		<div class="row no-task-padding">
 			  		<div class="col">
-						<input type="text" times-label="City" class="form-control">
+						<input name="city" type="text" times-label="City" class="form-control">
 					</div>
 				</div>
 		<!--State-->
@@ -263,7 +285,7 @@
 		  		<div class="row no-task-padding">
 			  		<div class="col">
 			  			<div class="dropdown">
-						  <button class="btn btn-light btn-md btn-block border-secondary" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">State
+						  <button name="state" class="btn btn-secondary btn-md btn-block" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">State
 						  </button>
 						    <div class="dropdown-menu" aria-labelledby="dropdownMenu">
 							    <li><a href="#" data-value="Alabama">Alabama</a></li>
@@ -321,10 +343,11 @@
 						
 					</div>
 					<div class="col" style = "padding-bottom: 40px;">
-						<input type="text" times-label="Zip" class="form-control" >
+						<input name="zip" type="text" times-label="Zip" class="form-control" >
 				</div>
 				</div>
 		</div>
+		
 
 
 		<div id="International" class="tabcontent">
@@ -338,7 +361,7 @@
 
 				<div class="row no-task-padding">
 					<div class="col">
-					    <input type="text" times-label="Address 1" class="form-control">
+					    <input name="internationaladdress1" type="text" times-label="Address 1" class="form-control">
 					</div>
 				</div>
 		<!-- Address 2 -->
@@ -350,7 +373,7 @@
 
 				<div class="row no-task-padding">
 					<div class="col">
-					    <input type="text" times-label="Address 2" class="form-control">
+					    <input name="internationaladdress2" type="text" times-label="Address 2" class="form-control">
 					</div>
 				</div>
 		<!-- Country,Zip -->
@@ -364,11 +387,11 @@
 		  		</div>
 		  		<div class="row no-task-padding">
 			  		<div class="col">
-						<input type="text" times-label="City" class="form-control">
+						<input name="country" type="text" times-label="City" class="form-control">
 					</div>
 
 					<div class="col" style="padding-bottom: 40px;">
-						<input type="text" times-label="Zip" class="form-control">
+						<input name="postalcode" type="text" times-label="Zip" class="form-control">
 					</div>
 				</div>
 
@@ -390,10 +413,10 @@
 	  		</div>
 	  		<div class="row no-task-padding">
 		  		<div class="col">
-					<input type="text" times-label="First Name" class="form-control">
+					<input name="emergencynamefirst1" type="text" times-label="First Name" class="form-control" required>
 				</div>
 				<div class="col">
-					<input type="text" times-label="Last Name" class="form-control">
+					<input name="emergencynamelast1" type="text" times-label="Last Name" class="form-control" required>
 				</div>
 			</div>
 		<!-- Relationship-->
@@ -405,7 +428,7 @@
 
 			<div class="row no-task-padding">
 				<div class="col">
-				    <input type="text" times-label="relationship" class="form-control">
+				    <input name="emergencyrelationship1" type="text" times-label="relationship" class="form-control" required>
 				</div>
 
 			</div>
@@ -413,7 +436,7 @@
 
 			<div class="row task-padding">
 				<div class="col">
-			    	<p>Phone Number: (e.g.1234567890)</p>
+			    	<p>Phone Number:</p>
 			    </div>
 			</div>
 		<!--Phone Number-->
@@ -421,14 +444,14 @@
 				<div class="col">
 					<div class="input-group mb-3">
 					  <div class="input-group-prepend">
-					    <select>
+					    <select name="emergencyphonetype1">
 						  <option value="Type">Type</option>
 						  <option value="Home">Home</option>
 						  <option value="Cell">Cell</option>
 						  <option value="Work">Work</option>
 						</select>
 					  </div>
-					  <input type="text" class="form-control" aria-label="Text input with segmented dropdown button">
+					  <input name="emergencyphone1" type="text" class="form-control" aria-label="Text input with segmented dropdown button" required>
 					</div>
 				</div>
 			</div>
@@ -450,10 +473,10 @@
 
 	  		<div class="row no-task-padding">
 		  		<div class="col">
-					<input type="text" times-label="First Name" class="form-control">
+					<input name="emergencynamefirst2" type="text" times-label="First Name" class="form-control">
 				</div>
 				<div class="col">
-					<input type="text" times-label="Last Name" class="form-control">
+					<input name="emergencynamelast2" type="text" times-label="Last Name" class="form-control">
 				</div>
 			</div>
 		<!-- relationship-->
@@ -465,13 +488,13 @@
 
 			<div class="row no-task-padding">
 				<div class="col">
-				    <input type="text" times-label="Email address" class="form-control">
+				    <input name="emergencyrelationship2" type="text" times-label="Email address" class="form-control">
 				</div>
 			</div>
 		<!--Phone Number-->
 			<div class="row task-padding">
 				<div class="col">
-			    	<p>Phone Number: (e.g.1234567890)</p>
+			    	<p>Phone Number:</p>
 			    </div>
 			</div>
 
@@ -479,30 +502,34 @@
 				<div class="col">
 					<div class="input-group mb-3">
 						<div class="input-group-prepend">
-						    <select>
+						    <select name="emergencyphonetype2">
 							  <option value="Type">Type</option>
 							  <option value="Home">Home</option>
 							  <option value="Cell">Cell</option>
 							  <option value="Work">Work</option>
 							</select>
 						</div>
-							<input type="text" class="form-control" aria-label="Text input with segmented dropdown button">
+							<input name="emergencyphone2" type="text" class="form-control" aria-label="Text input with segmented dropdown button">
 					</div>
 				</div>
 			</div>
 	<!-- Submit -->
 		<div class="row margin-data" style = "padding-bottom: 50px;padding-top: 10px;" align="center">
 			<div class="col">
-				<button type="button" class="btn-xl" align="center" >Submit</button>
+				<input id="submit" type="submit" class="btn-xl" align="center" >
 			</div>
 		</div>
 	</div>
 </div>
-
+</form>
 
 	<!--Javascript here-->
 
 	<script>
+<<<<<<< HEAD
+=======
+			<!-- document.getElementsByClassName('tablinks')[0].click(); 
+>>>>>>> 406d64f063b5441fe820bdfbbda16154ca6337b4
 			function openCity(evt, cityName) {
 			  var i, tabcontent, tablinks;
 			  tabcontent = document.getElementsByClassName("tabcontent");
