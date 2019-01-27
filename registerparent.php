@@ -118,7 +118,7 @@ $parent = $stmt->fetch(PDO:FETCH_ASSOC);
 					<input name="guardiannamefirst1" type="text" times-label="First Name" class="form-control" <?php if($parent['guardiannamefirst1'] != NULL){ echo 'value='.$parent['guardiannamefirst1'];}?> required>
 				</div>
 				<div class="col">
-					<input name="guardiannamelast1" type="text" times-label="Last Name" class="form-control" required>
+					<input name="guardiannamelast1" type="text" times-label="Last Name" class="form-control" <?php if($parent['guardiannamelast1'] != NULL){ echo 'value='.$parent['guardiannamelast1'];}?> required>
 				</div>
 			</div>
 		<!-- Email and Phone number of Guardian-->
@@ -130,7 +130,7 @@ $parent = $stmt->fetch(PDO:FETCH_ASSOC);
 
 			<div class="row no-task-padding">
 				<div class="col">
-				    <input name="email1" type="text" times-label="Email address" class="form-control" required>
+				    <input name="email1" type="text" times-label="Email address" class="form-control" <?php if($parent['guardianemail1'] != NULL){ echo 'value='.$parent['guardianemail1'];}?> required>
 				</div>
 
 			</div>
@@ -153,7 +153,7 @@ $parent = $stmt->fetch(PDO:FETCH_ASSOC);
 						  <option value="Work">Work</option>
 						</select>
 					  </div>
-					  <input name="guardianphone1" type="text" class="form-control" aria-label="Text input with segmented dropdown button" required>
+					  <input name="guardianphone1" type="text" class="form-control" aria-label="Text input with segmented dropdown button" <?php if($parent['guardian1phone1'] != NULL){ echo 'value='.$parent['guardian1phone1'];}?> required>
 					</div>
 				</div>
 			</div>
@@ -175,7 +175,7 @@ $parent = $stmt->fetch(PDO:FETCH_ASSOC);
 						  <option value="Work">Work</option>
 						</select>
 					  </div>
-					  <input name="guardianphone2" type="text" class="form-control" aria-label="Text input with segmented dropdown button" required>
+					  <input name="guardianphone2" type="text" class="form-control" aria-label="Text input with segmented dropdown button" <?php if($parent['guardian1phone2'] != NULL){ echo 'value='.$parent['guardian1phone2'];}?> required>
 					</div>
 				</div>
 			</div>
@@ -196,10 +196,10 @@ $parent = $stmt->fetch(PDO:FETCH_ASSOC);
 	  		</div>
 	  		<div class="row no-task-padding">
 		  		<div class="col">
-					<input name="guardiannamefirst2" type="text" times-label="First Name" class="form-control">
+					<input name="guardiannamefirst2" type="text" times-label="First Name" class="form-control" <?php if($parent['guardiannamefirst2'] != NULL){ echo 'value='.$parent['guardiannamefirst2'];}?> >
 				</div>
 				<div class="col">
-					<input name="guardiannamelast2" type="text" times-label="Last Name" class="form-control">
+					<input name="guardiannamelast2" type="text" times-label="Last Name" class="form-control" <?php if($parent['guardiannamelast2'] != NULL){ echo 'value='.$parent['guardiannamelast2'];}?> >
 				</div>
 			</div>
 		<!-- Email and Phone number of Guardian-->
@@ -211,7 +211,7 @@ $parent = $stmt->fetch(PDO:FETCH_ASSOC);
 
 			<div class="row no-task-padding">
 				<div class="col">
-				    <input name="email2" type="text" times-label="Email address" class="form-control">
+				    <input name="email2" type="text" times-label="Email address" class="form-control" <?php if($parent['guardianemail2'] != NULL){ echo 'value='.$parent['guardianemail2'];}?> >
 				</div>
 
 
@@ -234,7 +234,7 @@ $parent = $stmt->fetch(PDO:FETCH_ASSOC);
 						  <option value="Work">Work</option>
 						</select>
 					  </div>
-					  <input name="phone3" type="text" class="form-control" aria-label="Text input with segmented dropdown button">
+					  <input name="phone3" type="text" class="form-control" aria-label="Text input with segmented dropdown button" <?php if($parent['guardian2phone1'] != NULL){ echo 'value='.$parent['guardian2phone1'];}?> >
 					</div>
 				</div>
 			</div>
@@ -257,7 +257,7 @@ $parent = $stmt->fetch(PDO:FETCH_ASSOC);
 						  <option value="Work">Work</option>
 						</select>
 					  </div>
-					  <input name="phone4" type="text" class="form-control" aria-label="Text input with segmented dropdown button" required>
+					  <input name="phone4" type="text" class="form-control" aria-label="Text input with segmented dropdown button" <?php if($parent['guardian2phone2'] != NULL){ echo 'value='.$parent['guardian2phone2'];}?> required>
 					</div>
 				</div>
 			</div>
@@ -278,7 +278,7 @@ $parent = $stmt->fetch(PDO:FETCH_ASSOC);
 
 				<div class="row no-task-padding">
 					<div class="col">
-					    <input name="address1" type="text" times-label="Address 1" class="form-control">
+					    <input name="address1" type="text" times-label="Address 1" class="form-control" <?php if($parent['address1'] != NULL){ echo 'value='.$parent['address1'];}?> >
 					</div>
 				</div>
 		<!-- Address 2 -->
@@ -290,7 +290,7 @@ $parent = $stmt->fetch(PDO:FETCH_ASSOC);
 
 				<div class="row no-task-padding">
 					<div class="col">
-					    <input name="address2" type="text" times-label="Address 2" class="form-control">
+					    <input name="address2" type="text" times-label="Address 2" class="form-control" <?php if($parent['address2'] != NULL){ echo 'value='.$parent['address2'];}?> >
 					</div>
 				</div>
 		<!-- City-->
@@ -301,7 +301,7 @@ $parent = $stmt->fetch(PDO:FETCH_ASSOC);
 		  		</div>
 		  		<div class="row no-task-padding">
 			  		<div class="col">
-						<input name="city" type="text" times-label="City" class="form-control">
+						<input name="city" type="text" times-label="City" class="form-control" <?php if($parent['city'] != NULL){ echo 'value='.$parent['city'];}?> >
 					</div>
 				</div>
 		<!--State-->
@@ -385,11 +385,11 @@ $parent = $stmt->fetch(PDO:FETCH_ASSOC);
 		  		</div>
 		  		<div class="row no-task-padding">
 			  		<div class="col">
-						<input name="country" type="text" times-label="City" class="form-control">
+						<input name="country" type="text" times-label="City" class="form-control" <?php if($parent['country'] != NULL){ echo 'value='.$parent['country'];}?> >
 					</div>
 
 					<div class="col" style="padding-bottom: 40px;">
-						<input name="postalcode" type="text" times-label="Zip" class="form-control">
+						<input name="postalcode" type="text" times-label="Zip" class="form-control" <?php if($parent['zippostalcode'] != NULL){ echo 'value='.$parent['zippostalcode'];}?> >
 					</div>
 				</div>
 
@@ -411,10 +411,10 @@ $parent = $stmt->fetch(PDO:FETCH_ASSOC);
 	  		</div>
 	  		<div class="row no-task-padding">
 		  		<div class="col">
-					<input name="emergencynamefirst1" type="text" times-label="First Name" class="form-control" required>
+					<input name="emergencynamefirst1" type="text" times-label="First Name" class="form-control" <?php if($parent['emergencynamefirst1'] != NULL){ echo 'value='.$parent['emergencynamefirst1'];}?> required>
 				</div>
 				<div class="col">
-					<input name="emergencynamelast1" type="text" times-label="Last Name" class="form-control" required>
+					<input name="emergencynamelast1" type="text" times-label="Last Name" class="form-control" <?php if($parent['emergencynamelast1'] != NULL){ echo 'value='.$parent['emergencynamelast1'];}?> required>
 				</div>
 			</div>
 		<!-- Relationship-->
@@ -426,7 +426,7 @@ $parent = $stmt->fetch(PDO:FETCH_ASSOC);
 
 			<div class="row no-task-padding">
 				<div class="col">
-				    <input name="emergencyrelationship1" type="text" times-label="relationship" class="form-control" required>
+				    <input name="emergencyrelationship1" type="text" times-label="relationship" class="form-control" <?php if($parent['emergencyrelationship1'] != NULL){ echo 'value='.$parent['emergencyrelationship1'];}?> required>
 				</div>
 
 			</div>
@@ -449,13 +449,13 @@ $parent = $stmt->fetch(PDO:FETCH_ASSOC);
 						  <option value="Work">Work</option>
 						</select>
 					  </div>
-					  <input name="emergencyphone1" type="text" class="form-control" aria-label="Text input with segmented dropdown button" required>
+					  <input name="emergencyphone1" type="text" class="form-control" aria-label="Text input with segmented dropdown button" <?php if($parent['emergencyphone1'] != NULL){ echo 'value='.$parent['emergencyphone1'];}?> required>
 					</div>
 				</div>
 			</div>
 
 			<div class="form-check">
-			    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+			    <input type="checkbox" class="form-check-input" id="exampleCheck1" <?php if($parent['emergencyauthorized1'] != NULL){ echo "checked" }?> >
 			    <label class="form-check-label" for="exampleCheck1">I give permission to this individual to pick up my child.</label>
 			  </div>
 	<!-- Emergency Contact Top Part -->
@@ -476,10 +476,10 @@ $parent = $stmt->fetch(PDO:FETCH_ASSOC);
 
 	  		<div class="row no-task-padding">
 		  		<div class="col">
-					<input name="emergencynamefirst2" type="text" times-label="First Name" class="form-control">
+					<input name="emergencynamefirst2" type="text" times-label="First Name" class="form-control" <?php if($parent['emergencynamefirst2'] != NULL){ echo 'value='.$parent['emergencynamefirst2'];}?> >
 				</div>
 				<div class="col">
-					<input name="emergencynamelast2" type="text" times-label="Last Name" class="form-control">
+					<input name="emergencynamelast2" type="text" times-label="Last Name" class="form-control" <?php if($parent['emergencynamelast2'] != NULL){ echo 'value='.$parent['emergencynamelast2'];}?> >
 				</div>
 			</div>
 		<!-- relationship-->
@@ -491,7 +491,7 @@ $parent = $stmt->fetch(PDO:FETCH_ASSOC);
 
 			<div class="row no-task-padding">
 				<div class="col">
-				    <input name="emergencyrelationship2" type="text" times-label="Email address" class="form-control">
+				    <input name="emergencyrelationship2" type="text" times-label="Email address" class="form-control" <?php if($parent['emergencyrelationship2'] != NULL){ echo 'value='.$parent['emergencyrelationship2'];}?> >
 				</div>
 			</div>
 		<!--Phone Number-->
@@ -512,12 +512,12 @@ $parent = $stmt->fetch(PDO:FETCH_ASSOC);
 							  <option value="Work">Work</option>
 							</select>
 						</div>
-							<input name="emergencyphone2" type="text" class="form-control" aria-label="Text input with segmented dropdown button">
+							<input name="emergencyphone2" type="text" class="form-control" aria-label="Text input with segmented dropdown button" <?php if($parent['emergencyphone2'] != NULL){ echo 'value='.$parent['emergencyphone2'];}?> >
 					</div>
 				</div>
 			</div>
 			<div class="form-check">
-			    <input type="checkbox" class="form-check-input" id="exampleCheck2">
+			    <input type="checkbox" class="form-check-input" id="exampleCheck2" <?php if($parent['emergencyauthorized2'] != NULL){ echo "checked" }?> >
 			    <label class="form-check-label" for="exampleCheck2">I give permission to this individual to pick up my child.</label>
 			</div>
 	<!-- Submit -->
