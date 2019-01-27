@@ -65,7 +65,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 	<div class="container">
 		<div class="row">
 			<div class="col">
-				<div class="card w-50 border-info mb-3 mx-auto">
+				<div class="card border-info mb-3 mx-auto">
 					<a class="cardlink" href="./childdisplay.php"></a>
 					<img src="027-profile.png" class="card-img-top" alt="...">
 					<div class="card-body">
@@ -75,7 +75,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 				</div>
 			</div>
 			<div class="col">
-				<div class="card w-50 border-info mb-3 mx-auto">
+				<div class="card border-info mb-3 mx-auto">
 				<a class="cardlink" href="./editprofile"></a>
 					<img src="026-pencil.png" class="card-img-top" alt="...">
 					<div class="card-body">
