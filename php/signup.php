@@ -1,6 +1,4 @@
 <?php
-
-
 // Include config file
 require_once "connection.php";
 
@@ -8,7 +6,7 @@ require_once "connection.php";
 session_start();
 
 // Check if the user is already logged in, if yes then redirect him to welcome page
-if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && isset($_SESSION["registered"]) && ($_SESSION["registered"] === true)) {
     header("location: dashboard.php");
     exit;
 }
@@ -86,9 +84,24 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             
             // Attempt to execute the prepared statement
             if($stmt->execute()){
-                // Redirect to login page
-                header("location: login.php");
-            } else{
+				$id = $conn->lastInsertId();
+				
+				// Store data in session variables
+				$_SESSION["loggedin"] = true;
+				$_SESSION["id"] = $id;
+				$_SESSION["username"] = $username;
+				$_SESSION["registered"] = false;
+
+				/*
+				if($_SESSION["loggedin"]){echo 'logged in ';};
+				echo $_SESSION["id"]; echo '  ';
+				echo $_SESSION["username"];
+				if(!$_SESSION["registered"]) {echo ' registered';};
+				*/
+				
+                // Redirect to parent registration page				
+                header("location: parentregistration.php");
+            } else {
                 echo "Something went wrong. Please try again later.";
             }
         }

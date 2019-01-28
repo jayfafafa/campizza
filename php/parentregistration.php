@@ -1,30 +1,38 @@
-<?php 
-
-// Initialize the session
+<?php
+//include("registerparent.html");
 session_start();
- 
-// Check if the user is logged in, if not then redirect him to login page
-if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+
+date_default_timezone_set('America/Los_Angeles');
+$regtime = date('m/d/Y h:i:s a', time());
+
+if( (!isset($_SESSION["loggedin"]) && !isset($_SESSION["registered"]) && $_SESSION["registered"] === true ) || ( $_SESSION["loggedin"] !== true && !isset($_SESSION["registered"]) ) ){
     header("location: login.php");
     exit;
+} else if ( ( isset($_SESSION["loggedin"]) && isset($_SESSION["registered"]) ) && ( $_SESSION["loggedin"] === true && $_SESSION["registered"] === true) ){
+	//delete session registered
+    header("location: dashboard.php");
+    exit;
 }
+include("connection.php");
 
-include('connection.php');
-
-if($_SERVER["REQUEST_METHOD"] == "POST") {
-	$sql = "UPDATE Parents SET guardiannamefirst1=:guardiannamefirst1,"
-		."guardiannamelast1=:guardiannamelast1, guardiannamefirst2=:guardiannamefirst2, guardiannamelast2=:guardiannamelast2, address1=:address1, address2=:address2,"
-		."country=:country, city=:city, "
-		."state=:state, zippostalcode=:zippostalcode, guardianemail1=:guardianemail1, guardianemail2=:guardianemail2, guardian1phone1=:guardian1phone1, guardian1phone2=:guardian1phone2,"
-		."guardian2phone1=:guardian2phone1, guardian2phone2=:guardian2phone2, emergencynamefirst1=:emergencynamefirst1, emergencynamelast1=:emergencynamelast1,"
-		."emergencyrelationship1=:emergencyrelationship1, emergencyphone1=:emergencyphone1, emergencyauthorized1=:emergencyauthorized1, "
-		."emergencynamefirst2=:emergencynamefirst2, emergencynamelast2=:emergencynamelast2, emergencyrelationship2=:emergencyrelationship2, emergencyphone2=:emergencyphone2, "
-		."emergencyauthorized2=:emergencyauthorized2,balance=:balance WHERE parentid=".$_SESSION['id'];
-		
-		
-		
-		
-		
+if($_SERVER["REQUEST_METHOD"]=="POST") {
+	
+	$sql = "INSERT INTO Parents (parentid, regtime, location, guardiannamefirst1,"
+		."guardiannamelast1, guardiannamefirst2, guardiannamelast2, address1, address2,"
+		."country, city,"
+		."state, zippostalcode, guardianemail1, guardianemail2, guardian1phone1, guardian1phone2,"
+		."guardian2phone1, guardian2phone2, emergencynamefirst1, emergencynamelast1,"
+		."emergencyrelationship1, emergencyphone1, emergencyauthorized1, "
+		."emergencynamefirst2, emergencynamelast2, emergencyrelationship2, emergencyphone2, "
+		."emergencyauthorized2,balance)"
+        . "VALUES (:parentid, :regtime, :location, :guardiannamefirst1,"
+		.":guardiannamelast1, :guardiannamefirst2, :guardiannamelast2, :address1, :address2,"
+		.":country, :city, "
+		.":state, :zippostalcode, :guardianemail1, :guardianemail2, :guardian1phone1, :guardian1phone2,"
+		.":guardian2phone1, :guardian2phone2, :emergencynamefirst1, :emergencynamelast1,"
+		.":emergencyrelationship1, :emergencyphone1, :emergencyauthorized1, "
+		.":emergencynamefirst2, :emergencynamelast2, :emergencyrelationship2, :emergencyphone2, "
+		.":emergencyauthorized2, :balance)";
 		
 		$emergencyauthorized1 = 0;
 		$emergencyauthorized2 = 0;
@@ -36,10 +44,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 		if(isset($_POST['emergencyauthorized2'])){
 			$emergencyauthorized2 = $_POST['emergencyauthorized2'];
 		}
-		
-		
-		
-		$data = [
+	
+	$data = [
+		':parentid' => $_SESSION['id'],
+		':regtime' => $regtime,
+		':location' => NULL,
 		':guardiannamefirst1' => $_POST['guardiannamefirst1'],
 		':guardiannamelast1' => $_POST['guardiannamelast1'],
 		':guardiannamefirst2' => $_POST['guardiannamefirst2'],
@@ -49,7 +58,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 		':country' => $_POST['country'],
 		':city' => $_POST['city'],
 		':state' => $_POST['state'],
-		':zippostalcode' => $_POST['zippostalcode'],
+		':zippostalcode' => $_POST['zip'],
 		':guardianemail1' => $_POST['email1'],
 		':guardianemail2' => $_POST['email2'],
 		':guardian1phone1' => $_POST['guardianphone1'],
@@ -68,25 +77,21 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 		':emergencyauthorized2' => $emergencyauthorized2,
 		':balance' => 0
 	];
-		
+	
 	if($stmt = $conn->prepare($sql)){
 		if($stmt->execute($data)){
+			$_SESSION["registered"] = true;
 			header("location: dashboard.php");
+		} else {
+			echo("Oops something went wrong");
 		}
-	else{
-		echo 'something went wrong';
 	}
-		
-	}
+
 unset($conn);
 }
 
-$sql = "SELECT * FROM Parents WHERE parentid=".$_SESSION['id'];
-
-$stmt = $conn->query($sql);
-$parent = $stmt->fetch(PDO::FETCH_ASSOC);
-unset($conn);
 ?>
+
 <!doctype html>
 <html lang="en">
 
@@ -128,7 +133,7 @@ unset($conn);
 	</nav>
 
 
-<form role="form" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
 	<!-- Html Lookout -->
 <div class="container" style = "background: white; margin-top: 20px;">
 
@@ -186,10 +191,10 @@ unset($conn);
 	  		</div>
 	  		<div class="row no-task-padding">
 		  		<div class="col">
-					<input name="guardiannamefirst1" type="text" times-label="First Name" class="form-control" <?php if($parent['guardiannamefirst1'] != NULL){ echo 'value='.$parent['guardiannamefirst1'];}?> required>
+					<input name="guardiannamefirst1" type="text" times-label="First Name" class="form-control" required>
 				</div>
 				<div class="col">
-					<input name="guardiannamelast1" type="text" times-label="Last Name" class="form-control" <?php if($parent['guardiannamelast1'] != NULL){ echo 'value='.$parent['guardiannamelast1'];}?> required>
+					<input name="guardiannamelast1" type="text" times-label="Last Name" class="form-control" required>
 				</div>
 			</div>
 		<!-- Email and Phone number of Guardian-->
@@ -201,7 +206,7 @@ unset($conn);
 
 			<div class="row no-task-padding">
 				<div class="col">
-				    <input name="email1" type="text" times-label="Email address" class="form-control" <?php if($parent['guardianemail1'] != NULL){ echo 'value='.$parent['guardianemail1'];}?> required>
+				    <input name="email1" type="text" times-label="Email address" class="form-control" required>
 				</div>
 
 			</div>
@@ -224,7 +229,7 @@ unset($conn);
 						  <option value="Work">Work</option>
 						</select>
 					  </div>
-					  <input name="guardianphone1" type="text" class="form-control" aria-label="Text input with segmented dropdown button" <?php if($parent['guardian1phone1'] != NULL){ echo 'value='.$parent['guardian1phone1'];}?> required>
+					  <input name="guardianphone1" type="text" class="form-control" aria-label="Text input with segmented dropdown button" required>
 					</div>
 				</div>
 			</div>
@@ -246,7 +251,7 @@ unset($conn);
 						  <option value="Work">Work</option>
 						</select>
 					  </div>
-					  <input name="guardianphone2" type="text" class="form-control" aria-label="Text input with segmented dropdown button" <?php if($parent['guardian1phone2'] != NULL){ echo 'value='.$parent['guardian1phone2'];}?> required>
+					  <input name="guardianphone2" type="text" class="form-control" aria-label="Text input with segmented dropdown button" required>
 					</div>
 				</div>
 			</div>
@@ -267,10 +272,10 @@ unset($conn);
 	  		</div>
 	  		<div class="row no-task-padding">
 		  		<div class="col">
-					<input name="guardiannamefirst2" type="text" times-label="First Name" class="form-control" <?php if($parent['guardiannamefirst2'] != NULL){ echo 'value='.$parent['guardiannamefirst2'];}?> >
+					<input name="guardiannamefirst2" type="text" times-label="First Name" class="form-control">
 				</div>
 				<div class="col">
-					<input name="guardiannamelast2" type="text" times-label="Last Name" class="form-control" <?php if($parent['guardiannamelast2'] != NULL){ echo 'value='.$parent['guardiannamelast2'];}?> >
+					<input name="guardiannamelast2" type="text" times-label="Last Name" class="form-control">
 				</div>
 			</div>
 		<!-- Email and Phone number of Guardian-->
@@ -282,7 +287,7 @@ unset($conn);
 
 			<div class="row no-task-padding">
 				<div class="col">
-				    <input name="email2" type="text" times-label="Email address" class="form-control" <?php if($parent['guardianemail2'] != NULL){ echo 'value='.$parent['guardianemail2'];}?> >
+				    <input name="email2" type="text" times-label="Email address" class="form-control">
 				</div>
 
 
@@ -305,7 +310,7 @@ unset($conn);
 						  <option value="Work">Work</option>
 						</select>
 					  </div>
-					  <input name="phone3" type="text" class="form-control" aria-label="Text input with segmented dropdown button" <?php if($parent['guardian2phone1'] != NULL){ echo 'value='.$parent['guardian2phone1'];}?> >
+					  <input name="phone3" type="text" class="form-control" aria-label="Text input with segmented dropdown button" value=" ">
 					</div>
 				</div>
 			</div>
@@ -328,7 +333,7 @@ unset($conn);
 						  <option value="Work">Work</option>
 						</select>
 					  </div>
-					  <input name="phone4" type="text" class="form-control" aria-label="Text input with segmented dropdown button" <?php if($parent['guardian2phone2'] != NULL){ echo 'value='.$parent['guardian2phone2'];}?> >
+					  <input name="phone4" type="text" class="form-control" aria-label="Text input with segmented dropdown button" value=" " >
 					</div>
 				</div>
 			</div>
@@ -349,7 +354,7 @@ unset($conn);
 
 				<div class="row no-task-padding">
 					<div class="col">
-					    <input name="address1" type="text" times-label="Address 1" class="form-control" <?php if($parent['address1'] != NULL){ echo 'value='.$parent['address1'];}?> >
+					    <input name="address1" type="text" times-label="Address 1" class="form-control">
 					</div>
 				</div>
 		<!-- Address 2 -->
@@ -361,7 +366,7 @@ unset($conn);
 
 				<div class="row no-task-padding">
 					<div class="col">
-					    <input name="address2" type="text" times-label="Address 2" class="form-control" <?php if($parent['address2'] != NULL){ echo 'value='.$parent['address2'];}?> >
+					    <input name="address2" type="text" times-label="Address 2" class="form-control">
 					</div>
 				</div>
 		<!-- City-->
@@ -372,7 +377,7 @@ unset($conn);
 		  		</div>
 		  		<div class="row no-task-padding">
 			  		<div class="col">
-						<input name="city" type="text" times-label="City" class="form-control" <?php if($parent['city'] != NULL){ echo 'value='.$parent['city'];}?> >
+						<input name="city" type="text" times-label="City" class="form-control">
 					</div>
 				</div>
 		<!--State-->
@@ -383,7 +388,8 @@ unset($conn);
 		  		</div>
 		  		<div class="row no-task-padding">
 			  		<div class="col">
-			  			<select name="state" class="form-control form-control-md">
+			  			<select class="form-control form-control-md" name="state">
+							  <option>State Not Applicable</option>
 							  <option>Alabama</option>
 							  <option>Alaska</option>
 							  <option>Arizona</option>
@@ -436,10 +442,10 @@ unset($conn);
 							  <option>Wyoming</option>
 
 						</select>
+			  		
+						</div>
 						
 					</div>
-			
-				</div>
 		
 
 		<!-- Country,Zip -->
@@ -453,11 +459,11 @@ unset($conn);
 		  		</div>
 		  		<div class="row no-task-padding">
 			  		<div class="col">
-						<input name="country" type="text" times-label="City" class="form-control" <?php if($parent['country'] != NULL){ echo 'value='.$parent['country'];}?> >
+						<input name="country" type="text" times-label="City" class="form-control">
 					</div>
 
 					<div class="col" style="padding-bottom: 40px;">
-						<input name="zippostalcode" type="text" times-label="Zip" class="form-control" <?php if($parent['zippostalcode'] != NULL){ echo 'value='.$parent['zippostalcode'];}?> >
+						<input name="zip" type="text" times-label="Zip" class="form-control">
 					</div>
 				</div>
 
@@ -479,10 +485,10 @@ unset($conn);
 	  		</div>
 	  		<div class="row no-task-padding">
 		  		<div class="col">
-					<input name="emergencynamefirst1" type="text" times-label="First Name" class="form-control" <?php if($parent['emergencynamefirst1'] != NULL){ echo 'value='.$parent['emergencynamefirst1'];}?> required>
+					<input name="emergencynamefirst1" type="text" times-label="First Name" class="form-control" required>
 				</div>
 				<div class="col">
-					<input name="emergencynamelast1" type="text" times-label="Last Name" class="form-control" <?php if($parent['emergencynamelast1'] != NULL){ echo 'value='.$parent['emergencynamelast1'];}?> required>
+					<input name="emergencynamelast1" type="text" times-label="Last Name" class="form-control" required>
 				</div>
 			</div>
 		<!-- Relationship-->
@@ -494,7 +500,7 @@ unset($conn);
 
 			<div class="row no-task-padding">
 				<div class="col">
-				    <input name="emergencyrelationship1" type="text" times-label="relationship" class="form-control" <?php if($parent['emergencyrelationship1'] != NULL){ echo 'value='.$parent['emergencyrelationship1'];}?> required>
+				    <input name="emergencyrelationship1" type="text" times-label="relationship" class="form-control" required>
 				</div>
 
 			</div>
@@ -517,13 +523,13 @@ unset($conn);
 						  <option value="Work">Work</option>
 						</select>
 					  </div>
-					  <input name="emergencyphone1" type="text" class="form-control" aria-label="Text input with segmented dropdown button" <?php if($parent['emergencyphone1'] != NULL){ echo 'value='.$parent['emergencyphone1'];}?> required>
+					  <input name="emergencyphone1" type="text" class="form-control" aria-label="Text input with segmented dropdown button" required>
 					</div>
 				</div>
 			</div>
 
 			<div class="form-check">
-			    <input name="emergencyauthorized1" type="checkbox" class="form-check-input" id="exampleCheck1" value=1 <?php if($parent['emergencyauthorized1'] != 0){ echo "checked"; }?> >
+			    <input type="checkbox" class="form-check-input" id="exampleCheck1" name="emergencyauthorized1" value=1>
 			    <label class="form-check-label" for="exampleCheck1">I give permission to this individual to pick up my child.</label>
 			  </div>
 	<!-- Emergency Contact Top Part -->
@@ -544,10 +550,10 @@ unset($conn);
 
 	  		<div class="row no-task-padding">
 		  		<div class="col">
-					<input name="emergencynamefirst2" type="text" times-label="First Name" class="form-control" <?php if($parent['emergencynamefirst2'] != NULL){ echo 'value='.$parent['emergencynamefirst2'];}?> >
+					<input name="emergencynamefirst2" type="text" times-label="First Name" class="form-control">
 				</div>
 				<div class="col">
-					<input name="emergencynamelast2" type="text" times-label="Last Name" class="form-control" <?php if($parent['emergencynamelast2'] != NULL){ echo 'value='.$parent['emergencynamelast2'];}?> >
+					<input name="emergencynamelast2" type="text" times-label="Last Name" class="form-control">
 				</div>
 			</div>
 		<!-- relationship-->
@@ -559,7 +565,7 @@ unset($conn);
 
 			<div class="row no-task-padding">
 				<div class="col">
-				    <input name="emergencyrelationship2" type="text" times-label="Email address" class="form-control" <?php if($parent['emergencyrelationship2'] != NULL){ echo 'value='.$parent['emergencyrelationship2'];}?> >
+				    <input name="emergencyrelationship2" type="text" times-label="Email address" class="form-control">
 				</div>
 			</div>
 		<!--Phone Number-->
@@ -580,12 +586,12 @@ unset($conn);
 							  <option value="Work">Work</option>
 							</select>
 						</div>
-							<input name="emergencyphone2" type="text" class="form-control" aria-label="Text input with segmented dropdown button" <?php if($parent['emergencyphone2'] != NULL){ echo 'value='.$parent['emergencyphone2'];}?> >
+							<input name="emergencyphone2" type="text" class="form-control" aria-label="Text input with segmented dropdown button">
 					</div>
 				</div>
 			</div>
 			<div class="form-check">
-			    <input name="emergencyauthorized2" type="checkbox" class="form-check-input" id="exampleCheck2" value=1 <?php if($parent['emergencyauthorized2'] != 0){ echo "checked"; }?> >
+			    <input type="checkbox" class="form-check-input" id="exampleCheck2" name="emergencyauthorized2" value=1>
 			    <label class="form-check-label" for="exampleCheck2">I give permission to this individual to pick up my child.</label>
 			</div>
 	<!-- Submit -->
@@ -634,3 +640,6 @@ unset($conn);
 </body>
 
 </html>
+
+
+
