@@ -42,11 +42,41 @@
 
 
 	<!-- Html Lookout -->
-<div class="container" style = "background: white; margin-top: 20px">
-    <h1 style = "padding-top: 40px;text-align: center;">Camp Izza Checkout</h1>
-  	<div class="container" style="padding-bottom: 10px">
+<div class="container" style = "background: white; margin-top: 25px">
+    <h1 style = "padding-top: 35px;text-align: center;">Terms and Conditions</h1>
+    <h3 style = "text-align: center;">Camp Izza</h3>
+  	<div class="container" style="padding-bottom: 10px; padding-top: 25px;">
 
-  		<div id="paypal-button"></div>
+  		<table>
+		  <tr>
+		    <td colspan="2" valign="top"> I am aware of the camp activities described on the camp website and I give my permission for my child to participate in these activities, unless indicated above. <br />
+		      <br />
+		    </td>
+		  </tr>
+		  <tr>
+		    <td colspan="2" valign="top"> The above information is true to the best of my knowledge. I understand that I am financially responsible for all fees and that all payments must be received by the first day of camp. All fees are non-refundable and there will be no refunds or exchanges for missed days. Parents are asked to notify Camp Izza if their child is ill or will not be attending as expected. Camp Director will attempt to call parents/guardians and/or emergency contacts if campers do not arrive to camp when expected. <br />
+		      <br />
+		    </td>
+		  </tr>
+		  <tr>
+		    <td colspan="2" valign="top"> I authorize Camp Izza to have and use the photos and video of the person named above in camp promotional materials. <br />
+		      <br />
+		    </td>
+		  </tr>
+		  <tr>
+		    <td colspan="2" valign="top"> I agree to release, hold harmless, and indemnify Camp Izza, its trustees, staff, family members of employees, vendors, students, volunteers or insurers, or their heirs or representatives for any and all claims of any nature whatsoever, including, but not limited to, those related to and arising from personal injuries, illnesses, or fatality that my child may suffer or incur while he/she is on the Camp Izza campus or while using the facilities and equipment. I agree to not hold Camp Izza responsible for loss of or damage to any possessions my child brings to the camp and campus. I hereby agree to indemnify Camp Izza against any claims of any third parties (including, but not exclusively, members of the child's family and other camp participants) for damages or losses incurred by them as a result of a child's participation in Camp Izza or presence on campus. <br />
+		      <br />
+		    </td>
+		  </tr>
+		  <tr>
+		    <td colspan="2" valign="top"> I understand that registration is on a first-come, first serve basis, that my camper's spot will only be reserved upon receipt of payment and that returned checks will incur a $25 fee. <br />
+		      <br />
+		    </td>
+		  </tr>
+		</table>
+
+
+  		<div id="paypal-button" style="text-align: center;"></div>
 		<div class="tab" style = "margin-top: 30px">
 			  <button class="tablinks" onclick="" style="background: transparent;border: none !important;font-size:0;"></button>
 		</div>
@@ -68,17 +98,28 @@
 	    payment: function(data, actions) {
 	      // 2. Make a request to your server
 	        return actions.payment.create({
-		    transactions: [{
-		      amount: {
-		        total: '30.11',
-		        currency: 'USD',
-		        details: {
-		          subtotal: '30.11',
-		        }
-		      },
-		      description: 'Camp Izza Child Payment',
-		    }],
-		    note_to_payer: 'Contact us for any questions on your order.'
+				"transactions": [{
+				    "amount": {
+				      "currency": "USD",
+				      "total": "30",
+				      "details": {
+				        "subtotal": "30",
+				      }
+				    },
+				    "payee": {
+				      "email": "payee@example.com"
+				    },
+				    "description": "The payment transaction description.",
+				    "item_list": {
+				      "items": [{
+				        "name": "tshirt",
+				        "quantity": "2",
+				        "price": "15",
+				        "sku": "1",
+				        "currency": "USD"
+				      }]
+				    }
+				  }],
 		  });
 	    },
 	    // Execute the payment:
@@ -86,7 +127,7 @@
 	    onAuthorize: function(data, actions) {
 	      // 2. Make a request to your server
 	      return actions.payment.execute().then((json) => {
-	      		console.log(document.getElementsByClassName('tablinks')[0].click());
+	      		document.getElementsByClassName('tablinks')[0].click();
                 window.alert('Payment Complete!');
                 //you can access information here
             });
