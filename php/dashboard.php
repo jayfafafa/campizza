@@ -76,7 +76,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 			</div>
 			<div class="col">
 				<div class="card border-info mb-3 mx-auto">
-				<a class="cardlink" href="./editprofile"></a>
+				<a class="cardlink" href="./editparent.php"></a>
 					<img src="026-pencil.png" class="card-img-top" alt="...">
 					<div class="card-body">
 						<h5 class="card-title">Edit Profile</h5>
