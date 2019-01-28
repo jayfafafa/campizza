@@ -11,11 +11,63 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
 include('connection.php');
 
+if($_SERVER["REQUEST_METHOD"] == "POST") {
+	$sql = "UPDATE Parents SET guardiannamefirst1=:guardiannamefirst1,"
+		."guardiannamelast1=:guardiannamelast1, guardiannamefirst2=:guardiannamefirst2, guardiannamelast2=:guardiannamelast2, address1=:address1, address2=:address2,"
+		."country=:country, city=:city, "
+		."state=:state, zippostalcode=:zippostalcode, guardianemail1=:guardianemail1, guardianemail2=:guardianemail2, guardian1phone1=:guardian1phone1, guardian1phone2=:guardian1phone2,"
+		."guardian2phone1=:guardian2phone1, guardian2phone2=:guardian2phone2, emergencynamefirst1=:emergencynamefirst1, emergencynamelast1=:emergencynamelast1,"
+		."emergencyrelationship1=:emergencyrelationship1, emergencyphone1=:emergencyphone1, emergencyauthorized1=:emergencyauthorized1, "
+		."emergencynamefirst2=:emergencynamefirst2, emergencynamelast2=:emergencynamelast2, emergencyrelationship2=:emergencyrelationship2, emergencyphone2=:emergencyphone2, "
+		."emergencyauthorized2=:emergencyauthorized2,balance=:balance WHERE parentid=".$_SESSION['id'];
+		
+		$data = [
+		':guardiannamefirst1' => $_POST['guardiannamefirst1'],
+		':guardiannamelast1' => $_POST['guardiannamelast1'],
+		':guardiannamefirst2' => $_POST['guardiannamefirst2'],
+		':guardiannamelast2' => $_POST['guardiannamelast2'],
+		':address1' => $_POST['address1'],
+		':address2' => $_POST['address2'],
+		':country' => $_POST['country'],
+		':city' => $_POST['city'],
+		':state' => NULL,
+		':zippostalcode' => $_POST['zippostalcode'],
+		':guardianemail1' => $_POST['email1'],
+		':guardianemail2' => $_POST['email2'],
+		':guardian1phone1' => $_POST['guardianphone1'],
+		':guardian1phone2' => $_POST['guardianphone2'],
+		':guardian2phone1' => NULL,
+		':guardian2phone2' => NULL,
+		':emergencynamefirst1' => $_POST['emergencynamefirst1'],
+		':emergencynamelast1' => $_POST['emergencynamelast1'],
+		':emergencyrelationship1' => $_POST['emergencyrelationship1'],
+		':emergencyphone1' => $_POST['emergencyphone1'],
+		':emergencyauthorized1' => "yes",
+		':emergencynamefirst2' => $_POST['emergencynamefirst2'],
+		':emergencynamelast2' => $_POST['emergencynamelast2'],
+		':emergencyrelationship2' => $_POST['emergencyrelationship2'],
+		':emergencyphone2' => $_POST['emergencyphone2'],
+		':emergencyauthorized2' => "no",
+		':balance' => 0
+	];
+		
+	if($stmt = $conn->prepare($sql)){
+		if($stmt->execute($data)){
+			header("location: dashboard.php");
+		}
+	else{
+		echo 'something went wrong';
+	}
+		
+	}
+unset($conn);
+}
+
 $sql = "SELECT * FROM Parents WHERE parentid=".$_SESSION['id'];
 
 $stmt = $conn->query($sql);
 $parent = $stmt->fetch(PDO::FETCH_ASSOC);
-
+unset($conn);
 ?>
 <!doctype html>
 <html lang="en">
@@ -58,7 +110,7 @@ $parent = $stmt->fetch(PDO::FETCH_ASSOC);
 	</nav>
 
 
-<form role="form" method="post" action="parentdb.php">
+<form role="form" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
 	<!-- Html Lookout -->
 <div class="container" style = "background: white; margin-top: 20px;">
 
@@ -258,7 +310,7 @@ $parent = $stmt->fetch(PDO::FETCH_ASSOC);
 						  <option value="Work">Work</option>
 						</select>
 					  </div>
-					  <input name="phone4" type="text" class="form-control" aria-label="Text input with segmented dropdown button" <?php if($parent['guardian2phone2'] != NULL){ echo 'value='.$parent['guardian2phone2'];}?> required>
+					  <input name="phone4" type="text" class="form-control" aria-label="Text input with segmented dropdown button" <?php if($parent['guardian2phone2'] != NULL){ echo 'value='.$parent['guardian2phone2'];}?> >
 					</div>
 				</div>
 			</div>
@@ -390,7 +442,7 @@ $parent = $stmt->fetch(PDO::FETCH_ASSOC);
 					</div>
 
 					<div class="col" style="padding-bottom: 40px;">
-						<input name="postalcode" type="text" times-label="Zip" class="form-control" <?php if($parent['zippostalcode'] != NULL){ echo 'value='.$parent['zippostalcode'];}?> >
+						<input name="zippostalcode" type="text" times-label="Zip" class="form-control" <?php if($parent['zippostalcode'] != NULL){ echo 'value='.$parent['zippostalcode'];}?> >
 					</div>
 				</div>
 
