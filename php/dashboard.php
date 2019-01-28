@@ -79,7 +79,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 				<a class="cardlink" href="./editparent.php"></a>
 					<img src="026-pencil.png" class="card-img-top" alt="...">
 					<div class="card-body">
-						<h5 class="card-title">Edit Profile</h5>
+						<h5 class="card-title">Update Account Details</h5>
 						<p class="card-text">Change your account info.</p>
 					</div>
 				</div>

@@ -108,10 +108,10 @@ while ( $row = $stmt->fetch(PDO::FETCH_ASSOC) ) {
 					              <div class="d-flex justify-content-between align-items-center">
 					              	<p class="card-text"></p>
 					              	<h3><?php echo $row['firstname'] . " " . $row['lastname'] ?></h3>
-					                <div class="btn-group">
-						                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit </button>
-						                  <button type="button" class="btn btn-sm btn-outline-secondary">Delete</button>
-					                </div>
+					                
+						                  <a href="editchild.php?childid=<?php echo $row['childid']; ?>" role="button" class="btn btn-sm btn-outline-secondary">Edit </button>
+						                  <a type="button" class="btn btn-sm btn-outline-secondary" role="button">Delete</button>
+					                
 					              </div>
 					            </div>
 					            <div class="card-header">
