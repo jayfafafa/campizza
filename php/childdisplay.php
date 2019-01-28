@@ -60,6 +60,7 @@ include ('connection.php');
 					</div>
 						<div class="ml-auto">
 							<form action="logout.php" method "post">
+							<a class="btn btn-outline-info top-buffer" href="dashboard.php" role="button">< Back to Dashboard</a>
 							<input class="btn btn-outline-danger top-buffer" type="submit" value="Sign Out">
 							</form>
 						</div>
