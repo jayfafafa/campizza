@@ -1,0 +1,27 @@
+input{
+	margin-left: 100;
+}
+.margin-data{
+	margin-top:30px;
+}
+.initial-task-padding{
+	margin-top:15px;
+}
+.task-padding{
+	margin-top:10px;
+}
+.no-task-padding{
+	margin-top: 0px;
+}
+span{
+	height: 50px;
+}
+
+
+
+.btn-xl {
+    padding: 10px 20px;
+    font-size: 20px;
+    border-radius: 10px;
+}
+
