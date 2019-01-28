@@ -365,62 +365,59 @@ unset($conn);
 		  		</div>
 		  		<div class="row no-task-padding">
 			  		<div class="col">
-			  			<div class="dropdown show">
-						  <a name="state" class="btn btn-secondary btn-md btn-block dropdown-toggle" ole="button" data-toggle="dropdown" id="dropdownMenuLink" aria-haspopup="true" aria-expanded="false">State
-						  </a>
-						    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-							    <a class="dropdown-item" data-value="Alabama">Alabama</a>
-							    <a class="dropdown-item" data-value="Alaska">Alaska</a>
-							    <a  data-value="Arizona" class="dropdown-item">Arizona</a>
-							    <a  data-value="Arkansas" class="dropdown-item">Arkansas</a>
-							    <a  class="dropdown-item" data-value="California">California</a>
-							    <a  class="dropdown-item" data-value="Colorado">Colorado</a>
-							    <a  class="dropdown-item" data-value="Connecticut">Connecticut</a>
-							    <a  class="dropdown-item" data-value="Delaware">Delaware</a>
-							    <a  class="dropdown-item" data-value="Florida">Florida</a>
-							    <a  class="dropdown-item" data-value="Georgia">Georgia</a>
-							    <a  class="dropdown-item" data-value="Hawaii">Hawaii</a>
-							    <a  class="dropdown-item" data-value="Idaho">Idaho </a>
-							    <a  class="dropdown-item" data-value="Illinois">Illinois</a>
-							    <a  class="dropdown-item" data-value="Indiana">Indiana</a>
-							    <a  class="dropdown-item" data-value="Iowa">Iowa</a>
-							    <a  class="dropdown-item" data-value="Kansas">Kansas</a>
-							    <a  class="dropdown-item" data-value="Kentucky">Kentucky</a>
-							    <a  class="dropdown-item" data-value="Louisiana">Louisiana</a>
-							    <a  class="dropdown-item" data-value="Maine">Maine</a>
-							    <a  class="dropdown-item" data-value="Maryland">Maryland</a>
-							    <a  class="dropdown-item" data-value="Massachusetts">Massachusetts</a>
-							    <a  class="dropdown-item" data-value="Michigan">Michigan</a>
-							    <a  class="dropdown-item" data-value="Minnesota">Minnesota</a>
-							    <a  class="dropdown-item" data-value="Mississippi">Mississippi </a>
-							    <a  class="dropdown-item" data-value="Missouri">Missouri</a>
-							    <a  class="dropdown-item" data-value="Montana">Montana</a>
-							    <a  class="dropdown-item" data-value="Nebraska">Nebraska</a>
-							    <a  class="dropdown-item" data-value="Nevada">Nevada</a>
-							    <a  class="dropdown-item" data-value="New Hampshire">New Hampshire</a>
-							    <a  class="dropdown-item" data-value="New Jersey">New Jersey</a>
-							    <a  class="dropdown-item" data-value="New Mexico">New Mexico</a>
-							    <a  class="dropdown-item" data-value="New York">New York</a>
-							    <a  class="dropdown-item" data-value="North Carolina">North Carolina</a>
-							    <a  class="dropdown-item" data-value="North Dakota">North Dakota</a>
-							    <a  class="dropdown-item" data-value="Ohio">Ohio</a>
-							    <a  class="dropdown-item" data-value="Oklahoma">Oklahoma </a>
-							    <a  class="dropdown-item" data-value="Oregon">Oregon</a>
-							    <a  class="dropdown-item" class="dropdown-item" data-value="Pennsylvania">Pennsylvania</a>
-							    <a  class="dropdown-item" data-value="Rhode Island">Rhode Island</a>
-							    <a  class="dropdown-item" data-value="South Carolina">South Carolina</a>
-							    <a  class="dropdown-item" data-value="South Dakota">South Dakota</a>
-							    <a  class="dropdown-item" data-value="Tennessee">Tennessee</a>
-							    <a  class="dropdown-item" data-value="Texas">Texas</a>
-							    <a  class="dropdown-item" data-value="Utah">Utah</a>
-							    <a  class="dropdown-item" data-value="Vermont">Vermont</a>
-							    <a  class="dropdown-item" data-value="Virginia">Virginia</a>
-							    <a  class="dropdown-item" data-value="Washington">Washington</a>
-							    <a  class="dropdown-item" data-value="West Virginia">West Virginia </a>
-							    <a  class="dropdown-item" data-value="Wisconsin">Wisconsin</a>
-							    <a  class="dropdown-item" data-value="Wyoming">Wyoming</a>
-							  </div>
-						</div>
+			  			<select name="state" class="form-control form-control-md">
+							  <option>Alabama</option>
+							  <option>Alaska</option>
+							  <option>Arizona</option>
+							  <option>Arkansas</option>
+							  <option>California</option>
+							  <option>Colorado</option>
+							  <option>Connecticut</option>
+							  <option>Delaware</option>
+							  <option>Florida</option>
+							  <option>Georgia</option>
+							  <option>Hawaii</option>
+							  <option>Idaho</option>
+							  <option>Illinois</option>
+							  <option>Indiana</option>
+							  <option>Iowa</option>
+							  <option>Kansas</option>
+							  <option>Kentucky</option>
+							  <option>Louisiana</option>
+							  <option>Maine</option>
+							  <option>Maryland</option>
+							  <option>Massachusetts</option>
+							  <option>Michigan</option>
+							  <option>Minnesota</option>
+							  <option>Mississippi</option>
+							  <option>Missouri</option>
+							  <option>Montana</option>
+							  <option>Nebraska</option>
+							  <option>Nevada</option>
+							  <option>New Hampshire</option>
+							  <option>New Jersey</option>
+							  <option>New Mexico</option>
+							  <option>New York</option>
+							  <option>North Carolina</option>
+							  <option>North Dakota</option>
+							  <option>Ohio</option>
+							  <option>Oklahoma</option>
+							  <option>Oregon</option>
+							  <option>Pennsylvania</option>
+							  <option>Rhode Island</option>
+							  <option>South Carolina</option>
+							  <option>South Dakota</option>
+							  <option>Tennessee</option>
+							  <option>Texas</option>
+							  <option>Utah</option>
+							  <option>Vermont</option>
+							  <option>Virginia</option>
+							  <option>Washington</option>
+							  <option>West Virginia</option>
+							  <option>Wisconsin</option>
+							  <option>Wyoming</option>
+
+						</select>
 						
 					</div>
 			
