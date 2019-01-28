@@ -140,18 +140,20 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 				</div>
 			</div>
 			<div class="row">
-		  		<div class="col-5 button-padding">
-				<select class="form-control form-control-lg" name="gender">
+		  		<div class="col">
+				<select class="form-control form-control-md" name="gender">
 						<option>Female</option>
 						<option>Male</option>
+				</select>
 				</div>
 				<div class='col-7'>
 			            <div class="form-group">
 			                <div class='input-group date' >
-			                    <input type='date' name="dob" class="form-control" required />
+			                    <input type='date' name="dob" class="form-control" required >
 			                </div>
 			            </div>
 			    </div>
+			</div>
     
     	<!-- Health Information -->
     		<div class="row margin-data">
