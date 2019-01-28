@@ -306,7 +306,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 					<div class='col'>
 			            <div class="form-group">
 			                <div class='input-group date'>
-			                    <input type='date' name="tetanusdate" class="form-control" />
+			                    <input type='date' name="tetanusdate" class="form-control" required />
 			                    <!-- <span class="input-group-addon">
 			                        <span class="glyphicon glyphicon-calendar"></span>
 			                    </span> -->
