@@ -34,7 +34,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 		
 	if($stmt = $conn->prepare($sql)){
 		if($stmt->execute($data)){
-			header("location: dashboard.php");
+			header("location: childdisplay.php");
 		}
 	else{
 		echo 'something went wrong';
