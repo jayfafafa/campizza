@@ -36,7 +36,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             if($stmt->execute()){
                 if($stmt->rowCount() == 1){
                     $username_err = "This username is already taken.";
-                } else{
+                } elseif(!filter_var(trim($_POST["username"]), FILTER_VALIDATE_EMAIL)){
+                	$username_err = "Not a valid email";
+                }
+                else{
                     $username = trim($_POST["username"]);
                 }
             } else{
