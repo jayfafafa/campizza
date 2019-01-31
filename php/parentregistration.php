@@ -177,7 +177,7 @@ unset($conn);
   	<!-- Guardian Top Part -->
   		<div class="row margin-data">
   			<div class="col">
-	  				<span class="input-group-text"><p style = "font-family:courier new; font-size:25px;padding-top: 10px;">Primary Guardian</p></span>
+	  				<span class="input-group-text"><p style = "font-family:times; font-size:25px;padding-top: 10px;">Primary Parent/Guardian</p></span>
   			</div>
   		</div>
 	  	<!-- First and Last Name of Guardian-->
@@ -185,18 +185,26 @@ unset($conn);
 		  		<div class="col">
 		  			<p>First Name:</p>
 		  		</div>
-				<div class="col">
-					<p>Last Name:</p>
-				</div>
 	  		</div>
-	  		<div class="row no-task-padding">
+	  		<div class="row task-padding">
 		  		<div class="col">
 					<input name="guardiannamefirst1" type="text" times-label="First Name" class="form-control" required>
 				</div>
-				<div class="col">
+			</div>
+
+
+			<div class="row initial-task-padding">
+		  		<div class="col">
+		  			<p>Last Name:</p>
+		  		</div>
+	  		</div>
+	  		<div class="row no-task-padding">
+		  		<div class="col">
 					<input name="guardiannamelast1" type="text" times-label="Last Name" class="form-control" required>
 				</div>
 			</div>
+
+
 		<!-- Email and Phone number of Guardian-->
 			<div class="row task-padding">
 				<div class="col">
@@ -221,14 +229,6 @@ unset($conn);
 			<div class="row no-task-padding">
 				<div class="col">
 					<div class="input-group mb-3">
-					  <div class="input-group-prepend">
-					    <select name="phonetype1">
-						  <option value="Type">Type</option>
-						  <option value="Home">Home</option>
-						  <option value="Cell">Cell</option>
-						  <option value="Work">Work</option>
-						</select>
-					  </div>
 					  <input name="guardianphone1" type="text" class="form-control" aria-label="Text input with segmented dropdown button" required>
 					</div>
 				</div>
@@ -243,14 +243,6 @@ unset($conn);
 			<div class="row no-task-padding">
 				<div class="col">
 					<div class="input-group mb-3">
-					  <div class="input-group-prepend">
-					    <select name="phonetype2">
-						  <option value="Type">Type</option>
-						  <option value="Home">Home</option>
-						  <option value="Cell">Cell</option>
-						  <option value="Work">Work</option>
-						</select>
-					  </div>
 					  <input name="guardianphone2" type="text" class="form-control" aria-label="Text input with segmented dropdown button" required>
 					</div>
 				</div>
@@ -258,7 +250,7 @@ unset($conn);
 	<!-- Guardian Top Part -->
   		<div class="row margin-data">
   			<div class="col">
-	  				<span class="input-group-text"><p style = "font-family:courier new; font-size:25px;padding-top: 10px;">Secondary Guardian</p></span>
+	  				<span class="input-group-text"><p style = "font-family:times; font-size:25px;padding-top: 10px;">Secondary Parent/Guardian</p></span>
   			</div>
   		</div>
 	  	<!-- First and Last Name of Guardian-->
@@ -266,14 +258,19 @@ unset($conn);
 		  		<div class="col">
 		  			<p>First Name:</p>
 		  		</div>
-				<div class="col">
-					<p>Last Name:</p>
-				</div>
 	  		</div>
 	  		<div class="row no-task-padding">
 		  		<div class="col">
 					<input name="guardiannamefirst2" type="text" times-label="First Name" class="form-control">
 				</div>
+			</div>
+
+			<div class="row task-padding">
+				<div class="col">
+					<p>Last Name:</p>
+				</div>
+	  		</div>
+	  		<div class="row no-task-padding">
 				<div class="col">
 					<input name="guardiannamelast2" type="text" times-label="Last Name" class="form-control">
 				</div>
@@ -302,14 +299,6 @@ unset($conn);
 			<div class="row no-task-padding">
 				<div class="col">
 					<div class="input-group mb-3">
-					  <div class="input-group-prepend">
-					    <select name="phonetype3">
-						  <option value="Type">Type</option>
-						  <option value="Home">Home</option>
-						  <option value="Cell">Cell</option>
-						  <option value="Work">Work</option>
-						</select>
-					  </div>
 					  <input name="phone3" type="text" class="form-control" aria-label="Text input with segmented dropdown button" value=" ">
 					</div>
 				</div>
@@ -325,14 +314,6 @@ unset($conn);
 			<div class="row no-task-padding">
 				<div class="col">
 					<div class="input-group mb-3">
-					  <div class="input-group-prepend">
-					    <select name="phonetype4">
-						  <option value="Type">Type</option>
-						  <option value="Home">Home</option>
-						  <option value="Cell">Cell</option>
-						  <option value="Work">Work</option>
-						</select>
-					  </div>
 					  <input name="phone4" type="text" class="form-control" aria-label="Text input with segmented dropdown button" value=" " >
 					</div>
 				</div>
@@ -340,7 +321,7 @@ unset($conn);
 	<!-- Address Part International/US Area-->
 		<div class="row margin-data">
   			<div class="col">
-	  				<span class="input-group-text"><p style = "font-family:courier new; font-size:25px;padding-top: 10px;">Area of Residence</p></span>
+	  				<span class="input-group-text"><p style = "font-family:times; font-size:25px;padding-top: 10px;">Area of Residence</p></span>
   			</div>
   		</div>
 
@@ -453,25 +434,30 @@ unset($conn);
 			  		<div class="col">
 			  			<p>Country:</p>
 			  		</div>
-					<div class="col">
-						<p>Postal Code:</p>
-					</div>
 		  		</div>
 		  		<div class="row no-task-padding">
 			  		<div class="col">
 						<input name="country" type="text" times-label="City" class="form-control">
 					</div>
+				</div>
 
+				<div class="row task-padding">
+					<div class="col">
+						<p>Postal Code:</p>
+					</div>
+		  		</div>
+		  		<div class="row no-task-padding">
 					<div class="col" style="padding-bottom: 40px;">
 						<input name="zip" type="text" times-label="Zip" class="form-control">
 					</div>
 				</div>
 
-		</div>
+
+
 	<!-- Emergency Contact Top Part -->
   		<div class="row margin-data">
   			<div class="col">
-	  				<span class="input-group-text"><p style = "font-family:courier new; font-size:25px;padding-top: 10px;">Emergency Contact 1:</p></span>
+	  				<span class="input-group-text"><p style = "font-family:times; font-size:25px;padding-top: 10px;">Emergency Contact 1:</p></span>
   			</div>
   		</div>
 	  	<!-- First and Last Name of Guardian-->
@@ -479,14 +465,19 @@ unset($conn);
 		  		<div class="col">
 		  			<p>First Name:</p>
 		  		</div>
-				<div class="col">
-					<p>Last Name:</p>
-				</div>
 	  		</div>
 	  		<div class="row no-task-padding">
 		  		<div class="col">
 					<input name="emergencynamefirst1" type="text" times-label="First Name" class="form-control" required>
 				</div>
+			</div>
+
+			<div class="row task-padding">
+				<div class="col">
+					<p>Last Name:</p>
+				</div>
+	  		</div>
+	  		<div class="row no-task-padding">
 				<div class="col">
 					<input name="emergencynamelast1" type="text" times-label="Last Name" class="form-control" required>
 				</div>
@@ -515,14 +506,6 @@ unset($conn);
 			<div class="row no-task-padding">
 				<div class="col">
 					<div class="input-group mb-3">
-					  <div class="input-group-prepend">
-					    <select name="emergencyphonetype1">
-						  <option value="Type">Type</option>
-						  <option value="Home">Home</option>
-						  <option value="Cell">Cell</option>
-						  <option value="Work">Work</option>
-						</select>
-					  </div>
 					  <input name="emergencyphone1" type="text" class="form-control" aria-label="Text input with segmented dropdown button" required>
 					</div>
 				</div>
@@ -535,7 +518,7 @@ unset($conn);
 	<!-- Emergency Contact Top Part -->
   		<div class="row margin-data">
   			<div class="col">
-	  				<span class="input-group-text"><p style = "font-family:courier new; font-size:25px;padding-top: 10px;">Emergency Contact 2:</p></span>
+	  				<span class="input-group-text"><p style = "font-family:times; font-size:25px;padding-top: 10px;">Emergency Contact 2:</p></span>
   			</div>
   		</div>
 	  	<!-- First and Last Name of Guardian-->
@@ -543,15 +526,21 @@ unset($conn);
 		  		<div class="col">
 		  			<p>First Name:</p>
 		  		</div>
-				<div class="col">
-					<p>Last Name:</p>
-				</div>
 	  		</div>
 
 	  		<div class="row no-task-padding">
 		  		<div class="col">
 					<input name="emergencynamefirst2" type="text" times-label="First Name" class="form-control">
 				</div>
+			</div>
+
+			<div class="row initial-task-padding">
+				<div class="col">
+					<p>Last Name:</p>
+				</div>
+	  		</div>
+
+	  		<div class="row no-task-padding">
 				<div class="col">
 					<input name="emergencynamelast2" type="text" times-label="Last Name" class="form-control">
 				</div>
@@ -578,14 +567,6 @@ unset($conn);
 			<div class="row no-task-padding">
 				<div class="col">
 					<div class="input-group mb-3">
-						<div class="input-group-prepend">
-						    <select name="emergencyphonetype2">
-							  <option value="Type">Type</option>
-							  <option value="Home">Home</option>
-							  <option value="Cell">Cell</option>
-							  <option value="Work">Work</option>
-							</select>
-						</div>
 							<input name="emergencyphone2" type="text" class="form-control" aria-label="Text input with segmented dropdown button">
 					</div>
 				</div>
