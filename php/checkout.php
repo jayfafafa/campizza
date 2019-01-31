@@ -200,9 +200,6 @@ unset($conn);
 				        "subtotal": "<?php echo $total; ?>",
 				      }
 				    },
-				    "payee": {
-				      "email": "payee@example.com"
-				    },
 				    "description": "The payment transaction description.",
 					 "item_list": {
 				      "items": [{
