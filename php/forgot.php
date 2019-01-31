@@ -16,10 +16,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 			$to = $_POST['loginemail'];
 			$subject = "CampIzza Password Reset";  
 			$message = $passwordPreHash;  
-			//$from = "asdf12@next2cloud.info";  
-			$headers = "From: asdfasdf";  
+			$from = "Reset@campizza.com";  
+			$headers = "From: $from";  
 			mail($to,$subject,$message,$headers);
-			$message = "Password has been successfully reset!";
+			$message = "Password has been successfully reset, Check your email!";
 			echo "<script type='text/javascript'>alert('$message'); window.location ='login.php'; </script>";
 			//header("Location: login.php");
 		}
