@@ -16,21 +16,24 @@ include ('connection.php');
 $sql = $_SESSION['query'];
 $data = $_SESSION['data'];
 
-	if($stmt = $conn->prepare($sql)){
-		if($stmt->execute($data)){
-			header("location: childdisplay.php");
+	if(isset($_SESSION['paid']) && $_SESSION['paid'] == true) {
+		if($stmt = $conn->prepare($sql)){
+			if($stmt->execute($data)){
+				$_SESSION['paid'] = false;
+				header("location: childdisplay.php");
+				
+			}
+			else{
+				echo "there was a problemo";
+			}
 			
 		}
-		else{
-			echo "there was a problemo";
-		}
-		
+	} else {
+		header("location: childdisplay.php")
 	}
 
 
 unset($conn)
-
-
 
 
 
