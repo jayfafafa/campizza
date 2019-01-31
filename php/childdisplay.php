@@ -60,7 +60,7 @@ include ('connection.php');
 		<div class="container">
 			<div class="row">
 					<div class="d-flex top-buffer">
-						<h3>Child Display</h3>
+						<h3>Camper Display</h3>
 					</div>
 						<div class="ml-auto">
 							<form action="logout.php" method "post">
@@ -69,7 +69,7 @@ include ('connection.php');
 							</form>
 						</div>
 				</div>
-				<div class="row"><p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspThis page allows you to add, remove, and edit your child information.</p>
+				<div class="row"><p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspThis page allows you to add, remove, and edit your camper information.</p>
 				</div>
 				<hr>
 				<div class="row">
@@ -77,15 +77,8 @@ include ('connection.php');
 					    </div>
 						<div class="col-md-4" style="padding-bottom: 20px;">
 							<div class="card">
-								<div class="card-header">
-								    <div style="text-align: center;">
-								        <div class="col" style="text-align: center; font-size: 45px;">
-										    <img src="download.png" alt="blankimage">
-										</div>
-								    </div>
-								</div>
 					            <div class="card-body text-center">
-					            	<a href="./childregistration.php" type="button" class="btn btn-sm btn-outline-secondary" style="text-align:center;border-color: white">Click Here to Add Child</a>
+					            	<a href="./childregistration.php" type="button" class="btn btn-sm btn-outline-secondary" style="text-align:center;border-color: white">Click Here to Add Camper</a>
 					            </div>
 					        </div>
 					    </div>
