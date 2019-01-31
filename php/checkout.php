@@ -13,9 +13,64 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 }
 include ('connection.php');
 
+	$data = $_SESSION['data'];
+	
+	//get session week information for Updating table & Dynamically generating week information in page
+	$sqlWeekInfo = "SELECT * FROM YearlySessionWeeks";
+	$stmtWeekInfo = $conn->query($sqlWeekInfo);
+	$weekInfo = $stmtWeekInfo->fetch(PDO::FETCH_ASSOC);
 
+	date_default_timezone_set('America/Los_Angeles');
+	$currDate = date('Y-m-d', time());
+	
+	//yearly pricing / total calculation -- seperate 
+	$sqlPrice = "SELECT * FROM YearlySessionPricing";
+	$stmtPrices = $conn->query($sqlPrice);
+	$yearlyPrices = $stmtPrices->fetch(PDO::FETCH_ASSOC);
+	
+	//getting shirt information
+	$sqlShirts = "SELECT numshirts FROM Children WHERE childid=".$_SESSION['childid'];
+	$stmtShirts = $conn->query($sqlShirts);
+	$numShirts = $stmtShirts->fetch(PDO::FETCH_ASSOC);
+	
+	$prices = array(
+		'week1' => 0,
+		'week2' => 0,
+		'week3' => 0,
+		'week4' => 0,
+		'week5' => 0,
+		'week6' => 0,
+		'week7' => 0,
+		'week8' => 0
+	);
+	
+	if( strtotime($currDate) < strtotime($weekInfo['week1start']) ) {
+		$eOrL = 'early';
+	} else {
+		$eOrL = 'late';
+	}
+	
+	if( $data[':extendedcare'] == 1) {
+		$extendedCareCost = $yearlyPrices['extendedcare'];
+	} else {
+		$extendedCareCost = 0;
+	}
+	
+	for($x = 1; $x <= $weekInfo['activeweeks']; $x++){ //Including extended care
+		if($data[':week'.$x.'am'] == 1 && $data[':week'.$x.'pm'] == 1 ) { //both am & pm [full day]
+			if('week'.$x == $weekInfo['holidayweek']) $prices['week'.$x] = $yearlyPrices['holidayweekfull'.$eOrL] + $extendedCareCost; //Holiday Full
+			else $prices['week'.$x] = $yearlyPrices['oneweekfull'.$eOrL] + $extendedCareCost; //not holiday
+		} else if($data[':week'.$x.'am'] == 1) { //week# am only
+			if('week'.$x == $weekInfo['holidayweek']) $prices['week'.$x] = $yearlyPrices['holidayweekam'.$eOrL] + $extendedCareCost; //am HOliday
+			else $prices['week'.$x] = $yearlyPrices['oneweekam'.$eOrL] + $extendedCareCost; //am reg
+		} else {//week# pm only
+			if('week'.$x == $weekInfo['holidayweek']) $prices['week'.$x] = $yearlyPrices['holidayweekpm'.$eOrL] + $extendedCareCost;//pm HOliday
+			else $prices['week'.$x] = $yearlyPrices['oneweekpm'.$eOrL] + $extendedCareCost;//pm reg
+		}
+	}
 
-
+	$total = $numShirts['numshirts'] * $yearlyPrices['extrashirt'];
+	foreach($prices as $x){$total += $x;}
 
 
 
@@ -65,6 +120,8 @@ include ('connection.php');
 		
 		</div>
 	</nav>
+	
+
 
 
 	<!-- Html Lookout -->
@@ -72,7 +129,7 @@ include ('connection.php');
     <h1 style = "padding-top: 35px;text-align: center;">Terms and Conditions</h1>
     <h3 style = "text-align: center;">Camp Izza</h3>
   	<div class="container" style="padding-bottom: 10px; padding-top: 25px;">
-
+	
   		<table>
 		  <tr>
 		    <td colspan="2" valign="top"> I am aware of the camp activities described on the camp website and I give my permission for my child to participate in these activities, unless indicated above. <br />
@@ -100,6 +157,14 @@ include ('connection.php');
 		    </td>
 		  </tr>
 		</table>
+		
+		<?php
+		echo "<p align='center'> Tshirt Price: $".($numShirts['numshirts'] * $yearlyPrices['extrashirt']);
+		for($x = 1; $x <= $weekInfo['activeweeks']; $x++){
+			echo "<p align='center'> Week ".$x. " Price: $".$prices['week'.$x]."</p>";
+		}	
+		echo "<p align='center'> Total Price: $".$total;
+		?>
 
 
   		<div id="paypal-button" style="text-align: center;"></div>
@@ -127,9 +192,9 @@ include ('connection.php');
 				"transactions": [{
 				    "amount": {
 				      "currency": "USD",
-				      "total": "30",
+				      "total": "<?php echo $total; ?>",
 				      "details": {
-				        "subtotal": "30",
+				        "subtotal": "<?php echo $total; ?>",
 				      }
 				    },
 				    "payee": {
@@ -139,7 +204,7 @@ include ('connection.php');
 				    "item_list": {
 				      "items": [{
 				        "name": "tshirt",
-				        "quantity": "2",
+				        "quantity": "<?php $numShirts['numshirts']; ?>",
 				        "price": "15",
 				        "sku": "1",
 				        "currency": "USD"
@@ -156,6 +221,7 @@ include ('connection.php');
 	      		document.getElementsByClassName('tablinks')[0].click();
                 window.alert('Payment Complete!');
                 //you can access information here
+				
             });
         }
 	  }, '#paypal-button');

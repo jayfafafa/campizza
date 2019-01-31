@@ -13,13 +13,13 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     exit;
 }
 include ('connection.php');
-//get session week information for Updating table & Dynamically generating week information in page
+/* //get session week information for Updating table & Dynamically generating week information in page
 $sqlWeekInfo = "SELECT * FROM YearlySessionWeeks";
 $stmtWeekInfo = $conn->query($sqlWeekInfo);
 $weekInfo = $stmtWeekInfo->fetch(PDO::FETCH_ASSOC);
 
 date_default_timezone_set('America/Los_Angeles');
-$currDate = date('Y-m-d', time());
+$currDate = date('Y-m-d', time()); */
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
 	//Calculate total
@@ -120,7 +120,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 			':extendedcare' => $extendedcare
 	];
 	
-	//yearly pricing / total calculation -- seperate 
+/* 	//yearly pricing / total calculation -- seperate 
 	$sqlPrice = "SELECT * FROM YearlySessionPricing";
 	$stmtPrices = $conn->query($sqlPrice);
 	$yearlyPrices = $stmtPrices->fetch(PDO::FETCH_ASSOC);
@@ -167,13 +167,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 	}
 
 	$total = $numShirts['numshirts'] * $yearlyPrices['extrashirt'];
-	foreach($prices as $x){$total += $x;}
+	foreach($prices as $x){$total += $x;} */
 
 	if($stmt = $conn->prepare($sql)){
 		$_SESSION['query']=$sql;
 		$_SESSION['data']=$data;
-		$_SESSION['total']=$total;
-		$_SESSION['prices']=$prices;
+		//$_SESSION['total']=$total;
+		//$_SESSION['prices']=$prices;
 		//foreach($data as $x){echo $x;}
 		header("location: checkout.php");
 		
