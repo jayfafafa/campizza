@@ -7,12 +7,22 @@ session_start();
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: login.php");
     exit;
+}   else if ( ( isset($_SESSION["loggedin"]) && isset($_SESSION["registered"]) ) && ( $_SESSION["loggedin"] === true && $_SESSION["registered"] === false) ){
+	//delete session registered
+    header("location: parentregistration.php");
+    exit;
 }
 include ('connection.php');
+//get session week information for Updating table & Dynamically generating week information in page
+$sqlWeekInfo = "SELECT * FROM YearlySessionWeeks";
+$stmtWeekInfo = $conn->query($sqlWeekInfo);
+$weekInfo = $stmtWeekInfo->fetch(PDO::FETCH_ASSOC);
+
+date_default_timezone_set('America/Los_Angeles');
+$currDate = date('Y-m-d', time());
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
 	//Calculate total
-	
 	
 	$sql = "UPDATE ChildrenDynamic SET week1am=:week1am, week1pm=:week1pm, week2am=:week2am,"
 		."week2pm=:week2pm, week3am=:week3am, week3pm=:week3pm, week4am=:week4am, "
@@ -109,18 +119,68 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 			':week8pm' => $week8pm,
 			':extendedcare' => $extendedcare
 	];
-		
+	
+	//yearly pricing / total calculation -- seperate 
+	$sqlPrice = "SELECT * FROM YearlySessionPricing";
+	$stmtPrices = $conn->query($sqlPrice);
+	$yearlyPrices = $stmtPrices->fetch(PDO::FETCH_ASSOC);
+	
+	//getting shirt information
+	$sqlShirts = "SELECT numshirts FROM Children WHERE childid=".$_SESSION['childid'];
+	$stmtShirts = $conn->query($sqlShirts);
+	$numShirts = $stmtShirts->fetch(PDO::FETCH_ASSOC);
+	
+	$prices = array(
+			'week1' => 0,
+			'week2' => 0,
+			'week3' => 0,
+			'week4' => 0,
+			'week5' => 0,
+			'week6' => 0,
+			'week7' => 0,
+			'week8' => 0
+	);
+	
+	if( strtotime($currDate) < strtotime($weekInfo['week1start']) ) {
+		$eOrL = 'early';
+	} else {
+		$eOrL = 'late';
+	}
+	
+	if( $data[':extendedcare'] == 1) {
+		$extendedCareCost = $yearlyPrices['extendedcare'];
+	} else {
+		$extendedCareCost = 0;
+	}
+	
+	for($x = 1; $x <= $weekInfo['activeweeks']; $x++){ //Including extended care
+		if($data[':week'.$x.'am'] == 1 && $data[':week'.$x.'pm'] == 1 ) { //both am & pm [full day]
+			if('week'.$x == $weekInfo['holidayweek']) $prices['week'.$x] = $yearlyPrices['holidayweekfull'.$eOrL] + $extendedCareCost; //Holiday Full
+			else $prices['week'.$x] = $yearlyPrices['oneweekfull'.$eOrL] + $extendedCareCost; //not holiday
+		} else if($data[':week'.$x.'am'] == 1) { //week# am only
+			if('week'.$x == $weekInfo['holidayweek']) $prices['week'.$x] = $yearlyPrices['holidayweekam'.$eOrL] + $extendedCareCost; //am HOliday
+			else $prices['week'.$x] = $yearlyPrices['oneweekam'.$eOrL] + $extendedCareCost; //am reg
+		} else {//week# pm only
+			if('week'.$x == $weekInfo['holidayweek']) $prices['week'.$x] = $yearlyPrices['holidayweekpm'.$eOrL] + $extendedCareCost;//pm HOliday
+			else $prices['week'.$x] = $yearlyPrices['oneweekpm'.$eOrL] + $extendedCareCost;//pm reg
+		}
+	}
+
+	$total = $numShirts['numshirts'] * $yearlyPrices['extrashirt'];
+	foreach($prices as $x){$total += $x;}
+
 	if($stmt = $conn->prepare($sql)){
 		$_SESSION['query']=$sql;
 		$_SESSION['data']=$data;
-		//$_SESSION['total']=$total;
-		foreach($data as $x){echo $x;}
-		//header("location: checkout.php");
+		$_SESSION['total']=$total;
+		$_SESSION['prices']=$prices;
+		//foreach($data as $x){echo $x;}
+		header("location: checkout.php");
 		
 	}
-unset($conn);
-}
 
+}
+unset($conn);
 ?>
 <!doctype html>
 <html lang="en">

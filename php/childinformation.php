@@ -7,6 +7,10 @@ session_start();
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: login.php");
     exit;
+}   else if ( ( isset($_SESSION["loggedin"]) && isset($_SESSION["registered"]) ) && ( $_SESSION["loggedin"] === true && $_SESSION["registered"] === false) ){
+	//delete session registered
+    header("location: parentregistration.php");
+    exit;
 }
 include ('connection.php');
 
@@ -34,20 +38,33 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         . "VALUES (:childid, :registeredyear, :grade)";
 		
 		if($stmt = $conn->prepare($sql)){
-			if($stmt->execute(array(
-				':childid' => $_POST['childid'],
-				':registeredyear' => $registeredyear,
-				':grade' => $_POST['grade']
-				))
-				){
-				//after successful insertion redirect to childdisplay.php
-				unset($conn);
-				header("location: camperregschedule.php");
-				}
+			try{
+				if($stmt->execute(array(
+					':childid' => $_POST['childid'],
+					':registeredyear' => $registeredyear,
+					':grade' => $_POST['grade']
+					))
+					){
+					//after successful insertion redirect to childdisplay.php
+					unset($conn);
+					header("location: camperregschedule.php");
+					}
+			} catch(PDOException $exception){
+					if($exception->getCode() == 23000) {
+						$sql = "UPDATE ChildrenDynamic SET grade=:grade";
+						$stmt = $conn->prepare($sql);
+						$stmt->execute(array(
+								':grade' => $_POST['grade']
+						));
+						unset($conn);
+						header("location: camperregschedule.php");
+					}
+					else {echo $exception->getcode();}
+			}
 		} else {
-			echo "oops something went wrong";
+				echo "oops something went wrong";
 		}
-	}
+}
 	
 if($_SERVER["REQUEST_METHOD"] == "GET"){
 	$childid = $_GET['childid'];

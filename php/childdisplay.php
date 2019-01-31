@@ -5,6 +5,10 @@ session_start();
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true){
     header("location: login.php");
     exit;
+}   else if ( ( isset($_SESSION["loggedin"]) && isset($_SESSION["registered"]) ) && ( $_SESSION["loggedin"] === true && $_SESSION["registered"] === false) ){
+	//delete session registered
+    header("location: parentregistration.php");
+    exit;
 }
 
 
@@ -162,7 +166,7 @@ while ( $row = $stmt->fetch(PDO::FETCH_ASSOC) ) {
 									</table>
 					            </div>
 
-					            <button type="button" class="btn btn-sm btn-outline-secondary" style="border-color: gray">Edit Schedule</button>
+					            <button onclick="location.href = '/childinformation.php?childid=<?php echo $row['childid'] ?>';" class="btn btn-sm btn-outline-secondary" style="border-color: gray">Edit Schedule</button>
 					            
 					        </div>
 					    </div>

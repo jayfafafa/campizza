@@ -4,8 +4,12 @@
 session_start();
  
 // Check if the user is already logged in, if yes then redirect him to welcome page
-if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+if(  (isset($_SESSION["loggedin"]) && isset($_SESSION["registered"]) ) && ( $_SESSION["loggedin"] === true && $_SESSION["registered"] === true )){
     header("location: dashboard.php");
+    exit;
+}   else if ( ( isset($_SESSION["loggedin"]) && isset($_SESSION["registered"]) ) && ( $_SESSION["loggedin"] === true && $_SESSION["registered"] === false) ){
+	//delete session registered
+    header("location: parentregistration.php");
     exit;
 }
  
@@ -55,15 +59,23 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         $hashed_password = $row["password"];
                         if(password_verify($password, $hashed_password)){
                             // Password is correct, so start a new session
-                            session_start();
                             
                             // Store data in session variables
                             $_SESSION["loggedin"] = true;
                             $_SESSION["id"] = $id;
-                            $_SESSION["username"] = $username;                            
-                            
-                            // Redirect user to welcome page
-                            header("location: dashboard.php");
+                            $_SESSION["username"] = $username;
+							
+								$sqlRegistered = "SELECT * FROM Parents WHERE parentid=".$id;
+								$stmtRegistered = $conn->prepare($sqlRegistered);
+								$stmtRegistered->execute();
+								if($stmtRegistered->rowCount() == 1) {
+									$_SESSION['registered'] = true;
+									//Redirect user to welcome page
+									header("location: dashboard.php");
+								} else {
+									$_SESSION['registered'] = false;
+									header("location: parentregistration.php");
+								}
                         } else{
                             // Display an error message if password is not valid
                             $password_err = "The password you entered was not valid.";
