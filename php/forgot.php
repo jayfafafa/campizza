@@ -2,8 +2,8 @@
 include ('connection.php');
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
-	$password = rand(999, 99999);
-	$password = password_hash($password, PASSWORD_DEFAULT);
+	$passwordPreHash = rand(99999, 2147000000);
+	$password = password_hash($passwordPreHash, PASSWORD_DEFAULT);
 	
 	$loginemail = "";
 	$loginemail_err = "";
@@ -13,13 +13,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 			$stmt->bindParam(":password", $password, PDO::PARAM_STR);
             $stmt->bindParam(":loginemail", $_POST['loginemail'], PDO::PARAM_STR);
 		if($stmt->execute()) {
-			$to = $loginemail;  
-			$subject = "Test mail";  
-			$message = $password;  
-			$from = "someonelse@example.com";  
-			$headers = "From: $from";  
+			$to = $_POST['loginemail'];
+			$subject = "CampIzza Password Reset";  
+			$message = $passwordPreHash;  
+			//$from = "asdf12@next2cloud.info";  
+			$headers = "From: asdfasdf";  
 			mail($to,$subject,$message,$headers);  
-			echo "Password Sent.";  
 		}
 	}
 
