@@ -69,14 +69,17 @@ include ('connection.php');
 		}
 	}
 
-	$total = $numShirts['numshirts'] * $yearlyPrices['extrashirt'];
-	foreach($prices as $x){$total += $x;}
+	$shirtCost = ($numShirts['numshirts']-1) * $yearlyPrices['extrashirt'];
+	$weekCost = 0;
+	foreach($prices as $x){$weekCost += $x;}
+	
+	$total = $shirtCost + $weekCost;
 
 
 
 
 
-
+unset($conn);
 
 ?>
 <!doctype html>
@@ -159,7 +162,7 @@ include ('connection.php');
 		</table>
 		
 		<?php
-		echo "<p align='center'> Tshirt Price: $".($numShirts['numshirts'] * $yearlyPrices['extrashirt']);
+		echo "<p align='center'> Tshirt Price: $".$shirtCost;
 		for($x = 1; $x <= $weekInfo['activeweeks']; $x++){
 			echo "<p align='center'> Week ".$x. " Price: $".$prices['week'.$x]."</p>";
 		}	
@@ -177,12 +180,12 @@ include ('connection.php');
 
 
  <!--Java Script-->
- <script type="text/javascript">
+<script type="text/javascript">
  	paypal.Button.render({
 	    env: 'sandbox', // Or 'production'
 	    // Set up the payment:
 	    client: {
-            sandbox:'AUmgJ1oMDn4FsdBqxuvxi-9hIN8B5FWreuvYRhLaBmVtCek1qH-32vWCMygFSe6mhpKa8Epp-ERa73GJ',
+            sandbox:'ATX85AaezdVXuMw1_nFbrS7zixVyBD70SsJ94oVJlLJArrjmOZKBAf0giHhfCPBi-I-Voi4g85Gq4aq9',
             production: '<insert production client id>'
         },
 	    // 1. Add a payment callback
@@ -201,15 +204,15 @@ include ('connection.php');
 				      "email": "payee@example.com"
 				    },
 				    "description": "The payment transaction description.",
-				    "item_list": {
+					 "item_list": {
 				      "items": [{
-				        "name": "tshirt",
-				        "quantity": "<?php $numShirts['numshirts']; ?>",
-				        "price": "15",
+				        "name": "Total",
+				        "quantity": "1",
+				        "price": "<?php echo $total; ?>",
 				        "sku": "1",
 				        "currency": "USD"
 				      }]
-				    }
+					 }
 				  }],
 		  });
 	    },
@@ -221,11 +224,13 @@ include ('connection.php');
 	      		document.getElementsByClassName('tablinks')[0].click();
                 window.alert('Payment Complete!');
                 //you can access information here
+				header("location: receipt.php");
 				
             });
         }
 	  }, '#paypal-button');
  </script>
+ 
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 
