@@ -185,7 +185,7 @@ unset($conn);
 	    env: 'sandbox', // Or 'production'
 	    // Set up the payment:
 	    client: {
-            sandbox:'ATX85AaezdVXuMw1_nFbrS7zixVyBD70SsJ94oVJlLJArrjmOZKBAf0giHhfCPBi-I-Voi4g85Gq4aq9',
+            sandbox:'AUmgJ1oMDn4FsdBqxuvxi-9hIN8B5FWreuvYRhLaBmVtCek1qH-32vWCMygFSe6mhpKa8Epp-ERa73GJ',
             production: '<insert production client id>'
         },
 	    // 1. Add a payment callback
