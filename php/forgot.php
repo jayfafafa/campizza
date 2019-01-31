@@ -18,7 +18,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 			$message = $passwordPreHash;  
 			//$from = "asdf12@next2cloud.info";  
 			$headers = "From: asdfasdf";  
-			mail($to,$subject,$message,$headers);  
+			mail($to,$subject,$message,$headers);
+			$message = "Password has been successfully reset!";
+			echo "<script type='text/javascript'>alert('$message'); window.location ='login.php'; </script>";
+			//header("Location: login.php");
 		}
 	}
 
