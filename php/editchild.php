@@ -70,7 +70,7 @@ unset($conn);
     <!-- Camper Information -->
     	<div class="row margin-data">
   			<div class="col">
-	  				<span class="input-group-text"><p style = "font-family:courier new; font-size:25px;padding-top: 10px;">Camper Information</p></span>
+	  				<span class="input-group-text"><p style = "font-family:times; font-size:25px;padding-top: 10px;">Camper Information</p></span>
   			</div>
   		</div>
     	<!-- Camper Name -->
@@ -78,25 +78,27 @@ unset($conn);
 		  		<div class="col">
 		  			<p>First Name:</p>
 		  		</div>
-				<div class="col">
-					<p>Last Name:</p>
-				</div>
 	  		</div>
 	  		<div class="row no-task-padding">
 		  		<div class="col">
 					<input type="text" name="firstname" times-label="First Name" class="form-control" <?php if($child['firstname'] != NULL){ echo 'value='.$child['firstname'];}?> required>
 				</div>
+			</div>
+			<div class="row initial-task-padding">
+				<div class="col">
+					<p>Last Name:</p>
+				</div>
+	  		</div>
+	  		<div class="row no-task-padding">
 				<div class="col">
 					<input type="text" name="lastname" times-label="Last Name" class="form-control" <?php if($child['lastname'] != NULL){ echo 'value='.$child['lastname'];}?> required>
 				</div>
 			</div>
+
     	<!-- Camper Gender/Camper Birthday -->
     		<div class="row task-padding">
     			<div class="col">
     				<p>Gender:</p>
-				</div>
-				<div class="col-7">
-						<p>Date of Birth: (e.g. 2019-01-26) </p>
 				</div>
 			</div>
 			<div class="row">
@@ -106,20 +108,27 @@ unset($conn);
 						<option>Male</option>
 					</select>
 				</div>
-				<div class='col-7'>
+			</div>
+
+			<div class="row task-padding">
+				<div class="col">
+						<p>Date of Birth: (e.g. 2019-01-26) </p>
+				</div>
+			</div>
+			<div class="row">
+				<div class='col'>
 			            <div class="form-group">
 			                <div class='input-group date' >
 			                    <input type='date' name="dob" class="form-control" <?php if($child['dob'] != NULL){ echo 'value='.$child['dob'];}?> required />
 			                </div>
 			            </div>
 			    </div>
-
 			</div>
     
     	<!-- Health Information -->
     		<div class="row margin-data">
 	  			<div class="col">
-		  				<span class="input-group-text"><p style = "font-family:courier new; font-size:25px;padding-top: 10px;">Health Information</p></span>
+		  				<span class="input-group-text"><p style = "font-family:times; font-size:25px;padding-top: 10px;">Health Information</p></span>
 	  			</div>
   			</div>
     		<!-- Doctor Name/Doctor # -->
@@ -127,14 +136,19 @@ unset($conn);
 			  		<div class="col">
 			  			<p>Primary Physicians Name:</p>
 			  		</div>
-					<div class="col">
-						<p>Phone Number: (e.g 1234567890)</p>
-					</div>
 		  		</div>
 		  		<div class="row no-task-padding">
 			  		<div class="col">
 						<input type="text" name="doctorname" times-label="Full Name" class="form-control" <?php if($child['doctorname'] != NULL){ echo 'value='.$child['doctorname'];}?> required>
 					</div>
+				</div>
+
+				<div class="row task-padding">
+					<div class="col">
+						<p>Phone Number: (e.g 1234567890)</p>
+					</div>
+		  		</div>
+		  		<div class="row no-task-padding">
 					<div class="col">
 						<input type="text" name="doctorphone" times-label="Physician Number" class="form-control" <?php if($child['doctorphone'] != NULL){ echo 'value='.$child['doctorphone'];}?> required>
 					</div>
@@ -146,14 +160,18 @@ unset($conn);
 		  		<div class="col">
 		  			<p>Insurance Carrier:</p>
 		  		</div>
-				<div class="col">
-					<p>Policy Holder's Name:</p>
-				</div>
 	  		</div>
 	  		<div class="row no-task-padding">
 		  		<div class="col">
 					<input type="text" name="insurance" times-label="Insurance" class="form-control" <?php if($child['insurance'] != NULL){ echo 'value='.$child['insurance'];}?> required>
 				</div>
+			</div>
+			<div class="row initial-task-padding">
+				<div class="col">
+					<p>Policy Holder's Name:</p>
+				</div>
+	  		</div>
+	  		<div class="row no-task-padding">
 				<div class="col">
 					<input type="text" name="policyholder" times-label="PolicyHoldersName" class="form-control" <?php if($child['policyholder'] != NULL){ echo 'value='.$child['policyholder'];}?> required>
 				</div>
@@ -162,7 +180,7 @@ unset($conn);
     	<!-- Health Questions -->
     		<div class="row margin-data">
 	  			<div class="col">
-		  				<span class="input-group-text"><p style = "font-family:courier new; font-size:25px;padding-top: 10px;">Health Questions</p></span>
+		  				<span class="input-group-text"><p style = "font-family:times; font-size:25px;padding-top: 10px;">Health Questions</p></span>
 	  			</div>
   			</div>
     		<!-- Chronic conditions or illnesses -->
@@ -196,16 +214,17 @@ unset($conn);
 			  		</div>
 		  		</div>
 		  		<div class="row no-task-padding">
-		  			<div class="col-4">
+		  			<div class="col-2">
 						<select class="form-control form-control-lg" name="medication">
 						<option>Yes</option>
 						<option>No</option>
 						</select>
 					</div>
-			  		<div class="col">
+					<div class="col">
 						<input type="text" name="medicationnames" times-label="CCI" class="form-control" <?php if($child['medicationnames'] != NULL){ echo 'value='.$child['medicationnames'];}?> >
 					</div>
 				</div>
+
 
     		<!-- Are there any activities at camp that your child cannot participate in? If yes, which activities -->
 	    		<div class="row initial-task-padding">
@@ -214,13 +233,13 @@ unset($conn);
 				  		</div>
 			  	</div>
 		  		<div class="row no-task-padding">
-		  			<div class="col-4">
+		  			<div class="col-2">
 						<select class="form-control form-control-lg" name="activities">
 						<option>Yes</option>
 						<option>No</option>
 						</select>
 					</div>
-			  		<div class="col">
+					<div class="col">
 						<input type="text" name="activitiesnames" times-label="CCI" class="form-control" <?php if($child['activitiesnames'] != NULL){ echo 'value='.$child['activitiesnames'];}?> >
 					</div>
 				</div>
@@ -232,13 +251,13 @@ unset($conn);
 				  		</div>
 			  	</div>
 		  		<div class="row no-task-padding">
-		  			<div class="col-4">
+		  			<div class="col-2">
 						<select class="form-control form-control-lg" name="medicaltreatments">
 						<option>Yes</option>
 						<option>No</option>
 						</select>
 					</div>
-			  		<div class="col">
+					<div class="col">
 						<input type="text" name="medicaltreatmentsnames" times-label="CCI" class="form-control" <?php if($child['medicaltreatmentsnames'] != NULL){ echo 'value='.$child['medicaltreatmentsnames'];}?> >
 					</div>
 				</div>
@@ -250,7 +269,7 @@ unset($conn);
 				  		</div>
 			  	</div>
 		  		<div class="row no-task-padding">
-		  			<div class="col-4">
+		  			<div class="col-2">
 						<select class="form-control form-control-lg" name="immunizations">
 						<option>Yes</option>
 						<option>No</option>
@@ -278,7 +297,7 @@ unset($conn);
     <!-- Comments -->
     <div class="row margin-data">
 	  			<div class="col">
-		  				<span class="input-group-text"><p style = "font-family:courier new; font-size:25px;padding-top: 10px;">Extra Comments</p></span>
+		  				<span class="input-group-text"><p style = "font-family:times; font-size:25px;padding-top: 10px;">Extra Comments</p></span>
 	  			</div>
   			</div>
     	<!-- Additional Comments about Camper -->
