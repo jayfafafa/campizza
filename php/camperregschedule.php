@@ -369,6 +369,8 @@ unset($conn);
 
 	<!--Javascript here-->
 	<script type="text/javascript">
+		document.getElementById('extcare').click();
+		document.getElementById('extcare').click();
 
 		function doalert(checkboxElem) {
 		//Not Extended Care
