@@ -341,7 +341,7 @@ unset($conn);
 							      <th>Extended Care</th>
 							      <td colspan="3">
 							      	<div class="form-check">
-									  <input name="extendedcare" class="form-check-input" type="checkbox" value="1" id="defaultCheck1">
+									  <input name="extendedcare" class="form-check-input" type="checkbox" value="1" id="extcare" onchange= "doalert(this)">
 									</div>
 							      </td>
 							    </tr>
@@ -369,91 +369,43 @@ unset($conn);
 
 	<!--Javascript here-->
 	<script type="text/javascript">
+
 		function doalert(checkboxElem) {
-			//Week 1 Price Total Change
-			if(document.getElementById("week1a").checked == true && document.getElementById("week1b").checked == true)
-			{
-				$('#week1price').text(234);
+		//Not Extended Care
+		if(document.getElementById('extcare').checked == false)
+		{
+			for (var i = 1; i <= 6; i++) {
+				if(document.getElementById("week"+String(i)+"a").checked == true && document.getElementById("week"+String(i)+"b").checked == true)
+				{
+					$('#week'+String(i)+'price').text(200);
+				}
+				else if (document.getElementById("week"+String(i)+"a").checked == false && document.getElementById("week"+String(i)+"b").checked == false) 
+				{
+					$('#week'+String(i)+'price').text(0);
+				}
+				else
+				{
+					$('#week'+String(i)+'price').text(100);
+				}
 			}
-			else if (document.getElementById("week1a").checked == false && document.getElementById("week1b").checked == false) 
-			{
-				$('#week1price').text(0);
+		}
+		else
+		{
+			for (var i = 1; i <= 6; i++) {
+				if(document.getElementById("week"+String(i)+"a").checked == true && document.getElementById("week"+String(i)+"b").checked == true)
+				{
+					$('#week'+String(i)+'price').text(220);
+				}
+				else if (document.getElementById("week"+String(i)+"a").checked == false && document.getElementById("week"+String(i)+"b").checked == false) 
+				{
+					$('#week'+String(i)+'price').text(0);
+				}
+				else
+				{
+					$('#week'+String(i)+'price').text(120);
+				}
 			}
-			else
-			{
-				$('#week1price').text(123);
-			}
-
-			//Week 2 Price Total Change
-			if(document.getElementById("week2a").checked == true && document.getElementById("week2b").checked == true)
-			{
-				$('#week2price').text(234);
-			}
-			else if (document.getElementById("week2a").checked == false && document.getElementById("week2b").checked == false) 
-			{
-				$('#week2price').text(0);
-			}
-			else
-			{
-				$('#week2price').text(123);
-			}
-
-			//Week 3 Price Total Change
-			if(document.getElementById("week3a").checked == true && document.getElementById("week3b").checked == true)
-			{
-				$('#week3price').text(234);
-			}
-			else if (document.getElementById("week3a").checked == false && document.getElementById("week3b").checked == false) 
-			{
-				$('#week3price').text(0);
-			}
-			else
-			{
-				$('#week3price').text(123);
-			}
-
-			//Week 4 Price Total Change
-			if(document.getElementById("week4a").checked == true && document.getElementById("week4b").checked == true)
-			{
-				$('#week4price').text(234);
-			}
-			else if (document.getElementById("week4a").checked == false && document.getElementById("week4b").checked == false) 
-			{
-				$('#week4price').text(0);
-			}
-			else
-			{
-				$('#week4price').text(123);
-			}
-
-			//Week 5 Price Total Change
-			if(document.getElementById("week5a").checked == true && document.getElementById("week5b").checked == true)
-			{
-				$('#week5price').text(234);
-			}
-			else if (document.getElementById("week5a").checked == false && document.getElementById("week5b").checked == false) 
-			{
-				$('#week5price').text(0);
-			}
-			else
-			{
-				$('#week5price').text(123);
-			}
-
-			//Week 6 Price Total Change
-			if(document.getElementById("week6a").checked == true && document.getElementById("week6b").checked == true)
-			{
-				$('#week6price').text(234);
-			}
-			else if (document.getElementById("week6a").checked == false && document.getElementById("week6b").checked == false) 
-			{
-				$('#week6price').text(0);
-			}
-			else
-			{
-				$('#week6price').text(123);
-			}
-
+		}
 	}
 	</script>
 
