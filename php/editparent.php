@@ -176,7 +176,7 @@ unset($conn);
   	<!-- Guardian Top Part -->
   		<div class="row margin-data">
   			<div class="col">
-	  				<span class="input-group-text"><p style = "font-family:courier new; font-size:25px;padding-top: 10px;">Primary Guardian</p></span>
+	  				<span class="input-group-text"><p style = "font-family:times; font-size:25px;padding-top: 10px;">Primary Guardian</p></span>
   			</div>
   		</div>
 	  	<!-- First and Last Name of Guardian-->
@@ -184,14 +184,19 @@ unset($conn);
 		  		<div class="col">
 		  			<p>First Name:</p>
 		  		</div>
-				<div class="col">
-					<p>Last Name:</p>
-				</div>
 	  		</div>
 	  		<div class="row no-task-padding">
 		  		<div class="col">
 					<input name="guardiannamefirst1" type="text" times-label="First Name" class="form-control" <?php if($parent['guardiannamefirst1'] != NULL){ echo 'value='.$parent['guardiannamefirst1'];}?> required>
 				</div>
+			</div>
+
+			<div class="row task-padding">
+				<div class="col">
+					<p>Last Name:</p>
+				</div>
+	  		</div>
+	  		<div class="row no-task-padding">
 				<div class="col">
 					<input name="guardiannamelast1" type="text" times-label="Last Name" class="form-control" <?php if($parent['guardiannamelast1'] != NULL){ echo 'value='.$parent['guardiannamelast1'];}?> required>
 				</div>
@@ -220,14 +225,6 @@ unset($conn);
 			<div class="row no-task-padding">
 				<div class="col">
 					<div class="input-group mb-3">
-					  <div class="input-group-prepend">
-					    <select name="phonetype1">
-						  <option value="Type">Type</option>
-						  <option value="Home">Home</option>
-						  <option value="Cell">Cell</option>
-						  <option value="Work">Work</option>
-						</select>
-					  </div>
 					  <input name="guardianphone1" type="text" class="form-control" aria-label="Text input with segmented dropdown button" <?php if($parent['guardian1phone1'] != NULL){ echo 'value='.$parent['guardian1phone1'];}?> required>
 					</div>
 				</div>
@@ -242,14 +239,6 @@ unset($conn);
 			<div class="row no-task-padding">
 				<div class="col">
 					<div class="input-group mb-3">
-					  <div class="input-group-prepend">
-					    <select name="phonetype2">
-						  <option value="Type">Type</option>
-						  <option value="Home">Home</option>
-						  <option value="Cell">Cell</option>
-						  <option value="Work">Work</option>
-						</select>
-					  </div>
 					  <input name="guardianphone2" type="text" class="form-control" aria-label="Text input with segmented dropdown button" <?php if($parent['guardian1phone2'] != NULL){ echo 'value='.$parent['guardian1phone2'];}?> required>
 					</div>
 				</div>
@@ -257,7 +246,7 @@ unset($conn);
 	<!-- Guardian Top Part -->
   		<div class="row margin-data">
   			<div class="col">
-	  				<span class="input-group-text"><p style = "font-family:courier new; font-size:25px;padding-top: 10px;">Secondary Guardian</p></span>
+	  				<span class="input-group-text"><p style = "font-family:times; font-size:25px;padding-top: 10px;">Secondary Guardian</p></span>
   			</div>
   		</div>
 	  	<!-- First and Last Name of Guardian-->
@@ -265,14 +254,19 @@ unset($conn);
 		  		<div class="col">
 		  			<p>First Name:</p>
 		  		</div>
-				<div class="col">
-					<p>Last Name:</p>
-				</div>
 	  		</div>
 	  		<div class="row no-task-padding">
 		  		<div class="col">
 					<input name="guardiannamefirst2" type="text" times-label="First Name" class="form-control" <?php if($parent['guardiannamefirst2'] != NULL){ echo 'value='.$parent['guardiannamefirst2'];}?> >
 				</div>
+			</div>
+
+			<div class="row task-padding">
+				<div class="col">
+					<p>Last Name:</p>
+				</div>
+	  		</div>
+	  		<div class="row no-task-padding">
 				<div class="col">
 					<input name="guardiannamelast2" type="text" times-label="Last Name" class="form-control" <?php if($parent['guardiannamelast2'] != NULL){ echo 'value='.$parent['guardiannamelast2'];}?> >
 				</div>
@@ -301,14 +295,6 @@ unset($conn);
 			<div class="row no-task-padding">
 				<div class="col">
 					<div class="input-group mb-3">
-					  <div class="input-group-prepend">
-					    <select name="phonetype3">
-						  <option value="Type">Type</option>
-						  <option value="Home">Home</option>
-						  <option value="Cell">Cell</option>
-						  <option value="Work">Work</option>
-						</select>
-					  </div>
 					  <input name="phone3" type="text" class="form-control" aria-label="Text input with segmented dropdown button" <?php if($parent['guardian2phone1'] != NULL){ echo 'value='.$parent['guardian2phone1'];}?> >
 					</div>
 				</div>
@@ -324,14 +310,6 @@ unset($conn);
 			<div class="row no-task-padding">
 				<div class="col">
 					<div class="input-group mb-3">
-					  <div class="input-group-prepend">
-					    <select name="phonetype4">
-						  <option value="Type">Type</option>
-						  <option value="Home">Home</option>
-						  <option value="Cell">Cell</option>
-						  <option value="Work">Work</option>
-						</select>
-					  </div>
 					  <input name="phone4" type="text" class="form-control" aria-label="Text input with segmented dropdown button" <?php if($parent['guardian2phone2'] != NULL){ echo 'value='.$parent['guardian2phone2'];}?> >
 					</div>
 				</div>
@@ -339,7 +317,7 @@ unset($conn);
 	<!-- Address Part International/US Area-->
 		<div class="row margin-data">
   			<div class="col">
-	  				<span class="input-group-text"><p style = "font-family:courier new; font-size:25px;padding-top: 10px;">Area of Residence</p></span>
+	  				<span class="input-group-text"><p style = "font-family:times; font-size:25px;padding-top: 10px;">Area of Residence</p></span>
   			</div>
   		</div>
 
@@ -451,25 +429,28 @@ unset($conn);
 			  		<div class="col">
 			  			<p>Country:</p>
 			  		</div>
-					<div class="col">
-						<p>Postal Code:</p>
-					</div>
 		  		</div>
 		  		<div class="row no-task-padding">
 			  		<div class="col">
 						<input name="country" type="text" times-label="City" class="form-control" <?php if($parent['country'] != NULL){ echo 'value='.$parent['country'];}?> >
 					</div>
 
+				</div>
+
+				<div class="row task-padding">
+					<div class="col">
+						<p>Postal Code:</p>
+					</div>
+		  		</div>
+		  		<div class="row no-task-padding">
 					<div class="col" style="padding-bottom: 40px;">
 						<input name="zippostalcode" type="text" times-label="Zip" class="form-control" <?php if($parent['zippostalcode'] != NULL){ echo 'value='.$parent['zippostalcode'];}?> >
 					</div>
 				</div>
-
-		</div>
 	<!-- Emergency Contact Top Part -->
   		<div class="row margin-data">
   			<div class="col">
-	  				<span class="input-group-text"><p style = "font-family:courier new; font-size:25px;padding-top: 10px;">Emergency Contact 1:</p></span>
+	  				<span class="input-group-text"><p style = "font-family:times; font-size:25px;padding-top: 10px;">Emergency Contact 1:</p></span>
   			</div>
   		</div>
 	  	<!-- First and Last Name of Guardian-->
@@ -477,14 +458,19 @@ unset($conn);
 		  		<div class="col">
 		  			<p>First Name:</p>
 		  		</div>
-				<div class="col">
-					<p>Last Name:</p>
-				</div>
 	  		</div>
 	  		<div class="row no-task-padding">
 		  		<div class="col">
 					<input name="emergencynamefirst1" type="text" times-label="First Name" class="form-control" <?php if($parent['emergencynamefirst1'] != NULL){ echo 'value='.$parent['emergencynamefirst1'];}?> required>
 				</div>
+			</div>
+
+			<div class="row task-padding">
+				<div class="col">
+					<p>Last Name:</p>
+				</div>
+	  		</div>
+	  		<div class="row no-task-padding">
 				<div class="col">
 					<input name="emergencynamelast1" type="text" times-label="Last Name" class="form-control" <?php if($parent['emergencynamelast1'] != NULL){ echo 'value='.$parent['emergencynamelast1'];}?> required>
 				</div>
@@ -513,14 +499,6 @@ unset($conn);
 			<div class="row no-task-padding">
 				<div class="col">
 					<div class="input-group mb-3">
-					  <div class="input-group-prepend">
-					    <select name="emergencyphonetype1">
-						  <option value="Type">Type</option>
-						  <option value="Home">Home</option>
-						  <option value="Cell">Cell</option>
-						  <option value="Work">Work</option>
-						</select>
-					  </div>
 					  <input name="emergencyphone1" type="text" class="form-control" aria-label="Text input with segmented dropdown button" <?php if($parent['emergencyphone1'] != NULL){ echo 'value='.$parent['emergencyphone1'];}?> required>
 					</div>
 				</div>
@@ -533,7 +511,7 @@ unset($conn);
 	<!-- Emergency Contact Top Part -->
   		<div class="row margin-data">
   			<div class="col">
-	  				<span class="input-group-text"><p style = "font-family:courier new; font-size:25px;padding-top: 10px;">Emergency Contact 2:</p></span>
+	  				<span class="input-group-text"><p style = "font-family:times; font-size:25px;padding-top: 10px;">Emergency Contact 2:</p></span>
   			</div>
   		</div>
 	  	<!-- First and Last Name of Guardian-->
@@ -541,15 +519,21 @@ unset($conn);
 		  		<div class="col">
 		  			<p>First Name:</p>
 		  		</div>
-				<div class="col">
-					<p>Last Name:</p>
-				</div>
 	  		</div>
 
 	  		<div class="row no-task-padding">
 		  		<div class="col">
 					<input name="emergencynamefirst2" type="text" times-label="First Name" class="form-control" <?php if($parent['emergencynamefirst2'] != NULL){ echo 'value='.$parent['emergencynamefirst2'];}?> >
 				</div>
+			</div>
+
+			<div class="row initial-task-padding">
+				<div class="col">
+					<p>Last Name:</p>
+				</div>
+	  		</div>
+
+	  		<div class="row no-task-padding">
 				<div class="col">
 					<input name="emergencynamelast2" type="text" times-label="Last Name" class="form-control" <?php if($parent['emergencynamelast2'] != NULL){ echo 'value='.$parent['emergencynamelast2'];}?> >
 				</div>
@@ -576,14 +560,6 @@ unset($conn);
 			<div class="row no-task-padding">
 				<div class="col">
 					<div class="input-group mb-3">
-						<div class="input-group-prepend">
-						    <select name="emergencyphonetype2">
-							  <option value="Type">Type</option>
-							  <option value="Home">Home</option>
-							  <option value="Cell">Cell</option>
-							  <option value="Work">Work</option>
-							</select>
-						</div>
 							<input name="emergencyphone2" type="text" class="form-control" aria-label="Text input with segmented dropdown button" <?php if($parent['emergencyphone2'] != NULL){ echo 'value='.$parent['emergencyphone2'];}?> >
 					</div>
 				</div>
