@@ -31,6 +31,7 @@ include ('connection.php');
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 
+
 </head>
 
 <body>
@@ -60,30 +61,22 @@ include ('connection.php');
 		<div class="container">
 			<div class="row">
 					<div class="d-flex top-buffer">
-						<h3>Camper Display</h3>
+						<h3>Camper Dashboard</h3>
 					</div>
 						<div class="ml-auto">
 							<form action="logout.php" method "post">
-							<a class="btn btn-outline-info top-buffer" href="dashboard.php" role="button">< Back to Dashboard</a>
-							<input class="btn btn-outline-danger top-buffer" type="submit" value="Sign Out">
+							<a class="btn btn-primary top-buffer" href="dashboard.php" role="button">< Back to Dashboard</a>
+							<input class="btn btn-danger top-buffer" type="submit" value="Sign Out">
 							</form>
 						</div>
 				</div>
-				<div class="row"><p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspThis page allows you to add, remove, and edit your camper information.</p>
+				<div class="row"><p align="center">This page allows you to add, remove, and edit your camper information.</p>
 				</div>
 				<hr>
 				<div class="row">
-						<div class="col">
-					    </div>
-						<div class="col-md-4" style="padding-bottom: 20px;">
-							<div class="card">
-					            <div class="card-body text-center">
-					            	<a href="./childregistration.php" type="button" class="btn btn-sm btn-outline-secondary" style="text-align:center;border-color: white">Click Here to Add Camper</a>
-					            </div>
-					        </div>
-					    </div>
-					    <div class="col">
-					    </div>
+					<div class="col my-auto" style="padding-bottom: 20px;">
+						<a href="./childregistration.php" type="button" class="btn btn btn-success" style="border-color: white">+ Click Here to Add Camper</a>
+					</div>        
 				</div>
 <?php
 $parentid=$_SESSION['id'];
@@ -92,9 +85,9 @@ $stmt = $conn->query("SELECT Children.childid, Children.firstname, Children.last
 	FROM Parents, Children
 	WHERE Parents.parentid = Children.parentid AND Parents.parentid=" . $parentid);
 
-$stmtAmount = $conn->query("SELECT activeweeks FROM YearlySessionWeeks");
-$row2 = $stmtAmount->fetch(PDO::FETCH_ASSOC);
-$activeweeks = $row2["activeweeks"];
+$stmtAmount = $conn->query("SELECT * FROM YearlySessionWeeks");
+$campInfo = $stmtAmount->fetch(PDO::FETCH_ASSOC);
+$activeweeks = $campInfo["activeweeks"];
 
 while ( $row = $stmt->fetch(PDO::FETCH_ASSOC) ) {
 ?>
@@ -106,24 +99,25 @@ while ( $row = $stmt->fetch(PDO::FETCH_ASSOC) ) {
 					              	<a class="card-text"></a>
 					              	<h3><?php echo $row['firstname'] . " " . $row['lastname'] ?></h3>
 					              		<div>
-						                  <a href="editchild.php?childid=<?php echo $row['childid']; ?>" role="button" class="btn btn-sm btn-outline-secondary">Edit </a>
-						                  <a type="button" class="btn btn-sm btn-outline-secondary" role="button">Delete</a>
+						                  <a href="editchild.php?childid=<?php echo $row['childid']; ?>" role="button" class="btn btn-sm btn-secondary">Edit Camper</a>
+						                  <a role="button" class="btn btn-sm btn-danger">Delete Camper</a>
 						                </div>
 					              </div>
 					            </div>
-					            <div class="card-header">
-					            	<table class="table table-bordered" style = "background: white;">
+					            <button onclick="location.href = '/childinformation.php?childid=<?php echo $row['childid'] ?>';" class="btn btn-sm btn-dark" style="border-color: gray">Add/Edit Summer Session</button>
+					            <div style='overflow: auto;' class="card-header">
+					            	<table class="table table-bordered " style = "background: white;">
 									  <thead>
 									    <tr>
 									      <th scope="col"></th>
-									      <th scope="col">AM</th>
-									      <th scope="col">PM</th>
-									      <th scope="col">Extended</th>
+									      <th scope="col">Morning: 8:30am-12:00pm</th>
+									      <th scope="col">Afternoon: 12:30pm-4:00pm</th>
+									      <th scope="col">Extended Care: 7:00am-8:30am OR 4:00-5:30pm</th>
 									    </tr>
 									  </thead>
 									  <tbody>
 <?php
-	$stmtDynamic = $conn->query("SELECT ChildrenDynamic.week1am, ChildrenDynamic.week1pm, ChildrenDynamic.week2am, ChildrenDynamic.week2pm, ChildrenDynamic.week3am, ChildrenDynamic.week3pm, ChildrenDynamic.week4am, ChildrenDynamic.week4pm, ChildrenDynamic.week5am, ChildrenDynamic.week5pm, ChildrenDynamic.week6am, ChildrenDynamic.week6pm, ChildrenDynamic.week7am, ChildrenDynamic.week7pm, ChildrenDynamic.week8am, ChildrenDynamic.week8pm, ChildrenDynamic.extendedcare
+	$stmtDynamic = $conn->query("SELECT ChildrenDynamic.week1am, ChildrenDynamic.week1pm, ChildrenDynamic.week2am, ChildrenDynamic.week2pm, ChildrenDynamic.week3am, ChildrenDynamic.week3pm, ChildrenDynamic.week4am, ChildrenDynamic.week4pm, ChildrenDynamic.week5am, ChildrenDynamic.week5pm, ChildrenDynamic.week6am, ChildrenDynamic.week6pm, ChildrenDynamic.week7am, ChildrenDynamic.week7pm, ChildrenDynamic.week8am, ChildrenDynamic.week8pm, ChildrenDynamic.extendedcare, ChildrenDynamic.price
 	FROM Children, ChildrenDynamic, YearlySessionWeeks
 	WHERE Children.childid = ChildrenDynamic.childid AND Children.childid =".$row['childid']." AND ChildrenDynamic.registeredyear = YearlySessionWeeks.currentYear");
 	
@@ -131,25 +125,26 @@ while ( $row = $stmt->fetch(PDO::FETCH_ASSOC) ) {
 
 	for($x = 1; $x <= $activeweeks; $x++){
 		echo '<tr>';
-		echo '<th scope="row">Week '.$x.'</th>';
+		echo '<th scope="row">Week '.$x.': '.substr($campInfo['week'.$x.'start'], 5,2).'/'.substr($campInfo['week'.$x.'start'], 8,2).'-'
+		.substr($campInfo['week'.$x.'end'], 5,2).'/'.substr($campInfo['week'.$x.'end'], 8,2).'</th>';
 		if ($registerInfo['week'.$x.'am'] == 1)
-			echo '<td>R</td>';
+			echo '<td style="color: green;">REGISTERED</td>';
 		elseif($registerInfo['week'.$x.'am'] == 2)
-			echo '<td>W</td>';
+			echo '<td>WAITLISTED</td>';
 		else
-			echo '<td></td>';
+			echo '<td style="color: red;">NOT REGISTERED</td>';
 		
 		if ($registerInfo['week'.$x.'pm'] == 1)
-			echo '<td>R</td>';
+			echo '<td style="color: green;">REGISTERED</td>';
 		elseif($registerInfo['week'.$x.'pm'] == 2)
-			echo '<td>W</td>';
+			echo '<td>WAITLISTED</td>';
 		else
-			echo '<td></td>';
+			echo '<td style="color: red;">NOT REGISTERED</td>';
 		
 		if ($registerInfo['extendedcare'] == 1 && ($registerInfo['week'.$x.'pm'] == 1 || $registerInfo['week'.$x.'am'] == 1))
-			echo '<td>YES</td>';
+			echo '<td style="color: green;">REGISTERED</td>';
 		else
-			echo '<td>NO</td>';
+			echo '<td style="color: red;">NOT REGISTERED</td>';
 		echo '</tr>';
 
 	}
@@ -159,7 +154,9 @@ while ( $row = $stmt->fetch(PDO::FETCH_ASSOC) ) {
 									</table>
 					            </div>
 
-					            <button onclick="location.href = '/childinformation.php?childid=<?php echo $row['childid'] ?>';" class="btn btn-sm btn-outline-secondary" style="border-color: gray">Edit Schedule</button>
+					            <div class="d-flex justify-content-between align-items-center">
+					            	<h3 style="padding-left: 20px;">Amount Paid: <?php echo $registerInfo['price']?></h3>
+					            </div>
 					            
 					        </div>
 					    </div>
