@@ -237,8 +237,8 @@ unset($conn);
 		  		</div>
 		  		<!-- Figure -->
 		  		<div class="card">
-		  			<div class="card text-center">
-		  				<small class="text-muted" style="padding-top: 10px;padding-bottom: 10px;">Clicking on A.M. and P.M. allows the student to be there for a full day <br>A.M. = 8:30am - 12:00pm<br> P.M. = 12:30pm - 4:00pm <br> A.M + P.M = 8:30am - 4:00pm<br> Extended care begins from 7:00am to 8:30am and/or 4:00pm to 5:30pm</small>
+		  			<div class="card-body text-center">
+		  				<small class="text-muted" style="padding-top: 10px;padding-bottom: 10px;background:white;">Clicking on A.M. and P.M. allows the student to be there for a full day <br>A.M. = 8:30am - 12:00pm<br> P.M. = 12:30pm - 4:00pm <br> A.M + P.M = 8:30am - 4:00pm<br> Extended care begins from 7:00am to 8:30am and/or 4:00pm to 5:30pm</small>
 		  			</div>
 					<div class="card-footer" style="background: white;">
 					  	<div class="card-body">
@@ -256,97 +256,86 @@ unset($conn);
 							      <th scope="row">Week 1</th>
 							      <td>
 							     	<div class="form-check">
-									  <input name="week1am" class="form-check-input" type="checkbox" value="1" id="defaultCheck1">
+									  <input name="week1am" class="form-check-input" type="checkbox" value="1" id="week1a" onchange= "doalert(this)">
 									</div>
 							      </td>
 							      <td>
 							      	<div class="form-check">
-									  <input name="week1pm" class="form-check-input" type="checkbox" value="1" id="defaultCheck1">
+									  <input name="week1pm" class="form-check-input" type="checkbox" value="1" id="week1b" onchange= "doalert(this)">
 									</div>
 							      </td>
-							      <td>
-							      	<!--Stuff Here-->
-							      </td>
+							      <td id="week1price">0</td>
 							    </tr>
+
 							    <tr>
 							      <th scope="row">Week 2</th>
 							      <td>
 							     	<div class="form-check">
-									  <input name="week2am" class="form-check-input" type="checkbox" value="1" id="defaultCheck1">
+									  <input name="week2am" class="form-check-input" type="checkbox" value="1" id="week2a" onchange= "doalert(this)">
 									</div>
 							      </td>
 							      <td>
 							      	<div class="form-check">
-									  <input name="week2pm" class="form-check-input" type="checkbox" value="1" id="defaultCheck1">
+									  <input name="week2pm" class="form-check-input" type="checkbox" value="1" id="week2b" onchange= "doalert(this)">
 									</div>
 							      </td>
-							      <td>
-							      	<!--Stuff Here-->
-							      </td>
+							      <td id="week2price">0</td>
 							    </tr>
 							    <tr>
 							      <th scope="row">Week 3</th>
 							      <td>
 							     	<div class="form-check">
-									  <input name="week3am" class="form-check-input" type="checkbox" value="1" id="defaultCheck1">
+									  <input name="week3am" class="form-check-input" type="checkbox" value="1" id="week3a" onchange= "doalert(this)">
 									</div>
 							      </td>
 							      <td>
 							      	<div class="form-check">
-									  <input name="week3pm" class="form-check-input" type="checkbox" value="1" id="defaultCheck1">
+									  <input name="week3pm" class="form-check-input" type="checkbox" value="1" id="week3b" onchange= "doalert(this)">
 									</div>
 							      </td>
-							      <td>
-							      	<!--Stuff Here-->
-							      </td>
+							      <td id="week3price">0</td>
 							    </tr>
 							    <tr>
 							      <th scope="row">Week 4</th>
 							      <td>
 							     	<div class="form-check">
-									  <input name="week4am" class="form-check-input" type="checkbox" value="1" id="defaultCheck1">
+									  <input name="week4am" class="form-check-input" type="checkbox" value="1" id="week4a" onchange= "doalert(this)">
 									</div>
 							      </td>
 							      <td>
 							      	<div class="form-check">
-									  <input name="week4pm" class="form-check-input" type="checkbox" value="1" id="defaultCheck1">
+									  <input name="week4pm" class="form-check-input" type="checkbox" value="1" id="week4b" onchange= "doalert(this)">
 									</div>
 							      </td>
-							      <td>
-							      	<!--Stuff Here-->
-							      </td>
+							      <td id="week4price">0</td>
 							    </tr>
 							    <tr>
 							      <th scope="row">Week 5</th>
 							      <td>
 							     	<div class="form-check">
-									  <input name="week5am" class="form-check-input" type="checkbox" value="1" id="defaultCheck1">
+									  <input name="week5am" class="form-check-input" type="checkbox" value="1" id="week5a" onchange= "doalert(this)">
 									</div>
 							      </td>
 							      <td>
 							      	<div class="form-check">
-									  <input name="week5pm" class="form-check-input" type="checkbox" value="1" id="defaultCheck1">
+									  <input name="week5pm" class="form-check-input" type="checkbox" value="1" id="week5b" onchange= "doalert(this)">
 									</div>
 							      </td>
-							      <td>
-							      	<!--Stuff Here-->
-							      </td>
+							      <td id="week5price">0</td>
 							    </tr>
 							    <tr>
 							      <th scope="row">Week 6</th>
 							      <td>
 							     	<div class="form-check">
-									  <input name="week6am" class="form-check-input" type="checkbox" value="1" id="defaultCheck1">
+									  <input name="week6am" class="form-check-input" type="checkbox" value="1" id="week6a" onchange= "doalert(this)">
 									</div>
 							      </td>
 							      <td>
 							      	<div class="form-check">
-									  <input name="week6pm" class="form-check-input" type="checkbox" value="1" id="defaultCheck1">
+									  <input name="week6pm" class="form-check-input" type="checkbox" value="1" id="week6b" onchange= "doalert(this)">
 									</div>
 							      </td>
-							      <td>
-							      	<!--Stuff Here-->
-							      </td>
+							      <td id="week6price">0</td>
 							    </tr>
 							    <tr>
 							      <th>Extended Care</th>
@@ -379,6 +368,94 @@ unset($conn);
 </form>
 
 	<!--Javascript here-->
+	<script type="text/javascript">
+		function doalert(checkboxElem) {
+			//Week 1 Price Total Change
+			if(document.getElementById("week1a").checked == true && document.getElementById("week1b").checked == true)
+			{
+				$('#week1price').text(234);
+			}
+			else if (document.getElementById("week1a").checked == false && document.getElementById("week1b").checked == false) 
+			{
+				$('#week1price').text(0);
+			}
+			else
+			{
+				$('#week1price').text(123);
+			}
+
+			//Week 2 Price Total Change
+			if(document.getElementById("week2a").checked == true && document.getElementById("week2b").checked == true)
+			{
+				$('#week2price').text(234);
+			}
+			else if (document.getElementById("week2a").checked == false && document.getElementById("week2b").checked == false) 
+			{
+				$('#week2price').text(0);
+			}
+			else
+			{
+				$('#week2price').text(123);
+			}
+
+			//Week 3 Price Total Change
+			if(document.getElementById("week3a").checked == true && document.getElementById("week3b").checked == true)
+			{
+				$('#week3price').text(234);
+			}
+			else if (document.getElementById("week3a").checked == false && document.getElementById("week3b").checked == false) 
+			{
+				$('#week3price').text(0);
+			}
+			else
+			{
+				$('#week3price').text(123);
+			}
+
+			//Week 4 Price Total Change
+			if(document.getElementById("week4a").checked == true && document.getElementById("week4b").checked == true)
+			{
+				$('#week4price').text(234);
+			}
+			else if (document.getElementById("week4a").checked == false && document.getElementById("week4b").checked == false) 
+			{
+				$('#week4price').text(0);
+			}
+			else
+			{
+				$('#week4price').text(123);
+			}
+
+			//Week 5 Price Total Change
+			if(document.getElementById("week5a").checked == true && document.getElementById("week5b").checked == true)
+			{
+				$('#week5price').text(234);
+			}
+			else if (document.getElementById("week5a").checked == false && document.getElementById("week5b").checked == false) 
+			{
+				$('#week5price').text(0);
+			}
+			else
+			{
+				$('#week5price').text(123);
+			}
+
+			//Week 6 Price Total Change
+			if(document.getElementById("week6a").checked == true && document.getElementById("week6b").checked == true)
+			{
+				$('#week6price').text(234);
+			}
+			else if (document.getElementById("week6a").checked == false && document.getElementById("week6b").checked == false) 
+			{
+				$('#week6price').text(0);
+			}
+			else
+			{
+				$('#week6price').text(123);
+			}
+
+	}
+	</script>
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 
