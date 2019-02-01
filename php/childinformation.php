@@ -121,7 +121,7 @@ unset($conn);
   		<!--Camper Information-->
   		<div class="row margin-data">
   			<div class="col">
-	  				<span class="input-group-text"><p style = "font-family:courier new; font-size:25px;padding-top: 10px;">Camper Information</p></span>
+	  				<span class="input-group-text"><p style = "font-family:times; font-size:25px;padding-top: 10px;">Camper Information</p></span>
 	  		</div>
 	  	</div>
   		<!--Camper School-->
@@ -130,14 +130,19 @@ unset($conn);
 	  		<div class="col">
 	  			<p>Current School:</p>
 	  		</div>
-	  		<div class="col">
-	  			<p>Grade in Fall:</p>
-	  		</div>
 		</div>
 		<div class="row no-task-padding">
 	  		<div class="col">
 				<input name="school" type="text" times-label="CCI" class="form-control" required>
 			</div>
+		</div>
+
+		<div class="row initial-task-padding">
+	  		<div class="col">
+	  			<p>Grade in Fall:</p>
+	  		</div>
+		</div>
+		<div class="row no-task-padding">
 			<div class="col">
 				<select name="grade" class="form-control form-control-md" required>
 					  <option>K</option>
@@ -155,12 +160,9 @@ unset($conn);
 
   		<!--Camper T-Shirt Size-->
   		<!--Camper T-Shirt Number-->
-  		  		<div class="row initial-task-padding">
+  		<div class="row initial-task-padding">
 	  		<div class="col">
 	  			<p>T-Shirt Size:</p>
-	  		</div>
-	  		<div class="col">
-	  			<p># of T-Shirts:</p>
 	  		</div>
 		</div>
 		<div class="row no-task-padding">
@@ -173,17 +175,24 @@ unset($conn);
 					  <option value="xl">Child X-Large(11-12)</option>
 				</select>
 			</div>
+		</div>
+
+		<div class="row initial-task-padding">
+	  		<div class="col">
+	  			<p># of T-Shirts:</p>
+	  		</div>
+		</div>
+		<div class="row no-task-padding">
 			<div class="col">
 				<select name="numshirts" class="form-control form-control-md" required>
 					  <option value=1>1 T-Shirt: Free</option>
-					  <option value=2>2 T-Shirts: $10</option>
-					  <option value=3>3 T-Shirts: $20</option>
-					  <option value=4>4 T-Shirts: $30</option>
-					  <option value=5>5 T-Shirts: $40</option>
+					  <option value=2>2 T-Shirts: $15</option>
+					  <option value=3>3 T-Shirts: $30</option>
+					  <option value=4>4 T-Shirts: $45</option>
+					  <option value=5>5 T-Shirts: $60</option>
 				</select>
 			</div>
 		</div>
-	</div>
 
 	<div class="row margin-data" style = "padding-bottom: 30px;" align="center">
 		<div class="col">
