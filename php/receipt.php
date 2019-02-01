@@ -21,7 +21,6 @@ $data = $_SESSION['data'];
 			if($stmt->execute($data)){
 				$_SESSION['paid'] = false;
 				header("location: childdisplay.php");
-				
 			}
 			else{
 				echo "there was a problemo";
@@ -29,7 +28,7 @@ $data = $_SESSION['data'];
 			
 		}
 	} else {
-		header("location: childdisplay.php")
+		header("location: childdisplay.php");
 	}
 
 

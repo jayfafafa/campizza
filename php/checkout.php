@@ -200,9 +200,6 @@ unset($conn);
 				        "subtotal": "<?php echo $total; ?>",
 				      }
 				    },
-				    "payee": {
-				      "email": "payee@example.com"
-				    },
 				    "description": "The payment transaction description.",
 					 "item_list": {
 				      "items": [{
@@ -223,8 +220,11 @@ unset($conn);
 	      return actions.payment.execute().then((json) => {
 	      		document.getElementsByClassName('tablinks')[0].click();
                 window.alert('Payment Complete!');
+				<?php 
+				//$_SESSION['paid'] = true
+				?>
                 //you can access information here
-				header("location: receipt.php");
+				//window.location ='receipt.php';
 				
             });
         }
