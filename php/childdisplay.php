@@ -104,7 +104,7 @@ while ( $row = $stmt->fetch(PDO::FETCH_ASSOC) ) {
 						                </div>
 					              </div>
 					            </div>
-					            <button onclick="location.href = '/childinformation.php?childid=<?php echo $row['childid'] ?>';" class="btn btn-sm btn-dark" style="border-color: gray">Add/Edit Summer Session</button>
+					            <button onclick="location.href = '/childinformation.php?childid=<?php echo $row['childid'] ?>';" class="btn btn-sm btn-success" style="border-color: gray">Add/Edit Summer Session</button>
 					            <div style='overflow: auto;' class="card-header">
 					            	<table class="table table-bordered " style = "background: white;">
 									  <thead>
