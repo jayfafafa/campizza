@@ -58,8 +58,8 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 				<h1> Welcome to your dashboard!</h1>
 			</div>
 			<div class="ml-auto">
-				<a class="btn btn-outline-warning top-buffer" href="changepassword.php" role="button">Change Password</a>
-				<input class="btn btn-outline-danger top-buffer" type="submit" value="Sign Out">
+				<a class="btn btn-warning top-buffer" href="changepassword.php" role="button">Change Password</a>
+				<input class="btn btn-danger top-buffer" type="submit" value="Sign Out">
 			</div>
 		</div>
 		<hr>
