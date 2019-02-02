@@ -30,7 +30,7 @@ include ('connection.php');
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-
+	<!-- <script type="text/javascript" src="/delete.js"></script> -->
 
 </head>
 
@@ -100,7 +100,7 @@ while ( $row = $stmt->fetch(PDO::FETCH_ASSOC) ) {
 					              	<h3><?php echo $row['firstname'] . " " . $row['lastname'] ?></h3>
 					              		<div>
 						                  <a href="editchild.php?childid=<?php echo $row['childid']; ?>" role="button" class="btn btn-sm btn-secondary">Edit Camper</a>
-						                  <a role="button" class="btn btn-sm btn-danger">Delete Camper</a>
+						                  <button onclick="deleteChildById(<?php echo $row['childid']; ?>)" id="deletecamper" class="btn btn-sm btn-danger">Delete Camper</button>
 						                </div>
 					              </div>
 					            </div>
@@ -170,6 +170,20 @@ while ( $row = $stmt->fetch(PDO::FETCH_ASSOC) ) {
 
 	</div>
 </div>
+
+
+<script type='text/javascript'>
+	function deleteChildById(idChild) {
+		if(window.confirm('Are you sure you want to delete this camper? This cannot be undone.')) {
+			window.location ='delete.php?childid='+idChild;
+		}
+	}
+ </script>
+
+
+
+
+
 
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
