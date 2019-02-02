@@ -162,10 +162,11 @@ unset($conn);
 		</table>
 		
 		<?php
-		echo "<p align='center'> Tshirt Price: $".$shirtCost;
+		
 		for($x = 1; $x <= $weekInfo['activeweeks']; $x++){
 			echo "<p align='center'> Week ".$x. " Price: $".$prices['week'.$x]."</p>";
 		}	
+		echo "<p align='center'> Additional T-shirts (each camper gets 1 free) Price: $".$shirtCost;
 		echo "<p align='center'> Total Price: $".$total;
 		?>
 

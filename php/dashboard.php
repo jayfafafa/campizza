@@ -74,7 +74,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 					<img src="027-profile.png" class="card-img-top" alt="...">
 					<div class="card-body">
 						<h5 class="card-title">Manage Campers</h5>
-						<p class="card-text">Add or manage your children.</p>
+						<p class="card-text"></p>
 					</div>
 				</div>
 			</div>
@@ -84,7 +84,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 					<img src="026-pencil.png" class="card-img-top" alt="...">
 					<div class="card-body">
 						<h5 class="card-title">Edit Profile</h5>
-						<p class="card-text">Change your account info.</p>
+						<p class="card-text"></p>
 					</div>
 				</div>
 			</div>
