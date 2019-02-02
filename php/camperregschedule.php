@@ -120,12 +120,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 			':extendedcare' => $extendedcare
 	];
 	
-/* 	//yearly pricing / total calculation -- seperate 
-	$sqlPrice = "SELECT * FROM YearlySessionPricing";
-	$stmtPrices = $conn->query($sqlPrice);
-	$yearlyPrices = $stmtPrices->fetch(PDO::FETCH_ASSOC);
-	
-	//getting shirt information
+/*	//getting shirt information
 	$sqlShirts = "SELECT numshirts FROM Children WHERE childid=".$_SESSION['childid'];
 	$stmtShirts = $conn->query($sqlShirts);
 	$numShirts = $stmtShirts->fetch(PDO::FETCH_ASSOC);
@@ -180,6 +175,39 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 	}
 
 }
+
+$stmtAmount = $conn->query("SELECT * FROM YearlySessionWeeks");
+$campInfo = $stmtAmount->fetch(PDO::FETCH_ASSOC);
+$activeweeks = $campInfo["activeweeks"];
+
+date_default_timezone_set('America/Los_Angeles');
+$currDate = date('Y-m-d', time());
+
+	
+//get session week information for Updating table & Dynamically generating week information in page
+$sqlWeekInfo = "SELECT * FROM YearlySessionWeeks";
+$stmtWeekInfo = $conn->query($sqlWeekInfo);
+$weekInfo = $stmtWeekInfo->fetch(PDO::FETCH_ASSOC);
+
+if( strtotime($currDate) < strtotime($weekInfo['week1start']) ) {
+	$eOrL = 'early';
+} else {
+	$eOrL = 'late';
+}
+
+//yearly pricing / total calculation -- seperate 
+$sqlPrice = "SELECT * FROM YearlySessionPricing";
+$stmtPrices = $conn->query($sqlPrice);
+$yearlyPrices = $stmtPrices->fetch(PDO::FETCH_ASSOC);
+
+
+$extendedCareCost = $yearlyPrices['extendedcare'];
+
+
+
+
+
+
 unset($conn);
 ?>
 <!doctype html>
@@ -252,7 +280,26 @@ unset($conn);
 							    </tr>
 							  </thead>
 							  <tbody>
-							    <tr>
+<?php
+for($x = 1; $x <= $activeweeks; $x++){
+		echo '<tr>';
+		echo '<th scope="row">Week '.$x.': '.substr($campInfo['week'.$x.'start'], 5,2).'/'.substr($campInfo['week'.$x.'start'], 8,2).'-'
+		.substr($campInfo['week'.$x.'end'], 5,2).'/'.substr($campInfo['week'.$x.'end'], 8,2).'</th>';
+		echo '<td>';
+	    echo '<div class="form-check">';
+		echo '<input name="week'.$x.'am" class="form-check-input" type="checkbox" value="1" id="week'.$x.'a" onchange= "doalert(this)">';
+		echo '</div>';
+	    echo '</td>';
+	    echo '<td>';
+	    echo '<div class="form-check">';
+		echo '<input name="week'.$x.'pm" class="form-check-input" type="checkbox" value="1" id="week'.$x.'b" onchange= "doalert(this)">';
+		echo '</div>';
+	    echo '</td>';
+	    echo '<td id="week'.$x.'price">0</td>';
+	    echo '</tr>';
+
+	}
+?>							    <!-- <tr>
 							      <th scope="row">Week 1</th>
 							      <td>
 							     	<div class="form-check">
@@ -336,7 +383,7 @@ unset($conn);
 									</div>
 							      </td>
 							      <td id="week6price">0</td>
-							    </tr>
+							    </tr> -->
 							    <tr>
 							      <th>Extended Care</th>
 							      <td colspan="3">
@@ -374,20 +421,37 @@ unset($conn);
 
 		function doalert(checkboxElem) {
 		//Not Extended Care
+		var holWeek = <?php echo json_encode($weekInfo['holidayweek']);?>;
 		if(document.getElementById('extcare').checked == false)
 		{
 			for (var i = 1; i <= 6; i++) {
 				if(document.getElementById("week"+String(i)+"a").checked == true && document.getElementById("week"+String(i)+"b").checked == true)
 				{
-					$('#week'+String(i)+'price').text(200);
+					if("week"+String(i) == holWeek ) { //holiday week full 
+						$('#week'+String(i)+'price').text(<?php echo $yearlyPrices['holidayweekfull'.$eOrL]; ?>);
+					} else { //non-holiday week full
+						$('#week'+String(i)+'price').text(<?php echo $yearlyPrices['oneweekfull'.$eOrL]; ?>);
+					}
 				}
-				else if (document.getElementById("week"+String(i)+"a").checked == false && document.getElementById("week"+String(i)+"b").checked == false) 
+				else if (document.getElementById("week"+String(i)+"a").checked == true && document.getElementById("week"+String(i)+"b").checked == false) 
 				{
-					$('#week'+String(i)+'price').text(0);
+					if("week"+String(i) == holWeek )  { //holiday week am
+						$('#week'+String(i)+'price').text(<?php echo $yearlyPrices['holidayweekam'.$eOrL]; ?>);
+					} else { //non-holiday week am
+						$('#week'+String(i)+'price').text(<?php echo $yearlyPrices['oneweekam'.$eOrL]; ?>);
+					}
+				}
+				else if (document.getElementById("week"+String(i)+"a").checked == false && document.getElementById("week"+String(i)+"b").checked == true) 
+				{
+					if("week"+String(i) == holWeek ) { //holiday week pm
+						$('#week'+String(i)+'price').text(<?php echo $yearlyPrices['holidayweekpm'.$eOrL]; ?>);
+					} else { //non-holiday week pm
+						$('#week'+String(i)+'price').text(<?php echo $yearlyPrices['oneweekpm'.$eOrL]; ?>);
+					}
 				}
 				else
 				{
-					$('#week'+String(i)+'price').text(100);
+					$('#week'+String(i)+'price').text(0);
 				}
 			}
 		}
@@ -396,15 +460,31 @@ unset($conn);
 			for (var i = 1; i <= 6; i++) {
 				if(document.getElementById("week"+String(i)+"a").checked == true && document.getElementById("week"+String(i)+"b").checked == true)
 				{
-					$('#week'+String(i)+'price').text(220);
+					if("week"+String(i) == holWeek ) { //holiday week full 
+						$('#week'+String(i)+'price').text(<?php echo $yearlyPrices['holidayweekfull'.$eOrL] + $extendedCareCost; ?>);
+					} else { //non-holiday week full
+						$('#week'+String(i)+'price').text(<?php echo $yearlyPrices['oneweekfull'.$eOrL] + $extendedCareCost; ?>);
+					}
 				}
-				else if (document.getElementById("week"+String(i)+"a").checked == false && document.getElementById("week"+String(i)+"b").checked == false) 
+				else if (document.getElementById("week"+String(i)+"a").checked == true && document.getElementById("week"+String(i)+"b").checked == false) 
 				{
-					$('#week'+String(i)+'price').text(0);
+					if("week"+String(i) == holWeek )  { //holiday week am
+						$('#week'+String(i)+'price').text(<?php echo $yearlyPrices['holidayweekam'.$eOrL] + $extendedCareCost; ?>);
+					} else { //non-holiday week am
+						$('#week'+String(i)+'price').text(<?php echo $yearlyPrices['oneweekam'.$eOrL] + $extendedCareCost; ?>);
+					}
+				}
+				else if (document.getElementById("week"+String(i)+"a").checked == false && document.getElementById("week"+String(i)+"b").checked == true) 
+				{
+					if("week"+String(i) == holWeek ) { //holiday week pm
+						$('#week'+String(i)+'price').text(<?php echo $yearlyPrices['holidayweekpm'.$eOrL] + $extendedCareCost; ?>);
+					} else { //non-holiday week pm
+						$('#week'+String(i)+'price').text(<?php echo $yearlyPrices['oneweekpm'.$eOrL] + $extendedCareCost; ?>);
+					}
 				}
 				else
 				{
-					$('#week'+String(i)+'price').text(120);
+					$('#week'+String(i)+'price').text(0);
 				}
 			}
 		}
