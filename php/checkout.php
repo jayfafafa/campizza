@@ -184,11 +184,11 @@ unset($conn);
  <!--Java Script-->
 <script type="text/javascript">
  	paypal.Button.render({
-	    env: 'sandbox', // Or 'production'
+	    env: 'production', // Or 'production'
 	    // Set up the payment:
 	    client: {
-            sandbox:'AUmgJ1oMDn4FsdBqxuvxi-9hIN8B5FWreuvYRhLaBmVtCek1qH-32vWCMygFSe6mhpKa8Epp-ERa73GJ',
-            production: '<insert production client id>'
+            sandbox:'insert sandbox testing client',
+            production: 'AZC9nSofXqQT186_jNkgK-srfaV83p8HL2TbrL2_BqAZow_9UE5rwB3LIlySSXb1wEeef0ocCIxFP1bZ'
         },
 	    // 1. Add a payment callback
 	    payment: function(data, actions) {
