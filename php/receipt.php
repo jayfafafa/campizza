@@ -16,11 +16,11 @@ include ('connection.php');
 $sql = $_SESSION['query'];
 $data = $_SESSION['data'];
 
-	if(isset($_SESSION['paid']) && $_SESSION['paid'] == true) {
+	if(isset($_SESSION['paid']) ){ // && $_SESSION['paid'] == "True") {
 		if($stmt = $conn->prepare($sql)){
 			if($stmt->execute($data)){
-				$_SESSION['paid'] = false;
-				header("location: childdisplay.php");
+				$_SESSION['paid'] = False;
+				//header("location: dashboard.php");
 			}
 			else{
 				echo "there was a problemo";
@@ -28,7 +28,7 @@ $data = $_SESSION['data'];
 			
 		}
 	} else {
-		header("location: childdisplay.php");
+		//header("location: childdisplay.php");
 	}
 
 

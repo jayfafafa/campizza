@@ -135,22 +135,22 @@ unset($conn);
 	
   		<table>
 		  <tr>
-		    <td colspan="2" valign="top"> I am aware of the camp activities described on the camp website and I give my permission for my child to participate in these activities, unless indicated above. <br />
+		    <td colspan="2" valign="top">I am aware of the camp activities described on the camp website and I give my permission for my child to participate in these activities, unless indicated.  <br />
 		      <br />
 		    </td>
 		  </tr>
 		  <tr>
-		    <td colspan="2" valign="top"> The above information is true to the best of my knowledge. I understand that I am financially responsible for all fees and that all payments must be received by the first day of camp. All fees are non-refundable and there will be no refunds or exchanges for missed days. Parents are asked to notify Camp Izza if their child is ill or will not be attending as expected. Camp Director will attempt to call parents/guardians and/or emergency contacts if campers do not arrive to camp when expected. <br />
+		    <td colspan="2" valign="top"> The information submitted is true to the best of my knowledge. I understand that I am financially responsible for all fees and that all payments must be received by the first day of camp. All fees are non-refundable and there will be no refunds or exchanges for missed days. Parents are asked to notify Camp Izza if their child is ill or will not be attending as expected. Camp Director will attempt to call parents/guardians and/or emergency contacts if campers do not arrive to camp when expected.<br />
 		      <br />
 		    </td>
 		  </tr>
 		  <tr>
-		    <td colspan="2" valign="top"> I authorize Camp Izza to have and use the photos and video of the person named above in camp promotional materials. <br />
+		    <td colspan="2" valign="top"> I authorize Camp Izza to have and use the photos and video of the camper to be used in promotional materials.  <br />
 		      <br />
 		    </td>
 		  </tr>
 		  <tr>
-		    <td colspan="2" valign="top"> I agree to release, hold harmless, and indemnify Camp Izza, its trustees, staff, family members of employees, vendors, students, volunteers or insurers, or their heirs or representatives for any and all claims of any nature whatsoever, including, but not limited to, those related to and arising from personal injuries, illnesses, or fatality that my child may suffer or incur while he/she is on the Camp Izza campus or while using the facilities and equipment. I agree to not hold Camp Izza responsible for loss of or damage to any possessions my child brings to the camp and campus. I hereby agree to indemnify Camp Izza against any claims of any third parties (including, but not exclusively, members of the child's family and other camp participants) for damages or losses incurred by them as a result of a child's participation in Camp Izza or presence on campus. <br />
+		    <td colspan="2" valign="top"> I agree to release, hold harmless, and indemnify Camp Izza, its trustees, staff, family members of employees, vendors, students, volunteers or insurers, or their heirs or representatives for any and all claims of any nature whatsoever, including, but not limited to, those related to and arising from personal injuries, illnesses, or fatality that my child may suffer or incur while he/she is on the Camp Izza campus or while using the facilities and equipment. I agree to not hold Camp Izza responsible for loss of or damage to any possessions my child brings to the camp. I hereby agree to indemnify Camp Izza against any claims of any third parties (including, but not exclusively, members of the child's family and other camp participants) for damages or losses incurred by them as a result of a child's participation in Camp Izza or presence on campus.  <br />
 		      <br />
 		    </td>
 		  </tr>
@@ -220,19 +220,21 @@ unset($conn);
 	      // 2. Make a request to your server
 	      return actions.payment.execute().then((json) => {
 	      		document.getElementsByClassName('tablinks')[0].click();
-                window.alert('Payment Complete!');
+                alert('Payment Complete!');
+				//window.location ='receipt.php';
+
+				
 				<?php 
 				//$_SESSION['paid'] = true
 				?>
                 //you can access information here
-				//window.location ='receipt.php';
+
 				
             });
         }
 	  }, '#paypal-button');
  </script>
  
-
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 
 	<div class="footer top-buffer">
