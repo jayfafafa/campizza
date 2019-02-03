@@ -58,14 +58,14 @@ include ('connection.php');
 	
 	for($x = 1; $x <= $weekInfo['activeweeks']; $x++){ //Including extended care
 		if($data[':week'.$x.'am'] == 1 && $data[':week'.$x.'pm'] == 1 ) { //both am & pm [full day]
-			if('week'.$x == $weekInfo['holidayweek']) $prices['week'.$x] = $yearlyPrices['holidayweekfull'.$eOrL] + $extendedCareCost; //Holiday Full
-			else $prices['week'.$x] = $yearlyPrices['oneweekfull'.$eOrL] + $extendedCareCost; //not holiday
+			if('week'.$x == $weekInfo['holidayweek']) $prices['week'.$x] = $yearlyPrices['holidayweekfull'.$eOrL] + ( $extendedCareCost * 4.00 ); //Holiday Full
+			else $prices['week'.$x] = $yearlyPrices['oneweekfull'.$eOrL] + ( $extendedCareCost * 5.00 ); //not holiday
 		} else if($data[':week'.$x.'am'] == 1) { //week# am only
-			if('week'.$x == $weekInfo['holidayweek']) $prices['week'.$x] = $yearlyPrices['holidayweekam'.$eOrL] + $extendedCareCost; //am HOliday
-			else $prices['week'.$x] = $yearlyPrices['oneweekam'.$eOrL] + $extendedCareCost; //am reg
+			if('week'.$x == $weekInfo['holidayweek']) $prices['week'.$x] = $yearlyPrices['holidayweekam'.$eOrL] + ( $extendedCareCost * 4.00 ); //am HOliday
+			else $prices['week'.$x] = $yearlyPrices['oneweekam'.$eOrL] + ( $extendedCareCost * 5.00 ); //am reg
 		} else if($data[':week'.$x.'pm'] == 1){//week# pm only
-			if('week'.$x == $weekInfo['holidayweek']) $prices['week'.$x] = $yearlyPrices['holidayweekpm'.$eOrL] + $extendedCareCost;//pm HOliday
-			else $prices['week'.$x] = $yearlyPrices['oneweekpm'.$eOrL] + $extendedCareCost;//pm reg
+			if('week'.$x == $weekInfo['holidayweek']) $prices['week'.$x] = $yearlyPrices['holidayweekpm'.$eOrL] + ( $extendedCareCost * 4.00 );//pm HOliday
+			else $prices['week'.$x] = $yearlyPrices['oneweekpm'.$eOrL] + ( $extendedCareCost * 5.00 );//pm reg
 		}
 	}
 

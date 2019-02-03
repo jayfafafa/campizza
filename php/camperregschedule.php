@@ -461,25 +461,25 @@ for($x = 1; $x <= $activeweeks; $x++){
 				if(document.getElementById("week"+String(i)+"a").checked == true && document.getElementById("week"+String(i)+"b").checked == true)
 				{
 					if("week"+String(i) == holWeek ) { //holiday week full 
-						$('#week'+String(i)+'price').text(<?php echo $yearlyPrices['holidayweekfull'.$eOrL] + $extendedCareCost; ?>);
+						$('#week'+String(i)+'price').text(<?php echo $yearlyPrices['holidayweekfull'.$eOrL] + ( $extendedCareCost * 4.00 ); ?>);
 					} else { //non-holiday week full
-						$('#week'+String(i)+'price').text(<?php echo $yearlyPrices['oneweekfull'.$eOrL] + $extendedCareCost; ?>);
+						$('#week'+String(i)+'price').text(<?php echo $yearlyPrices['oneweekfull'.$eOrL] + ( $extendedCareCost * 5.00 ); ?>);
 					}
 				}
 				else if (document.getElementById("week"+String(i)+"a").checked == true && document.getElementById("week"+String(i)+"b").checked == false) 
 				{
 					if("week"+String(i) == holWeek )  { //holiday week am
-						$('#week'+String(i)+'price').text(<?php echo $yearlyPrices['holidayweekam'.$eOrL] + $extendedCareCost; ?>);
+						$('#week'+String(i)+'price').text(<?php echo $yearlyPrices['holidayweekam'.$eOrL] + ( $extendedCareCost * 4.00 ); ?>);
 					} else { //non-holiday week am
-						$('#week'+String(i)+'price').text(<?php echo $yearlyPrices['oneweekam'.$eOrL] + $extendedCareCost; ?>);
+						$('#week'+String(i)+'price').text(<?php echo $yearlyPrices['oneweekam'.$eOrL] + ( $extendedCareCost * 5.00 ); ?>);
 					}
 				}
 				else if (document.getElementById("week"+String(i)+"a").checked == false && document.getElementById("week"+String(i)+"b").checked == true) 
 				{
 					if("week"+String(i) == holWeek ) { //holiday week pm
-						$('#week'+String(i)+'price').text(<?php echo $yearlyPrices['holidayweekpm'.$eOrL] + $extendedCareCost; ?>);
+						$('#week'+String(i)+'price').text(<?php echo $yearlyPrices['holidayweekpm'.$eOrL] + ( $extendedCareCost * 4.00 ); ?>);
 					} else { //non-holiday week pm
-						$('#week'+String(i)+'price').text(<?php echo $yearlyPrices['oneweekpm'.$eOrL] + $extendedCareCost; ?>);
+						$('#week'+String(i)+'price').text(<?php echo $yearlyPrices['oneweekpm'.$eOrL] + ( $extendedCareCost * 5.00 ); ?>);
 					}
 				}
 				else
