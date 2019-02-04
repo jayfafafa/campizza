@@ -32,8 +32,8 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
 <table border="1">
 	<tr style="background-color:#ccc">
-    	<td ><strong>CHILD INFORMATION</strong></th>
-        <td ><strong>PARENT INFORMATION</strong></th>
+    	<td colspan='37'><strong>CHILD INFORMATION</strong></th>
+        <td colspan='29'><strong>PARENT INFORMATION</strong></th>
     </tr>
 	<tr>
 		<th>Child ID</th>
