@@ -150,7 +150,7 @@ unset($conn);
 		  		</div>
 		  		<div class="row no-task-padding">
 					<div class="col">
-						<input type="text" name="doctorphone" times-label="Physician Number" class="form-control" <?php if($child['doctorphone'] != NULL){ echo 'value='.$child['doctorphone'];}?> required>
+						<input type="tel" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" name="doctorphone" times-label="Physician Number" class="form-control" <?php if($child['doctorphone'] != NULL){ echo 'value='.$child['doctorphone'];}?> required>
 					</div>
 				</div>
 
