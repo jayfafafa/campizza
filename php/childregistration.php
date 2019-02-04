@@ -194,7 +194,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 		  		</div>
 		  		<div class="row no-task-padding">
 					<div class="col">
-						<input type="text" name="doctorphone" times-label="Physician Number" class="form-control" required>
+						<input type="tel" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" name="doctorphone" times-label="Physician Number" class="form-control" required>
 					</div>
 				</div>
 
