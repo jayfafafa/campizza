@@ -177,19 +177,20 @@ unset($conn);
 					if ($prices['week'.$x] != 0) {
 						echo "
 						<div class = 'row'> 
-								<div class = 'col-6'><b style = 'font-size: 15px;text-align: left;'>Camp Week ".$x. "</b></div>
-								<div class='col' style='text-align: center;' >1</div>
-  								<div class='col' style='text-align: right;'>$".$prices['week'.$x]."</b></div>
+								<div class = 'col-6'> <b style = 'font-size: 15px;text-align: left;'>Camp Week ".$x. "</b></div>
+								<div class='col' style='text-align: center;'> <b style='text-align: center; font-size: 15px;>' >1</b></div>
+  								<div class='col' style='text-align: right;'> <b style='text-align: right; font-size: 15px;'>$".$prices['week'.$x]."</b></div>
   						</div>
-						<p align='left' style = 'font-size: 10px;'>Please enter description here. Thanks.
-						</p>";
+  						<div class = 'row'> 
+								<div class = 'col-5' style = 'font-size: 10px; min-width:300px;text-align: left;' >Please enter dates and times here. Also, if you want to add extendedcare here or make your own seperate row for it...</div>
+  						</div><br>";
 					}
 				}	
 				echo "
 				<div class = 'row'> 
-								<div class = 'col-6'><b style = 'font-size: 15px;text-align: left;'>Additional T-shirts</b></div>
-								<div class='col' style='text-align: center;' >Insert Quantity Here</div>
-  								<div class='col' style='text-align: right;'>$".$shirtCost."</b></div>
+								<div class = 'col-6'> <b style = 'font-size: 15px;text-align: left;'>Additional T-shirts</b></div>
+								<div class='col' style='text-align: center;'><b style='text-align: center; font-size: 15px;'>Insert Quantity Here</b></div>
+  								<div class='col' style='text-align: right;'> <b style='text-align: right; font-size: 15px;'>$".$shirtCost."</b></div>
   				</div>
   				<p align='left' style = 'font-size: 10px;'>Each camper gets 1 free T-shirt.
 						</p>";
