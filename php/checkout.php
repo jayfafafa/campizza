@@ -186,16 +186,33 @@ unset($conn);
 						<div class='col' style='text-align: right;'> <b style='text-align: right; font-size: 15px;'>$".$prices['week'.$x]."</b></div>
 				</div>
 				<div class = 'row'> 
-					<div class = 'col-5' style = 'font-size: 10px; min-width:300px;text-align: left;' >";
+					<div class = 'col-6' style = 'font-size: 10px; min-width:300px;text-align: left;' >";
 
-			if($data[':week'.$x.'am'] != 0){
-				echo "Morning: 8:30am-12:00pm<br>";
-			}
-			if($data[':week'.$x.'pm'] != 0){
-				echo 'Afternoon: 12:30pm-4:00pm<br>';
-			}
 			if($data[':extendedcare'] != 0){
-				echo 'Extended Care: 7:00am-8:30am OR 4:00-5:30pm<br>';
+				if($data[':week'.$x.'am'] != 0 && $data[':week'.$x.'pm'] != 0){
+					echo "Full Day: 8:30am-4:00pm <br>";
+					echo '+ Extended Care: 7:00am-8:30am and 4:00-5:30pm<br>';
+				}
+				else if($data[':week'.$x.'am'] != 0){
+					echo "Morning: 8:30am-12:00pm<br>";
+					echo '+ Extended Care: 7:00am-8:30am<br>';
+				}
+				else if($data[':week'.$x.'pm'] != 0){
+					echo 'Afternoon: 12:30pm-4:00pm<br>';
+					echo '+ Extended Care: 4:00-5:30pm<br>';
+				}
+			}
+			else
+			{
+				if($data[':week'.$x.'am'] != 0 && $data[':week'.$x.'pm'] != 0){
+				echo "Full Day: 8:30am-4:00pm <br>";
+				}
+				else if($data[':week'.$x.'am'] != 0){
+					echo "Morning: 8:30am-12:00pm<br>";
+				}
+				else if($data[':week'.$x.'pm'] != 0){
+					echo 'Afternoon: 12:30pm-4:00pm<br>';
+				}
 			}
 
 			echo "</div>
