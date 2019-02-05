@@ -76,7 +76,7 @@ unset($conn);
     	<!-- Camper Name -->
     		<div class="row initial-task-padding">
 		  		<div class="col">
-		  			<p>First Name:</p>
+		  			<p>First Name:<b style = "color: #DC143C;">*</b></p>
 		  		</div>
 	  		</div>
 	  		<div class="row no-task-padding">
@@ -86,7 +86,7 @@ unset($conn);
 			</div>
 			<div class="row initial-task-padding">
 				<div class="col">
-					<p>Last Name:</p>
+					<p>Last Name:<b style = "color: #DC143C;">*</b></p>
 				</div>
 	  		</div>
 	  		<div class="row no-task-padding">
@@ -98,7 +98,7 @@ unset($conn);
     	<!-- Camper Gender/Camper Birthday -->
     		<div class="row task-padding">
     			<div class="col">
-    				<p>Gender:</p>
+    				<p>Gender:<b style = "color: #DC143C;">*</b></p>
 				</div>
 			</div>
 			<div class="row">
@@ -112,7 +112,7 @@ unset($conn);
 
 			<div class="row task-padding">
 				<div class="col">
-						<p>Date of Birth: (e.g. 2019-01-26) </p>
+						<p>Date of Birth:<b style = "color: #DC143C;">*</b> </p>
 				</div>
 			</div>
 			<div class="row">
@@ -134,7 +134,7 @@ unset($conn);
     		<!-- Doctor Name/Doctor # -->
 	    		<div class="row initial-task-padding">
 			  		<div class="col">
-			  			<p>Primary Physicians Name:</p>
+			  			<p>Primary Physicians Name:<b style = "color: #DC143C;">*</b></p>
 			  		</div>
 		  		</div>
 		  		<div class="row no-task-padding">
@@ -145,12 +145,12 @@ unset($conn);
 
 				<div class="row task-padding">
 					<div class="col">
-						<p>Phone Number: (e.g 1234567890)</p>
+						<p>Phone Number: (e.g 1234567890) <b style = "color: #DC143C;">*</b></p>
 					</div>
 		  		</div>
 		  		<div class="row no-task-padding">
 					<div class="col">
-						<input type="text" name="doctorphone" times-label="Physician Number" class="form-control" <?php if($child['doctorphone'] != NULL){ echo 'value='.$child['doctorphone'];}?> required>
+						<input type="tel" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" name="doctorphone" times-label="Physician Number" class="form-control" <?php if($child['doctorphone'] != NULL){ echo 'value='.$child['doctorphone'];}?> required>
 					</div>
 				</div>
 
@@ -158,7 +158,7 @@ unset($conn);
     		<!-- Insurance Carrier/Policy Holder's Name -->
     		<div class="row initial-task-padding">
 		  		<div class="col">
-		  			<p>Insurance Carrier:</p>
+		  			<p>Insurance Carrier:<b style = "color: #DC143C;">*</b></p>
 		  		</div>
 	  		</div>
 	  		<div class="row no-task-padding">
@@ -168,7 +168,7 @@ unset($conn);
 			</div>
 			<div class="row initial-task-padding">
 				<div class="col">
-					<p>Policy Holder's Name:</p>
+					<p>Policy Holder's Name:<b style = "color: #DC143C;">*</b></p>
 				</div>
 	  		</div>
 	  		<div class="row no-task-padding">
@@ -186,7 +186,7 @@ unset($conn);
     		<!-- Chronic conditions or illnesses -->
 	    		<div class="row initial-task-padding">
 			  		<div class="col">
-			  			<p>Does your child have any chronic conditions or illnesses of which we should be aware of?</p>
+			  			<p>Does your child have any chronic conditions or illnesses of which we should be aware of?<b style = "color: #DC143C;">*</b></p>
 			  		</div>
 		  		</div>
 		  		<div class="row no-task-padding">
@@ -198,7 +198,7 @@ unset($conn);
     		<!-- Allergies and/or Dietary Restrictions -->
 	    		<div class="row initial-task-padding">
 			  		<div class="col">
-			  			<p>Does your child have any allergies and/or dietary restrictions of which we should be aware of?</p>
+			  			<p>Does your child have any allergies and/or dietary restrictions of which we should be aware of?<b style = "color: #DC143C;">*</b></p>
 			  		</div>
 		  		</div>
 		  		<div class="row no-task-padding">
@@ -210,7 +210,7 @@ unset($conn);
     		<!-- Will your child be taking any medication at camp? -->
 	    		<div class="row initial-task-padding">
 			  		<div class="col">
-			  			<p>Will your child be taking any medication at camp? If yes, please list medications</p>
+			  			<p>Will your child be taking any medication at camp? If yes, please list medications<b style = "color: #DC143C;">*</b></p>
 			  		</div>
 		  		</div>
 		  		<div class="row no-task-padding">
@@ -229,7 +229,7 @@ unset($conn);
     		<!-- Are there any activities at camp that your child cannot participate in? If yes, which activities -->
 	    		<div class="row initial-task-padding">
 				  		<div class="col">
-				  			<p>Are there any activities at camp that your child cannot participate in? If yes, which activities</p>
+				  			<p>Are there any activities at camp that your child cannot participate in? If yes, which activities<b style = "color: #DC143C;">*</b></p>
 				  		</div>
 			  	</div>
 		  		<div class="row no-task-padding">
@@ -247,7 +247,7 @@ unset($conn);
     		<!-- Has your child undergone any medical treatments?-->
     			<div class="row initial-task-padding">
 				  		<div class="col">
-				  			<p>Has your child undergone any medical treatments? If yes, which treatments.</p>
+				  			<p>Has your child undergone any medical treatments? If yes, which treatments.<b style = "color: #DC143C;">*</b></p>
 				  		</div>
 			  	</div>
 		  		<div class="row no-task-padding">
@@ -265,7 +265,7 @@ unset($conn);
     		<!-- Has your child recieved all current immunizations? (Needs a yes)-->
     		    <div class="row initial-task-padding">
 				  		<div class="col">
-				  			<p>Has your child recieved all current immunizations?</p>
+				  			<p>Has your child recieved all current immunizations?<b style = "color: #DC143C;">*</b></p>
 				  		</div>
 			  	</div>
 		  		<div class="row no-task-padding">
@@ -279,7 +279,7 @@ unset($conn);
     		<!-- Tetanus shot Date-->
     		<div class="row initial-task-padding">
 				  		<div class="col">
-				  			<p>What is the date of last tetanus shot? (e.g. 2019-01-26 approximate date if necessary)</p>
+				  			<p>What is the date of last tetanus shot? (approximate date if necessary)<b style = "color: #DC143C;">*</b></p>
 				  		</div>
 			  	</div>
 		  		<div class="row no-task-padding">

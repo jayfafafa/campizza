@@ -128,7 +128,7 @@ unset($conn);
   		<!--Camper Grade-->
   		<div class="row initial-task-padding">
 	  		<div class="col">
-	  			<p>Current School:</p>
+	  			<p>Current School:<b style = "color: #DC143C;">*</b></p>
 	  		</div>
 		</div>
 		<div class="row no-task-padding">
@@ -139,7 +139,7 @@ unset($conn);
 
 		<div class="row initial-task-padding">
 	  		<div class="col">
-	  			<p>Grade in Fall:</p>
+	  			<p>Grade in Fall:<b style = "color: #DC143C;">*</b></p>
 	  		</div>
 		</div>
 		<div class="row no-task-padding">
@@ -162,7 +162,7 @@ unset($conn);
   		<!--Camper T-Shirt Number-->
   		<div class="row initial-task-padding">
 	  		<div class="col">
-	  			<p>T-Shirt Size:</p>
+	  			<p>T-Shirt Size:<b style = "color: #DC143C;">*</b></p>
 	  		</div>
 		</div>
 		<div class="row no-task-padding">
@@ -179,7 +179,7 @@ unset($conn);
 
 		<div class="row initial-task-padding">
 	  		<div class="col">
-	  			<p># of T-Shirts:</p>
+	  			<p># of T-Shirts:<b style = "color: #DC143C;">*</b></p>
 	  		</div>
 		</div>
 		<div class="row no-task-padding">
