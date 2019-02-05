@@ -258,7 +258,7 @@ unset($conn);
 				    "description": "The payment transaction description.",
 					 "item_list": {
 				      "items": [{
-				        "name": "Total",
+				        "name": "Camp Fees",
 				        "quantity": "1",
 				        "price": "<?php echo $total; ?>",
 				        "sku": "1",
