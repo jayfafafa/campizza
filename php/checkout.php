@@ -75,12 +75,6 @@ include ('connection.php');
 	
 	$total = $shirtCost + $weekCost;
 
-
-
-
-
-unset($conn);
-
 ?>
 <!doctype html>
 <html lang="en">
@@ -172,30 +166,52 @@ unset($conn);
   			</div>
   			<hr>
   			<hr>
-  			<?php
-				for($x = 1; $x <= $weekInfo['activeweeks']; $x++){
-					if ($prices['week'.$x] != 0) {
-						echo "
-						<div class = 'row'> 
-								<div class = 'col-6'> <b style = 'font-size: 15px;text-align: left;'>Camp Week ".$x. "</b></div>
-								<div class='col' style='text-align: center;'> <b style='text-align: center; font-size: 15px;>' >1</b></div>
-  								<div class='col' style='text-align: right;'> <b style='text-align: right; font-size: 15px;'>$".$prices['week'.$x]."</b></div>
-  						</div>
-  						<div class = 'row'> 
-								<div class = 'col-5' style = 'font-size: 10px; min-width:300px;text-align: left;' >Please enter dates and times here. Also, if you want to add extendedcare here or make your own seperate row for it...</div>
-  						</div><br>";
-					}
-				}	
-				echo "
+<?php
+$stmtAmount = $conn->query("SELECT * FROM YearlySessionWeeks");
+$campInfo = $stmtAmount->fetch(PDO::FETCH_ASSOC);
+
+$stmtAmount = $conn->query("SELECT numshirts FROM Children WHERE childid=".$_SESSION['childid']);
+$childInfo = $stmtAmount->fetch(PDO::FETCH_ASSOC);
+
+unset($conn);
+	for($x = 1; $x <= $weekInfo['activeweeks']; $x++){
+		if ($prices['week'.$x] != 0) {
+
+
+			echo "
+			<div class = 'row'> 
+					<div class = 'col-6'> <b style = 'font-size: 15px;text-align: left;'>Camp Week ".$x.': '.substr($campInfo['week'.$x.'start'], 5,2).'/'.substr($campInfo['week'.$x.'start'], 8,2).'-'
+		.substr($campInfo['week'.$x.'end'], 5,2).'/'.substr($campInfo['week'.$x.'end'], 8,2)."</b></div>
+					<div class='col' style='text-align: center;'> <b style='text-align: center; font-size: 15px;>' >1</b></div>
+						<div class='col' style='text-align: right;'> <b style='text-align: right; font-size: 15px;'>$".$prices['week'.$x]."</b></div>
+				</div>
 				<div class = 'row'> 
-								<div class = 'col-6'> <b style = 'font-size: 15px;text-align: left;'>Additional T-shirts</b></div>
-								<div class='col' style='text-align: center;'><b style='text-align: center; font-size: 15px;'>Insert Quantity Here</b></div>
-  								<div class='col' style='text-align: right;'> <b style='text-align: right; font-size: 15px;'>$".$shirtCost."</b></div>
-  				</div>
-  				<p align='left' style = 'font-size: 10px;'>Each camper gets 1 free T-shirt.
-						</p>";
-				echo "<hr><hr><p align='center' style = 'padding-top: 50px' > <b>Total Price: $".$total."</b>";
-			?>
+					<div class = 'col-5' style = 'font-size: 10px; min-width:300px;text-align: left;' >";
+
+			if($data[':week'.$x.'am'] != 0){
+				echo "Morning: 8:30am-12:00pm<br>";
+			}
+			if($data[':week'.$x.'pm'] != 0){
+				echo 'Afternoon: 12:30pm-4:00pm<br>';
+			}
+			if($data[':extendedcare'] != 0){
+				echo 'Extended Care: 7:00am-8:30am OR 4:00-5:30pm<br>';
+			}
+
+			echo "</div>
+				</div><br>";
+		}
+	}	
+	echo "
+	<div class = 'row'> 
+					<div class = 'col-6'> <b style = 'font-size: 15px;text-align: left;'>Additional T-shirts</b></div>
+					<div class='col' style='text-align: center;'><b style='text-align: center; font-size: 15px;'>".$childInfo['numshirts']."</b></div>
+						<div class='col' style='text-align: right;'> <b style='text-align: right; font-size: 15px;'>$".$shirtCost."</b></div>
+		</div>
+		<p align='left' style = 'font-size: 10px;'>Each camper gets 1 free T-shirt.
+			</p>";
+	echo "<hr><hr><p align='center' style = 'padding-top: 50px' > <b>Total Price: $".$total."</b>";
+?>
   			<div id="paypal-button" style="text-align: center;"></div>
 	  		<input type="hidden" name="business" value="qnq89078@cndps.com"/> 
 			<div class="tab" style = "margin-top: 30px">
