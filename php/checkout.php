@@ -75,6 +75,8 @@ include ('connection.php');
 	
 	$total = $shirtCost + $weekCost;
 
+unset($conn);
+
 ?>
 <!doctype html>
 <html lang="en">

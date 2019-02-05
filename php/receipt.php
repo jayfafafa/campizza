@@ -16,6 +16,8 @@ include ('connection.php');
 $sql = $_SESSION['query'];
 $data = $_SESSION['data'];
 
+$data[':price'] = $_SESSION['total'];
+
 	if(isset($_POST['paid']) && $_POST['paid'] == "True") {
 		if($stmt = $conn->prepare($sql)){
 			if($stmt->execute($data)){
