@@ -68,9 +68,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 	
 if($_SERVER["REQUEST_METHOD"] == "GET"){
 	$childid = $_GET['childid'];
-}
 
-unset($conn);
+	$sql = "SELECT * FROM Children WHERE childid=".$_GET['childid'];
+
+	$stmt = $conn->query($sql);
+	$child = $stmt->fetch(PDO::FETCH_ASSOC);
+}
+	unset($conn);
 ?>
 <!doctype html>
 <html lang="en">
@@ -133,7 +137,7 @@ unset($conn);
 		</div>
 		<div class="row no-task-padding">
 	  		<div class="col">
-				<input name="school" type="text" times-label="CCI" class="form-control" required>
+				<input name="school" type="text" times-label="CCI" class="form-control" <?php if($child['school'] != NULL){ echo 'value='.$child['school'];}?>required>
 			</div>
 		</div>
 
