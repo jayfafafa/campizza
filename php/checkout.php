@@ -75,7 +75,7 @@ include ('connection.php');
 	
 	$total = $shirtCost + $weekCost;
 
-unset($conn);
+	$_SESSION['total'] = $total;
 
 ?>
 <!doctype html>
