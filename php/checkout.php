@@ -75,10 +75,6 @@ include ('connection.php');
 	
 	$total = $shirtCost + $weekCost;
 
-	$_SESSION['total'] = $total;
-
-
-
 unset($conn);
 
 ?>
@@ -128,54 +124,105 @@ unset($conn);
 
 
 	<!-- Html Lookout -->
-<div class="container" style = "background: white; margin-top: 25px">
-    <h1 style = "padding-top: 35px;text-align: center;">Terms and Conditions</h1>
-    <h3 style = "text-align: center;">Camp Izza</h3>
-  	<div class="container" style="padding-bottom: 10px; padding-top: 25px;">
-	
-  		<table>
-		  <tr>
-		    <td colspan="2" valign="top">I am aware of the camp activities described on the camp website and I give my permission for my child to participate in these activities, unless indicated.  <br />
-		      <br />
+<div class="container" style = "background: white; margin-top: 25px; padding-left: 20px; padding-right: 20px;">
+<!--     <h3 style = "text-align: center;"></h3> -->
+  	<div class="container" style="padding-bottom: 10px; border-color: black;">
+  	<div class="row"> 
+  		<div class="col" style="font-size: 10px;background: #f2f2f2; margin-top: 10px;">
+  			<table>
+  		  <tr>
+		    <td colspan="2" valign="top"style="font-size: 20px; text-align: center;padding-top: 10px;padding-bottom: 5px;"><b>Terms and Conditions</b>
 		    </td>
 		  </tr>
 		  <tr>
-		    <td colspan="2" valign="top"> The information submitted is true to the best of my knowledge. I understand that I am financially responsible for all fees and that all payments must be received by the first day of camp. All fees are non-refundable and there will be no refunds or exchanges for missed days. Parents are asked to notify Camp Izza if their child is ill or will not be attending as expected. Camp Director will attempt to call parents/guardians and/or emergency contacts if campers do not arrive to camp when expected.<br />
-		      <br />
+		    <td colspan="2" valign="top" style="padding-bottom: 3px;">I am aware of the camp activities described on the camp website and I give my permission for my child to participate in these activities, unless indicated.
 		    </td>
 		  </tr>
 		  <tr>
-		    <td colspan="2" valign="top"> I authorize Camp Izza to have and use the photos and video of the camper to be used in promotional materials.  <br />
-		      <br />
+		    <td colspan="2" valign="top" style="padding-bottom: 3px;"> The information submitted is true to the best of my knowledge. I understand that I am financially responsible for all fees and that all payments must be received by the first day of camp. All fees are non-refundable and there will be no refunds or exchanges for missed days. Parents are asked to notify Camp Izza if their child is ill or will not be attending as expected. Camp Director will attempt to call parents/guardians and/or emergency contacts if campers do not arrive to camp when expected.
 		    </td>
 		  </tr>
 		  <tr>
-		    <td colspan="2" valign="top"> I agree to release, hold harmless, and indemnify Camp Izza, its trustees, staff, family members of employees, vendors, students, volunteers or insurers, or their heirs or representatives for any and all claims of any nature whatsoever, including, but not limited to, those related to and arising from personal injuries, illnesses, or fatality that my child may suffer or incur while he/she is on the Camp Izza campus or while using the facilities and equipment. I agree to not hold Camp Izza responsible for loss of or damage to any possessions my child brings to the camp. I hereby agree to indemnify Camp Izza against any claims of any third parties (including, but not exclusively, members of the child's family and other camp participants) for damages or losses incurred by them as a result of a child's participation in Camp Izza or presence on campus.  <br />
-		      <br />
+		    <td colspan="2" valign="top" style="padding-bottom: 3px;"> I authorize Camp Izza to have and use the photos and video of the camper to be used in promotional materials. 
 		    </td>
 		  </tr>
 		  <tr>
-		    <td colspan="2" valign="top"> I understand that registration is on a first-come, first serve basis, that my camper's spot will only be reserved upon receipt of payment and that returned checks will incur a $25 fee. <br />
+		    <td colspan="2" valign="top" style="padding-bottom: 3px;"> I agree to release, hold harmless, and indemnify Camp Izza, its trustees, staff, family members of employees, vendors, students, volunteers or insurers, or their heirs or representatives for any and all claims of any nature whatsoever, including, but not limited to, those related to and arising from personal injuries, illnesses, or fatality that my child may suffer or incur while he/she is on the Camp Izza campus or while using the facilities and equipment. I agree to not hold Camp Izza responsible for loss of or damage to any possessions my child brings to the camp. I hereby agree to indemnify Camp Izza against any claims of any third parties (including, but not exclusively, members of the child's family and other camp participants) for damages or losses incurred by them as a result of a child's participation in Camp Izza or presence on campus. 
+		    </td>
+		  </tr>
+		  <tr>
+		    <td colspan="2" valign="top" > I understand that registration is on a first-come, first serve basis, that my camper's spot will only be reserved upon receipt of payment and that returned checks will incur a $25 fee. <br />
 		      <br />
 		    </td>
 		  </tr>
 		</table>
-		
-		<?php
-		
-		for($x = 1; $x <= $weekInfo['activeweeks']; $x++){
-			echo "<p align='center'> Week ".$x. " Price: $".$prices['week'.$x]."</p>";
-		}	
-		echo "<p align='center'> Additional T-shirts (each camper gets 1 free) Price: $".$shirtCost;
-		echo "<p align='center'> Total Price: $".$total;
-		?>
+  		</div>
+  	</div>
+  	<div class="row"> 
+  		<div class = "col" style="padding:30px 30px;">
+  			<div class = "row">
+  				<div class = "col-6" style="text-align: left;" >Item Description
+  				</div>
+  				<div class="col" style="text-align: center;">Quantity</div>
+  				<div class="col" style="text-align: right;">Price</div>
+  			</div>
+  			<hr>
+  			<hr>
+<?php
+$stmtAmount = $conn->query("SELECT * FROM YearlySessionWeeks");
+$campInfo = $stmtAmount->fetch(PDO::FETCH_ASSOC);
+
+$stmtAmount = $conn->query("SELECT numshirts FROM Children WHERE childid=".$_SESSION['childid']);
+$childInfo = $stmtAmount->fetch(PDO::FETCH_ASSOC);
+
+unset($conn);
+	for($x = 1; $x <= $weekInfo['activeweeks']; $x++){
+		if ($prices['week'.$x] != 0) {
 
 
-  		<div id="paypal-button" style="text-align: center;"></div>
-  		<input type="hidden" name="business" value="qnq89078@cndps.com"/> 
-		<div class="tab" style = "margin-top: 30px">
-			  <button class="tablinks" onclick="" style="background: transparent;border: none !important;font-size:0;"></button>
+			echo "
+			<div class = 'row'> 
+					<div class = 'col-6'> <b style = 'font-size: 15px;text-align: left;'>Camp Week ".$x.': '.substr($campInfo['week'.$x.'start'], 5,2).'/'.substr($campInfo['week'.$x.'start'], 8,2).'-'
+		.substr($campInfo['week'.$x.'end'], 5,2).'/'.substr($campInfo['week'.$x.'end'], 8,2)."</b></div>
+					<div class='col' style='text-align: center;'> <b style='text-align: center; font-size: 15px;>' >1</b></div>
+						<div class='col' style='text-align: right;'> <b style='text-align: right; font-size: 15px;'>$".$prices['week'.$x]."</b></div>
+				</div>
+				<div class = 'row'> 
+					<div class = 'col-5' style = 'font-size: 10px; min-width:300px;text-align: left;' >";
+
+			if($data[':week'.$x.'am'] != 0){
+				echo "Morning: 8:30am-12:00pm<br>";
+			}
+			if($data[':week'.$x.'pm'] != 0){
+				echo 'Afternoon: 12:30pm-4:00pm<br>';
+			}
+			if($data[':extendedcare'] != 0){
+				echo 'Extended Care: 7:00am-8:30am OR 4:00-5:30pm<br>';
+			}
+
+			echo "</div>
+				</div><br>";
+		}
+	}	
+	echo "
+	<div class = 'row'> 
+					<div class = 'col-6'> <b style = 'font-size: 15px;text-align: left;'>Additional T-shirts</b></div>
+					<div class='col' style='text-align: center;'><b style='text-align: center; font-size: 15px;'>".$childInfo['numshirts']."</b></div>
+						<div class='col' style='text-align: right;'> <b style='text-align: right; font-size: 15px;'>$".$shirtCost."</b></div>
 		</div>
+		<p align='left' style = 'font-size: 10px;'>Each camper gets 1 free T-shirt.
+			</p>";
+	echo "<hr><hr><p align='center' style = 'padding-top: 50px' > <b>Total Price: $".$total."</b>";
+?>
+  			<div id="paypal-button" style="text-align: center;"></div>
+	  		<input type="hidden" name="business" value="qnq89078@cndps.com"/> 
+			<div class="tab" style = "margin-top: 30px">
+				  <button class="tablinks" onclick="" style="background: transparent;border: none !important;font-size:0;"></button>
+			</div>
+  			
+  		</div>
+  	</div>
+
   		
 	</div>
 </div>
@@ -184,12 +231,20 @@ unset($conn);
  <!--Java Script-->
 <script type="text/javascript">
  	paypal.Button.render({
-	    env: 'production', // Or 'production'
+	    env: 'production', // Or 'sandbox'
 	    // Set up the payment:
 	    client: {
             sandbox:'insert sandbox testing client',
             production: 'AZC9nSofXqQT186_jNkgK-srfaV83p8HL2TbrL2_BqAZow_9UE5rwB3LIlySSXb1wEeef0ocCIxFP1bZ'
         },
+        locale: 'en_US',
+			style: {
+			 size: 'medium',
+			 color: 'black',
+			 shape: 'rect',
+			 label: 'checkout',
+			 tagline: 'true'
+			},
 	    // 1. Add a payment callback
 	    payment: function(data, actions) {
 	      // 2. Make a request to your server
@@ -205,7 +260,7 @@ unset($conn);
 				    "description": "The payment transaction description.",
 					 "item_list": {
 				      "items": [{
-				        "name": "Total",
+				        "name": "Camp Fees",
 				        "quantity": "1",
 				        "price": "<?php echo $total; ?>",
 				        "sku": "1",

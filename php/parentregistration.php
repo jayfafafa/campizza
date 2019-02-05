@@ -183,7 +183,7 @@ unset($conn);
 	  	<!-- First and Last Name of Guardian-->
 	  		<div class="row initial-task-padding">
 		  		<div class="col">
-		  			<p>First Name:</p>
+		  			<p>First Name:<b style = "color: #DC143C;">*</b></p>
 		  		</div>
 	  		</div>
 	  		<div class="row task-padding">
@@ -195,7 +195,7 @@ unset($conn);
 
 			<div class="row initial-task-padding">
 		  		<div class="col">
-		  			<p>Last Name:</p>
+		  			<p>Last Name:<b style = "color: #DC143C;">*</b></p>
 		  		</div>
 	  		</div>
 	  		<div class="row no-task-padding">
@@ -208,13 +208,13 @@ unset($conn);
 		<!-- Email and Phone number of Guardian-->
 			<div class="row task-padding">
 				<div class="col">
-			    	<p>Email address:</p>
+			    	<p>Email address:<b style = "color: #DC143C;">*</b></p>
 			    </div>
 			</div>
 
 			<div class="row no-task-padding">
 				<div class="col">
-				    <input name="email1" type="text" times-label="Email address" class="form-control" required>
+				    <input name="email1" type="email" times-label="Email address" class="form-control" required>
 				</div>
 
 			</div>
@@ -222,28 +222,28 @@ unset($conn);
 
 			<div class="row task-padding">
 				<div class="col">
-			    	<p>Phone Number 1:</p>
+			    	<p>Phone Number 1: (e.g 1234567890)<b style = "color: #DC143C;">*</b></p>
 			    </div>
 			</div>
 
 			<div class="row no-task-padding">
 				<div class="col">
 					<div class="input-group mb-3">
-					  <input name="guardianphone1" type="text" class="form-control" aria-label="Text input with segmented dropdown button" required>
+					  <input name="guardianphone1" type="tel" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" class="form-control" aria-label="Text input with segmented dropdown button" required>
 					</div>
 				</div>
 			</div>
 			
 			<div class="row task-padding">
 				<div class="col">
-			    	<p>Phone Number 2:</p>
+			    	<p>Phone Number 2: (e.g 1234567890)<b style = "color: #DC143C;">*</b></p>
 			    </div>
 			</div>
 
 			<div class="row no-task-padding">
 				<div class="col">
 					<div class="input-group mb-3">
-					  <input name="guardianphone2" type="text" class="form-control" aria-label="Text input with segmented dropdown button" required>
+					  <input name="guardianphone2" type="tel" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" class="form-control" aria-label="Text input with segmented dropdown button" required>
 					</div>
 				</div>
 			</div>
@@ -284,7 +284,7 @@ unset($conn);
 
 			<div class="row no-task-padding">
 				<div class="col">
-				    <input name="email2" type="text" times-label="Email address" class="form-control">
+				    <input name="email2" type="email" times-label="Email address" class="form-control">
 				</div>
 
 
@@ -292,14 +292,14 @@ unset($conn);
 
 			<div class="row task-padding">
 				<div class="col">
-			    	<p>Phone Number:</p>
+			    	<p>Phone Number 1: (e.g 1234567890)</p>
 			    </div>
 			</div>
 
 			<div class="row no-task-padding">
 				<div class="col">
 					<div class="input-group mb-3">
-					  <input name="phone3" type="text" class="form-control" aria-label="Text input with segmented dropdown button" value=" ">
+					  <input name="phone3" type="tel" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" class="form-control" aria-label="Text input with segmented dropdown button" value=" ">
 					</div>
 				</div>
 			</div>
@@ -307,14 +307,14 @@ unset($conn);
 
 			<div class="row task-padding">
 				<div class="col">
-			    	<p>Phone Number 2:</p>
+			    	<p>Phone Number 2: (e.g 1234567890)</p>
 			    </div>
 			</div>
 
 			<div class="row no-task-padding">
 				<div class="col">
 					<div class="input-group mb-3">
-					  <input name="phone4" type="text" class="form-control" aria-label="Text input with segmented dropdown button" value=" " >
+					  <input name="phone4" type="tel" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" class="form-control" aria-label="Text input with segmented dropdown button" value=" " >
 					</div>
 				</div>
 			</div>
@@ -329,7 +329,7 @@ unset($conn);
 		<!-- US Area Address 1 -->
 		  		<div class="row initial-task-padding">
 					<div class="col">
-				    	<p>Address 1:</p>
+				    	<p>Address 1:<b style = "color: #DC143C;">*</b></p>
 				    </div>
 				</div>
 
@@ -353,7 +353,7 @@ unset($conn);
 		<!-- City-->
 				<div class="row task-padding">
 					<div class="col">
-			  			<p>City:</p>
+			  			<p>City:<b style = "color: #DC143C;">*</b></p>
 			  		</div>
 		  		</div>
 		  		<div class="row no-task-padding">
@@ -432,7 +432,7 @@ unset($conn);
 		<!-- Country,Zip -->
 				<div class="row task-padding">
 			  		<div class="col">
-			  			<p>Country:</p>
+			  			<p>Country:<b style = "color: #DC143C;">*</b></p>
 			  		</div>
 		  		</div>
 		  		<div class="row no-task-padding">
@@ -443,12 +443,12 @@ unset($conn);
 
 				<div class="row task-padding">
 					<div class="col">
-						<p>Postal Code:</p>
+						<p>Postal Code:<b style = "color: #DC143C;">*</b></p>
 					</div>
 		  		</div>
 		  		<div class="row no-task-padding">
 					<div class="col" style="padding-bottom: 40px;">
-						<input name="zip" type="text" times-label="Zip" class="form-control">
+						<input name="zip" type="number" times-label="Zip" class="form-control">
 					</div>
 				</div>
 
@@ -463,7 +463,7 @@ unset($conn);
 	  	<!-- First and Last Name of Guardian-->
 	  		<div class="row initial-task-padding">
 		  		<div class="col">
-		  			<p>First Name:</p>
+		  			<p>First Name:<b style = "color: #DC143C;">*</b></p>
 		  		</div>
 	  		</div>
 	  		<div class="row no-task-padding">
@@ -474,7 +474,7 @@ unset($conn);
 
 			<div class="row task-padding">
 				<div class="col">
-					<p>Last Name:</p>
+					<p>Last Name:<b style = "color: #DC143C;">*</b></p>
 				</div>
 	  		</div>
 	  		<div class="row no-task-padding">
@@ -485,7 +485,7 @@ unset($conn);
 		<!-- Relationship-->
 			<div class="row task-padding">
 				<div class="col">
-			    	<p>Relationship:</p>
+			    	<p>Relationship:<b style = "color: #DC143C;">*</b></p>
 			    </div>
 			</div>
 
@@ -499,14 +499,14 @@ unset($conn);
 
 			<div class="row task-padding">
 				<div class="col">
-			    	<p>Phone Number:</p>
+			    	<p>Phone Number: (e.g 1234567890)<b style = "color: #DC143C;">*</b></p>
 			    </div>
 			</div>
 		<!--Phone Number-->
 			<div class="row no-task-padding">
 				<div class="col">
 					<div class="input-group mb-3">
-					  <input name="emergencyphone1" type="text" class="form-control" aria-label="Text input with segmented dropdown button" required>
+					  <input name="emergencyphone1" type="tel" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" class="form-control" aria-label="Text input with segmented dropdown button" required>
 					</div>
 				</div>
 			</div>
@@ -524,7 +524,7 @@ unset($conn);
 	  	<!-- First and Last Name of Guardian-->
 	  		<div class="row initial-task-padding">
 		  		<div class="col">
-		  			<p>First Name:</p>
+		  			<p>First Name:<b style = "color: #DC143C;">*</b></p>
 		  		</div>
 	  		</div>
 
@@ -536,7 +536,7 @@ unset($conn);
 
 			<div class="row initial-task-padding">
 				<div class="col">
-					<p>Last Name:</p>
+					<p>Last Name:<b style = "color: #DC143C;">*</b></p>
 				</div>
 	  		</div>
 
@@ -548,7 +548,7 @@ unset($conn);
 		<!-- relationship-->
 			<div class="row task-padding">
 				<div class="col">
-			    	<p>Relationship:</p>
+			    	<p>Relationship:<b style = "color: #DC143C;">*</b></p>
 			    </div>
 			</div>
 
@@ -560,14 +560,14 @@ unset($conn);
 		<!--Phone Number-->
 			<div class="row task-padding">
 				<div class="col">
-			    	<p>Phone Number:</p>
+			    	<p>Phone Number: (e.g 1234567890)<b style = "color: #DC143C;">*</b></p>
 			    </div>
 			</div>
 
 			<div class="row no-task-padding">
 				<div class="col">
 					<div class="input-group mb-3">
-							<input name="emergencyphone2" type="text" class="form-control" aria-label="Text input with segmented dropdown button">
+							<input name="emergencyphone2" type="tel" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" class="form-control" aria-label="Text input with segmented dropdown button">
 					</div>
 				</div>
 			</div>
