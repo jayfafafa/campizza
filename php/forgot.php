@@ -13,9 +13,27 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 			$stmt->bindParam(":password", $password, PDO::PARAM_STR);
             $stmt->bindParam(":loginemail", $_POST['loginemail'], PDO::PARAM_STR);
 		if($stmt->execute()) {
+				$sqlID = "SELECT * FROM ParentsLogin WHERE loginemail=:loginemail";
+				$stmtID = $conn->prepare($sqlID);
+				$stmtID->bindParam(":loginemail", $_POST['loginemail'], PDO::PARAM_STR);
+				$stmtID->execute();
+				$ID = $stmtID->fetch(PDO::FETCH_ASSOC);
+			
+				$sqlParentName = "SELECT * FROM Parents WHERE parentid=".$ID['parentid'];
+				$stmtParentName = $conn->query($sqlParentName);
+				$ParentName = $stmtParentName->fetch(PDO::FETCH_ASSOC);
+			
 			$to = $_POST['loginemail'];
 			$subject = "CampIzza Password Reset";  
-			$message = $passwordPreHash;  
+			$message = "Hello, ".$ParentName['guardiannamefirst1']."!
+
+						Your password has been successfully reset!  A temporary password can be found below for you to use to log-in to your account.  Once logged in, please change your password to one you would like to use for this account.
+						If you did not click on the FORGOT PASSWORD button, we recommend you to reset your Camp Izza password and email password ASAP!
+
+						Your New Password: ".$passwordPreHash."
+
+						Hope to see you soon,
+						The Camp Izza Team";
 			$from = "Reset@campizza.com";  
 			$headers = "From: $from";  
 			mail($to,$subject,$message,$headers);
