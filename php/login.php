@@ -128,7 +128,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 <body class="text-center">
 	<form class="form-signin" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-		<img class="mb-4" src="https://static.wixstatic.com/media/46af7c_6c86140c4f8e479e95cb12c1bddfa5f1~mv2.gif" alt="" width="72" height="72">
+		<img class="mb-4" src="https://static.wixstatic.com/media/46af7c_6c86140c4f8e479e95cb12c1bddfa5f1~mv2.gif" alt="" width="183" height="136">
 		<h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
 		
 			<span class="help-block"><?php echo $username_err; ?></span>
