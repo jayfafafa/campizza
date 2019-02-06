@@ -271,17 +271,17 @@ unset($conn);
 		  		</div>
 		  		<!-- Figure -->
 		  		<div class="card">
-		  			<div class="card-body text-center">
+		  			<!-- <div class="card-body text-center">
 		  				<small class="text-muted" style="padding-top: 10px;padding-bottom: 10px;background:white;">Clicking on A.M. and P.M. allows the student to be there for a full day <br>A.M. = 8:30am - 12:00pm<br> P.M. = 12:30pm - 4:00pm <br> A.M + P.M = 8:30am - 4:00pm<br> Extended care begins from 7:00am to 8:30am and/or 4:00pm to 5:30pm</small>
-		  			</div>
+		  			</div> -->
 					<div class="card-footer" style="background: white;">
-					  	<div class="card-body">
+					  	<div style='overflow: auto;' class="card-body">
 						    <table class="table table-bordered">
 							  <thead>
 							    <tr>
-							      <th scope="col"></th>
-							      <th scope="col">AM</th>
-							      <th scope="col">PM</th>
+							      <th scope="col">For Fullday, select Morning and Afternoon</th>
+							      <th scope="col">Morning: 8:30am - 12:00pm</th>
+							      <th scope="col">Afternoon: 12:30pm - 4:00pm</th>
 							      <th scope="col">Total</th>
 							    </tr>
 							  </thead>
@@ -391,7 +391,7 @@ for($x = 1; $x <= $activeweeks; $x++){
 							      <td id="week6price">0</td>
 							    </tr> -->
 							    <tr>
-							      <th>Extended Care</th>
+							      <th>Extended Care<br>7:00am to 8:30am and/or 4:00pm to 5:30pm</th>
 							      <td colspan="3">
 							      	<div class="form-check">
 									  <input name="extendedcare" class="form-check-input" type="checkbox" value="1" id="extcare" onchange= "doalert(this)">
