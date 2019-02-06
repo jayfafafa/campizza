@@ -99,6 +99,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 		if(isset($_POST['extendedcare'])){
 			$extendedcare = $_POST['extendedcare'];
 		}
+
+		$sqlNew = "SELECT price FROM ChildrenDynamic WHERE childid=".$_SESSION['childid'];
+		$stmt = $conn->query($sqlNew);
+		$child = $stmt->fetch(PDO::FETCH_ASSOC);
+		$currentPrice = $child['price'];
 		
 		$data = [
 			':week1am' => $week1am,
@@ -118,7 +123,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 			':week8am' => $week8am,
 			':week8pm' => $week8pm,
 			':extendedcare' => $extendedcare,
-			':price' => 0
+			':price' => $currentPrice
 	];
 	
 /*	//getting shirt information
