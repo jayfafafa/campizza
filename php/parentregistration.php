@@ -299,7 +299,7 @@ unset($conn);
 			<div class="row no-task-padding">
 				<div class="col">
 					<div class="input-group mb-3">
-					  <input name="phone3" type="tel" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" class="form-control" aria-label="Text input with segmented dropdown button" value=" ">
+					  <input name="phone3" type="tel" pattern="+([0-9]{3}[0-9]{3}[0-9]{4})" class="form-control" aria-label="Text input with segmented dropdown button" value=" ">
 					</div>
 				</div>
 			</div>
@@ -314,7 +314,7 @@ unset($conn);
 			<div class="row no-task-padding">
 				<div class="col">
 					<div class="input-group mb-3">
-					  <input name="phone4" type="tel" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" class="form-control" aria-label="Text input with segmented dropdown button" value=" " >
+					  <input name="phone4" type="tel" pattern="+([0-9]{3}[0-9]{3}[0-9]{4})" class="form-control" aria-label="Text input with segmented dropdown button" value=" " >
 					</div>
 				</div>
 			</div>
