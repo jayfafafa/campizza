@@ -10,6 +10,12 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && isset($_SES
     header("location: dashboard.php");
     exit;
 }
+// Require https
+if ($_SERVER['HTTPS'] != "on") {
+    $url = "https://". $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+    header("Location: $url");
+    exit;
+}
  
 // Define variables and initialize with empty values
 $username = $password = $confirm_password = "";
