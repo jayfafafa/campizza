@@ -144,7 +144,10 @@ unset($conn);
 <div class="container" style = "background: white; margin-top: 20px;">
 
     <h1 style = "padding-top: 40px;text-align: center;">Registration for Camp Izza</h1>
-
+    <div class="ml-auto">
+		<a class="btn btn-danger top-buffer" href="logout.php" role="button">Sign Out</a>
+							
+	</div>
   	<div class="container">
 
 
