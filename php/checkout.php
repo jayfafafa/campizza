@@ -248,10 +248,10 @@ unset($conn);
  <!--Java Script-->
 <script type="text/javascript">
  	paypal.Button.render({
-	    env: 'production', // Or 'sandbox'
+	    env: 'sandbox', // Or 'production'
 	    // Set up the payment:
 	    client: {
-            sandbox:'insert sandbox testing client',
+            sandbox:'AUmgJ1oMDn4FsdBqxuvxi-9hIN8B5FWreuvYRhLaBmVtCek1qH-32vWCMygFSe6mhpKa8Epp-ERa73GJ',
             production: 'AZC9nSofXqQT186_jNkgK-srfaV83p8HL2TbrL2_BqAZow_9UE5rwB3LIlySSXb1wEeef0ocCIxFP1bZ'
         },
         locale: 'en_US',
