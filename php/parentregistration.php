@@ -13,6 +13,12 @@ if( (!isset($_SESSION["loggedin"]) && !isset($_SESSION["registered"]) && $_SESSI
     header("location: dashboard.php");
     exit;
 }
+// Require https
+if ($_SERVER['HTTPS'] != "on") {
+    $url = "https://". $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+    header("Location: $url");
+    exit;
+}
 include("connection.php");
 
 if($_SERVER["REQUEST_METHOD"]=="POST") {
@@ -299,7 +305,7 @@ unset($conn);
 			<div class="row no-task-padding">
 				<div class="col">
 					<div class="input-group mb-3">
-					  <input name="phone3" type="tel" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" class="form-control" aria-label="Text input with segmented dropdown button" value=" ">
+					  <input name="phone3" type="tel" pattern="+([0-9]{3}[0-9]{3}[0-9]{4})" class="form-control" aria-label="Text input with segmented dropdown button" value=" ">
 					</div>
 				</div>
 			</div>
@@ -314,7 +320,7 @@ unset($conn);
 			<div class="row no-task-padding">
 				<div class="col">
 					<div class="input-group mb-3">
-					  <input name="phone4" type="tel" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" class="form-control" aria-label="Text input with segmented dropdown button" value=" " >
+					  <input name="phone4" type="tel" pattern="+([0-9]{3}[0-9]{3}[0-9]{4})" class="form-control" aria-label="Text input with segmented dropdown button" value=" " >
 					</div>
 				</div>
 			</div>

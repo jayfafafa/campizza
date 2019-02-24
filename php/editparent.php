@@ -12,6 +12,12 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: parentregistration.php");
     exit;
 }
+// Require https
+if ($_SERVER['HTTPS'] != "on") {
+    $url = "https://". $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+    header("Location: $url");
+    exit;
+}
 
 include('connection.php');
 
@@ -137,6 +143,10 @@ unset($conn);
 <div class="container" style = "background: white; margin-top: 20px;">
 
     <h1 style = "padding-top: 40px;text-align: center;">Registration for Camp Izza</h1>
+    <div class="ml-auto">
+		<a class="btn btn-primary top-buffer" href="dashboard.php" role="button">< Back to Dashboard</a>
+							
+	</div>
 
   	<div class="container">
 

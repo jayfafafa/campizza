@@ -1,5 +1,11 @@
 <?php
 include ('connection.php');
+// Require https
+if ($_SERVER['HTTPS'] != "on") {
+    $url = "https://". $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+    header("Location: $url");
+    exit;
+}
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 	$passwordPreHash = rand(99999, 2147000000);
