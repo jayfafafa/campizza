@@ -106,7 +106,7 @@ if ($_SERVER['HTTPS'] != "on") {
 			</div>
 			<div class="col">
 				<div class="card border-info mb-3 mx-auto" style="width: 150px; height: 256px;">
-				<a class="cardlink" href="./"></a>
+				<a class="cardlink" href="./adminyearlyedit.php"></a>
 					<img src="034-clock.png" class="card-img-top" alt="...">
 					<div class="card-body">
 						<h5 class="card-title">Session Info</h5>

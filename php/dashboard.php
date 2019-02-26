@@ -2,7 +2,9 @@
 
 // Initialize the session
 session_start();
- 
+
+include('connection.php');
+
 // Check if the user is logged in, if not then redirect him to login page
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: login.php");
@@ -11,6 +13,12 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 	//delete session registered
     header("location: parentregistration.php");
     exit;
+}
+
+$result = $conn->query("SELECT auth FROM ParentsLogin WHERE parentid=".$_SESSION['id']);
+$row = $result->fetch(PDO::FETCH_ASSOC);
+if($row['auth'] == 1){
+    header('location: admindashboard.php');
 }
 
 // Require https
