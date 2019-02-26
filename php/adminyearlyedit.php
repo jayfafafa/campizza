@@ -1,3 +1,33 @@
+<?php
+// Initialize the session
+session_start();
+
+include('connection.php');
+ 
+// Check if the user is logged in, if not then redirect him to login page
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    header("location: login.php");
+    exit;
+}   else if ( ( isset($_SESSION["loggedin"]) && isset($_SESSION["registered"]) ) && ( $_SESSION["loggedin"] === true && $_SESSION["registered"] === false) ){
+    //delete session registered
+    header("location: parentregistration.php");
+    exit;
+}
+
+$result = $conn->query("SELECT auth FROM ParentsLogin WHERE parentid=".$_SESSION['id']);
+$row = $result->fetch(PDO::FETCH_ASSOC);
+if($row['auth'] != 1){
+    header('location: dashboard.php');
+}
+
+// Require https
+if ($_SERVER['HTTPS'] != "on") {
+    $url = "https://". $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+    header("Location: $url");
+    exit;
+}
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -48,11 +78,12 @@
 				<button class="tablink" onclick="openPage('GroupLimits', this, 'red')" id="defaultOpen">Group Info.</button>
 				<button class="tablink" onclick="openPage('CampWeeks', this, 'green')">Camp Info.</button>
 				<button class="tablink" onclick="openPage('SessionPricing', this, 'blue')">Price Info.</button>
-
+			
 				<div class="tab">
 					<div id="GroupLimits" class="tabcontent">
 					  <h3 style="padding: 30px 40px;"><b>Group Limits</b></h3>
 					  <hr>
+					  	<form action="editSessionLimits.php" method="post">
 					  		<div class="row" align="center">
 								<div class="col">
 									<div class="card">
@@ -63,7 +94,7 @@
 												  		<p style="padding-top: 20px;">AM Limit</p>
 												  	</div>
 											  		<div class="col-6">
-												  		<input class="form-control" type="text">
+												  		<input class="form-control" type="text" name="dateslimitam">
 												  	</div>
 												</div>
 												<div class = "row">
@@ -71,7 +102,7 @@
 												  		<p style="padding-top: 20px;">PM Limit</p>
 												  	</div>
 													<div class="col-6">
-												  		<input class="form-control" type="text">
+												  		<input class="form-control" type="text" name="dateslimitpm">
 												  	</div>
 												</div>
 										  </div>
@@ -86,7 +117,7 @@
 												  		<p style="padding-top: 20px;">AM Limit</p>
 												  	</div>
 											  		<div class="col-6">
-												  		<input class="form-control" type="text">
+												  		<input class="form-control" type="text" name="coconutslimitam">
 												  	</div>
 												</div>
 												<div class = "row">
@@ -94,7 +125,7 @@
 												  		<p style="padding-top: 20px;">PM Limit</p>
 												  	</div>
 													<div class="col-6">
-												  		<input class="form-control" type="text">
+												  		<input class="form-control" type="text" name="coconutslimitpm">
 												  	</div>
 												</div>
 										  </div>
@@ -111,7 +142,7 @@
 												  		<p style="padding-top: 20px;">AM Limit</p>
 												  	</div>
 											  		<div class="col-6">
-												  		<input class="form-control" type="text">
+												  		<input class="form-control" type="text" name="treeslimitam">
 												  	</div>
 												</div>
 												<div class = "row">
@@ -119,7 +150,7 @@
 												  		<p style="padding-top: 20px;">PM Limit</p>
 												  	</div>
 													<div class="col-6">
-												  		<input class="form-control" type="text">
+												  		<input class="form-control" type="text" name="treeslimitpm">
 												  	</div>
 												</div>
 										  </div>
@@ -134,7 +165,7 @@
 												  		<p style="padding-top: 20px;">AM Limit</p>
 												  	</div>
 											  		<div class="col-6">
-												  		<input class="form-control" type="text">
+												  		<input class="form-control" type="text" name="youngleaderslimitam">
 												  	</div>
 												</div>
 												<div class = "row">
@@ -142,7 +173,7 @@
 												  		<p style="padding-top: 20px;">PM Limit</p>
 												  	</div>
 													<div class="col-6">
-												  		<input class="form-control" type="text">
+												  		<input class="form-control" type="text" name="youngleaderslimitpm">
 												  	</div>
 												</div>
 										  </div>
@@ -154,13 +185,15 @@
 								<input type="submit" class="btn-xl" align="center" value="Save">
 							</div>
 					</div>
+					</form>
 				</div>
 			</div>
 
-
+			
 			<div class="tab">
 				<div id="CampWeeks" class="tabcontent">
 					<h3 style="padding: 30px 40px;"><b>Camp Dates</b></h3>
+					<form action="editSessionDates.php" method="post">
 						<hr>
 							<div class="row" align="center">
 								<div class="col">
@@ -172,7 +205,7 @@
 												  		<p style="padding-top: 20px;">Start</p>
 												  	</div>
 											  		<div class="col-6">
-												  		<input class="form-control" type="text">
+												  		<input class="form-control" type="text" name="week1start">
 												  	</div>
 												</div>
 												<div class = "row">
@@ -180,7 +213,7 @@
 												  		<p style="padding-top: 20px;">End</p>
 												  	</div>
 													<div class="col-6">
-												  		<input class="form-control" type="text">
+												  		<input class="form-control" type="text" name="week1end">
 												  	</div>
 												</div>
 										  </div>
@@ -195,7 +228,7 @@
 												  		<p style="padding-top: 20px;">Start</p>
 												  	</div>
 											  		<div class="col-6">
-												  		<input class="form-control" type="text">
+												  		<input class="form-control" type="text" name="week2start">
 												  	</div>
 												</div>
 												<div class = "row">
@@ -203,7 +236,7 @@
 												  		<p style="padding-top: 20px;">End</p>
 												  	</div>
 													<div class="col-6">
-												  		<input class="form-control" type="text">
+												  		<input class="form-control" type="text" name="week2end">
 												  	</div>
 												</div>
 										  </div>
@@ -220,7 +253,7 @@
 												  		<p style="padding-top: 20px;">Start</p>
 												  	</div>
 											  		<div class="col-6">
-												  		<input class="form-control" type="text">
+												  		<input class="form-control" type="text" name="week3start">
 												  	</div>
 												</div>
 												<div class = "row">
@@ -228,7 +261,7 @@
 												  		<p style="padding-top: 20px;">End</p>
 												  	</div>
 													<div class="col-6">
-												  		<input class="form-control" type="text">
+												  		<input class="form-control" type="text" name="week3end">
 												  	</div>
 												</div>
 										  </div>
@@ -243,7 +276,7 @@
 												  		<p style="padding-top: 20px;">Start</p>
 												  	</div>
 											  		<div class="col-6">
-												  		<input class="form-control" type="text">
+												  		<input class="form-control" type="text" name="week4start">
 												  	</div>
 												</div>
 												<div class = "row">
@@ -251,7 +284,7 @@
 												  		<p style="padding-top: 20px;">End</p>
 												  	</div>
 													<div class="col-6">
-												  		<input class="form-control" type="text">
+												  		<input class="form-control" type="text" name="week4end">
 												  	</div>
 												</div>
 										  </div>
@@ -268,7 +301,7 @@
 												  		<p style="padding-top: 20px;">Start</p>
 												  	</div>
 											  		<div class="col-6">
-												  		<input class="form-control" type="text">
+												  		<input class="form-control" type="text" name="week5start">
 												  	</div>
 												</div>
 												<div class = "row">
@@ -276,7 +309,7 @@
 												  		<p style="padding-top: 20px;">End</p>
 												  	</div>
 													<div class="col-6">
-												  		<input class="form-control" type="text">
+												  		<input class="form-control" type="text" name="week5end">
 												  	</div>
 												</div>
 										  </div>
@@ -291,7 +324,7 @@
 												  		<p style="padding-top: 20px;">Start</p>
 												  	</div>
 											  		<div class="col-6">
-												  		<input class="form-control" type="text">
+												  		<input class="form-control" type="text" name="week6start">
 												  	</div>
 												</div>
 												<div class = "row">
@@ -299,7 +332,7 @@
 												  		<p style="padding-top: 20px;">End</p>
 												  	</div>
 													<div class="col-6">
-												  		<input class="form-control" type="text">
+												  		<input class="form-control" type="text" name="week6end">
 												  	</div>
 												</div>
 										  </div>
@@ -316,7 +349,7 @@
 												  		<p style="padding-top: 20px;">Start</p>
 												  	</div>
 											  		<div class="col-6">
-												  		<input class="form-control" type="text">
+												  		<input class="form-control" type="text" name="week7start">
 												  	</div>
 												</div>
 												<div class = "row">
@@ -324,7 +357,7 @@
 												  		<p style="padding-top: 20px;">End</p>
 												  	</div>
 													<div class="col-6">
-												  		<input class="form-control" type="text">
+												  		<input class="form-control" type="text" name="week7end">
 												  	</div>
 												</div>
 										  </div>
@@ -339,7 +372,7 @@
 												  		<p style="padding-top: 20px;">Start</p>
 												  	</div>
 											  		<div class="col-6">
-												  		<input class="form-control" type="text">
+												  		<input class="form-control" type="text" name="week8start">
 												  	</div>
 												</div>
 												<div class = "row">
@@ -347,7 +380,7 @@
 												  		<p style="padding-top: 20px;">End</p>
 												  	</div>
 													<div class="col-6">
-												  		<input class="form-control" type="text">
+												  		<input class="form-control" type="text" name="week8end">
 												  	</div>
 												</div>
 										  </div>
@@ -364,7 +397,7 @@
 												  		<p style="padding-top: 20px;">Number of Active Weeks</p>
 												  	</div>
 											  		<div class="col-4">
-												  		<input class="form-control" type="text">
+												  		<input class="form-control" type="text" name="activeweeks">
 												  	</div>
 												</div>
 												<div class = "row">
@@ -372,7 +405,7 @@
 												  		<p style="padding-top: 20px;">Current Year</p>
 												  	</div>
 													<div class="col-4">
-												  		<input class="form-control" type="text">
+												  		<input class="form-control" type="text" name="currentyear">
 												  	</div>
 												</div>
 												<div class = "row">
@@ -380,7 +413,7 @@
 												  		<p style="padding-top: 20px;">Holiday week (1-8)</p>
 												  	</div>
 													<div class="col-4">
-												  		<input class="form-control" type="text">
+												  		<input class="form-control" type="text" name="holidayweek">
 												  	</div>
 												</div>
 										  </div>
@@ -392,13 +425,14 @@
 									<input type="submit" class="btn-xl" align="center" value="Save">
 								</div>
 							</div>
-
+							</form>
 						</div>
 				</div>
 
 			<div class="tab">
 				<div id="SessionPricing" class="tabcontent">
 				  <h3 style="padding: 30px 40px;"><b>Yearly Session Pricing</b></h3>
+				  	<form action="editSessionPricing.php" method="post">
 					  <hr>
 					  <div class="row" align="center">
 								<div class="col">
@@ -410,7 +444,7 @@
 												  		<p style="padding-top: 20px;">One Day AM Pricing</p>
 												  	</div>
 											  		<div class="col-4">
-												  		<input class="form-control" type="text">
+												  		<input class="form-control" type="text" name="onedayam">
 												  	</div>
 												</div>
 												<div class = "row">
@@ -418,7 +452,7 @@
 												  		<p style="padding-top: 20px;">One Day PM Pricing</p>
 												  	</div>
 													<div class="col-4">
-												  		<input class="form-control" type="text">
+												  		<input class="form-control" type="text" name="onedaypm">
 												  	</div>
 												</div>
 												<div class = "row">
@@ -426,7 +460,7 @@
 												  		<p style="padding-top: 20px;">One Day Full Pricing</p>
 												  	</div>
 													<div class="col-4">
-												  		<input class="form-control" type="text">
+												  		<input class="form-control" type="text" name="onedayfull">
 												  	</div>
 												</div>
 										  </div>
@@ -443,7 +477,7 @@
 												  		<p style="padding-top: 20px;">AM Early Pricing</p>
 												  	</div>
 											  		<div class="col-4">
-												  		<input class="form-control" type="text">
+												  		<input class="form-control" type="text" name="oneweekamearly">
 												  	</div>
 												</div>
 												<div class = "row">
@@ -451,7 +485,7 @@
 												  		<p style="padding-top: 20px;">PM Early Pricing</p>
 												  	</div>
 													<div class="col-4">
-												  		<input class="form-control" type="text">
+												  		<input class="form-control" type="text" name="oneweekpmearly">
 												  	</div>
 												</div>
 												<div class = "row">
@@ -459,7 +493,7 @@
 												  		<p style="padding-top: 20px;">Full Early Pricing</p>
 												  	</div>
 													<div class="col-4">
-												  		<input class="form-control" type="text">
+												  		<input class="form-control" type="text" name="oneweekfullearly">
 												  	</div>
 												</div>
 										  </div>
@@ -474,7 +508,7 @@
 												  		<p style="padding-top: 20px;">AM Late Pricing</p>
 												  	</div>
 											  		<div class="col-4">
-												  		<input class="form-control" type="text">
+												  		<input class="form-control" type="text" name="oneweekamlate">
 												  	</div>
 												</div>
 												<div class = "row">
@@ -482,7 +516,7 @@
 												  		<p style="padding-top: 20px;">PM Late Pricing</p>
 												  	</div>
 													<div class="col-4">
-												  		<input class="form-control" type="text">
+												  		<input class="form-control" type="text" name="oneweekpmlate">
 												  	</div>
 												</div>
 												<div class = "row">
@@ -490,7 +524,7 @@
 												  		<p style="padding-top: 20px;">Full Late Pricing</p>
 												  	</div>
 													<div class="col-4">
-												  		<input class="form-control" type="text">
+												  		<input class="form-control" type="text" name="oneweekfulllate">
 												  	</div>
 												</div>
 										  </div>
@@ -507,7 +541,7 @@
 												  		<p style="padding-top: 20px;">AM Early Pricing</p>
 												  	</div>
 											  		<div class="col-4">
-												  		<input class="form-control" type="text">
+												  		<input class="form-control" type="text" name="holidayweekamearly">
 												  	</div>
 												</div>
 												<div class = "row">
@@ -515,7 +549,7 @@
 												  		<p style="padding-top: 20px;">PM Early Pricing</p>
 												  	</div>
 													<div class="col-4">
-												  		<input class="form-control" type="text">
+												  		<input class="form-control" type="text" name="holidayweekpmearly">
 												  	</div>
 												</div>
 												<div class = "row">
@@ -523,7 +557,7 @@
 												  		<p style="padding-top: 20px;">Full Early Pricing</p>
 												  	</div>
 													<div class="col-4">
-												  		<input class="form-control" type="text">
+												  		<input class="form-control" type="text" name="holidayweekfullearly">
 												  	</div>
 												</div>
 										  </div>
@@ -538,7 +572,7 @@
 												  		<p style="padding-top: 20px;">AM Late Pricing</p>
 												  	</div>
 											  		<div class="col-4">
-												  		<input class="form-control" type="text">
+												  		<input class="form-control" type="text" name="holidayweekamlate">
 												  	</div>
 												</div>
 												<div class = "row">
@@ -546,7 +580,7 @@
 												  		<p style="padding-top: 20px;">PM Late Pricing</p>
 												  	</div>
 													<div class="col-4">
-												  		<input class="form-control" type="text">
+												  		<input class="form-control" type="text" name="holidayweekpmlate">
 												  	</div>
 												</div>
 												<div class = "row">
@@ -554,7 +588,7 @@
 												  		<p style="padding-top: 20px;">Full Late Pricing</p>
 												  	</div>
 													<div class="col-4">
-												  		<input class="form-control" type="text">
+												  		<input class="form-control" type="text" name="holidayweekfulllate">
 												  	</div>
 												</div>
 										  </div>
@@ -571,7 +605,7 @@
 												  		<p style="padding-top: 20px;">Extended Care Pricing</p>
 												  	</div>
 											  		<div class="col-4">
-												  		<input class="form-control" type="text">
+												  		<input class="form-control" type="text" name="extendedcare">
 												  	</div>
 												</div>
 												<div class = "row">
@@ -579,7 +613,7 @@
 												  		<p style="padding-top: 20px;">Extra Shirt Pricing</p>
 												  	</div>
 													<div class="col-4">
-												  		<input class="form-control" type="text">
+												  		<input class="form-control" type="text" name="extrashirt">
 												  	</div>
 												</div>
 										  </div>
@@ -591,7 +625,7 @@
 									<input type="submit" class="btn-xl" align="center" value="Save">
 								</div>
 							</div>
-
+					</form>
 				</div>
 			</div>
 
