@@ -1,6 +1,4 @@
 .DS_Store
-connection.php
-php\connection.php
 php\camperregschedule.html
 php\childinformation.html
 php\checkout.html
