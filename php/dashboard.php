@@ -76,7 +76,7 @@ if ($_SERVER['HTTPS'] != "on") {
 	<div class="container">
 		<div class="row no-gutters">
 			<div class="col">
-				<div class="card border-info mb-3 mx-auto" style="width: 18rem;">
+				<div class="card border-info mb-3 mx-auto" style="width: 150px; height: 256px;">
 					<a class="cardlink" href="./childdisplay.php"></a>
 					<img src="027-profile.png" class="card-img-top" alt="...">
 					<div class="card-body">
@@ -86,7 +86,7 @@ if ($_SERVER['HTTPS'] != "on") {
 				</div>
 			</div>
 			<div class="col">
-				<div class="card border-info mb-3 mx-auto" style="width: 18rem;">
+				<div class="card border-info mb-3 mx-auto" style="width: 150px; height: 256px;">
 				<a class="cardlink" href="./editparent.php"></a>
 					<img src="026-pencil.png" class="card-img-top" alt="...">
 					<div class="card-body">
