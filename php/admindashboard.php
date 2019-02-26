@@ -1,16 +1,25 @@
+<!--
 <?php 
 
 // Initialize the session
 session_start();
+
+include('connection.php');
  
 // Check if the user is logged in, if not then redirect him to login page
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: login.php");
     exit;
 }   else if ( ( isset($_SESSION["loggedin"]) && isset($_SESSION["registered"]) ) && ( $_SESSION["loggedin"] === true && $_SESSION["registered"] === false) ){
-	//delete session registered
+    //delete session registered
     header("location: parentregistration.php");
     exit;
+}
+
+$result = $conn->query("SELECT auth FROM ParentsLogin WHERE parentid=".$_SESSION['id']);
+$row = $result->fetch(PDO::FETCH_ASSOC);
+if($row['auth'] != 1){
+    header('location: dashboard.php');
 }
 
 // Require https
@@ -19,8 +28,8 @@ if ($_SERVER['HTTPS'] != "on") {
     header("Location: $url");
     exit;
 }
-
 ?>
+-->
 <html lang="en">
 
 <head>
@@ -91,6 +100,26 @@ if ($_SERVER['HTTPS'] != "on") {
 					<img src="026-pencil.png" class="card-img-top" alt="...">
 					<div class="card-body">
 						<h5 class="card-title">Edit Profile</h5>
+						<p class="card-text"></p>
+					</div>
+				</div>
+			</div>
+			<div class="col">
+				<div class="card border-info mb-3 mx-auto" style="width: 150px; height: 256px;">
+				<a class="cardlink" href="./"></a>
+					<img src="034-clock.png" class="card-img-top" alt="...">
+					<div class="card-body">
+						<h5 class="card-title">Session Info</h5>
+						<p class="card-text"></p>
+					</div>
+				</div>
+			</div>
+			<div class="col">
+				<div class="card border-info mb-3 mx-auto" style="width: 150px; height: 256px;">
+				<a class="cardlink" href="./"></a>
+					<img src="009-file.png" class="card-img-top" alt="...">
+					<div class="card-body">
+						<h5 class="card-title">Form Generation</h5>
 						<p class="card-text"></p>
 					</div>
 				</div>
