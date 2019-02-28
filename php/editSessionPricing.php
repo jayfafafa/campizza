@@ -31,34 +31,82 @@ if ($_SERVER['HTTPS'] != "on") {
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
 
-	//Create query
-	$sql = "UPDATE YearlySessionPricing SET oneweekamearly=:oneweekamearly, oneweekpmearly=:oneweekpmearly, oneweekfullearly=:oneweekfullearly, "
-	."oneweekamlate=:oneweekamlate, oneweekpmlate=:oneweekpmlate, oneweekfulllate=:oneweekfulllate, "
-	."holidayweekamlate=:holidayweekamlate, holidayweekpmlate=:holidayweekpmlate, holidayweekfulllate=:holidayweekfulllate, "
-	."holidayweekamearly=:holidayweekamearly, holidayweekpmearly=:holidayweekpmearly, holidayweekfullearly=:holidayweekfullearly, "
-	."onedayam=:onedayam, onedaypm=:onedaypm, onedayfull=:onedayfull, extendedcare=:extendedcare, extrashirt=:extrashirt";
-		
-	//Populate data array
-	$data = [
-		":oneweekamearly" => $_POST["oneweekamearly"],
-		":oneweekpmearly" => $_POST["oneweekpmearly"],
-		":oneweekfullearly" => $_POST["oneweekfullearly"],
-		":oneweekamlate" => $_POST["oneweekamlate"],
-		":oneweekpmlate" => $_POST["oneweekpmlate"],
-		":oneweekfulllate" => $_POST["oneweekfulllate"],
-		":holidayweekamearly" => $_POST["holidayweekamearly"],
-		":holidayweekpmearly" => $_POST["holidayweekpmearly"],
-		":holidayweekfullearly" => $_POST["holidayweekfullearly"],
-		":holidayweekamlate" => $_POST["holidayweekamlate"],
-		":holidayweekpmlate" => $_POST["holidayweekpmlate"],
-		":holidayweekfulllate" => $_POST["holidayweekfulllate"],
-		":onedayam" => $_POST["onedayam"],
-		":onedaypm" => $_POST["onedaypm"],
-		":onedayfull" => $_POST["onedayfull"],
-		":extendedcare" => $_POST["extendedcare"],
-		":extrashirt" => $_POST["extrashirt"]
-		
-	];
+
+	$sql = "UPDATE YearlySessionPricing SET ";
+	$data = [];
+	
+	
+	//Create query && Populate data array for existing non-null/empty values
+	if ($_POST['oneweekamearly'] != "" ) {
+		$sql = $sql." oneweekamearly=:oneweekamearly,";
+		$data[":oneweekamearly"] = $_POST["oneweekamearly"];
+	}
+	if ($_POST['oneweekpmearly'] != "" ) {
+		$sql = $sql." oneweekpmearly=:oneweekpmearly,";
+		$data[":oneweekpmearly"] = $_POST["oneweekpmearly"];
+	}
+	if ($_POST['oneweekfullearly'] != "" ) {
+		$sql = $sql." oneweekfullearly=:oneweekfullearly,";
+		$data[":oneweekfullearly"] = $_POST["oneweekfullearly"];
+	}
+	if ($_POST['oneweekamlate'] != "" ) {
+		$sql = $sql." oneweekamlate=:oneweekamlate,";
+		$data[":oneweekamlate"] = $_POST["oneweekamlate"];
+	}
+	if ($_POST['oneweekpmlate'] != "" ) {
+		$sql = $sql." oneweekpmlate=:oneweekpmlate,";
+		$data[":oneweekpmlate"] = $_POST["oneweekpmlate"];
+	}
+	if ($_POST['oneweekfulllate'] != "" ) {
+		$sql = $sql." oneweekfulllate=:oneweekfulllate,";
+		$data[":oneweekfulllate"] = $_POST["oneweekfulllate"];
+	}
+	if ($_POST['holidayweekamlate'] != "" ) {
+		$sql = $sql." holidayweekamlate=:holidayweekamlate,";
+		$data[":holidayweekamlate"] = $_POST["holidayweekamlate"];
+	}
+	if ($_POST['holidayweekpmlate'] != "" ) {
+		$sql = $sql." holidayweekpmlate=:holidayweekpmlate,";
+		$data[":holidayweekpmlate"] = $_POST["holidayweekpmlate"];
+	}
+	if ($_POST['holidayweekfulllate'] != "" ) {
+		$sql = $sql." holidayweekfulllate=:holidayweekfulllate,";
+		$data[":holidayweekfulllate"] = $_POST["holidayweekfulllate"];
+	}
+	if ($_POST['holidayweekamearly'] != "" ) {
+		$sql = $sql." holidayweekamearly=:holidayweekamearly,";
+		$data[":holidayweekamearly"] = $_POST["holidayweekamearly"];
+	}
+	if ($_POST['holidayweekpmearly'] != "" ) {
+		$sql = $sql." holidayweekpmearly=:holidayweekpmearly,";
+		$data[":holidayweekpmearly"] = $_POST["holidayweekpmearly"];
+	}
+	if ($_POST['holidayweekfullearly'] != "" ) {
+		$sql = $sql." holidayweekfullearly=:holidayweekfullearly,";
+		$data[":holidayweekfullearly"] = $_POST["holidayweekfullearly"];
+	}
+		if ($_POST['onedayam'] != "" ) {
+		$sql = $sql." onedayam=:onedayam,";
+		$data[":onedayam"] = $_POST["onedayam"];
+	}
+	if ($_POST['onedaypm'] != "" ) {
+		$sql = $sql." onedaypm=:onedaypm,";
+		$data[":onedaypm"] = $_POST["onedaypm"];
+	}
+	if ($_POST['onedayfull'] != "" ) {
+		$sql = $sql." onedayfull=:onedayfull,";
+		$data[":onedayfull"] = $_POST["onedayfull"];
+	}
+	if ($_POST['extendedcare'] != "" ) {
+		$sql = $sql." extendedcare=:extendedcare,";
+		$data[":extendedcare"] = $_POST["extendedcare"];
+	}
+	if ($_POST['extrashirt'] != "" ) {
+		$sql = $sql." extrashirt=:extrashirt,";
+		$data[":extrashirt"] = $_POST["extrashirt"];
+	}
+	
+	$sql = substr($sql, 0, strlen($sql)-1);
 		
 	if($stmt = $conn->prepare($sql)){
 		if($stmt->execute($data)){

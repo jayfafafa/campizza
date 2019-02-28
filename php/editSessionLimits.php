@@ -30,24 +30,46 @@ if ($_SERVER['HTTPS'] != "on") {
 /////////////////////////////////////////////////////////////////////////////
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
-
-	//Create query
-	$sql = "UPDATE YearlySessionLimits SET dateslimitam=:dateslimitam, dateslimitpm=:dateslimitpm, "
-	."treeslimitam=:treeslimitam, treeslimitpm=:treeslimitpm, coconutslimitam=:coconutslimitam, coconutslimitpm=:coconutslimitpm, "
-	."youngleaderslimitam=:youngleaderslimitam, youngleaderslimitpm=:youngleaderslimitpm";
-		
-	//Populate data array
-	$data = [
-		":dateslimitam" => $_POST["dateslimitam"],
-		":dateslimitpm" => $_POST["dateslimitpm"],
-		":treeslimitam" => $_POST["treeslimitam"],
-		":treeslimitpm" => $_POST["treeslimitpm"],
-		":coconutslimitam" => $_POST["coconutslimitam"],
-		":coconutslimitpm" => $_POST["coconutslimitpm"],
-		":youngleaderslimitam" => $_POST["youngleaderslimitam"],
-		":youngleaderslimitpm" => $_POST["youngleaderslimitpm"]
-	];
-		
+	
+	$sql = "UPDATE YearlySessionLimits SET ";
+	$data = [];
+	
+	//Create query && Populate data array for existing non-null/empty values
+	if ($_POST['dateslimitam'] != "" ) {
+		$sql = $sql." dateslimitam=:dateslimitam,";
+		$data[":dateslimitam"] = $_POST["dateslimitam"];
+	}
+	if ($_POST['dateslimitpm'] != "" ) {
+		$sql = $sql." dateslimitpm=:dateslimitpm,";
+		$data[":dateslimitpm"] = $_POST["dateslimitpm"];
+	}
+	if ($_POST['treeslimitam'] != "" ) {
+		$sql = $sql." treeslimitam=:treeslimitam,";
+		$data[":treeslimitam"] = $_POST["treeslimitam"];
+	}
+	if ($_POST['treeslimitpm'] != "" ) {
+		$sql = $sql." treeslimitpm=:treeslimitpm,";
+		$data[":treeslimitpm"] = $_POST["treeslimitpm"];
+	}
+	if ($_POST['coconutslimitam'] != "" ) {
+		$sql = $sql." coconutslimitam=:coconutslimitam,";
+		$data[":coconutslimitam"] = $_POST["coconutslimitam"];
+	}
+	if ($_POST['coconutslimitpm'] != "" ) {
+		$sql = $sql." coconutslimitpm=:coconutslimitpm,";
+		$data[":coconutslimitpm"] = $_POST["coconutslimitpm"];
+	}
+	if ($_POST['youngleaderslimitam'] != "" ) {
+		$sql = $sql." youngleaderslimitam=:youngleaderslimitam,";
+		$data[":youngleaderslimitam"] = $_POST["youngleaderslimitam"];
+	}
+	if ($_POST['youngleaderslimitpm'] != "" ) {
+		$sql = $sql." youngleaderslimitpm=:youngleaderslimitpm,";
+		$data[":youngleaderslimitpm"] = $_POST["youngleaderslimitpm"];
+	}
+	
+	$sql = substr($sql, 0, strlen($sql)-1);
+	
 	if($stmt = $conn->prepare($sql)){
 		if($stmt->execute($data)){
 			header("location: dashboard.php");
