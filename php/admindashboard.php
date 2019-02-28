@@ -124,6 +124,16 @@ if ($_SERVER['HTTPS'] != "on") {
 					</div>
 				</div>
 			</div>
+			<div class="col">
+				<div class="card border-info mb-3 mx-auto" style="width: 150px; height: 256px;">
+				<a class="cardlink" href="./roster.php"></a>
+					<img src="003-book.png" class="card-img-top" alt="...">
+					<div class="card-body">
+						<h5 class="card-title">Roster Dump</h5>
+						<p class="card-text"></p>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 
