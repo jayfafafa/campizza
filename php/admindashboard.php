@@ -86,7 +86,7 @@ if ($_SERVER['HTTPS'] != "on") {
 		<div class="row no-gutters">
 			<div class="col">
 				<div class="card border-info mb-3 mx-auto" style="width: 150px; height: 256px;">
-					<a class="cardlink" href="./childdisplay.php"></a>
+					<a class="cardlink" href="./adminchilddashboard.php"></a>
 					<img src="027-profile.png" class="card-img-top" alt="...">
 					<div class="card-body">
 						<h5 class="card-title">Manage Campers</h5>
