@@ -40,14 +40,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 				));
 				
 	
-	$sql = "INSERT INTO ChildrenDynamic (childid, registeredyear, grade) "
-        . "VALUES (:childid, :registeredyear, :grade)";
+	$sql = "UPDATE ChildrenDynamic SET grade=:grade WHERE childid=".$_POST["childid"];
 		
 		if($stmt = $conn->prepare($sql)){
 			try{
 				if($stmt->execute(array(
-					':childid' => $_POST['childid'],
-					':registeredyear' => $registeredyear,
 					':grade' => $_POST['grade']
 					))
 					){
