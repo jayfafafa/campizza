@@ -26,8 +26,12 @@ if ($_SERVER['HTTPS'] != "on") {
     exit;
 }
 
+$stmtAmount = $conn->query("SELECT currentyear FROM YearlySessionWeeks");
+$campInfo = $stmtAmount->fetch(PDO::FETCH_ASSOC);
+$year = $campInfo["currentyear"];
+
 if($_SERVER["REQUEST_METHOD"] == "POST") {
-	$sql = "UPDATE ChildrenDynamic SET additionalpaid=:additionalpaid WHERE childid=".$_POST['childid'];
+	$sql = "UPDATE ChildrenDynamic SET additionalpaid=:additionalpaid WHERE childid=".$_POST['childid']." AND registeredyear=".$year;
 		
 		$data = [
 			':additionalpaid' => $_POST['amount']
