@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+include ('connection.php');
+
 // Check if the user is already logged in, if yes then redirect him to welcome page
 if(!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true){
     header("location: login.php");
@@ -10,6 +12,13 @@ if(!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true){
     header("location: parentregistration.php");
     exit;
 }
+
+$result = $conn->query("SELECT auth FROM ParentsLogin WHERE parentid=".$_SESSION['id']);
+$row = $result->fetch(PDO::FETCH_ASSOC);
+if($row['auth'] != 1){
+    header('location: dashboard.php');
+}
+
 // Require https
 if ($_SERVER['HTTPS'] != "on") {
     $url = "https://". $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
@@ -17,7 +26,7 @@ if ($_SERVER['HTTPS'] != "on") {
     exit;
 }
 
-include ('connection.php');
+
 
 ?>
 <html lang="en">
@@ -86,9 +95,8 @@ include ('connection.php');
 <?php
 $parentid=$_SESSION['id'];
 
-$stmt = $conn->query("SELECT Children.childid, Children.firstname, Children.lastname 
-	FROM Parents, Children
-	WHERE Parents.parentid = Children.parentid AND Parents.parentid=" . $parentid);
+$stmt = $conn->query("SELECT childid, firstname, lastname 
+	FROM Children");
 
 $stmtAmount = $conn->query("SELECT * FROM YearlySessionWeeks");
 $campInfo = $stmtAmount->fetch(PDO::FETCH_ASSOC);
@@ -160,10 +168,15 @@ while ( $row = $stmt->fetch(PDO::FETCH_ASSOC) ) {
 					            </div>
 
 					            <div class="d-flex justify-content-between align-items-center">
-					            	<h3 style="padding-left: 20px;">Paypal Paid: $<?php echo $registerInfo['price']?></h3>
+					            	<h3 style="padding-left: 20px;">Amount Paid: $<?php echo $registerInfo['price']?></h3>
 					            </div>
 					            <div class="d-flex justify-content-between align-items-center">
-					            	<h3 style="padding-left: 20px;">Additional Paid: $<?php echo $registerInfo['additionalpaid']?></h3>
+					            	<h3 style="padding-left: 20px;">Additional Paid: $<?php echo $registerInfo['additionalpaid']?></h3><br>
+					            	<form action="updateAdditionalPaid.php" method="post">
+					            		Update Additional Paid: <input type="number" step="0.01" name="amount">
+					            		<input type="hidden" name="childid" value="<?php echo $row['childid'] ?>">
+					            		<input type="submit" value="Submit">
+					            	</form>
 					            </div>
 					            
 					        </div>
