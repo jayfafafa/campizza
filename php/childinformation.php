@@ -140,7 +140,7 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){
 		</div>
 		<div class="row no-task-padding">
 	  		<div class="col">
-				<input name="school" type="text" times-label="CCI" class="form-control" <?php if($child['school'] != NULL){ echo 'value='.$child['school'];}?>required>
+				<input name="school" type="text" times-label="CCI" class="form-control" <?php if($child['school'] != NULL){ echo 'value="'.$child['school'].'"';}?> required>
 			</div>
 		</div>
 
