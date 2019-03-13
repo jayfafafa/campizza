@@ -30,7 +30,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST") {
 		."guardian2phone1, guardian2phone2, emergencynamefirst1, emergencynamelast1,"
 		."emergencyrelationship1, emergencyphone1, emergencyauthorized1, "
 		."emergencynamefirst2, emergencynamelast2, emergencyrelationship2, emergencyphone2, "
-		."emergencyauthorized2,balance)"
+		."emergencyauthorized2)"
         . "VALUES (:parentid, :regtime, :location, :guardiannamefirst1,"
 		.":guardiannamelast1, :guardiannamefirst2, :guardiannamelast2, :address1, :address2,"
 		.":country, :city, "
@@ -38,7 +38,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST") {
 		.":guardian2phone1, :guardian2phone2, :emergencynamefirst1, :emergencynamelast1,"
 		.":emergencyrelationship1, :emergencyphone1, :emergencyauthorized1, "
 		.":emergencynamefirst2, :emergencynamelast2, :emergencyrelationship2, :emergencyphone2, "
-		.":emergencyauthorized2, :balance)";
+		.":emergencyauthorized2)";
 		
 		$emergencyauthorized1 = 0;
 		$emergencyauthorized2 = 0;
@@ -80,8 +80,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST") {
 		':emergencynamelast2' => $_POST['emergencynamelast2'],
 		':emergencyrelationship2' => $_POST['emergencyrelationship2'],
 		':emergencyphone2' => $_POST['emergencyphone2'],
-		':emergencyauthorized2' => $emergencyauthorized2,
-		':balance' => 0
+		':emergencyauthorized2' => $emergencyauthorized2
 	];
 	
 	if($stmt = $conn->prepare($sql)){

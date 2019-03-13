@@ -29,7 +29,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 		."guardian2phone1=:guardian2phone1, guardian2phone2=:guardian2phone2, emergencynamefirst1=:emergencynamefirst1, emergencynamelast1=:emergencynamelast1,"
 		."emergencyrelationship1=:emergencyrelationship1, emergencyphone1=:emergencyphone1, emergencyauthorized1=:emergencyauthorized1, "
 		."emergencynamefirst2=:emergencynamefirst2, emergencynamelast2=:emergencynamelast2, emergencyrelationship2=:emergencyrelationship2, emergencyphone2=:emergencyphone2, "
-		."emergencyauthorized2=:emergencyauthorized2,balance=:balance WHERE parentid=".$_SESSION['id'];
+		."emergencyauthorized2=:emergencyauthorized2 WHERE parentid=".$_SESSION['id'];
 		
 		
 		
@@ -75,8 +75,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 		':emergencynamelast2' => $_POST['emergencynamelast2'],
 		':emergencyrelationship2' => $_POST['emergencyrelationship2'],
 		':emergencyphone2' => $_POST['emergencyphone2'],
-		':emergencyauthorized2' => $emergencyauthorized2,
-		':balance' => 0
+		':emergencyauthorized2' => $emergencyauthorized2
 	];
 		
 	if($stmt = $conn->prepare($sql)){

@@ -26,7 +26,7 @@ $sql = "INSERT INTO Parents (regtime, location, guardiannamefirst1,"
 		.":guardian2phone1, :guardian2phone2, :emergencynamefirst1, :emergencynamelast1,"
 		.":emergencyrelationship1, :emergencyphone1, :emergencyauthorized1, "
 		.":emergencynamefirst2, :emergencynamelast2, :emergencyrelationship2, :emergencyphone2, "
-		.":emergencyauthorized2, :balance)";
+		.":emergencyauthorized2)";
 
 $data = [
 	':regtime' => $regtime,
@@ -58,8 +58,7 @@ $data = [
     ':emergencynamelast2' => $_POST['emergencynamelast2'],
     ':emergencyrelationship2' => $_POST['emergencyrelationship2'],
     ':emergencyphone2' => $_POST['emergencyphone2'],
-    ':emergencyauthorized2' => "no",
-    ':balance' => 0
+    ':emergencyauthorized2' => "no"
 ];
 
 $stmt = $conn->prepare($sql)->execute($data);
