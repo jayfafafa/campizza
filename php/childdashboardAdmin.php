@@ -130,7 +130,7 @@ while ( $row = $stmt->fetch(PDO::FETCH_ASSOC) ) {
 									  </thead>
 									  <tbody>
 <?php
-	$stmtDynamic = $conn->query("SELECT ChildrenDynamic.week1am, ChildrenDynamic.week1pm, ChildrenDynamic.week2am, ChildrenDynamic.week2pm, ChildrenDynamic.week3am, ChildrenDynamic.week3pm, ChildrenDynamic.week4am, ChildrenDynamic.week4pm, ChildrenDynamic.week5am, ChildrenDynamic.week5pm, ChildrenDynamic.week6am, ChildrenDynamic.week6pm, ChildrenDynamic.week7am, ChildrenDynamic.week7pm, ChildrenDynamic.week8am, ChildrenDynamic.week8pm, ChildrenDynamic.extendedcare, ChildrenDynamic.price, ChildrenDynamic.additionalpaid
+	$stmtDynamic = $conn->query("SELECT ChildrenDynamic.week1am, ChildrenDynamic.week1pm, ChildrenDynamic.week2am, ChildrenDynamic.week2pm, ChildrenDynamic.week3am, ChildrenDynamic.week3pm, ChildrenDynamic.week4am, ChildrenDynamic.week4pm, ChildrenDynamic.week5am, ChildrenDynamic.week5pm, ChildrenDynamic.week6am, ChildrenDynamic.week6pm, ChildrenDynamic.week7am, ChildrenDynamic.week7pm, ChildrenDynamic.week8am, ChildrenDynamic.week8pm, ChildrenDynamic.extendedcare, ChildrenDynamic.price, ChildrenDynamic.credit
 	FROM Children, ChildrenDynamic, YearlySessionWeeks
 	WHERE Children.childid = ChildrenDynamic.childid AND Children.childid =".$row['childid']." AND ChildrenDynamic.registeredyear = YearlySessionWeeks.currentYear");
 	
@@ -171,9 +171,9 @@ while ( $row = $stmt->fetch(PDO::FETCH_ASSOC) ) {
 					            	<h3 style="padding-left: 20px;">Amount Paid: $<?php echo $registerInfo['price']?></h3>
 					            </div>
 					            <div class="d-flex justify-content-between align-items-center">
-					            	<h3 style="padding-left: 20px;">Additional Paid: $<?php echo $registerInfo['additionalpaid']?></h3><br>
+					            	<h3 style="padding-left: 20px;">Credit: $<?php echo $registerInfo['credit']?></h3><br>
 					            	<form action="updateAdditionalPaid.php" method="post">
-					            		Update Additional Paid: <input type="number" step="0.01" name="amount">
+					            		Update Credit: <input type="number" step="0.01" name="amount">
 					            		<input type="hidden" name="childid" value="<?php echo $row['childid'] ?>">
 					            		<input type="submit" value="Submit">
 					            	</form>

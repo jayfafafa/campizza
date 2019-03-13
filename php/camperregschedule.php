@@ -27,6 +27,11 @@ $weekInfo = $stmtWeekInfo->fetch(PDO::FETCH_ASSOC);
 date_default_timezone_set('America/Los_Angeles');
 $currDate = date('Y-m-d', time()); */
 
+//get session week information for Updating table & Dynamically generating week information in page
+	$sqlWeekInfo = "SELECT * FROM YearlySessionWeeks";
+	$stmtWeekInfo = $conn->query($sqlWeekInfo);
+	$weekInfo = $stmtWeekInfo->fetch(PDO::FETCH_ASSOC);
+
 if($_SERVER["REQUEST_METHOD"] == "POST") {
 	//Calculate total
 	
@@ -34,7 +39,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 		."week2pm=:week2pm, week3am=:week3am, week3pm=:week3pm, week4am=:week4am, "
 		."week4pm=:week4pm, week5am=:week5am, week5pm=:week5pm, week6am=:week6am, "
 		."week6pm=:week6pm, week7am=:week7am, week7pm=:week7pm, week8am=:week8am, week8pm=:week8pm, "
-		."extendedcare=:extendedcare, price=:price WHERE childid=".$_SESSION['childid'];
+		."extendedcare=:extendedcare, price=:price, credit=:credit WHERE childid=".$_SESSION['childid']." AND registeredyear=".$weekInfo['currentyear'];
 		
 		$week1am = 0;
 		$week2am = 0;
@@ -106,10 +111,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 			$extendedcare = $_POST['extendedcare'];
 		}
 
-		$sqlNew = "SELECT price FROM ChildrenDynamic WHERE childid=".$_SESSION['childid'];
+		$sqlNew = "SELECT price, credit FROM ChildrenDynamic WHERE childid=".$_SESSION['childid']." AND registeredyear=".$weekInfo['currentyear'];
 		$stmt = $conn->query($sqlNew);
 		$child = $stmt->fetch(PDO::FETCH_ASSOC);
 		$currentPrice = $child['price'];
+		$currentBalance = $child['credit'];
 		
 		$data = [
 			':week1am' => $week1am,
@@ -129,7 +135,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 			':week8am' => $week8am,
 			':week8pm' => $week8pm,
 			':extendedcare' => $extendedcare,
-			':price' => $currentPrice
+			':price' => $currentPrice,
+			':credit' => $currentBalance
 	];
 	
 /*	//getting shirt information
@@ -188,18 +195,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
 }
 
-$stmtAmount = $conn->query("SELECT * FROM YearlySessionWeeks");
-$campInfo = $stmtAmount->fetch(PDO::FETCH_ASSOC);
-$activeweeks = $campInfo["activeweeks"];
+$activeweeks = $weekInfo["activeweeks"];
 
 date_default_timezone_set('America/Los_Angeles');
 $currDate = date('Y-m-d', time());
-
-	
-//get session week information for Updating table & Dynamically generating week information in page
-$sqlWeekInfo = "SELECT * FROM YearlySessionWeeks";
-$stmtWeekInfo = $conn->query($sqlWeekInfo);
-$weekInfo = $stmtWeekInfo->fetch(PDO::FETCH_ASSOC);
 
 if( strtotime($currDate) < strtotime($weekInfo['week1start']) ) {
 	$eOrL = 'early';
@@ -215,7 +214,7 @@ $yearlyPrices = $stmtPrices->fetch(PDO::FETCH_ASSOC);
 
 $extendedCareCost = $yearlyPrices['extendedcare'];
 
-$sqlCurrentScheduleInfo = "SELECT * FROM ChildrenDynamic WHERE registeredyear=".$weekInfo['currentyear']." AND childid=".$_SESSION['childid'];
+$sqlCurrentScheduleInfo = "SELECT * FROM ChildrenDynamic WHERE childid=".$_SESSION['childid']." AND registeredyear=".$weekInfo['currentyear'];
 $stmtCurrentScheduleInfo = $conn->query($sqlCurrentScheduleInfo);
 $currentInfo = $stmtCurrentScheduleInfo->fetch(PDO::FETCH_ASSOC);
 
@@ -295,8 +294,8 @@ unset($conn);
 <?php
 for($x = 1; $x <= $activeweeks; $x++){
 		echo '<tr>';
-		echo '<th scope="row">Week '.$x.': '.substr($campInfo['week'.$x.'start'], 5,2).'/'.substr($campInfo['week'.$x.'start'], 8,2).'-'
-		.substr($campInfo['week'.$x.'end'], 5,2).'/'.substr($campInfo['week'.$x.'end'], 8,2).'</th>';
+		echo '<th scope="row">Week '.$x.': '.substr($weekInfo['week'.$x.'start'], 5,2).'/'.substr($weekInfo['week'.$x.'start'], 8,2).'-'
+		.substr($weekInfo['week'.$x.'end'], 5,2).'/'.substr($weekInfo['week'.$x.'end'], 8,2).'</th>';
 		echo '<td>';
 	    echo '<div class="form-check">';
 	    if($currentInfo['week'.$x.'am'] == 0){

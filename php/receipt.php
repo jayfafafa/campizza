@@ -23,9 +23,37 @@ include ('connection.php');
 $sql = $_SESSION['query'];
 $data = $_SESSION['data'];
 
-$data[':price'] = $_SESSION['total'];
+if($_SESSION['total'] < 0){
+	$_SESSION['credit'] = $_SESSION['credit'] + ($_SESSION['total']*-1);
+}
+
+//get session week information for Updating table & Dynamically generating week information in page
+$sqlWeekInfo = "SELECT * FROM YearlySessionWeeks";
+$stmtWeekInfo = $conn->query($sqlWeekInfo);
+$weekInfo = $stmtWeekInfo->fetch(PDO::FETCH_ASSOC);
+
+$sqlBalance = "SELECT price, credit FROM ChildrenDynamic WHERE childid=".$_SESSION['childid']." AND registeredyear=".$weekInfo['currentyear'];
+$stmtBalance = $conn->query($sqlBalance);
+$balance = $stmtBalance->fetch(PDO::FETCH_ASSOC);
+
+$data[':price'] = $balance['price'] + $_SESSION['total'];
+$data[':credit'] = $_SESSION['credit'];
+
+if($balance['credit'] > $_SESSION['credit']){
+	$data[':price'] = $data[':price'] + ($balance['credit'] - $_SESSION['credit']);
+}
 
 	if(isset($_POST['paid']) && $_POST['paid'] == "True") {
+		if($stmt = $conn->prepare($sql)){
+			if($stmt->execute($data)){
+				header("location: childdisplay.php");
+			}
+			else{
+				echo "there was a problemo";
+			}
+			
+		}
+	} elseif($_SESSION['total'] <= 0) {
 		if($stmt = $conn->prepare($sql)){
 			if($stmt->execute($data)){
 				header("location: childdisplay.php");
@@ -39,7 +67,10 @@ $data[':price'] = $_SESSION['total'];
 		header("location: childdisplay.php");
 	}
 
-
+$_SESSION['data'] = [];
+$_SESSION['query'] = '';
+$_SESSION['total'] = 0;
+$_SESSION['credit'] = 0;
 unset($conn)
 
 

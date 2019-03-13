@@ -64,13 +64,13 @@ include ('connection.php');
 	
 	for($x = 1; $x <= $weekInfo['activeweeks']; $x++){ //Including extended care
 		if($data[':week'.$x.'am'] == 1 && $data[':week'.$x.'pm'] == 1 ) { //both am & pm [full day]
-			if('week'.$x == $weekInfo['holidayweek']) $prices['week'.$x] = $yearlyPrices['holidayweekfull'.$eOrL] + ( $extendedCareCost * 4.00 ); //Holiday Full
+			if($x == $weekInfo['holidayweek']) $prices['week'.$x] = $yearlyPrices['holidayweekfull'.$eOrL] + ( $extendedCareCost * 4.00 ); //Holiday Full
 			else $prices['week'.$x] = $yearlyPrices['oneweekfull'.$eOrL] + ( $extendedCareCost * 5.00 ); //not holiday
 		} else if($data[':week'.$x.'am'] == 1) { //week# am only
-			if('week'.$x == $weekInfo['holidayweek']) $prices['week'.$x] = $yearlyPrices['holidayweekam'.$eOrL] + ( $extendedCareCost * 4.00 ); //am HOliday
+			if($x == $weekInfo['holidayweek']) $prices['week'.$x] = $yearlyPrices['holidayweekam'.$eOrL] + ( $extendedCareCost * 4.00 ); //am HOliday
 			else $prices['week'.$x] = $yearlyPrices['oneweekam'.$eOrL] + ( $extendedCareCost * 5.00 ); //am reg
 		} else if($data[':week'.$x.'pm'] == 1){//week# pm only
-			if('week'.$x == $weekInfo['holidayweek']) $prices['week'.$x] = $yearlyPrices['holidayweekpm'.$eOrL] + ( $extendedCareCost * 4.00 );//pm HOliday
+			if($x == $weekInfo['holidayweek']) $prices['week'.$x] = $yearlyPrices['holidayweekpm'.$eOrL] + ( $extendedCareCost * 4.00 );//pm HOliday
 			else $prices['week'.$x] = $yearlyPrices['oneweekpm'.$eOrL] + ( $extendedCareCost * 5.00 );//pm reg
 		}
 	}
@@ -81,7 +81,14 @@ include ('connection.php');
 	
 	$total = $shirtCost + $weekCost;
 
-	$_SESSION['total'] = $total;
+	$sqlBalance = "SELECT price, credit FROM ChildrenDynamic WHERE childid=".$_SESSION['childid']." AND registeredyear=".$weekInfo['currentyear'];
+	$stmtBalance = $conn->query($sqlBalance);
+	$balance = $stmtBalance->fetch(PDO::FETCH_ASSOC);
+
+	$currentBalance = $balance['price'];
+
+	$_SESSION['total'] = $total - $currentBalance;
+	$_SESSION['credit'] = $balance['credit'];
 
 ?>
 <!doctype html>
@@ -229,19 +236,75 @@ unset($conn);
 	}	
 	echo "
 	<div class = 'row'> 
-					<div class = 'col-6'> <b style = 'font-size: 15px;text-align: left;'>Additional T-shirts</b></div>
-					<div class='col' style='text-align: center;'><b style='text-align: center; font-size: 15px;'>".$childInfo['numshirts']."</b></div>
-						<div class='col' style='text-align: right;'> <b style='text-align: right; font-size: 15px;'>$".$shirtCost."</b></div>
-		</div>
-		<p align='left' style = 'font-size: 10px;'>Each camper gets 1 free T-shirt.
-			</p>";
-	echo "<hr><hr><p align='center' style = 'padding-top: 50px' > <b>Total Price: $".$total."</b>";
+		<div class = 'col-6'> <b style = 'font-size: 15px;text-align: left;'>Additional T-shirts</b></div>
+		<div class='col' style='text-align: center;'><b style='text-align: center; font-size: 15px;'>".$childInfo['numshirts']."</b></div>
+		<div class='col' style='text-align: right;'> <b style='text-align: right; font-size: 15px;'>$".$shirtCost."</b></div>
+	</div>
+	<p align='left' style = 'font-size: 10px;'>Each camper gets 1 free T-shirt.</p>";
+
+	if($currentBalance > 0){
+		echo "
+		<div class = 'row'> 
+			<div class = 'col-6'> <b style = 'font-size: 15px;text-align: left;'>Total Previously Paid For:</b></div>
+			<div class='col' style='text-align: center;'><b style='text-align: center; font-size: 15px;'></b></div>
+			<div class='col' style='text-align: right;'> <b style='text-align: right; font-size: 15px;'>$".$currentBalance."</b></div>
+		</div><br>";
+	}
+
+	//When credit is applied some additional fields need to be shown
+	$creditApplied = FALSE;
+
+	if($_SESSION['credit'] > 0 && $_SESSION['total'] > 0){
+		echo "
+		<div class = 'row'> 
+			<div class = 'col-6'> <b style = 'font-size: 15px;text-align: left;'>Total Credit Applied:</b></div>
+			<div class='col' style='text-align: center;'><b style='text-align: center; font-size: 15px;'></b></div>
+			<div class='col' style='text-align: right;'> <b style='text-align: right; font-size: 15px;'>$".$_SESSION['credit']."</b></div>
+		</div>";
+		if($_SESSION['credit'] > $_SESSION['total']){
+			$_SESSION['credit'] = $_SESSION['credit'] - $_SESSION['total'];
+			$_SESSION['total'] = 0;
+		}else{
+			$_SESSION['total'] = $_SESSION['total'] - $_SESSION['credit'];
+			$_SESSION['credit'] = 0;
+		}
+
+		$creditApplied = TRUE;
+	}
+
+	//echo "<hr><hr><p align='center' style = 'padding-top: 10px' > <b>Total Amount Previously Paid: $".$currentBalance."</b>";
+	echo "<hr><hr><p align='center' style = 'padding-top: 5px' > <b>Total Amount Due: $".$_SESSION['total']."</b></p>";
+	if($_SESSION['total'] <= 0){
+		if($creditApplied == TRUE){
+			echo '<p align="center" style = "padding-top: 5px" > <b>Credit Remaining: $'.$_SESSION['credit'].'</b></p>';
+		}else{
+			echo "<p align='center' style = 'padding-top: 5px' > <b>Total Credit Redeemed: $".($_SESSION['total']*-1)."</b></p>";
+		}
+		echo '<div style="text-align: center;">';
+		echo '<p align="center" style = "padding-top: 5px" >Add Credit to your account in the amount of: $'.($_SESSION['total']*-1).'?</p>';
+		echo '<form action="receipt.php" method="post">';
+		echo '<input class="btn btn-sm btn-success" type="submit" value="Yes">';
+		echo '</form>';
+		echo '<a href="childdisplay.php" role="button" class="btn btn-sm btn-danger">No</a>';
+		echo '</div>';
+	}else{
+		if($creditApplied == TRUE){
+			echo '<p align="center" style = "padding-top: 5px" >Credit Remaining: $'.$_SESSION['credit'].'?</p>';
+		}
+		echo '<div id="paypal-button" style="text-align: center;"></div>';
+		echo '<input type="hidden" name="business" value="qnq89078@cndps.com"/> ';
+		echo '<div class="tab" style = "margin-top: 30px">';
+		echo '<button class="tablinks" onclick="" style="background: transparent;border: none !important;font-size:0;"></button>';
+		echo '</div>';
+
+	}
 ?>
-  			<div id="paypal-button" style="text-align: center;"></div>
-	  		<input type="hidden" name="business" value="qnq89078@cndps.com"/> 
-			<div class="tab" style = "margin-top: 30px">
-				  <button class="tablinks" onclick="" style="background: transparent;border: none !important;font-size:0;"></button>
-			</div>
+
+  			
+	  		
+			
+				  
+			
   			
   		</div>
   	</div>
@@ -275,9 +338,9 @@ unset($conn);
 				"transactions": [{
 				    "amount": {
 				      "currency": "USD",
-				      "total": "<?php echo $total; ?>",
+				      "total": "<?php echo $_SESSION['total']; ?>",
 				      "details": {
-				        "subtotal": "<?php echo $total; ?>",
+				        "subtotal": "<?php echo $_SESSION['total']; ?>",
 				      }
 				    },
 				    "description": "The payment transaction description.",
@@ -285,7 +348,7 @@ unset($conn);
 				      "items": [{
 				        "name": "Camp Fees",
 				        "quantity": "1",
-				        "price": "<?php echo $total; ?>",
+				        "price": "<?php echo $_SESSION['total']; ?>",
 				        "sku": "1",
 				        "currency": "USD"
 				      }]
