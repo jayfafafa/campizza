@@ -60,10 +60,9 @@ if($email['guardianemail2'] != NULL && $email['guardianemail2'] != ''){
 }
 
 $subject = 'Camp Izza Registration Receipt';
-
-$headers = "From: campizza@gmail.com\r\n";
-$headers = "Content-Type: text/html; charset=UTF-8\r\n";
-
+$From = "info@campizza.com";
+$headers = "From: $From \r\n";
+$headers .= "Content-Type: text/html; charset=UTF-8\r\n";
 $message = '<!doctype html>
 <html lang="en">
 
