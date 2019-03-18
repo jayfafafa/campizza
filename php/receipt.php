@@ -36,10 +36,17 @@ $sqlBalance = "SELECT price, credit FROM ChildrenDynamic WHERE childid=".$_SESSI
 $stmtBalance = $conn->query($sqlBalance);
 $balance = $stmtBalance->fetch(PDO::FETCH_ASSOC);
 
+$sqlChildName = "SELECT firstname, lastname FROM Children WHERE childid=".$_SESSION['childid'];
+$stmtChildName = $conn->query($sqlChildName);
+$childName = $stmtChildName->fetch(PDO::FETCH_ASSOC);
+
 $data[':price'] = $balance['price'] + $_SESSION['total'];
 $data[':credit'] = $_SESSION['credit'];
 
+$creditDif = 0;
+
 if($balance['credit'] > $_SESSION['credit']){
+	$creditDif = ($balance['credit'] - $_SESSION['credit']);
 	$data[':price'] = $data[':price'] + ($balance['credit'] - $_SESSION['credit']);
 }
 
@@ -74,9 +81,9 @@ $message = '<!doctype html>
 	<hr>';
 
 $message.='<p>
-	<b>Camper:</b>
-	{Camper Name}
-	<br>
+	<b>Camper:</b>'
+	.$childName['firstname'].' '.$childName['lastname']
+	.'<br>
 	<b>Enrolled Sessions:</b>
 	<br>';
 
@@ -109,13 +116,15 @@ for($x = 1; $x <= 8; $x++){
 }
 	
 $message .= '<br>
-	<b>Total Payments:</b>
+	<b>Summary of this Transaction:</b>
 	<br>
-	Paid this Transaction: $'.$_SESSION['total']
+	Paid with Paypal: $'.$_SESSION['total']
 	.'<br>
-	Credit on Account: $'.$_SESSION['credit']
+	Paid with Credit: $'.$creditDif
 	.'<br>
 	Total Paid: $'.$data[':price']
+	.'<br>
+	Remaining Credit on Account: $'.$_SESSION['credit']
 	.'</p>';
 
 $message.='	<hr>
