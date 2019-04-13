@@ -1,4 +1,5 @@
 <?php
+
 // Initialize the session
 session_start();
 
@@ -26,6 +27,20 @@ if ($_SERVER['HTTPS'] != "on") {
     header("Location: $url");
     exit;
 }
+
+$sql = "SELECT * FROM YearlySessionLimits WHERE id=0";
+$sql1 = "SELECT * FROM YearlySessionWeeks WHERE id=0";
+$sql2 = "SELECT * FROM YearlySessionPricing WHERE id=0";
+
+
+$stmt = $conn->query($sql);
+$stmt1 = $conn->query($sql1);
+$stmt2 = $conn->query($sql2);
+
+$limits = $stmt->fetch(PDO::FETCH_ASSOC);
+$weeks = $stmt1->fetch(PDO::FETCH_ASSOC);
+$price = $stmt2->fetch(PDO::FETCH_ASSOC);
+unset($conn);
 ?>
 
 <!doctype html>
@@ -94,7 +109,7 @@ if ($_SERVER['HTTPS'] != "on") {
 												  		<p style="padding-top: 20px;">AM Limit</p>
 												  	</div>
 											  		<div class="col-6">
-												  		<input class="form-control" type="text" name="dateslimitam">
+												  		<input class="form-control" type="text" name="dateslimitam" <?php if($limits['dateslimitam'] != NULL){ echo 'value='.$limits['dateslimitam'];}?> >
 												  	</div>
 												</div>
 												<div class = "row">
@@ -102,7 +117,7 @@ if ($_SERVER['HTTPS'] != "on") {
 												  		<p style="padding-top: 20px;">PM Limit</p>
 												  	</div>
 													<div class="col-6">
-												  		<input class="form-control" type="text" name="dateslimitpm">
+												  		<input class="form-control" type="text" name="dateslimitpm" <?php if($limits['dateslimitpm'] != NULL){ echo 'value='.$limits['dateslimitpm'];}?>>
 												  	</div>
 												</div>
 										  </div>
@@ -117,7 +132,7 @@ if ($_SERVER['HTTPS'] != "on") {
 												  		<p style="padding-top: 20px;">AM Limit</p>
 												  	</div>
 											  		<div class="col-6">
-												  		<input class="form-control" type="text" name="coconutslimitam">
+												  		<input class="form-control" type="text" name="coconutslimitam"<?php if($limits['coconutslimitam'] != NULL){ echo 'value='.$limits['coconutslimitam'];}?> >
 												  	</div>
 												</div>
 												<div class = "row">
@@ -125,7 +140,7 @@ if ($_SERVER['HTTPS'] != "on") {
 												  		<p style="padding-top: 20px;">PM Limit</p>
 												  	</div>
 													<div class="col-6">
-												  		<input class="form-control" type="text" name="coconutslimitpm">
+												  		<input class="form-control" type="text" name="coconutslimitpm" <?php if($limits['coconutslimitpm'] != NULL){ echo 'value='.$limits['coconutslimitpm'];}?> >
 												  	</div>
 												</div>
 										  </div>
@@ -142,7 +157,7 @@ if ($_SERVER['HTTPS'] != "on") {
 												  		<p style="padding-top: 20px;">AM Limit</p>
 												  	</div>
 											  		<div class="col-6">
-												  		<input class="form-control" type="text" name="treeslimitam">
+												  		<input class="form-control" type="text" name="treeslimitam" <?php if($limits['treeslimitam'] != NULL){ echo 'value='.$limits['treeslimitam'];}?> >
 												  	</div>
 												</div>
 												<div class = "row">
@@ -150,7 +165,7 @@ if ($_SERVER['HTTPS'] != "on") {
 												  		<p style="padding-top: 20px;">PM Limit</p>
 												  	</div>
 													<div class="col-6">
-												  		<input class="form-control" type="text" name="treeslimitpm">
+												  		<input class="form-control" type="text" name="treeslimitpm" <?php if($limits['treeslimitpm'] != NULL){ echo 'value='.$limits['treeslimitpm'];}?> >
 												  	</div>
 												</div>
 										  </div>
@@ -165,7 +180,7 @@ if ($_SERVER['HTTPS'] != "on") {
 												  		<p style="padding-top: 20px;">AM Limit</p>
 												  	</div>
 											  		<div class="col-6">
-												  		<input class="form-control" type="text" name="youngleaderslimitam">
+												  		<input class="form-control" type="text" name="youngleaderslimitam" <?php if($limits['youngleaderslimitam'] != NULL){ echo 'value='.$limits['youngleaderslimitam'];}?> >
 												  	</div>
 												</div>
 												<div class = "row">
@@ -173,7 +188,7 @@ if ($_SERVER['HTTPS'] != "on") {
 												  		<p style="padding-top: 20px;">PM Limit</p>
 												  	</div>
 													<div class="col-6">
-												  		<input class="form-control" type="text" name="youngleaderslimitpm">
+												  		<input class="form-control" type="text" name="youngleaderslimitpm" <?php if($limits['youngleaderslimitpm'] != NULL){ echo 'value='.$limits['youngleaderslimitpm'];}?> >
 												  	</div>
 												</div>
 										  </div>
@@ -205,7 +220,7 @@ if ($_SERVER['HTTPS'] != "on") {
 												  		<p style="padding-top: 20px;">Start</p>
 												  	</div>
 											  		<div class="col-6">
-												  		<input class="form-control" type="text" name="week1start">
+												  		<input class="form-control" type="text" name="week1start" <?php if($weeks['week1start'] != NULL){ echo 'value='.$weeks['week1start'];}?> >
 												  	</div>
 												</div>
 												<div class = "row">
@@ -213,7 +228,7 @@ if ($_SERVER['HTTPS'] != "on") {
 												  		<p style="padding-top: 20px;">End</p>
 												  	</div>
 													<div class="col-6">
-												  		<input class="form-control" type="text" name="week1end">
+												  		<input class="form-control" type="text" name="week1end" <?php if($weeks['week1end'] != NULL){ echo 'value='.$weeks['week1end'];}?> >
 												  	</div>
 												</div>
 										  </div>
@@ -228,7 +243,7 @@ if ($_SERVER['HTTPS'] != "on") {
 												  		<p style="padding-top: 20px;">Start</p>
 												  	</div>
 											  		<div class="col-6">
-												  		<input class="form-control" type="text" name="week2start">
+												  		<input class="form-control" type="text" name="week2start" <?php if($weeks['week2start'] != NULL){ echo 'value='.$weeks['week2start'];}?> >
 												  	</div>
 												</div>
 												<div class = "row">
@@ -236,7 +251,7 @@ if ($_SERVER['HTTPS'] != "on") {
 												  		<p style="padding-top: 20px;">End</p>
 												  	</div>
 													<div class="col-6">
-												  		<input class="form-control" type="text" name="week2end">
+												  		<input class="form-control" type="text" name="week2end" <?php if($weeks['week2end'] != NULL){ echo 'value='.$weeks['week2end'];}?> >
 												  	</div>
 												</div>
 										  </div>
@@ -253,7 +268,7 @@ if ($_SERVER['HTTPS'] != "on") {
 												  		<p style="padding-top: 20px;">Start</p>
 												  	</div>
 											  		<div class="col-6">
-												  		<input class="form-control" type="text" name="week3start">
+												  		<input class="form-control" type="text" name="week3start" <?php if($weeks['week3start'] != NULL){ echo 'value='.$weeks['week3start'];}?> >
 												  	</div>
 												</div>
 												<div class = "row">
@@ -261,7 +276,7 @@ if ($_SERVER['HTTPS'] != "on") {
 												  		<p style="padding-top: 20px;">End</p>
 												  	</div>
 													<div class="col-6">
-												  		<input class="form-control" type="text" name="week3end">
+												  		<input class="form-control" type="text" name="week3end" <?php if($weeks['week3end'] != NULL){ echo 'value='.$weeks['week3end'];}?> >
 												  	</div>
 												</div>
 										  </div>
@@ -276,7 +291,7 @@ if ($_SERVER['HTTPS'] != "on") {
 												  		<p style="padding-top: 20px;">Start</p>
 												  	</div>
 											  		<div class="col-6">
-												  		<input class="form-control" type="text" name="week4start">
+												  		<input class="form-control" type="text" name="week4start" <?php if($weeks['week4start'] != NULL){ echo 'value='.$weeks['week4start'];}?> >
 												  	</div>
 												</div>
 												<div class = "row">
@@ -284,7 +299,7 @@ if ($_SERVER['HTTPS'] != "on") {
 												  		<p style="padding-top: 20px;">End</p>
 												  	</div>
 													<div class="col-6">
-												  		<input class="form-control" type="text" name="week4end">
+												  		<input class="form-control" type="text" name="week4end" <?php if($weeks['week4end'] != NULL){ echo 'value='.$weeks['week4end'];}?> >
 												  	</div>
 												</div>
 										  </div>
@@ -301,7 +316,7 @@ if ($_SERVER['HTTPS'] != "on") {
 												  		<p style="padding-top: 20px;">Start</p>
 												  	</div>
 											  		<div class="col-6">
-												  		<input class="form-control" type="text" name="week5start">
+												  		<input class="form-control" type="text" name="week5start" <?php if($weeks['week5start'] != NULL){ echo 'value='.$weeks['week5start'];}?> >
 												  	</div>
 												</div>
 												<div class = "row">
@@ -309,7 +324,7 @@ if ($_SERVER['HTTPS'] != "on") {
 												  		<p style="padding-top: 20px;">End</p>
 												  	</div>
 													<div class="col-6">
-												  		<input class="form-control" type="text" name="week5end">
+												  		<input class="form-control" type="text" name="week5end" <?php if($weeks['week5end'] != NULL){ echo 'value='.$weeks['week5end'];}?> >
 												  	</div>
 												</div>
 										  </div>
@@ -324,7 +339,7 @@ if ($_SERVER['HTTPS'] != "on") {
 												  		<p style="padding-top: 20px;">Start</p>
 												  	</div>
 											  		<div class="col-6">
-												  		<input class="form-control" type="text" name="week6start">
+												  		<input class="form-control" type="text" name="week6start" <?php if($weeks['week6start'] != NULL){ echo 'value='.$weeks['week6start'];}?> >
 												  	</div>
 												</div>
 												<div class = "row">
@@ -332,7 +347,7 @@ if ($_SERVER['HTTPS'] != "on") {
 												  		<p style="padding-top: 20px;">End</p>
 												  	</div>
 													<div class="col-6">
-												  		<input class="form-control" type="text" name="week6end">
+												  		<input class="form-control" type="text" name="week6end" <?php if($weeks['week6end'] != NULL){ echo 'value='.$weeks['week6end'];}?> >
 												  	</div>
 												</div>
 										  </div>
@@ -349,7 +364,7 @@ if ($_SERVER['HTTPS'] != "on") {
 												  		<p style="padding-top: 20px;">Start</p>
 												  	</div>
 											  		<div class="col-6">
-												  		<input class="form-control" type="text" name="week7start">
+												  		<input class="form-control" type="text" name="week7start" <?php if($weeks['week7start'] != NULL){ echo 'value='.$weeks['week7start'];}?> >
 												  	</div>
 												</div>
 												<div class = "row">
@@ -357,7 +372,7 @@ if ($_SERVER['HTTPS'] != "on") {
 												  		<p style="padding-top: 20px;">End</p>
 												  	</div>
 													<div class="col-6">
-												  		<input class="form-control" type="text" name="week7end">
+												  		<input class="form-control" type="text" name="week7end" <?php if($weeks['week7end'] != NULL){ echo 'value='.$weeks['week7end'];}?> >
 												  	</div>
 												</div>
 										  </div>
@@ -372,7 +387,7 @@ if ($_SERVER['HTTPS'] != "on") {
 												  		<p style="padding-top: 20px;">Start</p>
 												  	</div>
 											  		<div class="col-6">
-												  		<input class="form-control" type="text" name="week8start">
+												  		<input class="form-control" type="text" name="week8start" <?php if($weeks['week8start'] != NULL){ echo 'value='.$weeks['week8start'];}?> >
 												  	</div>
 												</div>
 												<div class = "row">
@@ -380,7 +395,7 @@ if ($_SERVER['HTTPS'] != "on") {
 												  		<p style="padding-top: 20px;">End</p>
 												  	</div>
 													<div class="col-6">
-												  		<input class="form-control" type="text" name="week8end">
+												  		<input class="form-control" type="text" name="week8end" <?php if($weeks['week8end'] != NULL){ echo 'value='.$weeks['week8end'];}?> >
 												  	</div>
 												</div>
 										  </div>
@@ -397,7 +412,7 @@ if ($_SERVER['HTTPS'] != "on") {
 												  		<p style="padding-top: 20px;">Number of Active Weeks</p>
 												  	</div>
 											  		<div class="col-4">
-												  		<input class="form-control" type="text" name="activeweeks">
+												  		<input class="form-control" type="text" name="activeweeks" <?php if($weeks['activeweeks'] != NULL){ echo 'value='.$weeks['activeweeks'];}?> >
 												  	</div>
 												</div>
 												<div class = "row">
@@ -405,7 +420,7 @@ if ($_SERVER['HTTPS'] != "on") {
 												  		<p style="padding-top: 20px;">Current Year</p>
 												  	</div>
 													<div class="col-4">
-												  		<input class="form-control" type="text" name="currentyear">
+												  		<input class="form-control" type="text" name="currentyear" <?php if($weeks['currentyear'] != NULL){ echo 'value='.$weeks['currentyear'];}?> >
 												  	</div>
 												</div>
 												<div class = "row">
@@ -413,7 +428,7 @@ if ($_SERVER['HTTPS'] != "on") {
 												  		<p style="padding-top: 20px;">Holiday week (1-8)</p>
 												  	</div>
 													<div class="col-4">
-												  		<input class="form-control" type="text" name="holidayweek">
+												  		<input class="form-control" type="text" name="holidayweek" <?php if($weeks['holidayweek'] != NULL){ echo 'value='.$weeks['holidayweek'];}?> >
 												  	</div>
 												</div>
 										  </div>
@@ -444,7 +459,7 @@ if ($_SERVER['HTTPS'] != "on") {
 												  		<p style="padding-top: 20px;">One Day AM Pricing</p>
 												  	</div>
 											  		<div class="col-4">
-												  		<input class="form-control" type="text" name="onedayam">
+												  		<input class="form-control" type="text" name="onedayam"  <?php if($price['onedayam'] != NULL){ echo 'value='.$price['onedayam'];}?> >
 												  	</div>
 												</div>
 												<div class = "row">
@@ -452,7 +467,7 @@ if ($_SERVER['HTTPS'] != "on") {
 												  		<p style="padding-top: 20px;">One Day PM Pricing</p>
 												  	</div>
 													<div class="col-4">
-												  		<input class="form-control" type="text" name="onedaypm">
+												  		<input class="form-control" type="text" name="onedaypm"  <?php if($price['onedaypm'] != NULL){ echo 'value='.$price['onedaypm'];}?> >
 												  	</div>
 												</div>
 												<div class = "row">
@@ -460,7 +475,7 @@ if ($_SERVER['HTTPS'] != "on") {
 												  		<p style="padding-top: 20px;">One Day Full Pricing</p>
 												  	</div>
 													<div class="col-4">
-												  		<input class="form-control" type="text" name="onedayfull">
+												  		<input class="form-control" type="text" name="onedayfull"  <?php if($price['onedayfull'] != NULL){ echo 'value='.$price['onedayfull'];}?> >
 												  	</div>
 												</div>
 										  </div>
@@ -477,7 +492,7 @@ if ($_SERVER['HTTPS'] != "on") {
 												  		<p style="padding-top: 20px;">AM Early Pricing</p>
 												  	</div>
 											  		<div class="col-4">
-												  		<input class="form-control" type="text" name="oneweekamearly">
+												  		<input class="form-control" type="text" name="oneweekamearly" <?php if($price['oneweekamearly'] != NULL){ echo 'value='.$price['oneweekamearly'];}?> >
 												  	</div>
 												</div>
 												<div class = "row">
@@ -485,7 +500,7 @@ if ($_SERVER['HTTPS'] != "on") {
 												  		<p style="padding-top: 20px;">PM Early Pricing</p>
 												  	</div>
 													<div class="col-4">
-												  		<input class="form-control" type="text" name="oneweekpmearly">
+												  		<input class="form-control" type="text" name="oneweekpmearly" <?php if($price['oneweekpmearly'] != NULL){ echo 'value='.$price['oneweekpmearly'];}?> >
 												  	</div>
 												</div>
 												<div class = "row">
@@ -493,7 +508,7 @@ if ($_SERVER['HTTPS'] != "on") {
 												  		<p style="padding-top: 20px;">Full Early Pricing</p>
 												  	</div>
 													<div class="col-4">
-												  		<input class="form-control" type="text" name="oneweekfullearly">
+												  		<input class="form-control" type="text" name="oneweekfullearly" <?php if($price['oneweekfullearly'] != NULL){ echo 'value='.$price['oneweekfullearly'];}?> >
 												  	</div>
 												</div>
 										  </div>
@@ -508,7 +523,7 @@ if ($_SERVER['HTTPS'] != "on") {
 												  		<p style="padding-top: 20px;">AM Late Pricing</p>
 												  	</div>
 											  		<div class="col-4">
-												  		<input class="form-control" type="text" name="oneweekamlate">
+												  		<input class="form-control" type="text" name="oneweekamlate" <?php if($price['oneweekamlate'] != NULL){ echo 'value='.$price['oneweekamlate'];}?> >
 												  	</div>
 												</div>
 												<div class = "row">
@@ -516,7 +531,7 @@ if ($_SERVER['HTTPS'] != "on") {
 												  		<p style="padding-top: 20px;">PM Late Pricing</p>
 												  	</div>
 													<div class="col-4">
-												  		<input class="form-control" type="text" name="oneweekpmlate">
+												  		<input class="form-control" type="text" name="oneweekpmlate" <?php if($price['oneweekpmlate'] != NULL){ echo 'value='.$price['oneweekpmlate'];}?> >
 												  	</div>
 												</div>
 												<div class = "row">
@@ -524,7 +539,7 @@ if ($_SERVER['HTTPS'] != "on") {
 												  		<p style="padding-top: 20px;">Full Late Pricing</p>
 												  	</div>
 													<div class="col-4">
-												  		<input class="form-control" type="text" name="oneweekfulllate">
+												  		<input class="form-control" type="text" name="oneweekfulllate" <?php if($price['oneweekfulllate'] != NULL){ echo 'value='.$price['oneweekfulllate'];}?> >
 												  	</div>
 												</div>
 										  </div>
@@ -541,7 +556,7 @@ if ($_SERVER['HTTPS'] != "on") {
 												  		<p style="padding-top: 20px;">AM Early Pricing</p>
 												  	</div>
 											  		<div class="col-4">
-												  		<input class="form-control" type="text" name="holidayweekamearly">
+												  		<input class="form-control" type="text" name="holidayweekamearly" <?php if($price['holidayweekamearly'] != NULL){ echo 'value='.$price['holidayweekamearly'];}?> >
 												  	</div>
 												</div>
 												<div class = "row">
@@ -549,7 +564,7 @@ if ($_SERVER['HTTPS'] != "on") {
 												  		<p style="padding-top: 20px;">PM Early Pricing</p>
 												  	</div>
 													<div class="col-4">
-												  		<input class="form-control" type="text" name="holidayweekpmearly">
+												  		<input class="form-control" type="text" name="holidayweekpmearly" <?php if($price['holidayweekpmearly'] != NULL){ echo 'value='.$price['holidayweekpmearly'];}?> >
 												  	</div>
 												</div>
 												<div class = "row">
@@ -557,7 +572,7 @@ if ($_SERVER['HTTPS'] != "on") {
 												  		<p style="padding-top: 20px;">Full Early Pricing</p>
 												  	</div>
 													<div class="col-4">
-												  		<input class="form-control" type="text" name="holidayweekfullearly">
+												  		<input class="form-control" type="text" name="holidayweekfullearly" <?php if($price['holidayweekfullearly'] != NULL){ echo 'value='.$price['holidayweekfullearly'];}?> >
 												  	</div>
 												</div>
 										  </div>
@@ -572,7 +587,7 @@ if ($_SERVER['HTTPS'] != "on") {
 												  		<p style="padding-top: 20px;">AM Late Pricing</p>
 												  	</div>
 											  		<div class="col-4">
-												  		<input class="form-control" type="text" name="holidayweekamlate">
+												  		<input class="form-control" type="text" name="holidayweekamlate" <?php if($price['holidayweekamlate'] != NULL){ echo 'value='.$price['holidayweekamlate'];}?> >
 												  	</div>
 												</div>
 												<div class = "row">
@@ -580,7 +595,7 @@ if ($_SERVER['HTTPS'] != "on") {
 												  		<p style="padding-top: 20px;">PM Late Pricing</p>
 												  	</div>
 													<div class="col-4">
-												  		<input class="form-control" type="text" name="holidayweekpmlate">
+												  		<input class="form-control" type="text" name="holidayweekpmlate" <?php if($price['holidayweekpmlate'] != NULL){ echo 'value='.$price['holidayweekpmlate'];}?> >
 												  	</div>
 												</div>
 												<div class = "row">
@@ -588,7 +603,7 @@ if ($_SERVER['HTTPS'] != "on") {
 												  		<p style="padding-top: 20px;">Full Late Pricing</p>
 												  	</div>
 													<div class="col-4">
-												  		<input class="form-control" type="text" name="holidayweekfulllate">
+												  		<input class="form-control" type="text" name="holidayweekfulllate" <?php if($price['holidayweekfulllate'] != NULL){ echo 'value='.$price['holidayweekfulllate'];}?> >
 												  	</div>
 												</div>
 										  </div>
@@ -605,7 +620,7 @@ if ($_SERVER['HTTPS'] != "on") {
 												  		<p style="padding-top: 20px;">Extended Care Pricing</p>
 												  	</div>
 											  		<div class="col-4">
-												  		<input class="form-control" type="text" name="extendedcare">
+												  		<input class="form-control" type="text" name="extendedcare" <?php if($price['extendedcare'] != NULL){ echo 'value='.$price['extendedcare'];}?> >
 												  	</div>
 												</div>
 												<div class = "row">
@@ -613,7 +628,7 @@ if ($_SERVER['HTTPS'] != "on") {
 												  		<p style="padding-top: 20px;">Extra Shirt Pricing</p>
 												  	</div>
 													<div class="col-4">
-												  		<input class="form-control" type="text" name="extrashirt">
+												  		<input class="form-control" type="text" name="extrashirt" <?php if($price['extrashirt'] != NULL){ echo 'value='.$price['extrashirt'];}?> >
 												  	</div>
 												</div>
 										  </div>
@@ -631,6 +646,7 @@ if ($_SERVER['HTTPS'] != "on") {
 
 		</div>
 	</div>
+
 
 
 
