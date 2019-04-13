@@ -38,82 +38,23 @@ if ($_SERVER['HTTPS'] != "on") {
 <body>
 
 <table border="1">
-	<tr style="background-color:#ccc">
+	<!-- <tr style="background-color:#ccc">
     	<td colspan='37'><strong>CHILD INFORMATION</strong></th>
         <td colspan='29'><strong>PARENT INFORMATION</strong></th>
-    </tr>
+    </tr> -->
 	<tr>
-		<th>Child ID</th>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Gender</th>
-        <th>Date of Birth</th>
-        <th>School</th>
-        <th>Grade</th>
-        <th>Shirt Size</th>
-        <th># of Shirts</th>
-        <th>Week1AM</th>
-        <th>Week1PM</th>
-        <th>Week2AM</th>
-        <th>Week2PM</th>
-        <th>Week3AM</th>
-        <th>Week3PM</th>
-        <th>Week4AM</th>
-        <th>Week4PM</th>
-        <th>Week5AM</th>
-        <th>Week5PM</th>
-        <th>Week6AM</th>
-        <th>Week6PM</th>
-        <th>Extended Care</th>
-        <th>Doctor Name</th>
-        <th>Doctor Phone</th>
-        <th>Insurance</th>
-        <th>Policy Holder</th>
-        <th>Illnesses</th>
-        <th>Allergies and/or Dietary Restrictions</th>
-        <th>Medication</th>
-        <th>Medication Names</th>
-        <th>Activities</th>
-        <th>Activities Names</th>
-        <th>Medical Treatments</th>
-        <th>Medical Treatments Names</th>
-        <th>Immunizations</th>
-        <th>Tetanus</th>
-        <th>Comments</th>
+		<?php
 
-        <th>Parent ID</th>
-        <th>Registration Time</th>
-        <th>Location</th>
-        <th>guardian1 First Name</th>
-        <th>guardian1 Last Name</th>
-        <th>guardian2 First Name</th>
-        <th>guardian2 Last Name</th>
-        <th>Address 1</th>
-        <th>Address 2</th>
-        <th>Country</th>
-        <th>City</th>
-        <th>State</th>
-        <th>Zip</th>
-        <th>Email 1</th>
-        <th>Email 2</th>
-        <th>Phone 1</th>
-        <th>Phone 2</th>
-        <th>Phone 3</th>
-        <th>Phone 4</th>
-        <th>Emergency First Name 1</th>
-        <th>Emergency Last Name 1</th>
-        <th>Emergency Relationship 1</th>
-        <th>Emergency Phone 1</th>
-        <th>Emergency Authorized 1</th>
-        <th>Emergency First Name 2</th>
-        <th>Emergency Last Name 2</th>
-        <th>Emergency Relationship 2</th>
-        <th>Emergency Phone 2</th>
-        <th>Emergency Authorized 2</th>
+            foreach ($_SESSION['attributes'] as $k => $v){
+                if(isset($_POST[$k])){
+                    echo '<th>'.$v.'</th>';
+                }
+            }
+
+        ?>
     </tr>
 
 <?php
-
 
 $result = $conn->query("SELECT * FROM Parents, Children, ChildrenDynamic WHERE Parents.parentid=Children.parentid AND Children.childid=ChildrenDynamic.childid");
 $num = $result->rowCount();
@@ -125,82 +66,90 @@ while ($i < $num) {
 
 	$row = $result->fetch(PDO::FETCH_ASSOC);
 	
-	$parentid = $row['parentid'];
-	$regtime = $row['regtime'];
-	$location = $row['location'];
-	$guardian1namefirst = $row['guardiannamefirst1']; //changed
-    $guardian1namelast = $row['guardiannamelast1'];
-	$guardian2namefirst = $row['guardiannamefirst2'];//changed
-    $guardian2namelast = $row['guardiannamelast2'];
-	$address1 = $row['address1'];
-	$address2 = $row['address2'];
-    $country = $row['country'];//changed
-	$city = $row['city'];
-	$state = $row['state'];
-	$zip = $row['zippostalcode'];//changed
-	$guardianemail1 = $row['guardianemail1'];
-	$guardianemail2 = $row['guardianemail2'];
-	$guardian1phone1 = $row['guardian1phone1'];
-	$guardian1phone2 = $row['guardian1phone2'];
-	$guardian2phone1 = $row['guardian2phone1'];
-    $guardian2phone2 = $row['guardian2phone2'];
-	$emergencyname1first = $row['emergencynamefirst1'];
-    $emergencyname1last = $row['emergencynamelast1'];
-	$emergencyrelationship1 = $row['emergencyrelationship1'];
-	$emergencyphone1 = $row['emergencyphone1'];
-	$emergencyauthorized1 = $row['emergencyauthorized1'];
-	$emergencyname2first = $row['emergencynamefirst2'];
-    $emergencyname2last = $row['emergencynamelast2'];
-	$emergencyrelationship2 = $row['emergencyrelationship2'];
-	$emergencyphone2 = $row['emergencyphone2'];
-	$emergencyauthorized2 = $row['emergencyauthorized2'];
+	// $parentid = $row['parentid'];
+	// $regtime = $row['regtime'];
+	// $location = $row['location'];
+	// $guardian1namefirst = $row['guardiannamefirst1']; //changed
+ //    $guardian1namelast = $row['guardiannamelast1'];
+	// $guardian2namefirst = $row['guardiannamefirst2'];//changed
+ //    $guardian2namelast = $row['guardiannamelast2'];
+	// $address1 = $row['address1'];
+	// $address2 = $row['address2'];
+ //    $country = $row['country'];//changed
+	// $city = $row['city'];
+	// $state = $row['state'];
+	// $zip = $row['zippostalcode'];//changed
+	// $guardianemail1 = $row['guardianemail1'];
+	// $guardianemail2 = $row['guardianemail2'];
+	// $guardian1phone1 = $row['guardian1phone1'];
+	// $guardian1phone2 = $row['guardian1phone2'];
+	// $guardian2phone1 = $row['guardian2phone1'];
+ //    $guardian2phone2 = $row['guardian2phone2'];
+	// $emergencyname1first = $row['emergencynamefirst1'];
+ //    $emergencyname1last = $row['emergencynamelast1'];
+	// $emergencyrelationship1 = $row['emergencyrelationship1'];
+	// $emergencyphone1 = $row['emergencyphone1'];
+	// $emergencyauthorized1 = $row['emergencyauthorized1'];
+	// $emergencyname2first = $row['emergencynamefirst2'];
+ //    $emergencyname2last = $row['emergencynamelast2'];
+	// $emergencyrelationship2 = $row['emergencyrelationship2'];
+	// $emergencyphone2 = $row['emergencyphone2'];
+	// $emergencyauthorized2 = $row['emergencyauthorized2'];
 	
-	$childid = $row['childid'];
-	$firstname = $row['firstname'];
-	$lastname = $row['lastname'];
-	$gender = $row['gender'];
-	$dob = $row['dob'];//changed
-	/*$dobmonth = $row['dobmonth'];
-	$dobday = $row['dobday'];
-	$dobyear = $row['dobyear'];*/
-	$school = $row['school'];
-	$grade = $row['grade'];
-	$shirtsize = $row['shirtsize'];
-	$numshirts = $row['numshirts'];
+	// $childid = $row['childid'];
+	// $firstname = $row['firstname'];
+	// $lastname = $row['lastname'];
+	// $gender = $row['gender'];
+	// $dob = $row['dob'];//changed
+	// /*$dobmonth = $row['dobmonth'];
+	// $dobday = $row['dobday'];
+	// $dobyear = $row['dobyear'];*/
+	// $school = $row['school'];
+	// $grade = $row['grade'];
+	// $shirtsize = $row['shirtsize'];
+	// $numshirts = $row['numshirts'];
 
-	$week1am = $row['week1am'];
-	$week1pm = $row['week1pm'];
-	$week2am = $row['week2am'];
-	$week2pm = $row['week2pm'];
-	$week3am = $row['week3am'];
-	$week3pm = $row['week3pm'];
-	$week4am = $row['week4am'];
-	$week4pm = $row['week4pm'];
-	$week5am = $row['week5am'];
-	$week5pm = $row['week5pm'];
-	$week6am = $row['week6am'];
-	$week6pm = $row['week6pm'];
-	$extendedcare = $row['extendedcare'];
-	$doctorname = $row['doctorname'];
-	$doctorphone = $row['doctorphone'];
-	$insurance = $row['insurance'];
-	$policyholder = $row['policyholder'];
-	$illnesses = $row['illnesses'];
-	$allergies = $row['allergies'];
-	$medication = $row['medication'];
-	$medicationnames = $row['medicationnames'];
-	$activities = $row['activities'];
-	$activitiesnames = $row['activitiesnames'];
-	$medicaltreatments = $row['medicaltreatments'];
-	$medicaltreatmentsnames = $row['medicaltreatmentsnames'];
-	$immunizations = $row['immunizations'];
-	$tetanusdate = $row['tetanusdate'];
-	$comments = $row['comments'];
+	// $week1am = $row['week1am'];
+	// $week1pm = $row['week1pm'];
+	// $week2am = $row['week2am'];
+	// $week2pm = $row['week2pm'];
+	// $week3am = $row['week3am'];
+	// $week3pm = $row['week3pm'];
+	// $week4am = $row['week4am'];
+	// $week4pm = $row['week4pm'];
+	// $week5am = $row['week5am'];
+	// $week5pm = $row['week5pm'];
+	// $week6am = $row['week6am'];
+	// $week6pm = $row['week6pm'];
+	// $extendedcare = $row['extendedcare'];
+	// $doctorname = $row['doctorname'];
+	// $doctorphone = $row['doctorphone'];
+	// $insurance = $row['insurance'];
+	// $policyholder = $row['policyholder'];
+	// $illnesses = $row['illnesses'];
+	// $allergies = $row['allergies'];
+	// $medication = $row['medication'];
+	// $medicationnames = $row['medicationnames'];
+	// $activities = $row['activities'];
+	// $activitiesnames = $row['activitiesnames'];
+	// $medicaltreatments = $row['medicaltreatments'];
+	// $medicaltreatmentsnames = $row['medicaltreatmentsnames'];
+	// $immunizations = $row['immunizations'];
+	// $tetanusdate = $row['tetanusdate'];
+	// $comments = $row['comments'];
 	
 ?>
 
 	<tr>
-        <td><?php if ($childid != "") echo $childid; else echo "&nbsp;" ?></td>
+       <?php
+       
+            foreach($_POST as $k => $v){
+                echo '<td>'.$row[$k].'</td>';
+            }
+
+       ?> 
+
+        <!-- <td><?php if ($childid != "") echo $childid; else echo "&nbsp;" ?></td>
         <td><?php if ($firstname != "") echo $firstname; else echo "&nbsp;" ?></td>
         <td><?php if ($lastname != "") echo $lastname; else echo "&nbsp;" ?></td>
         <td><?php if ($gender != "") echo $gender; else echo "&nbsp;" ?></td>
@@ -266,7 +215,7 @@ while ($i < $num) {
         <td><?php if ($emergencyname2last != "") echo $emergencyname2last; else echo "&nbsp;" ?></td>
         <td><?php if ($emergencyrelationship2 != "") echo $emergencyrelationship2; else echo "&nbsp;" ?></td>
         <td><?php if ($emergencyphone2 != "") echo $emergencyphone2; else echo "&nbsp;" ?></td>
-        <td><?php if ($emergencyauthorized2 != "") echo $emergencyauthorized2; else echo "&nbsp;" ?></td>
+        <td><?php if ($emergencyauthorized2 != "") echo $emergencyauthorized2; else echo "&nbsp;" ?></td> -->
 
     </tr>
 <?php
