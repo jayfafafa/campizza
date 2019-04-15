@@ -242,29 +242,48 @@ unset($conn);
 	</div>
 	<p align='left' style = 'font-size: 10px;'>Each camper gets 1 free T-shirt.</p>";
 
-	if($currentBalance > 0){
-		echo "
-		<div class = 'row'> 
-			<div class = 'col-6'> <b style = 'font-size: 15px;text-align: left;'>Total Previously Paid For:</b></div>
-			<div class='col' style='text-align: center;'><b style='text-align: center; font-size: 15px;'></b></div>
-			<div class='col' style='text-align: right;'> <b style='text-align: right; font-size: 15px;'>$".$currentBalance."</b></div>
-		</div><br>";
-	}
-
 	//When credit is applied some additional fields need to be shown
 	$creditApplied = FALSE;
 
-	if($_SESSION['credit'] > 0 && $_SESSION['total'] > 0){
-		echo "
-		<div class = 'row'> 
-			<div class = 'col-6'> <b style = 'font-size: 15px;text-align: left;'>Total Credit Applied:</b></div>
-			<div class='col' style='text-align: center;'><b style='text-align: center; font-size: 15px;'></b></div>
-			<div class='col' style='text-align: right;'> <b style='text-align: right; font-size: 15px;'>$".$_SESSION['credit']."</b></div>
+	echo "<hr><hr> <div class='row'>";
+
+	echo "<div class='col-6'>";
+	echo "</div>";
+
+	echo "<div class='col-6 align-items-center' style='min-width: 300px'><div class='card'><p align='center' style = 'padding-top: 7px;'><b style = 'font-size: 30px;'> Order Summary</b></p><div class='card-body'>";
+	//echo "<hr><hr><p align='center' style = 'padding-top: 10px' > <b>Total Amount Previously Paid: $".$currentBalance."</b>";
+
+	echo "<div class = 'row'> 
+			<div class = 'col-6'> <p style = 'padding-top: 10px'> Subtotal:</p></div>
+			<div class='col' style='text-align: center;'><p style='text-align: center; font-size: 15px;'></p></div>
+			<div class='col' style='text-align: right;'> <p style='text-align: right; font-size: 15px;padding-top: 10px'>$".($_SESSION['total'] + $currentBalance).".00</p></div>
 		</div>";
+	echo "<hr>";
+
+	if($currentBalance > 0){
+		echo "<div class = 'row'> 
+			<div class = 'col-6'> <p style = 'padding-top: 10px'> Amount Previously Paid: </p></div>
+			<div class='col' style='text-align: center;'><p style='text-align: center; font-size: 15px;'></p></div>
+			<div class='col' style='text-align: right;'> <p style='text-align: right; font-size: 15px;padding-top: 10px'>- $".$currentBalance."</p></div>
+		</div>";
+	}
+
+
+	if($_SESSION['credit'] > 0 && $_SESSION['total'] > 0){
 		if($_SESSION['credit'] > $_SESSION['total']){
+			echo "<div class = 'row'> 
+			<div class = 'col-6'> <p style = 'padding-top: 10px'> Account Credit : </p></div>
+			<div class='col' style='text-align: center;'><p style='text-align: center; font-size: 15px;'></p></div>
+			<div class='col' style='text-align: right;'> <p style='text-align: right; font-size: 15px;padding-top: 10px'>- $".$_SESSION['total'].".00</p></div>
+			</div>";
 			$_SESSION['credit'] = $_SESSION['credit'] - $_SESSION['total'];
 			$_SESSION['total'] = 0;
 		}else{
+			echo "<div class = 'row'> 
+			<div class = 'col-6'> <p style = 'padding-top: 10px'> Account Credit : </p></div>
+			<div class='col' style='text-align: center;'><p style='text-align: center; font-size: 15px;'></p></div>
+			<div class='col' style='text-align: right;'> <p style='text-align: right; font-size: 15px;padding-top: 10px'>- $".$_SESSION['credit']."</p></div>
+			</div>";
 			$_SESSION['total'] = $_SESSION['total'] - $_SESSION['credit'];
 			$_SESSION['credit'] = 0;
 		}
@@ -272,32 +291,71 @@ unset($conn);
 		$creditApplied = TRUE;
 	}
 
-	//echo "<hr><hr><p align='center' style = 'padding-top: 10px' > <b>Total Amount Previously Paid: $".$currentBalance."</b>";
-	echo "<hr><hr><p align='center' style = 'padding-top: 5px' > <b>Total Amount Due: $".$_SESSION['total']."</b></p>";
+	echo "<hr>";
+
+
 	if($_SESSION['total'] <= 0){
 		if($creditApplied == TRUE){
-			echo '<p align="center" style = "padding-top: 5px" > <b>Credit Remaining: $'.$_SESSION['credit'].'</b></p>';
+			echo "<div class = 'row'> 
+			<div class = 'col-6'> <p style = 'padding-top: 10px'> Remaining Account Credit: </p></div>
+			<div class='col' style='text-align: center;'><p style='text-align: center; font-size: 15px;'></p></div>
+			<div class='col' style='text-align: right;'> <p style='text-align: right; font-size: 15px;padding-top: 10px'>$".$_SESSION['credit'].".00</p></div></div>";
+			echo "<div class = 'row'> 
+			<div class = 'col-6'> <p style = 'padding-top: 10px'> Order Total Due: </p></div>
+			<div class='col' style='text-align: center;'><p style='text-align: center; font-size: 15px;'></p></div>
+			<div class='col' style='text-align: right;'> <p style='text-align: right; font-size: 15px;padding-top: 10px'>$".$_SESSION['total'].".00</p></div>
+			</div>";
+			echo "<hr>";
+			echo '<div style="text-align: center;padding-top:30px;padding-bottom:20px;">';
+			echo "<b style='font-size: 15px'>I agree to use my account credit to register my camper for Camp Izza.</b>";
+			echo "<div class = 'row' style = 'padding-top: 20px;padding-bottom: 10px;'> <div class = 'col'></div><div class = 'col'>";
+			echo '<form action="receipt.php" method="post">';
+			echo '<input class="btn btn-sm btn-success" type="submit" value="Yes">';
+			echo '</form></div>';
+			echo "<div class = 'col'>";
+			echo '<a href="childdisplay.php" role="button" class="btn btn-sm btn-danger">No</a></div>';
+			echo "<div class = 'col'></div>";
+			echo '</div>';
 		}else{
-			echo "<p align='center' style = 'padding-top: 5px' > <b>Total Credit Redeemed: $".($_SESSION['total']*-1)."</b></p>";
+			echo "<div class = 'row'> 
+				<div class = 'col-6'> <p style = 'padding-top: 10px'> Redeemable Credit: </p></div>
+				<div class='col' style='text-align: center;'><p style='text-align: center; font-size: 15px;'></p></div>
+				<div class='col' style='text-align: right;'> <p style='text-align: right; font-size: 15px;padding-top: 10px'>$".abs($_SESSION['total']).".00</p></div>
+			</div>";
+			echo "<hr>";
+			echo '<div style="text-align: center;padding-top:30px;padding-bottom:20px;">';
+			echo "<b style='font-size: 15px'>Would you like to add the amount of $".abs($_SESSION['total'])." to your account?</b>";
+			echo "<div class = 'row' style = 'padding-top: 20px;padding-bottom: 10px;'> <div class = 'col'></div><div class = 'col'>";
+			echo '<form action="receipt.php" method="post">';
+			echo '<input class="btn btn-sm btn-success" type="submit" value="Yes">';
+			echo '</form></div>';
+			echo "<div class = 'col'>";
+			echo '<a href="childdisplay.php" role="button" class="btn btn-sm btn-danger">No</a></div>';
+			echo "<div class = 'col'></div>";
+			echo '</div>';
 		}
-		echo '<div style="text-align: center;">';
-		echo '<p align="center" style = "padding-top: 5px" >Add Credit to your account in the amount of: $'.($_SESSION['total']*-1).'?</p>';
-		echo '<form action="receipt.php" method="post">';
-		echo '<input class="btn btn-sm btn-success" type="submit" value="Yes">';
-		echo '</form>';
-		echo '<a href="childdisplay.php" role="button" class="btn btn-sm btn-danger">No</a>';
-		echo '</div>';
 	}else{
 		if($creditApplied == TRUE){
-			echo '<p align="center" style = "padding-top: 5px" >Credit Remaining: $'.$_SESSION['credit'].'?</p>';
+			echo "<div class = 'row'> 
+				<div class = 'col-6'> <p style = 'padding-top: 10px'> Remaining Account Credit: </p></div>
+				<div class='col' style='text-align: center;'><p style='text-align: center; font-size: 15px;'></p></div>
+				<div class='col' style='text-align: right;'> <p style='text-align: right; font-size: 15px;padding-top: 10px'>$".$_SESSION['credit'].".00</p></div>
+			</div>";
 		}
-		echo '<div id="paypal-button" style="text-align: center;"></div>';
+		echo "<div class = 'row'> 
+			<div class = 'col-6'> <p style = 'padding-top: 10px'> Order Total Due: </p></div>
+			<div class='col' style='text-align: center;'><p style='text-align: center; font-size: 15px;'></p></div>
+			<div class='col' style='text-align: right;'> <p style='text-align: right; font-size: 15px;padding-top: 10px'>$".$_SESSION['total'].".00</p></div>
+		</div>";
+		echo '<div id="paypal-button" style="text-align: center;padding-top: 40px;"></div>';
 		echo '<input type="hidden" name="business" value="qnq89078@cndps.com"/> ';
 		echo '<div class="tab" style = "margin-top: 30px">';
 		echo '<button class="tablinks" onclick="" style="background: transparent;border: none !important;font-size:0;"></button>';
 		echo '</div>';
 
 	}
+	echo "</div></div></div>";
+	echo "</div>";
 ?>
 
   			
