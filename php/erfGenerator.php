@@ -16,7 +16,7 @@ include ("fpdf/connection.php"); //setup connection with database
 
 // query database
 
-$res =  $conn->query("SELECT * FROM Parents, Children, ChildrenDynamic WHERE Parents.parentid=Children.parentid AND Children.childid=ChildrenDynamic.childid");
+$res =  $conn->query("SELECT * FROM Parents, Children, ChildrenDynamic WHERE Parents.parentid=Children.parentid AND Children.childid=ChildrenDynamic.childid AND Children.childid=2");
 $row = $res->fetch(PDO::FETCH_ASSOC);
 
 
@@ -42,7 +42,10 @@ $pdf->Write(0, $row['address1']);
 $pdf->SetXY(105, 46); 
 $pdf->Write(0, $row['dob']);
 $pdf->SetXY(155, 46); 
-$pdf->Write(0, "Enter Age"); //calculate age via dob - dateobj
+$dob = new DateTime($row['dob']);
+$currentDate = new DateTime();
+$difference = $currentDate->diff($dob);
+$pdf->Write(0, $difference->y); //calculate age via dob - dateobj
 $pdf->SetXY(172, 46); 
 $pdf->Write(0, $row['gender']);
 
