@@ -11,7 +11,7 @@ function Header()
 }
 }
 
-include ("connection.php"); //setup connection with database
+include ("fpdf/connection.php"); //setup connection with database
 
 
 // query database
@@ -22,12 +22,14 @@ $row = $res->fetch(PDO::FETCH_ASSOC);
 
 unset($conn); //unset connection to database
 
+
 // Instanciation of inherited class
 $pdf = new PDF();
 $pdf->AliasNbPages();
 $pdf->AddPage();
 $pdf->SetFont('Times','',10);
 
+// Position data locations and populate locations with data from database
 $pdf->SetXY(5, 34); 
 $pdf->Write(0, $row['firstname'] ." ". $row['lastname']); 
 $pdf->SetXY(105, 34); 
@@ -70,48 +72,48 @@ $pdf->Write(0, $row['emergencynamefirst1']." ".$row['emergencynamelast1']);
 $pdf->SetXY(87, 102); 
 $pdf->Write(0, $row['emergencyphone1']);
 $pdf->SetXY(157, 102); 
-$pdf->Write(0, "Enter Emergency Email 1");
+$pdf->Write(0, $row['emergencyrelationship1']);
 
 $pdf->SetXY(5, 111); 
 $pdf->Write(0, $row['emergencynamefirst2']." ".$row['emergencynamelast2']);
 $pdf->SetXY(87, 111); 
 $pdf->Write(0, $row['emergencyphone2']);
 $pdf->SetXY(157, 111); 
-$pdf->Write(0, "Enter Emergency Email 2");
+$pdf->Write(0, $row['emergencyrelationship2']);
 
 
 $pdf->SetXY(24, 145); 
-$pdf->Write(0, "Enter Doctor name");
+$pdf->Write(0, $row['doctorname']);
 $pdf->SetXY(121, 145); 
-$pdf->Write(0, "Enter phone number");
+$pdf->Write(0, $row['doctorphone']);
 $pdf->SetXY(172, 145); 
-$pdf->Write(0, "Enter carrier");
+$pdf->Write(0, $row['insurance']);
 
 $pdf->SetXY(42, 154); 
-$pdf->Write(0, "Enter illnesses");
+$pdf->Write(0, $row['illnesses']);
 $pdf->SetXY(123, 154); 
-$pdf->Write(0, "Enter policyholder name");
+$pdf->Write(0, $row['policyholder']);
 
 $pdf->SetXY(5, 166); 
-$pdf->Write(0, "Enter medications yes/no");
+$pdf->Write(0, $row['medication']);
 $pdf->SetXY(73, 166); 
-$pdf->Write(0, "Enter medication names");
+$pdf->Write(0, $row['medicationnames']);
 $pdf->SetXY(140, 166); 
-$pdf->Write(0, "Enter allergies/diets");
+$pdf->Write(0, $row['allergies']);
 
 $pdf->SetXY(33, 178); 
-$pdf->Write(0, "Enter activities yes/no");
+$pdf->Write(0, $row['activities']);
 $pdf->SetXY(73, 178); 
-$pdf->Write(0, "Enter activity names");
+$pdf->Write(0, $row['activitiesnames']);
 $pdf->SetXY(140, 178); 
-$pdf->Write(0, "Enter immunizations yes/no");
+$pdf->Write(0, $row['immunizations']);
 
 $pdf->SetXY(5, 190); 
-$pdf->Write(0, "Enter medical treatments yes/no");
+$pdf->Write(0, $row['medicaltreatments']);
 $pdf->SetXY(73, 190); 
-$pdf->Write(0, "Enter treatment names");
+$pdf->Write(0, $row['medicaltreatmentsnames']);
 $pdf->SetXY(140, 190); 
-$pdf->Write(0, "Enter tetanus date");
+$pdf->Write(0, $row['tetanusdate']);
 
 
 $pdf->SetXY(4, 204); 
@@ -136,11 +138,17 @@ $pdf->Write(0, "Enter week4pm data");
 $pdf->SetXY(173, 212); 
 $pdf->Write(0, "Enter week5pm");
 
+if ($row['extendedcare'] == 1) {
+    $extcare = "Yes";
+} 
+else {
+    $extcare = "No";
+}
 $pdf->SetXY(65, 220); 
-$pdf->Write(0, "Enter extended care yes/no");
+$pdf->Write(0, $extcare);
 
 $pdf->SetXY(21, 229); 
-$pdf->Write(0, "Enter additional comments");
+$pdf->Write(0, $row['comments']);
 
 $pdf->Output();
 
