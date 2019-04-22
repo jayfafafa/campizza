@@ -48,7 +48,7 @@ if ($_SERVER['HTTPS'] != "on") {
 
 </head>
 
-<body>
+<body style="background-color: #cccccc;">
 
 	<nav class="navbar navbar-expand-sm navbar-light bg-white">
 		<div class="container">
@@ -70,26 +70,31 @@ if ($_SERVER['HTTPS'] != "on") {
 		</div>
 	</nav>
 
+		<div style="background-color: white; margin-top: 3px;max-width: 2000px;max-height: 30px;">
+			<form action="logout.php" method "post">
+				<div style="float: right;">   
+					<input class="right" type="submit" value="Log Out" style="padding-right:40px;margin:right;background-color: Transparent;background-repeat:no-repeat;border: none;cursor:pointer;overflow: hidden;color:red">  
+				</div>
+				<div>
+					<a class="left" href="dashboard.php" role="button" style="padding-left:40px;background-color: Transparent;background-repeat:no-repeat;border: none;cursor:pointer;overflow: hidden;color:blue;">< Back to Dashboard</a>
+				</div>
+			</form>
+		</div>
+
 	<!--HTML-->
-	<div style="background-color: white; margin-top: 20px;margin-left: 10px;margin-right: 10px;padding-left: 20px;padding-right: 20px;padding-bottom: 70px; margin-bottom: 20px;">
+	<div style="background-color: white; padding-left: 40px;padding-right: 40px;padding-bottom: 70px; padding-top: 30px;margin-bottom: 20px; margin-top:20px!important;max-width: 800px;margin: auto">
 		<div class="container">
 			<div class="row">
 					<div class="d-flex top-buffer">
 						<h3>Camper Dashboard</h3>
 					</div>
-						<div class="ml-auto">
-							<form action="logout.php" method "post">
-							<a class="btn btn-primary top-buffer" href="dashboard.php" role="button">< Back to Dashboard</a>
-							<input class="btn btn-danger top-buffer" type="submit" value="Sign Out">
-							</form>
-						</div>
 				</div>
 				<div class="row"><p align="center">This page allows you to add, remove, and edit your camper information.</p>
 				</div>
 				<hr>
 				<div class="row">
 					<div class="col my-auto" style="padding-bottom: 20px;">
-						<a href="./childregistration.php" type="button" class="btn btn btn-success" style="border-color: white">+ Click Here to Add Camper</a>
+						<a href="./childregistration.php" type="button" class="btn btn btn-success" style="border-color: white;color: gray;">+ Click Here to Add Camper</a>
 					</div>        
 				</div>
 <?php
@@ -104,28 +109,28 @@ $activeweeks = $campInfo["activeweeks"];
 
 while ( $row = $stmt->fetch(PDO::FETCH_ASSOC) ) {
 ?>
-				<div class="row" style="padding-bottom:50px">
+				<div class="row" style="padding-bottom:50px; margin: auto; max-width: 700px;">
 					    <div class="col">
-							<div class="card" style="border-color:grey">
+							<div class="card" style="border-color:grey;">
 								<div class="card-body">
 					              <div class="d-flex justify-content-between align-items-center">
 					              	<a class="card-text"></a>
-					              	<h3><?php echo $row['firstname'] . " " . $row['lastname'] ?></h3>
-					              		<div>
-						                  <a href="editchild.php?childid=<?php echo $row['childid']; ?>" role="button" class="btn btn-sm btn-secondary">Edit Camper</a>
-						                  <button onclick="deleteChildById(<?php echo $row['childid']; ?>)" id="deletecamper" class="btn btn-sm btn-danger">Delete Camper</button>
+					              	<h3 style="font-size:20px!important;"><?php echo $row['firstname'] . " " . $row['lastname'] ?></h3>
+					              		<div style="">
+						                  <a href="editchild.php?childid=<?php echo $row['childid']; ?>" role="button" class="btn btn-sm btn-secondary">Edit</a>
+						                  <button onclick="deleteChildById(<?php echo $row['childid']; ?>)" id="deletecamper" class="btn btn-sm btn-danger">Delete</button>
 						                </div>
 					              </div>
 					            </div>
 					            <button onclick="location.href = '/childinformation.php?childid=<?php echo $row['childid'] ?>';" class="btn btn-sm btn-success" style="border-color: gray">Add/Edit Summer Session</button>
 					            <div style='overflow: auto;' class="card-header">
-					            	<table class="table table-bordered " style = "background: white;">
+					            	<table class="table table-bordered " style = "background: white; margin:auto; max-width: 500px;max-height: 300px!important;font-size: 10px">
 									  <thead>
 									    <tr>
 									      <th scope="col"></th>
-									      <th scope="col">Morning: 8:30am-12:00pm</th>
+									      <th scope="col" style = "max-width: 200px">Morning: 8:30am-12:00pm</th>
 									      <th scope="col">Afternoon: 12:30pm-4:00pm</th>
-									      <th scope="col">Extended Care: 7:00am-8:30am OR 4:00-5:30pm</th>
+									      <th scope="col" style = "max-width: 200px">Extended Care: 7:00am-8:30am OR 4:00-5:30pm</th>
 									    </tr>
 									  </thead>
 									  <tbody>
@@ -166,19 +171,28 @@ while ( $row = $stmt->fetch(PDO::FETCH_ASSOC) ) {
 									</tbody>
 									</table>
 					            </div>
-
-					            <div class="d-flex justify-content-between align-items-center">
-					            	<h3 style="padding-left: 20px;">Amount Paid: $<?php echo $registerInfo['price']?></h3>
+						        <div class="row">
+						        	<div class="col-5">
+						            <div class="d-flex justify-content-between align-items-center">
+						            	<h3 style="padding-left: 20px;font-size:15px; margin-top: 20px">Amount Paid: $<?php echo $registerInfo['price']?></h3>
+						            </div>
+						            <div class="d-flex justify-content-between align-items-center">
+						            	<h3 style="padding-left: 20px;font-size:15px; margin-bottom: 20px;">Credit: $<?php echo $registerInfo['credit']?></h3><br>
+						            </div>
+						            </div>
+						            <div class="col" style="padding-left: 20px;font-size:15px; margin:auto">
+						            <div class="row">
+						            	
+						            <form action="updateAdditionalPaid.php" method="post">
+						            	<div class="col">
+						            		Update Credit: <input type="number" step="0.01" name="amount">
+						            		<input type="hidden" name="childid" value="<?php echo $row['childid'] ?>">
+						            		<input type="submit" value="Submit" style="size: 10px">
+						            	</div>
+						            </form>
+						            </div>
+						            </div>
 					            </div>
-					            <div class="d-flex justify-content-between align-items-center">
-					            	<h3 style="padding-left: 20px;">Credit: $<?php echo $registerInfo['credit']?></h3><br>
-					            	<form action="updateAdditionalPaid.php" method="post">
-					            		Update Credit: <input type="number" step="0.01" name="amount">
-					            		<input type="hidden" name="childid" value="<?php echo $row['childid'] ?>">
-					            		<input type="submit" value="Submit">
-					            	</form>
-					            </div>
-					            
 					        </div>
 					    </div>
 				</div>
