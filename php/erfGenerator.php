@@ -8,6 +8,7 @@ function Header()
 {
     // Template set
     $this->Image('erfTemplate.png', -5, -5, 215, 310);
+	$this->SetRightMargin(0.1);
 }
 }
 
@@ -29,7 +30,7 @@ unset($conn); //unset connection to database
 $pdf = new PDF();
 $pdf->AliasNbPages();
 $pdf->AddPage();
-$pdf->SetFont('Times','',10);
+$pdf->SetFont('Times','',8);
 
 // Position data locations and populate locations with data from database
 $pdf->SetXY(5, 34); 
