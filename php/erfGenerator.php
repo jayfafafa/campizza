@@ -120,31 +120,52 @@ $pdf->Write(0, $row['medicaltreatmentsnames']);
 $pdf->SetXY(140, 190); 
 $pdf->Write(0, $row['tetanusdate']);
 
-$w1d = substr($dates['week1start'], 5);
+$weekstart = substr($dates['week1start'], 5);
+$weekend = substr($dates['week1end'], 5);
+
 
 $pdf->SetXY(4, 204); 
-$pdf->Write(0, "Week 1:"." ".$w1d);
+$pdf->Write(0, "Week 1: ".$weekstart." - ".$weekend);
 $pdf->SetXY(4, 208); 
 $pdf->Write(0, "Not Registered");
-$pdf->SetXY(48, 204); 
-$pdf->Write(0, "Week 2:");
+
+$weekstart = substr($dates['week2start'], 5);
+$weekend = substr($dates['week2end'], 5);
+
+$pdf->SetXY(48, 204);
+$pdf->Write(0, "Week 2: ".$weekstart." - ".$weekend);
 $pdf->SetXY(48, 208); 
 $pdf->Write(0, "Not Registered");
+
+$weekstart = substr($dates['week3start'], 5);
+$weekend = substr($dates['week3end'], 5);
+
 $pdf->SetXY(90, 204); 
-$pdf->Write(0, "Week 3:");
+$pdf->Write(0, "Week 3: ".$weekstart." - ".$weekend);
 $pdf->SetXY(90, 208); 
 $pdf->Write(0, "Not Registered");
+
+$weekstart = substr($dates['week4start'], 5);
+$weekend = substr($dates['week4end'], 5);
+
 $pdf->SetXY(131, 204); 
-$pdf->Write(0, "Week 4:");
+$pdf->Write(0, "Week 4: ".$weekstart." - ".$weekend);
 $pdf->SetXY(131, 208); 
 $pdf->Write(0, "Not Registered");
+
+$weekstart = substr($dates['week5start'], 5);
+$weekend = substr($dates['week5end'], 5);
+
 $pdf->SetXY(173, 204); 
-$pdf->Write(0, "Week 5:");
+$pdf->Write(0, "Week 5: ".$weekstart." - ".$weekend);
 $pdf->SetXY(173, 208); 
 $pdf->Write(0, "Not Registered");
 
+$weekstart = substr($dates['week6start'], 5);
+$weekend = substr($dates['week6end'], 5);
+
 $pdf->SetXY(4, 216); 
-$pdf->Write(0, "Week 6:");
+$pdf->Write(0, "Week 6: ".$weekstart." - ".$weekend);
 $pdf->SetXY(4, 220); 
 $pdf->Write(0, "Not Registered");
 //$pdf->SetXY(48, 216); 
