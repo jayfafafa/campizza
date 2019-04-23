@@ -19,6 +19,8 @@ include ("fpdf/connection.php"); //setup connection with database
 $res =  $conn->query("SELECT * FROM Parents, Children, ChildrenDynamic WHERE Parents.parentid=Children.parentid AND Children.childid=ChildrenDynamic.childid AND Children.childid=2");
 $row = $res->fetch(PDO::FETCH_ASSOC);
 
+$dateSql =  $conn->query("SELECT * FROM YearlySessionWeeks");
+$dates = $dateSql->fetch(PDO::FETCH_ASSOC);
 
 unset($conn); //unset connection to database
 
@@ -118,9 +120,10 @@ $pdf->Write(0, $row['medicaltreatmentsnames']);
 $pdf->SetXY(140, 190); 
 $pdf->Write(0, $row['tetanusdate']);
 
+$w1d = substr($dates['week1am'], 5];
 
 $pdf->SetXY(4, 204); 
-$pdf->Write(0, "Week 1:");
+$pdf->Write(0, "Week 1:".$w1d);
 $pdf->SetXY(4, 208); 
 $pdf->Write(0, "Not Registered");
 $pdf->SetXY(48, 204); 
