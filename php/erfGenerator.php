@@ -125,50 +125,104 @@ $weekstart = substr($dates['week1start'], 5);
 $weekend = substr($dates['week1end'], 5);
 
 
+$reginfo = "Not Registered";
+if ($row['week1am'] == 1 && $row['week1pm'] == 1) {
+	$reginfo = "8:30am - 4:00pm";
+} else if ($row['week1am'] == 1) {
+	$reginfo = "8:30am - 12:00pm";
+} else if ($row['week1pm'] == 1) {
+	$reginfo = 	"12:30pm - 4:00pm";
+}
+
 $pdf->SetXY(4, 204); 
 $pdf->Write(0, "Week 1: ".$weekstart." - ".$weekend);
 $pdf->SetXY(4, 208); 
-$pdf->Write(0, "Not Registered");
+$pdf->Write(0, $reginfo);
 
 $weekstart = substr($dates['week2start'], 5);
 $weekend = substr($dates['week2end'], 5);
 
+$reginfo = "Not Registered";
+if ($row['week2am'] == 1 && $row['week2pm'] == 1) {
+	$reginfo = "8:30am - 4:00pm";
+} else if ($row['week2am'] == 1) {
+	$reginfo = "8:30am - 12:00pm";
+} else if ($row['week2pm'] == 1) {
+	$reginfo = 	"12:30pm - 4:00pm";
+}
+
 $pdf->SetXY(48, 204);
 $pdf->Write(0, "Week 2: ".$weekstart." - ".$weekend);
 $pdf->SetXY(48, 208); 
-$pdf->Write(0, "Not Registered");
+$pdf->Write(0, $reginfo);
 
 $weekstart = substr($dates['week3start'], 5);
 $weekend = substr($dates['week3end'], 5);
 
+$reginfo = "Not Registered";
+if ($row['week3am'] == 1 && $row['week3pm'] == 1) {
+	$reginfo = "8:30am - 4:00pm";
+} else if ($row['week3am'] == 1) {
+	$reginfo = "8:30am - 12:00pm";
+} else if ($row['week3pm'] == 1) {
+	$reginfo = 	"12:30pm - 4:00pm";
+}
+
 $pdf->SetXY(90, 204); 
 $pdf->Write(0, "Week 3: ".$weekstart." - ".$weekend);
 $pdf->SetXY(90, 208); 
-$pdf->Write(0, "Not Registered");
+$pdf->Write(0, $reginfo);
 
 $weekstart = substr($dates['week4start'], 5);
 $weekend = substr($dates['week4end'], 5);
 
+$reginfo = "Not Registered";
+if ($row['week4am'] == 1 && $row['week4pm'] == 1) {
+	$reginfo = "8:30am - 4:00pm";
+} else if ($row['week4am'] == 1) {
+	$reginfo = "8:30am - 12:00pm";
+} else if ($row['week4pm'] == 1) {
+	$reginfo = 	"12:30pm - 4:00pm";
+}
+
 $pdf->SetXY(131, 204); 
 $pdf->Write(0, "Week 4: ".$weekstart." - ".$weekend);
 $pdf->SetXY(131, 208); 
-$pdf->Write(0, "Not Registered");
+$pdf->Write(0, $reginfo);
 
 $weekstart = substr($dates['week5start'], 5);
 $weekend = substr($dates['week5end'], 5);
 
+$reginfo = "Not Registered";
+if ($row['week5am'] == 1 && $row['week5pm'] == 1) {
+	$reginfo = "8:30am - 4:00pm";
+} else if ($row['week5am'] == 1) {
+	$reginfo = "8:30am - 12:00pm";
+} else if ($row['week5pm'] == 1) {
+	$reginfo = 	"12:30pm - 4:00pm";
+}
+
 $pdf->SetXY(173, 204); 
 $pdf->Write(0, "Week 5: ".$weekstart." - ".$weekend);
 $pdf->SetXY(173, 208); 
-$pdf->Write(0, "Not Registered");
+$pdf->Write(0, $reginfo);
 
 $weekstart = substr($dates['week6start'], 5);
 $weekend = substr($dates['week6end'], 5);
 
+$reginfo = "Not Registered";
+if ($row['week6am'] == 1 && $row['week6pm'] == 1) {
+	$reginfo = "8:30am - 4:00pm";
+} else if ($row['week6am'] == 1) {
+	$reginfo = "8:30am - 12:00pm";
+} else if ($row['week6pm'] == 1) {
+	$reginfo = 	"12:30pm - 4:00pm";
+}
+
 $pdf->SetXY(4, 216); 
 $pdf->Write(0, "Week 6: ".$weekstart." - ".$weekend);
 $pdf->SetXY(4, 220); 
-$pdf->Write(0, "Not Registered");
+$pdf->Write(0, $reginfo);
 //$pdf->SetXY(48, 216); 
 //$pdf->Write(0, "Enter week2pm data");
 //$pdf->SetXY(90, 216); 
