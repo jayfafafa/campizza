@@ -120,10 +120,10 @@ $pdf->Write(0, $row['medicaltreatmentsnames']);
 $pdf->SetXY(140, 190); 
 $pdf->Write(0, $row['tetanusdate']);
 
-$w1d = substr($dates['week1am'], 5];
+$w1d = substr($dates['week1start'], 5);
 
 $pdf->SetXY(4, 204); 
-$pdf->Write(0, "Week 1:".$w1d);
+$pdf->Write(0, "Week 1:"." ".$w1d);
 $pdf->SetXY(4, 208); 
 $pdf->Write(0, "Not Registered");
 $pdf->SetXY(48, 204); 
