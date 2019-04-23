@@ -120,26 +120,38 @@ $pdf->Write(0, $row['tetanusdate']);
 
 
 $pdf->SetXY(4, 204); 
-$pdf->Write(0, "Enter week1am data");
+$pdf->Write(0, "Week 1:");
+$pdf->SetXY(4, 208); 
+$pdf->Write(0, "Not Registered");
 $pdf->SetXY(48, 204); 
-$pdf->Write(0, "Enter week2am data");
+$pdf->Write(0, "Week 2:");
+$pdf->SetXY(48, 208); 
+$pdf->Write(0, "Not Registered");
 $pdf->SetXY(90, 204); 
-$pdf->Write(0, "Enter week3am data");
+$pdf->Write(0, "Week 3:");
+$pdf->SetXY(90, 208); 
+$pdf->Write(0, "Not Registered");
 $pdf->SetXY(131, 204); 
-$pdf->Write(0, "Enter week4am data");
+$pdf->Write(0, "Week 4:");
+$pdf->SetXY(131, 208); 
+$pdf->Write(0, "Not Registered");
 $pdf->SetXY(173, 204); 
-$pdf->Write(0, "Enter week5am");
+$pdf->Write(0, "Week 5:");
+$pdf->SetXY(173, 208); 
+$pdf->Write(0, "Not Registered");
 
-$pdf->SetXY(4, 212); 
-$pdf->Write(0, "Enter week1pm data");
-$pdf->SetXY(48, 212); 
-$pdf->Write(0, "Enter week2pm data");
-$pdf->SetXY(90, 212); 
-$pdf->Write(0, "Enter week3pm data");
-$pdf->SetXY(131, 212); 
-$pdf->Write(0, "Enter week4pm data");
-$pdf->SetXY(173, 212); 
-$pdf->Write(0, "Enter week5pm");
+$pdf->SetXY(4, 216); 
+$pdf->Write(0, "Week 6:");
+$pdf->SetXY(4, 220); 
+$pdf->Write(0, "Not Registered");
+//$pdf->SetXY(48, 216); 
+//$pdf->Write(0, "Enter week2pm data");
+//$pdf->SetXY(90, 216); 
+//$pdf->Write(0, "Enter week3pm data");
+//$pdf->SetXY(131, 216); 
+//$pdf->Write(0, "Enter week4pm data");
+//$pdf->SetXY(173, 216); 
+//$pdf->Write(0, "Enter week5pm");
 
 if ($row['extendedcare'] == 1) {
     $extcare = "Yes";
@@ -147,10 +159,10 @@ if ($row['extendedcare'] == 1) {
 else {
     $extcare = "No";
 }
-$pdf->SetXY(65, 220); 
+$pdf->SetXY(65, 228); 
 $pdf->Write(0, $extcare);
 
-$pdf->SetXY(21, 229); 
+$pdf->SetXY(21, 236); 
 $pdf->Write(0, $row['comments']);
 
 $pdf->Output();
