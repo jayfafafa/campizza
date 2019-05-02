@@ -152,7 +152,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 		<hr>
 		<a class="btn btn-sm btn-warning btn-block" href="/signup.php" role="button">New? Register here!</a>
 		<a class="btn btn-sm btn-outline-info btn-block" href="/forgot.php" role="button">Forgot Password</a>
-		<p class="mt-5 mb-3 text-muted">&copy; Camp Izza 2019</p>
+		<p class="mt-5 mb-3 text-muted">&copy; Camp Izza <?php echo date("Y"); ?></p>
 	</form>
 </body>
 </html>
