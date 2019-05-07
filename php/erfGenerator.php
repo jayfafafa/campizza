@@ -12,12 +12,12 @@ function Header()
 }
 }
 
-include ("fpdf/connection.php"); //setup connection with database
+include ("connection.php"); //setup connection with database
 
 
 // query database
-
-$res =  $conn->query("SELECT * FROM Parents, Children, ChildrenDynamic WHERE Parents.parentid=Children.parentid AND Children.childid=ChildrenDynamic.childid AND Children.childid=2");
+$childid = $_POST['childid'];
+$res =  $conn->query("SELECT * FROM Parents, Children, ChildrenDynamic WHERE Parents.parentid=Children.parentid AND Children.childid=ChildrenDynamic.childid AND Children.childid=$childid");
 $row = $res->fetch(PDO::FETCH_ASSOC);
 
 $dateSql =  $conn->query("SELECT * FROM YearlySessionWeeks");
