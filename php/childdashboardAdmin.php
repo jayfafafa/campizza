@@ -70,26 +70,29 @@ if ($_SERVER['HTTPS'] != "on") {
 		</div>
 	</nav>
 
+		<div style="background-color: white; max-width: 2000px; margin-top: 5px;">
+			<form action="logout.php" method "post">
+				<div style="float: right;">  
+					<input class="btn btn-danger top-buffer" type="submit" style="margin-right:40px;margin:right;" value="Sign Out">
+				</div>
+				<a class="btn btn-primary top-buffer" href="dashboard.php" role="button" style="margin-left:40px;margin-bottom: 3px;">< Back to Dashboard</a>
+			</form>
+		</div>
+
 	<!--HTML-->
-	<div style="background-color: white; margin-top: 20px;margin-left: 10px;margin-right: 10px;padding-left: 20px;padding-right: 20px;padding-bottom: 70px; margin-bottom: 20px;">
+	<div style="background-color: white; padding-left: 40px;padding-right: 40px;padding-bottom: 70px; padding-top: 30px;margin-bottom: 20px; margin-top:20px!important;margin: 20px 20px">
 		<div class="container">
 			<div class="row">
 					<div class="d-flex top-buffer">
 						<h3>Camper Dashboard</h3>
 					</div>
-						<div class="ml-auto">
-							<form action="logout.php" method "post">
-							<a class="btn btn-primary top-buffer" href="dashboard.php" role="button">< Back to Dashboard</a>
-							<input class="btn btn-danger top-buffer" type="submit" value="Sign Out">
-							</form>
-						</div>
 				</div>
 				<div class="row"><p align="center">This page allows you to add, remove, and edit your camper information.</p>
 				</div>
 				<hr>
 				<div class="row">
 					<div class="col my-auto" style="padding-bottom: 20px;">
-						<a href="./childregistration.php" type="button" class="btn btn btn-success" style="border-color: white">+ Click Here to Add Camper</a>
+						<a href="./childregistration.php" type="button" class="btn btn btn-success" style="border-color: white;color: gray;">+ Click Here to Add Camper</a>
 					</div>        
 				</div>
 <?php
@@ -104,28 +107,28 @@ $activeweeks = $campInfo["activeweeks"];
 
 while ( $row = $stmt->fetch(PDO::FETCH_ASSOC) ) {
 ?>
-				<div class="row" style="padding-bottom:50px">
+				<div class="row" style="padding-bottom:50px; margin: auto;">
 					    <div class="col">
-							<div class="card" style="border-color:grey">
+							<div class="card" style="border-color:grey;">
 								<div class="card-body">
 					              <div class="d-flex justify-content-between align-items-center">
 					              	<a class="card-text"></a>
-					              	<h3><?php echo $row['firstname'] . " " . $row['lastname'] ?></h3>
-					              		<div>
-						                  <a href="editchild.php?childid=<?php echo $row['childid']; ?>" role="button" class="btn btn-sm btn-secondary">Edit Camper</a>
-						                  <button onclick="deleteChildById(<?php echo $row['childid']; ?>)" id="deletecamper" class="btn btn-sm btn-danger">Delete Camper</button>
+					              	<h3 style="font-size:20px!important;"><?php echo $row['firstname'] . " " . $row['lastname'] ?></h3>
+					              		<div style="">
+						                  <a href="editchild.php?childid=<?php echo $row['childid']; ?>" role="button" class="btn btn-sm btn-secondary">Edit</a>
+						                  <button onclick="deleteChildById(<?php echo $row['childid']; ?>)" id="deletecamper" class="btn btn-sm btn-danger">Delete</button>
 						                </div>
 					              </div>
 					            </div>
 					            <button onclick="location.href = '/childinformation.php?childid=<?php echo $row['childid'] ?>';" class="btn btn-sm btn-success" style="border-color: gray">Add/Edit Summer Session</button>
 					            <div style='overflow: auto;' class="card-header">
-					            	<table class="table table-bordered " style = "background: white;">
+					            	<table class="table table-bordered " style = "background: white; margin:auto">
 									  <thead>
 									    <tr>
 									      <th scope="col"></th>
-									      <th scope="col">Morning: 8:30am-12:00pm</th>
+									      <th scope="col" >Morning: 8:30am-12:00pm</th>
 									      <th scope="col">Afternoon: 12:30pm-4:00pm</th>
-									      <th scope="col">Extended Care: 7:00am-8:30am OR 4:00-5:30pm</th>
+									      <th scope="col" >Extended Care: 7:00am-8:30am OR 4:00-5:30pm</th>
 									    </tr>
 									  </thead>
 									  <tbody>
@@ -166,19 +169,34 @@ while ( $row = $stmt->fetch(PDO::FETCH_ASSOC) ) {
 									</tbody>
 									</table>
 					            </div>
+						        <div class="row">
+						        	<div class="col-5">
+						            <div class="d-flex justify-content-between align-items-center">
+						            	<h3 style="padding-left: 20px; margin-top: 20px">Amount Paid: $<?php echo $registerInfo['price']?></h3>
+						            </div>
+						            <div class="d-flex justify-content-between align-items-center">
+						            	<h3 style="padding-left: 20px; margin-bottom: 20px;">Credit: $<?php echo $registerInfo['credit']?></h3><br>
+						            </div>
+						            </div>
+						            <div class="col" style="padding-left: 20px; margin:auto">
+						            <div class="row">
+						            	
+						            <form action="updateAdditionalPaid.php" method="post">
+						            	<div class="col-2"></div>
+						            	<div class="col">
+						            		<a class="btn btn-primary top-buffer" href="" style="margin:auto" role="button">Generate Emergency Form</a>
+						            	</div>
+						            	<div class="col-2"></div>
+						            	<div class="col">
+						            		Update Credit: <input type="number" step="0.01" name="amount">
+						            		<input type="hidden" name="childid" value="<?php echo $row['childid'] ?>">
+						            		<input type="submit" value="Submit" >
+						            	</div>
 
-					            <div class="d-flex justify-content-between align-items-center">
-					            	<h3 style="padding-left: 20px;">Amount Paid: $<?php echo $registerInfo['price']?></h3>
+						            </form>
+						            </div>
+						            </div>
 					            </div>
-					            <div class="d-flex justify-content-between align-items-center">
-					            	<h3 style="padding-left: 20px;">Credit: $<?php echo $registerInfo['credit']?></h3><br>
-					            	<form action="updateAdditionalPaid.php" method="post">
-					            		Update Credit: <input type="number" step="0.01" name="amount">
-					            		<input type="hidden" name="childid" value="<?php echo $row['childid'] ?>">
-					            		<input type="submit" value="Submit">
-					            	</form>
-					            </div>
-					            
 					        </div>
 					    </div>
 				</div>

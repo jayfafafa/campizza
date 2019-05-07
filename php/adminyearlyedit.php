@@ -59,7 +59,7 @@ unset($conn);
 
 </head>
 
-<body>
+<body style="background-color: #cccccc;">
 
 	<nav class="navbar navbar-expand-sm navbar-light bg-white">
 		<div class="container">
@@ -81,8 +81,20 @@ unset($conn);
 		</div>
 	</nav>
 
+		<div style="background-color: white; margin-top: 3px;max-width: 2000px;max-height: 30px;">
+			<form action="logout.php" method "post">
+				<div style="float: right;">   
+					<input class="right" type="submit" value="Log Out" style="padding-right:40px;margin:right;background-color: Transparent;background-repeat:no-repeat;border: none;cursor:pointer;overflow: hidden;color:red">  
+				</div>
+				<div>
+					<a class="left" href="dashboard.php" role="button" style="padding-left:40px;background-color: Transparent;background-repeat:no-repeat;border: none;cursor:pointer;overflow: hidden;color:blue;">< Back to Dashboard</a>
+				</div>
+			</form>
+		</div>
+
 	<!--HTML-->
-	<div style="background-color: white; margin-top: 20px;margin-left: 10px;margin-right: 10px;padding-left: 20px;padding-right: 20px;padding-bottom: 70px; margin-bottom: 20px;">
+	<div style="background-color: white; padding-left: 40px;padding-right: 40px;padding-bottom: 70px; padding-top: 30px;margin-bottom: 20px; margin-top:20px!important;max-width: 800px;margin: auto">
+    <h1 style = "padding-top: 10px;text-align: center;">
 		<div class="container">
 			<div class="row">
 				<div class="d-flex top-buffer">
@@ -99,9 +111,9 @@ unset($conn);
 					  <h3 style="padding: 30px 40px;"><b>Group Limits</b></h3>
 					  <hr>
 					  	<form action="editSessionLimits.php" method="post">
-					  		<div class="row" align="center">
+					  		<div class="row" align="center" style="padding-bottom:50px; margin: auto; max-width: 700px;">
 								<div class="col">
-									<div class="card">
+									<div class="card" style = "background: white; margin:auto; max-width: 500px;max-height: 300px!important;font-size: 20px">
 										  <div class="card-body">
 										    <h5 class="card-title"><b>Group 1: Dates</b></h5>
 											  	<div class="row">
@@ -124,7 +136,7 @@ unset($conn);
 									</div>
 								</div>
 								<div class="col">
-									<div class="card">
+									<div class="card" style = "background: white; margin:auto; max-width: 500px;max-height: 300px!important;font-size: 20px">
 										  <div class="card-body">
 										    <h5 class="card-title"><b>Group 2: Coconuts</b></h5>
 											  	<div class="row">
@@ -147,9 +159,9 @@ unset($conn);
 									</div>
 								</div>
 							</div>
-												  		<div class="row" align="center">
+							<div class="row" align="center">
 								<div class="col">
-									<div class="card">
+									<div class="card" style = "background: white; margin:auto; max-width: 500px;max-height: 300px!important;font-size: 20px">
 										  <div class="card-body">
 										    <h5 class="card-title"><b>Group 3: Trees</b></h5>
 											  	<div class="row">
@@ -172,7 +184,7 @@ unset($conn);
 									</div>
 								</div>
 								<div class="col">
-									<div class="card">
+									<div class="card" style = "background: white; margin:auto; max-width: 500px;max-height: 300px!important;font-size: 20px">
 										  <div class="card-body">
 										    <h5 class="card-title"><b>Group 4: Young Leaders</b></h5>
 											  	<div class="row">
@@ -195,7 +207,7 @@ unset($conn);
 									</div>
 								</div>
 							</div>
-					    <div class="row margin-data align-items-center" style = "padding-top: 20px;padding-bottom: 70px;">
+					    <div class="row margin-data align-items-center" style = "font-size:20px; padding-top: 20px;padding-bottom: 70px;">
 							<div class="col" align="center">
 								<input type="submit" class="btn-xl" align="center" value="Save">
 							</div>
@@ -212,14 +224,14 @@ unset($conn);
 						<hr>
 							<div class="row" align="center">
 								<div class="col">
-									<div class="card">
+									<div class="card" style = "background: white; margin:auto; max-width: 500px;max-height: 300px!important;font-size: 15px">
 										  <div class="card-body">
 										    <h5 class="card-title"><b>Week 1</b></h5>
 											  	<div class="row">
 													<div class="col-4" align="right">
 												  		<p style="padding-top: 20px;">Start</p>
 												  	</div>
-											  		<div class="col-6">
+											  		<div class="col-7">
 												  		<input class="form-control" type="text" name="week1start" <?php if($weeks['week1start'] != NULL){ echo 'value='.$weeks['week1start'];}?> >
 												  	</div>
 												</div>
@@ -227,7 +239,7 @@ unset($conn);
 													<div class="col-4" align="right">
 												  		<p style="padding-top: 20px;">End</p>
 												  	</div>
-													<div class="col-6">
+													<div class="col-7">
 												  		<input class="form-control" type="text" name="week1end" <?php if($weeks['week1end'] != NULL){ echo 'value='.$weeks['week1end'];}?> >
 												  	</div>
 												</div>
@@ -235,14 +247,14 @@ unset($conn);
 									</div>
 								</div>
 								<div class="col">
-									<div class="card">
+									<div class="card" style = "background: white; margin:auto; max-width: 500px;max-height: 300px!important;font-size: 15px">
 										  <div class="card-body">
 										    <h5 class="card-title"><b>Week 2</b></h5>
 											  	<div class="row">
 													<div class="col-4" align="right">
 												  		<p style="padding-top: 20px;">Start</p>
 												  	</div>
-											  		<div class="col-6">
+											  		<div class="col-7">
 												  		<input class="form-control" type="text" name="week2start" <?php if($weeks['week2start'] != NULL){ echo 'value='.$weeks['week2start'];}?> >
 												  	</div>
 												</div>
@@ -250,7 +262,7 @@ unset($conn);
 													<div class="col-4" align="right">
 												  		<p style="padding-top: 20px;">End</p>
 												  	</div>
-													<div class="col-6">
+													<div class="col-7">
 												  		<input class="form-control" type="text" name="week2end" <?php if($weeks['week2end'] != NULL){ echo 'value='.$weeks['week2end'];}?> >
 												  	</div>
 												</div>
@@ -260,14 +272,14 @@ unset($conn);
 							</div>
 							<div class="row" align="center">
 								<div class="col">
-									<div class="card">
+									<div class="card" style = "background: white; margin:auto; max-width: 500px;max-height: 300px!important;font-size: 15px">
 										  <div class="card-body">
 										    <h5 class="card-title"><b>Week 3</b></h5>
 											  	<div class="row">
 													<div class="col-4" align="right">
 												  		<p style="padding-top: 20px;">Start</p>
 												  	</div>
-											  		<div class="col-6">
+											  		<div class="col-7">
 												  		<input class="form-control" type="text" name="week3start" <?php if($weeks['week3start'] != NULL){ echo 'value='.$weeks['week3start'];}?> >
 												  	</div>
 												</div>
@@ -275,7 +287,7 @@ unset($conn);
 													<div class="col-4" align="right">
 												  		<p style="padding-top: 20px;">End</p>
 												  	</div>
-													<div class="col-6">
+													<div class="col-7">
 												  		<input class="form-control" type="text" name="week3end" <?php if($weeks['week3end'] != NULL){ echo 'value='.$weeks['week3end'];}?> >
 												  	</div>
 												</div>
@@ -283,14 +295,14 @@ unset($conn);
 									</div>
 								</div>
 								<div class="col">
-									<div class="card">
+									<div class="card" style = "background: white; margin:auto; max-width: 500px;max-height: 300px!important;font-size: 15px">
 										  <div class="card-body">
 										    <h5 class="card-title"><b>Week 4</b></h5>
 											  	<div class="row">
 													<div class="col-4" align="right">
 												  		<p style="padding-top: 20px;">Start</p>
 												  	</div>
-											  		<div class="col-6">
+											  		<div class="col-7">
 												  		<input class="form-control" type="text" name="week4start" <?php if($weeks['week4start'] != NULL){ echo 'value='.$weeks['week4start'];}?> >
 												  	</div>
 												</div>
@@ -298,7 +310,7 @@ unset($conn);
 													<div class="col-4" align="right">
 												  		<p style="padding-top: 20px;">End</p>
 												  	</div>
-													<div class="col-6">
+													<div class="col-7">
 												  		<input class="form-control" type="text" name="week4end" <?php if($weeks['week4end'] != NULL){ echo 'value='.$weeks['week4end'];}?> >
 												  	</div>
 												</div>
@@ -308,14 +320,14 @@ unset($conn);
 							</div>
 							<div class="row" align="center">
 								<div class="col">
-									<div class="card">
+									<div class="card" style = "background: white; margin:auto; max-width: 500px;max-height: 300px!important;font-size: 15px">
 										  <div class="card-body">
 										    <h5 class="card-title"><b>Week 5</b></h5>
 											  	<div class="row">
 													<div class="col-4" align="right">
 												  		<p style="padding-top: 20px;">Start</p>
 												  	</div>
-											  		<div class="col-6">
+											  		<div class="col-7">
 												  		<input class="form-control" type="text" name="week5start" <?php if($weeks['week5start'] != NULL){ echo 'value='.$weeks['week5start'];}?> >
 												  	</div>
 												</div>
@@ -323,7 +335,7 @@ unset($conn);
 													<div class="col-4" align="right">
 												  		<p style="padding-top: 20px;">End</p>
 												  	</div>
-													<div class="col-6">
+													<div class="col-7">
 												  		<input class="form-control" type="text" name="week5end" <?php if($weeks['week5end'] != NULL){ echo 'value='.$weeks['week5end'];}?> >
 												  	</div>
 												</div>
@@ -331,14 +343,14 @@ unset($conn);
 									</div>
 								</div>
 								<div class="col">
-									<div class="card">
+									<div class="card" style = "background: white; margin:auto; max-width: 500px;max-height: 300px!important;font-size: 15px">
 										  <div class="card-body">
 										    <h5 class="card-title"><b>Week 6</b></h5>
 											  	<div class="row">
 													<div class="col-4" align="right">
 												  		<p style="padding-top: 20px;">Start</p>
 												  	</div>
-											  		<div class="col-6">
+											  		<div class="col-7">
 												  		<input class="form-control" type="text" name="week6start" <?php if($weeks['week6start'] != NULL){ echo 'value='.$weeks['week6start'];}?> >
 												  	</div>
 												</div>
@@ -346,7 +358,7 @@ unset($conn);
 													<div class="col-4" align="right">
 												  		<p style="padding-top: 20px;">End</p>
 												  	</div>
-													<div class="col-6">
+													<div class="col-7">
 												  		<input class="form-control" type="text" name="week6end" <?php if($weeks['week6end'] != NULL){ echo 'value='.$weeks['week6end'];}?> >
 												  	</div>
 												</div>
@@ -356,14 +368,14 @@ unset($conn);
 							</div>
 							<div class="row" align="center">
 								<div class="col">
-									<div class="card">
+									<div class="card" style = "background: white; margin:auto; max-width: 500px;max-height: 300px!important;font-size: 15px">
 										  <div class="card-body">
 										    <h5 class="card-title"><b>Week 7</b></h5>
 											  	<div class="row">
 													<div class="col-4" align="right">
 												  		<p style="padding-top: 20px;">Start</p>
 												  	</div>
-											  		<div class="col-6">
+											  		<div class="col-7">
 												  		<input class="form-control" type="text" name="week7start" <?php if($weeks['week7start'] != NULL){ echo 'value='.$weeks['week7start'];}?> >
 												  	</div>
 												</div>
@@ -371,7 +383,7 @@ unset($conn);
 													<div class="col-4" align="right">
 												  		<p style="padding-top: 20px;">End</p>
 												  	</div>
-													<div class="col-6">
+													<div class="col-7">
 												  		<input class="form-control" type="text" name="week7end" <?php if($weeks['week7end'] != NULL){ echo 'value='.$weeks['week7end'];}?> >
 												  	</div>
 												</div>
@@ -379,14 +391,14 @@ unset($conn);
 									</div>
 								</div>
 								<div class="col">
-									<div class="card">
+									<div class="card" style = "background: white; margin:auto; max-width: 500px;max-height: 300px!important;font-size: 15px">
 										  <div class="card-body">
 										    <h5 class="card-title"><b>Week 8</b></h5>
 											  	<div class="row">
 													<div class="col-4" align="right">
 												  		<p style="padding-top: 20px;">Start</p>
 												  	</div>
-											  		<div class="col-6">
+											  		<div class="col-7">
 												  		<input class="form-control" type="text" name="week8start" <?php if($weeks['week8start'] != NULL){ echo 'value='.$weeks['week8start'];}?> >
 												  	</div>
 												</div>
@@ -394,7 +406,7 @@ unset($conn);
 													<div class="col-4" align="right">
 												  		<p style="padding-top: 20px;">End</p>
 												  	</div>
-													<div class="col-6">
+													<div class="col-7">
 												  		<input class="form-control" type="text" name="week8end" <?php if($weeks['week8end'] != NULL){ echo 'value='.$weeks['week8end'];}?> >
 												  	</div>
 												</div>
@@ -404,7 +416,7 @@ unset($conn);
 							</div>
 							<div class="row" align="center">
 								<div class="col">
-									<div class="card">
+									<div class="card" style = "background: white; margin:auto; max-width: 500px;max-height: 400px!important;font-size: 15px;">
 										  <div class="card-body">
 										    <h5 class="card-title"><b>Other Edits</b></h5>
 											  	<div class="row">
@@ -435,7 +447,7 @@ unset($conn);
 									</div>
 								</div>
 							</div>
-							<div class="row margin-data align-items-center" style = "padding-top: 20px;padding-bottom: 70px;">
+							<div class="row margin-data align-items-center" style = "font-size:20px;padding-top: 20px;padding-bottom: 70px;">
 								<div class="col" align="center">
 									<input type="submit" class="btn-xl" align="center" value="Save">
 								</div>
@@ -451,30 +463,30 @@ unset($conn);
 					  <hr>
 					  <div class="row" align="center">
 								<div class="col">
-									<div class="card" style="background: #5F5F5F; color: white;">
+									<div class="card" style="background: #5F5F5F; color: white; margin:auto; max-width: 500px;max-height: 400px!important;font-size: 15px;">
 										  <div class="card-body">
 										    <h5 class="card-title"><b>Just In Case: Pricings</b></h5>
 											  	<div class="row">
-													<div class="col-6" align="right">
+													<div class="col-5" align="right">
 												  		<p style="padding-top: 20px;">One Day AM Pricing</p>
 												  	</div>
-											  		<div class="col-4">
+											  		<div class="col-7">
 												  		<input class="form-control" type="text" name="onedayam"  <?php if($price['onedayam'] != NULL){ echo 'value='.$price['onedayam'];}?> >
 												  	</div>
 												</div>
 												<div class = "row">
-													<div class="col-6" align="right">
+													<div class="col-5" align="right">
 												  		<p style="padding-top: 20px;">One Day PM Pricing</p>
 												  	</div>
-													<div class="col-4">
+													<div class="col-7">
 												  		<input class="form-control" type="text" name="onedaypm"  <?php if($price['onedaypm'] != NULL){ echo 'value='.$price['onedaypm'];}?> >
 												  	</div>
 												</div>
 												<div class = "row">
-													<div class="col-6" align="right">
+													<div class="col-5" align="right">
 												  		<p style="padding-top: 20px;">One Day Full Pricing</p>
 												  	</div>
-													<div class="col-4">
+													<div class="col-7">
 												  		<input class="form-control" type="text" name="onedayfull"  <?php if($price['onedayfull'] != NULL){ echo 'value='.$price['onedayfull'];}?> >
 												  	</div>
 												</div>
@@ -484,30 +496,30 @@ unset($conn);
 							</div>
 					  <div class="row" align="center">
 								<div class="col">
-									<div class="card">
+									<div class="card" style = "background: white; margin:auto; max-width: 500px;max-height: 400px!important;font-size: 15px">
 										  <div class="card-body">
 										    <h5 class="card-title"><b>Pricing For One Week (Early)</b></h5>
 											  	<div class="row">
-													<div class="col-6" align="right">
+													<div class="col-5" align="right">
 												  		<p style="padding-top: 20px;">AM Early Pricing</p>
 												  	</div>
-											  		<div class="col-4">
+											  		<div class="col-7">
 												  		<input class="form-control" type="text" name="oneweekamearly" <?php if($price['oneweekamearly'] != NULL){ echo 'value='.$price['oneweekamearly'];}?> >
 												  	</div>
 												</div>
 												<div class = "row">
-													<div class="col-6" align="right">
+													<div class="col-5" align="right">
 												  		<p style="padding-top: 20px;">PM Early Pricing</p>
 												  	</div>
-													<div class="col-4">
+													<div class="col-7">
 												  		<input class="form-control" type="text" name="oneweekpmearly" <?php if($price['oneweekpmearly'] != NULL){ echo 'value='.$price['oneweekpmearly'];}?> >
 												  	</div>
 												</div>
 												<div class = "row">
-													<div class="col-6" align="right">
+													<div class="col-5" align="right">
 												  		<p style="padding-top: 20px;">Full Early Pricing</p>
 												  	</div>
-													<div class="col-4">
+													<div class="col-7">
 												  		<input class="form-control" type="text" name="oneweekfullearly" <?php if($price['oneweekfullearly'] != NULL){ echo 'value='.$price['oneweekfullearly'];}?> >
 												  	</div>
 												</div>
@@ -515,30 +527,30 @@ unset($conn);
 									</div>
 								</div>
 								<div class="col">
-									<div class="card">
+									<div class="card" style = "background: white; margin:auto; max-width: 500px;max-height: 400px!important;font-size: 15px">
 										  <div class="card-body">
 										    <h5 class="card-title"><b>Pricing For One Week (Late)</b></h5>
 											  	<div class="row">
-													<div class="col-6" align="right">
+													<div class="col-5" align="right">
 												  		<p style="padding-top: 20px;">AM Late Pricing</p>
 												  	</div>
-											  		<div class="col-4">
+											  		<div class="col-7">
 												  		<input class="form-control" type="text" name="oneweekamlate" <?php if($price['oneweekamlate'] != NULL){ echo 'value='.$price['oneweekamlate'];}?> >
 												  	</div>
 												</div>
 												<div class = "row">
-													<div class="col-6" align="right">
+													<div class="col-5" align="right">
 												  		<p style="padding-top: 20px;">PM Late Pricing</p>
 												  	</div>
-													<div class="col-4">
+													<div class="col-7">
 												  		<input class="form-control" type="text" name="oneweekpmlate" <?php if($price['oneweekpmlate'] != NULL){ echo 'value='.$price['oneweekpmlate'];}?> >
 												  	</div>
 												</div>
 												<div class = "row">
-													<div class="col-6" align="right">
+													<div class="col-5" align="right">
 												  		<p style="padding-top: 20px;">Full Late Pricing</p>
 												  	</div>
-													<div class="col-4">
+													<div class="col-7">
 												  		<input class="form-control" type="text" name="oneweekfulllate" <?php if($price['oneweekfulllate'] != NULL){ echo 'value='.$price['oneweekfulllate'];}?> >
 												  	</div>
 												</div>
@@ -548,30 +560,30 @@ unset($conn);
 							</div>
 							<div class="row" align="center">
 								<div class="col">
-									<div class="card">
+									<div class="card" style = "background: white; margin:auto; max-width: 500px;max-height: 400px!important;font-size: 15px">
 										  <div class="card-body">
 										    <h5 class="card-title"><b>Pricing For Holiday Week (Early)</b></h5>
 											  	<div class="row">
-													<div class="col-6" align="right">
+													<div class="col-5" align="right">
 												  		<p style="padding-top: 20px;">AM Early Pricing</p>
 												  	</div>
-											  		<div class="col-4">
+											  		<div class="col-7">
 												  		<input class="form-control" type="text" name="holidayweekamearly" <?php if($price['holidayweekamearly'] != NULL){ echo 'value='.$price['holidayweekamearly'];}?> >
 												  	</div>
 												</div>
 												<div class = "row">
-													<div class="col-6" align="right">
+													<div class="col-5" align="right">
 												  		<p style="padding-top: 20px;">PM Early Pricing</p>
 												  	</div>
-													<div class="col-4">
+													<div class="col-7">
 												  		<input class="form-control" type="text" name="holidayweekpmearly" <?php if($price['holidayweekpmearly'] != NULL){ echo 'value='.$price['holidayweekpmearly'];}?> >
 												  	</div>
 												</div>
 												<div class = "row">
-													<div class="col-6" align="right">
+													<div class="col-5" align="right">
 												  		<p style="padding-top: 20px;">Full Early Pricing</p>
 												  	</div>
-													<div class="col-4">
+													<div class="col-7">
 												  		<input class="form-control" type="text" name="holidayweekfullearly" <?php if($price['holidayweekfullearly'] != NULL){ echo 'value='.$price['holidayweekfullearly'];}?> >
 												  	</div>
 												</div>
@@ -579,30 +591,30 @@ unset($conn);
 									</div>
 								</div>
 								<div class="col">
-									<div class="card">
+									<div class="card" style = "background: white; margin:auto; max-width: 500px;max-height: 400px!important;font-size: 15px">
 										  <div class="card-body">
 										    <h5 class="card-title"><b>Pricing For Holiday Week (Late)</b></h5>
 											  	<div class="row">
-													<div class="col-6" align="right">
+													<div class="col-5" align="right">
 												  		<p style="padding-top: 20px;">AM Late Pricing</p>
 												  	</div>
-											  		<div class="col-4">
+											  		<div class="col-7">
 												  		<input class="form-control" type="text" name="holidayweekamlate" <?php if($price['holidayweekamlate'] != NULL){ echo 'value='.$price['holidayweekamlate'];}?> >
 												  	</div>
 												</div>
 												<div class = "row">
-													<div class="col-6" align="right">
+													<div class="col-5" align="right">
 												  		<p style="padding-top: 20px;">PM Late Pricing</p>
 												  	</div>
-													<div class="col-4">
+													<div class="col-7">
 												  		<input class="form-control" type="text" name="holidayweekpmlate" <?php if($price['holidayweekpmlate'] != NULL){ echo 'value='.$price['holidayweekpmlate'];}?> >
 												  	</div>
 												</div>
 												<div class = "row">
-													<div class="col-6" align="right">
+													<div class="col-5" align="right">
 												  		<p style="padding-top: 20px;">Full Late Pricing</p>
 												  	</div>
-													<div class="col-4">
+													<div class="col-7">
 												  		<input class="form-control" type="text" name="holidayweekfulllate" <?php if($price['holidayweekfulllate'] != NULL){ echo 'value='.$price['holidayweekfulllate'];}?> >
 												  	</div>
 												</div>
@@ -612,22 +624,22 @@ unset($conn);
 							</div>
 							<div class="row" align="center">
 								<div class="col">
-									<div class="card">
+									<div class="card" style = "background: white; margin:auto; max-width: 500px;max-height: 400px!important;font-size: 15px">
 										  <div class="card-body">
 										    <h5 class="card-title"><b>Other Edits</b></h5>
 											  	<div class="row">
-													<div class="col-6" align="right">
+													<div class="col-5" align="right">
 												  		<p style="padding-top: 20px;">Extended Care Pricing</p>
 												  	</div>
-											  		<div class="col-4">
+											  		<div class="col-7">
 												  		<input class="form-control" type="text" name="extendedcare" <?php if($price['extendedcare'] != NULL){ echo 'value='.$price['extendedcare'];}?> >
 												  	</div>
 												</div>
 												<div class = "row">
-													<div class="col-6" align="right">
+													<div class="col-5" align="right">
 												  		<p style="padding-top: 20px;">Extra Shirt Pricing</p>
 												  	</div>
-													<div class="col-4">
+													<div class="col-7">
 												  		<input class="form-control" type="text" name="extrashirt" <?php if($price['extrashirt'] != NULL){ echo 'value='.$price['extrashirt'];}?> >
 												  	</div>
 												</div>
@@ -635,7 +647,7 @@ unset($conn);
 									</div>
 								</div>
 							</div>
-							<div class="row margin-data align-items-center" style = "padding-top: 20px;padding-bottom: 70px;">
+							<div class="row margin-data align-items-center" style = "font-size:20px;padding-top: 20px;padding-bottom: 70px;">
 								<div class="col" align="center">
 									<input type="submit" class="btn-xl" align="center" value="Save">
 								</div>
@@ -646,6 +658,7 @@ unset($conn);
 
 		</div>
 	</div>
+</div>
 
 
 

@@ -114,7 +114,7 @@ unset($conn);
 
 </head>
 
-<body>
+<body style="background-color: #cccccc;">
 
 	<nav class="navbar navbar-expand-sm navbar-light bg-white">
 		<div class="container">
@@ -132,20 +132,26 @@ unset($conn);
 					<a class="nav-item nav-link" href="http://campizza.com/contact">Contact</a>
 				</div>
 			</div>
-		
 		</div>
 	</nav>
-
+<div style="background-color: white; margin-top: 3px;max-width: 2000px;max-height: 30px;">
+			<form action="logout.php" method "post">
+				<div style="float: right;">   
+					<input class="right" type="submit" value="Log Out" style="padding-right:40px;margin:right;background-color: Transparent;background-repeat:no-repeat;border: none;cursor:pointer;overflow: hidden;color:red">  
+				</div>
+				<div>
+					<a class="left" href="dashboard.php" role="button" style="padding-left:40px;background-color: Transparent;background-repeat:no-repeat;border: none;cursor:pointer;overflow: hidden;color:blue;">< Back to Dashboard</a>
+				</div>
+			</form>
+		</div>
 
 <form role="form" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-	<!-- Html Lookout -->
-<div class="container" style = "background: white; margin-top: 20px;">
 
-    <h1 style = "padding-top: 40px;text-align: center;">Registration for Camp Izza</h1>
-    <div class="ml-auto">
-		<a class="btn btn-primary top-buffer" href="dashboard.php" role="button">< Back to Dashboard</a>
-							
-	</div>
+	<!-- Html Lookout -->
+<div class="ml-auto" style="text-align: right; margin-right: 20px;">
+</div>
+<div class="container" style="background-color: white; padding-left: 40px;padding-right: 40px;padding-bottom: 70px; padding-top: 30px;margin-bottom: 20px; margin-top:20px!important;max-width: 800px;margin: auto">
+    <h1 style = "padding-top: 10px;text-align: center;">Camp Izza Registration Form</h1>
 
   	<div class="container">
 
