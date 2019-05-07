@@ -467,26 +467,26 @@ unset($conn);
 										  <div class="card-body">
 										    <h5 class="card-title"><b>Just In Case: Pricings</b></h5>
 											  	<div class="row">
-													<div class="col-6" align="right">
+													<div class="col-5" align="right">
 												  		<p style="padding-top: 20px;">One Day AM Pricing</p>
 												  	</div>
-											  		<div class="col-6">
+											  		<div class="col-7">
 												  		<input class="form-control" type="text" name="onedayam"  <?php if($price['onedayam'] != NULL){ echo 'value='.$price['onedayam'];}?> >
 												  	</div>
 												</div>
 												<div class = "row">
-													<div class="col-6" align="right">
+													<div class="col-5" align="right">
 												  		<p style="padding-top: 20px;">One Day PM Pricing</p>
 												  	</div>
-													<div class="col-6">
+													<div class="col-7">
 												  		<input class="form-control" type="text" name="onedaypm"  <?php if($price['onedaypm'] != NULL){ echo 'value='.$price['onedaypm'];}?> >
 												  	</div>
 												</div>
 												<div class = "row">
-													<div class="col-6" align="right">
+													<div class="col-5" align="right">
 												  		<p style="padding-top: 20px;">One Day Full Pricing</p>
 												  	</div>
-													<div class="col-6">
+													<div class="col-7">
 												  		<input class="form-control" type="text" name="onedayfull"  <?php if($price['onedayfull'] != NULL){ echo 'value='.$price['onedayfull'];}?> >
 												  	</div>
 												</div>
@@ -500,26 +500,26 @@ unset($conn);
 										  <div class="card-body">
 										    <h5 class="card-title"><b>Pricing For One Week (Early)</b></h5>
 											  	<div class="row">
-													<div class="col-6" align="right">
+													<div class="col-5" align="right">
 												  		<p style="padding-top: 20px;">AM Early Pricing</p>
 												  	</div>
-											  		<div class="col-6">
+											  		<div class="col-7">
 												  		<input class="form-control" type="text" name="oneweekamearly" <?php if($price['oneweekamearly'] != NULL){ echo 'value='.$price['oneweekamearly'];}?> >
 												  	</div>
 												</div>
 												<div class = "row">
-													<div class="col-6" align="right">
+													<div class="col-5" align="right">
 												  		<p style="padding-top: 20px;">PM Early Pricing</p>
 												  	</div>
-													<div class="col-6">
+													<div class="col-7">
 												  		<input class="form-control" type="text" name="oneweekpmearly" <?php if($price['oneweekpmearly'] != NULL){ echo 'value='.$price['oneweekpmearly'];}?> >
 												  	</div>
 												</div>
 												<div class = "row">
-													<div class="col-6" align="right">
+													<div class="col-5" align="right">
 												  		<p style="padding-top: 20px;">Full Early Pricing</p>
 												  	</div>
-													<div class="col-6">
+													<div class="col-7">
 												  		<input class="form-control" type="text" name="oneweekfullearly" <?php if($price['oneweekfullearly'] != NULL){ echo 'value='.$price['oneweekfullearly'];}?> >
 												  	</div>
 												</div>
@@ -531,26 +531,26 @@ unset($conn);
 										  <div class="card-body">
 										    <h5 class="card-title"><b>Pricing For One Week (Late)</b></h5>
 											  	<div class="row">
-													<div class="col-6" align="right">
+													<div class="col-5" align="right">
 												  		<p style="padding-top: 20px;">AM Late Pricing</p>
 												  	</div>
-											  		<div class="col-6">
+											  		<div class="col-7">
 												  		<input class="form-control" type="text" name="oneweekamlate" <?php if($price['oneweekamlate'] != NULL){ echo 'value='.$price['oneweekamlate'];}?> >
 												  	</div>
 												</div>
 												<div class = "row">
-													<div class="col-6" align="right">
+													<div class="col-5" align="right">
 												  		<p style="padding-top: 20px;">PM Late Pricing</p>
 												  	</div>
-													<div class="col-6">
+													<div class="col-7">
 												  		<input class="form-control" type="text" name="oneweekpmlate" <?php if($price['oneweekpmlate'] != NULL){ echo 'value='.$price['oneweekpmlate'];}?> >
 												  	</div>
 												</div>
 												<div class = "row">
-													<div class="col-6" align="right">
+													<div class="col-5" align="right">
 												  		<p style="padding-top: 20px;">Full Late Pricing</p>
 												  	</div>
-													<div class="col-6">
+													<div class="col-7">
 												  		<input class="form-control" type="text" name="oneweekfulllate" <?php if($price['oneweekfulllate'] != NULL){ echo 'value='.$price['oneweekfulllate'];}?> >
 												  	</div>
 												</div>
@@ -564,26 +564,26 @@ unset($conn);
 										  <div class="card-body">
 										    <h5 class="card-title"><b>Pricing For Holiday Week (Early)</b></h5>
 											  	<div class="row">
-													<div class="col-6" align="right">
+													<div class="col-5" align="right">
 												  		<p style="padding-top: 20px;">AM Early Pricing</p>
 												  	</div>
-											  		<div class="col-6">
+											  		<div class="col-7">
 												  		<input class="form-control" type="text" name="holidayweekamearly" <?php if($price['holidayweekamearly'] != NULL){ echo 'value='.$price['holidayweekamearly'];}?> >
 												  	</div>
 												</div>
 												<div class = "row">
-													<div class="col-6" align="right">
+													<div class="col-5" align="right">
 												  		<p style="padding-top: 20px;">PM Early Pricing</p>
 												  	</div>
-													<div class="col-6">
+													<div class="col-7">
 												  		<input class="form-control" type="text" name="holidayweekpmearly" <?php if($price['holidayweekpmearly'] != NULL){ echo 'value='.$price['holidayweekpmearly'];}?> >
 												  	</div>
 												</div>
 												<div class = "row">
-													<div class="col-6" align="right">
+													<div class="col-5" align="right">
 												  		<p style="padding-top: 20px;">Full Early Pricing</p>
 												  	</div>
-													<div class="col-6">
+													<div class="col-7">
 												  		<input class="form-control" type="text" name="holidayweekfullearly" <?php if($price['holidayweekfullearly'] != NULL){ echo 'value='.$price['holidayweekfullearly'];}?> >
 												  	</div>
 												</div>
@@ -595,26 +595,26 @@ unset($conn);
 										  <div class="card-body">
 										    <h5 class="card-title"><b>Pricing For Holiday Week (Late)</b></h5>
 											  	<div class="row">
-													<div class="col-6" align="right">
+													<div class="col-5" align="right">
 												  		<p style="padding-top: 20px;">AM Late Pricing</p>
 												  	</div>
-											  		<div class="col-6">
+											  		<div class="col-7">
 												  		<input class="form-control" type="text" name="holidayweekamlate" <?php if($price['holidayweekamlate'] != NULL){ echo 'value='.$price['holidayweekamlate'];}?> >
 												  	</div>
 												</div>
 												<div class = "row">
-													<div class="col-6" align="right">
+													<div class="col-5" align="right">
 												  		<p style="padding-top: 20px;">PM Late Pricing</p>
 												  	</div>
-													<div class="col-6">
+													<div class="col-7">
 												  		<input class="form-control" type="text" name="holidayweekpmlate" <?php if($price['holidayweekpmlate'] != NULL){ echo 'value='.$price['holidayweekpmlate'];}?> >
 												  	</div>
 												</div>
 												<div class = "row">
-													<div class="col-6" align="right">
+													<div class="col-5" align="right">
 												  		<p style="padding-top: 20px;">Full Late Pricing</p>
 												  	</div>
-													<div class="col-6">
+													<div class="col-7">
 												  		<input class="form-control" type="text" name="holidayweekfulllate" <?php if($price['holidayweekfulllate'] != NULL){ echo 'value='.$price['holidayweekfulllate'];}?> >
 												  	</div>
 												</div>
@@ -628,18 +628,18 @@ unset($conn);
 										  <div class="card-body">
 										    <h5 class="card-title"><b>Other Edits</b></h5>
 											  	<div class="row">
-													<div class="col-6" align="right">
+													<div class="col-5" align="right">
 												  		<p style="padding-top: 20px;">Extended Care Pricing</p>
 												  	</div>
-											  		<div class="col-6">
+											  		<div class="col-7">
 												  		<input class="form-control" type="text" name="extendedcare" <?php if($price['extendedcare'] != NULL){ echo 'value='.$price['extendedcare'];}?> >
 												  	</div>
 												</div>
 												<div class = "row">
-													<div class="col-6" align="right">
+													<div class="col-5" align="right">
 												  		<p style="padding-top: 20px;">Extra Shirt Pricing</p>
 												  	</div>
-													<div class="col-6">
+													<div class="col-7">
 												  		<input class="form-control" type="text" name="extrashirt" <?php if($price['extrashirt'] != NULL){ echo 'value='.$price['extrashirt'];}?> >
 												  	</div>
 												</div>
@@ -658,6 +658,7 @@ unset($conn);
 
 		</div>
 	</div>
+</div>
 
 
 
