@@ -48,7 +48,7 @@ if ($_SERVER['HTTPS'] != "on") {
 
 </head>
 
-<body style="background-color: #cccccc;">
+<body>
 
 	<nav class="navbar navbar-expand-sm navbar-light bg-white">
 		<div class="container">
@@ -70,19 +70,17 @@ if ($_SERVER['HTTPS'] != "on") {
 		</div>
 	</nav>
 
-		<div style="background-color: white; margin-top: 3px;max-width: 2000px;max-height: 30px;">
+		<div style="background-color: white; max-width: 2000px; margin-top: 5px;">
 			<form action="logout.php" method "post">
-				<div style="float: right;">   
-					<input class="right" type="submit" value="Log Out" style="padding-right:40px;margin:right;background-color: Transparent;background-repeat:no-repeat;border: none;cursor:pointer;overflow: hidden;color:red">  
+				<div style="float: right;">  
+					<input class="btn btn-danger top-buffer" type="submit" style="margin-right:40px;margin:right;" value="Sign Out">
 				</div>
-				<div>
-					<a class="left" href="dashboard.php" role="button" style="padding-left:40px;background-color: Transparent;background-repeat:no-repeat;border: none;cursor:pointer;overflow: hidden;color:blue;">< Back to Dashboard</a>
-				</div>
+				<a class="btn btn-primary top-buffer" href="dashboard.php" role="button" style="margin-left:40px;margin-bottom: 3px;">< Back to Dashboard</a>
 			</form>
 		</div>
 
 	<!--HTML-->
-	<div style="background-color: white; padding-left: 40px;padding-right: 40px;padding-bottom: 70px; padding-top: 30px;margin-bottom: 20px; margin-top:20px!important;max-width: 800px;margin: auto">
+	<div style="background-color: white; padding-left: 40px;padding-right: 40px;padding-bottom: 70px; padding-top: 30px;margin-bottom: 20px; margin-top:20px!important;margin: 20px 20px">
 		<div class="container">
 			<div class="row">
 					<div class="d-flex top-buffer">
@@ -109,7 +107,7 @@ $activeweeks = $campInfo["activeweeks"];
 
 while ( $row = $stmt->fetch(PDO::FETCH_ASSOC) ) {
 ?>
-				<div class="row" style="padding-bottom:50px; margin: auto; max-width: 700px;">
+				<div class="row" style="padding-bottom:50px; margin: auto;">
 					    <div class="col">
 							<div class="card" style="border-color:grey;">
 								<div class="card-body">
@@ -124,13 +122,13 @@ while ( $row = $stmt->fetch(PDO::FETCH_ASSOC) ) {
 					            </div>
 					            <button onclick="location.href = '/childinformation.php?childid=<?php echo $row['childid'] ?>';" class="btn btn-sm btn-success" style="border-color: gray">Add/Edit Summer Session</button>
 					            <div style='overflow: auto;' class="card-header">
-					            	<table class="table table-bordered " style = "background: white; margin:auto; max-width: 500px;max-height: 300px!important;font-size: 10px">
+					            	<table class="table table-bordered " style = "background: white; margin:auto">
 									  <thead>
 									    <tr>
 									      <th scope="col"></th>
-									      <th scope="col" style = "max-width: 200px">Morning: 8:30am-12:00pm</th>
+									      <th scope="col" >Morning: 8:30am-12:00pm</th>
 									      <th scope="col">Afternoon: 12:30pm-4:00pm</th>
-									      <th scope="col" style = "max-width: 200px">Extended Care: 7:00am-8:30am OR 4:00-5:30pm</th>
+									      <th scope="col" >Extended Care: 7:00am-8:30am OR 4:00-5:30pm</th>
 									    </tr>
 									  </thead>
 									  <tbody>
@@ -174,21 +172,27 @@ while ( $row = $stmt->fetch(PDO::FETCH_ASSOC) ) {
 						        <div class="row">
 						        	<div class="col-5">
 						            <div class="d-flex justify-content-between align-items-center">
-						            	<h3 style="padding-left: 20px;font-size:15px; margin-top: 20px">Amount Paid: $<?php echo $registerInfo['price']?></h3>
+						            	<h3 style="padding-left: 20px; margin-top: 20px">Amount Paid: $<?php echo $registerInfo['price']?></h3>
 						            </div>
 						            <div class="d-flex justify-content-between align-items-center">
-						            	<h3 style="padding-left: 20px;font-size:15px; margin-bottom: 20px;">Credit: $<?php echo $registerInfo['credit']?></h3><br>
+						            	<h3 style="padding-left: 20px; margin-bottom: 20px;">Credit: $<?php echo $registerInfo['credit']?></h3><br>
 						            </div>
 						            </div>
-						            <div class="col" style="padding-left: 20px;font-size:15px; margin:auto">
+						            <div class="col" style="padding-left: 20px; margin:auto">
 						            <div class="row">
 						            	
 						            <form action="updateAdditionalPaid.php" method="post">
+						            	<div class="col-2"></div>
+						            	<div class="col">
+						            		<a class="btn btn-primary top-buffer" href="" style="margin:auto" role="button">Generate Emergency Form</a>
+						            	</div>
+						            	<div class="col-2"></div>
 						            	<div class="col">
 						            		Update Credit: <input type="number" step="0.01" name="amount">
 						            		<input type="hidden" name="childid" value="<?php echo $row['childid'] ?>">
-						            		<input type="submit" value="Submit" style="size: 10px">
+						            		<input type="submit" value="Submit" >
 						            	</div>
+
 						            </form>
 						            </div>
 						            </div>
