@@ -329,7 +329,7 @@ unset($conn);
 	<!-- Address Part International/US Area-->
 		<div class="row margin-data">
   			<div class="col">
-	  				<span class="input-group-text"><p style = "font-family:times; font-size:25px;padding-top: 10px;">Area of Residence</p></span>
+	  				<span class="input-group-text"><p style = "font-family:times; font-size:25px;padding-top: 10px;">Residence</p></span>
   			</div>
   		</div>
 
