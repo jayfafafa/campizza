@@ -284,7 +284,7 @@ unset($conn);
 						    <table class="table table-bordered">
 							  <thead>
 							    <tr>
-							      <th scope="col">For Fullday, select Morning and Afternoon</th>
+							      <th scope="col">For Full Day, select Morning and Afternoon</th>
 							      <th scope="col">Morning: 8:30am - 12:00pm</th>
 							      <th scope="col">Afternoon: 12:30pm - 4:00pm</th>
 							      <th scope="col">Total</th>
