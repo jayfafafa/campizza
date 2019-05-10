@@ -27,75 +27,85 @@ if ($_SERVER['HTTPS'] != "on") {
     exit;
 }
 
-$_SESSION['attributes'] = array(
-	'childid' => 'Child ID',
-	'firstname' => 'First Name',
-	'lastname' => 'Last Name',
-	'gender' => 'Gender',
-	'dob' => 'Date of Birth',
-	'school' => 'School',
-	'grade' => 'Grade',
-	'shirtsize' => 'Shirt Size',
-	'numshirts' => '# of Shirts',
-	'week1am' => 'Week1AM',
-	'week1pm' => 'Week1PM',
-	'week2am' => 'Week2AM',
-	'week2pm' => 'Week2PM',
-	'week3am' => 'Week3AM',
-	'week3pm' => 'Week3PM',
-	'week4am' => 'Week4AM',
-	'week4pm' => 'Week4PM',
-	'week5am' => 'Week5AM',
-	'week5pm' => 'Week5PM',
-	'week6am' => 'Week6AM',
-	'week6pm' => 'Week6PM',
-	'week7am' => 'Week7AM',
-	'week7pm' => 'Week7PM',
-	'week8am' => 'Week8AM',
-	'week8pm' => 'Week8PM',
-	'extendedcare' => 'Extended Care',
-	'doctorname' => 'Doctor Name',
-	'doctorphone' => 'Doctor Phone',
-	'insurance' => 'Insurance',
-	'policyholder' => 'Policy Holder',
-	'illnesses' => 'Illnesses',
-	'allergies' => 'Allergies and/or Dietary Restrictions',
-	'medication' => 'Medication Names',
-	'activities' => 'Activities',
-	'activitiesnames' => 'Activites Names',
-	'medicaltreatments' => 'Medical Treatments',
-	'medicaltreatmentsnames' => 'Medical Treatments Names',
-	'immunizations' => 'Immunizations',
-	'tetanusdate' => 'Tetanus',
-	'comments' => 'Comments',
-	'parentid' => 'Parent ID',
-	'regtime' => 'Registration Time',
-	'location' => 'Location',
-	'guardiannamefirst1' => 'Guardian1 First Name',
-	'guardiannamelast1' => 'Guardian1 Last Name',
-	'guardiannamefirst2' => 'Guardian2 First Name',
-	'guardiannamelast2' => 'Guardian2 Last Name',
-	'address1' => 'Address1',
-	'address2' => 'Address2',
-	'country' => 'Country',
-	'city' => 'City',
-	'state' => 'State',
-	'zippostalcode' => 'Zip/Postal Code',
-	'guardianemail1' => 'Guardian Email1',
-	'guardianemail2' => 'Guardian Email2',
-	'emergencynamefirst1' => 'Emergency First Name 1',
-	'emergencynamelast1' => 'Emergency Last Name 1',
-	'emergencyrelationship1' => 'Emergency Relationship 1',
-	'emergencyphone1' => 'Emergency Phone 1',
-	'emergencyauthorized1' => 'Emergency Authorized 1',
-	'emergencynamefirst2' => 'Emergency First Name 2',
-	'emergencynamelast2' => 'Emergency Last Name 2',
-	'emergencyrelationship2' => 'Emergency Relationship 2',
-	'emergencyphone2' => 'Emergency Phone 2',
-	'emergencyauthorized2' => 'Emergency Authorized 2',
-	'price' => 'Amount Paid',
-	'credit' => 'Credit'
-	);
+if($_SERVER["REQUEST_METHOD"]=="POST") {
+
+	$sql ="CREATE TABLE Week".$_POST['week'].$_POST['year']."Attendance (
+	id INT(3) AUTO_INCREMENT PRIMARY KEY,
+	name VARCHAR(50) NOT NULL, 
+	sch_att VARCHAR(7) NOT NULL, 
+	mon VARCHAR(4), 
+	tues VARCHAR(4), 
+	wed VARCHAR(4), 
+	thurs VARCHAR(4), 
+	fri VARCHAR(4), 
+	illnesses VARCHAR(50), 
+	allergies VARCHAR(50), 
+	medication VARCHAR(50), 
+	activities VARCHAR(50), 
+	comments VARCHAR(200)
+	)";
+
+	try{
+		$conn->query($sql);
+		echo "Table created";
+	} catch (PDOException $exception) {
+		if($exception->getCode() == 23000) {
+			// CREATE ALERT TO SAY TO DELETE CURRENT TABLE
+		}
+		else {echo "Error: ".$exception->getcode();}
+	}
+
+	$result = $conn->query("SELECT * FROM Children, ChildrenDynamic WHERE Children.childid=ChildrenDynamic.childid AND ChildrenDynamic.registeredyear=".$_POST['year']);
+	$num = $result->rowCount();
+
+	$sqlInsert= "INSERT INTO Week".$_POST['week'].$_POST['year']."Attendance (name, sch_att, mon, tues, wed, thurs, fri, illnesses, allergies, medication, activities, comments) 
+	VALUES(:name, :sch_att, :mon, :tues, :wed, :thurs, :fri, :illnesses, :allergies, :medication, :activities, :comments)";
+
+	$i=0;
+	while ($i < $num) {
+
+		$row = $result->fetch(PDO::FETCH_ASSOC);
+
+		$name = $row['firstname']." ".$row['lastname'];
+		
+		if($row['week'.$_POST['week'].'am'] == 1 && $row['week'.$_POST['week'].'pm'] == 1)
+			$sch_att = 'FULL';
+		elseif ($row['week'.$_POST['week'].'am'] == 1)
+			$sch_att = 'AM ONLY'; 
+		elseif ($row['week'.$_POST['week'].'pm'] == 1)
+			$sch_att = 'PM ONLY';
+		else
+			$sch_att = 'NONE';
+
+		$data = [
+			':name' => $name,
+			':sch_att' => $sch_att,
+			':mon' => '',
+			':tues' => '',
+			':wed' => '',
+			':thurs' => '',
+			':fri' => '',
+			':illnesses' => $row['illnesses'],
+			':allergies' => $row['allergies'],
+			':medication' => $row['medicationnames'],
+			':activities' => $row['activitiesnames'],
+			':comments' => $row['comments']
+		];
+
+		if($sch_att != 'NONE'){
+			$stmt = $conn->prepare($sqlInsert);
+			$stmt->execute($data);
+		}
+
+		$i++;
+
+	}
+	unset($conn);
+	header('Location: /attendanceSheet.php?week='.$_POST['week'].'&year='.$_POST['year']);
+
+}
+
+unset($conn);
 
 ?>
 
@@ -116,15 +126,6 @@ $_SESSION['attributes'] = array(
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 
 </head>
-
-<script language="JavaScript">
-function toggle(source) {
-  checkboxes = document.getElementsByClassName("form-check-input");
-  for(var i=0, n=checkboxes.length;i<n;i++) {
-    checkboxes[i].checked = source.checked;
-  }
-}
-</script>
 
 <body>
 
@@ -148,35 +149,17 @@ function toggle(source) {
 		</div>
 	</nav>
 
-	<form action="roster.php" method="post">
-		<div class="container" style = "background: white; margin-top: 20px;">
 
-			<h2>Choose the columns you want to view</h2>
-			<div class="row margin-data">
-				<div class="col">
+<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
 
-	
-					<input type="checkbox" onClick="toggle(this)" /> Toggle All<br/>
-					
-					<?php
+	Week (between 1 and 8): <input type="number" name="week" min="1" max="8">
+	Year : <input type="number" name="year">
+	<input type="submit">
 
-					foreach ($_SESSION['attributes'] as $k => $v){
-						echo '<div class="form-check">';
-			    		echo '<input type="checkbox" class="form-check-input" id="attribute" name="'.$k.'" value=1>'.$v.'<br>';
-						echo '</div>';
-					}
-
-					?>
-
-				</div>
-			</div>
-
-			<input type="submit" value="Submit">
-
-		</div>
-	</form>
-
-
+</form>
 
 </body>
+
 </html>
+
+

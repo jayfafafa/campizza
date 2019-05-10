@@ -27,75 +27,23 @@ if ($_SERVER['HTTPS'] != "on") {
     exit;
 }
 
-$_SESSION['attributes'] = array(
-	'childid' => 'Child ID',
-	'firstname' => 'First Name',
-	'lastname' => 'Last Name',
-	'gender' => 'Gender',
-	'dob' => 'Date of Birth',
-	'school' => 'School',
-	'grade' => 'Grade',
-	'shirtsize' => 'Shirt Size',
-	'numshirts' => '# of Shirts',
-	'week1am' => 'Week1AM',
-	'week1pm' => 'Week1PM',
-	'week2am' => 'Week2AM',
-	'week2pm' => 'Week2PM',
-	'week3am' => 'Week3AM',
-	'week3pm' => 'Week3PM',
-	'week4am' => 'Week4AM',
-	'week4pm' => 'Week4PM',
-	'week5am' => 'Week5AM',
-	'week5pm' => 'Week5PM',
-	'week6am' => 'Week6AM',
-	'week6pm' => 'Week6PM',
-	'week7am' => 'Week7AM',
-	'week7pm' => 'Week7PM',
-	'week8am' => 'Week8AM',
-	'week8pm' => 'Week8PM',
-	'extendedcare' => 'Extended Care',
-	'doctorname' => 'Doctor Name',
-	'doctorphone' => 'Doctor Phone',
-	'insurance' => 'Insurance',
-	'policyholder' => 'Policy Holder',
-	'illnesses' => 'Illnesses',
-	'allergies' => 'Allergies and/or Dietary Restrictions',
-	'medication' => 'Medication Names',
-	'activities' => 'Activities',
-	'activitiesnames' => 'Activites Names',
-	'medicaltreatments' => 'Medical Treatments',
-	'medicaltreatmentsnames' => 'Medical Treatments Names',
-	'immunizations' => 'Immunizations',
-	'tetanusdate' => 'Tetanus',
-	'comments' => 'Comments',
-	'parentid' => 'Parent ID',
-	'regtime' => 'Registration Time',
-	'location' => 'Location',
-	'guardiannamefirst1' => 'Guardian1 First Name',
-	'guardiannamelast1' => 'Guardian1 Last Name',
-	'guardiannamefirst2' => 'Guardian2 First Name',
-	'guardiannamelast2' => 'Guardian2 Last Name',
-	'address1' => 'Address1',
-	'address2' => 'Address2',
-	'country' => 'Country',
-	'city' => 'City',
-	'state' => 'State',
-	'zippostalcode' => 'Zip/Postal Code',
-	'guardianemail1' => 'Guardian Email1',
-	'guardianemail2' => 'Guardian Email2',
-	'emergencynamefirst1' => 'Emergency First Name 1',
-	'emergencynamelast1' => 'Emergency Last Name 1',
-	'emergencyrelationship1' => 'Emergency Relationship 1',
-	'emergencyphone1' => 'Emergency Phone 1',
-	'emergencyauthorized1' => 'Emergency Authorized 1',
-	'emergencynamefirst2' => 'Emergency First Name 2',
-	'emergencynamelast2' => 'Emergency Last Name 2',
-	'emergencyrelationship2' => 'Emergency Relationship 2',
-	'emergencyphone2' => 'Emergency Phone 2',
-	'emergencyauthorized2' => 'Emergency Authorized 2',
-	'price' => 'Amount Paid',
-	'credit' => 'Credit'
-	);
+if($_SERVER["REQUEST_METHOD"]=="POST") {
+
+	foreach($_POST as $key => $value){
+		if ($key == "week" || $key == "year")
+			continue;
+
+		$id = explode("_", $key);
+		$sql = "UPDATE Week".$_POST['week'].$_POST['year']."Attendance SET ".$id[1]."='".$value."' WHERE id=".$id[0];
+
+		$conn->query($sql);
+	}
+
+	unset($conn);
+	header('Location: /attendanceSheet.php?week='.$_POST['week'].'&year='.$_POST['year']);
+
+}
+
 
 ?>
 
@@ -116,15 +64,6 @@ $_SESSION['attributes'] = array(
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 
 </head>
-
-<script language="JavaScript">
-function toggle(source) {
-  checkboxes = document.getElementsByClassName("form-check-input");
-  for(var i=0, n=checkboxes.length;i<n;i++) {
-    checkboxes[i].checked = source.checked;
-  }
-}
-</script>
 
 <body>
 
@@ -148,35 +87,105 @@ function toggle(source) {
 		</div>
 	</nav>
 
-	<form action="roster.php" method="post">
-		<div class="container" style = "background: white; margin-top: 20px;">
 
-			<h2>Choose the columns you want to view</h2>
-			<div class="row margin-data">
-				<div class="col">
+<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+	<div class="container" style="padding-bottom: 10px">
 
-	
-					<input type="checkbox" onClick="toggle(this)" /> Toggle All<br/>
-					
-					<?php
+		<table border="1">
+			<tr>
+				<th>Name</th>
+				<th>Scheduled Attendance</th>
+				<th>Monday</th>
+				<th>Tuesday</th>
+				<th>Wednesday</th>
+				<th>Thursday</th>
+				<th>Friday</th>
+				<th>Illnesses</th>
+				<th>Allergies</th>
+				<th>Medications</th>
+				<th>Activities</th>
+				<th>Comments</th>
+		    </tr>
+		    <?php
 
-					foreach ($_SESSION['attributes'] as $k => $v){
-						echo '<div class="form-check">';
-			    		echo '<input type="checkbox" class="form-check-input" id="attribute" name="'.$k.'" value=1>'.$v.'<br>';
-						echo '</div>';
-					}
+			    $sql = "SELECT * FROM Week".$_GET['week'].$_GET['year']."Attendance";
+			    $result = $conn->query($sql);
+			    $num = $result->rowCount();
 
-					?>
+			    $i=0;
+			    while($i < $num){
+			?>
+		    <tr>
+		    	<?php
+		    		$row = $result->fetch(PDO::FETCH_ASSOC);
+		    		echo "<th>".$row['name']."</th>";
+		    		echo "<th>".$row['sch_att']."</th>";
+		    		
+		    		$days = ['mon' => 'Monday', 'tues' => 'Tuesday', "wed" => 'Wednesday', "thurs" => "Thursday", "fri" => "Friday"];
 
-				</div>
-			</div>
+		    		foreach ($days as $k => $v){
 
-			<input type="submit" value="Submit">
+		    			$selectedBlank='';
+		    			$selectedAM='';
+		    			$selectedPM='';
+		    			$selectedFULL='';
+		    			$selectedABS='';
 
-		</div>
-	</form>
+		    			if($row[$k] == '')
+		    				$selectedBlank = 'selected="selected"';
+		    			elseif($row[$k] == 'AM')
+		    				$selectedAM = 'selected="selected"';
+		    			elseif($row[$k] == 'PM')
+		    				$selectedPM = 'selected="selected"';
+		    			elseif($row[$k] == 'FULL')
+		    				$selectedFULL = 'selected="selected"';
+		    			elseif($row[$k] == 'ABS')
+		    				$selectedABS = 'selected="selected"';
 
 
+		    			echo "<th>";
+		    			echo '<select name="'.$row['id'].'_'.$k.'" class="form-control form-control-md">';
+		    			echo '<option '.$selectedBlank.'></option>';
+		    			echo '<option '.$selectedAM.'>AM</option>';
+						echo '<option '.$selectedPM.'>PM</option>';
+						echo '<option '.$selectedFULL.'>FULL</option>';
+						echo '<option '.$selectedABS.'>ABS</option>';
+						echo '</select>';
+						echo '</th>';
+		    		}
+
+		    		echo "<th>".$row['illnesses']."</th>";
+		    		echo "<th>".$row['allergies']."</th>";
+		    		echo "<th>".$row['medication']."</th>";
+		    		echo "<th>".$row['activities']."</th>";
+		    		echo "<th>".$row['comments']."</th>";
+
+		    	?>
+
+
+		    </tr>
+		    <?php
+		    	$i++;
+				}
+				unset($conn);
+		    ?>
+		</table>
+	</div>
+	<input type="hidden" name="week" value="<?php echo $_GET['week']; ?>">
+	<input type="hidden" name="year" value="<?php echo $_GET['year']; ?>">
+	<input type="submit">
+</form>
+
+<form action="addChildAttendance.php" method="post">
+
+	Child Name: <input type="text" name="name">
+	<input type="hidden" name="week" value="<?php echo $_GET['week']; ?>">
+	<input type="hidden" name="year" value="<?php echo $_GET['year']; ?>">
+	<input type="submit">
+
+</form>
 
 </body>
+
 </html>
+

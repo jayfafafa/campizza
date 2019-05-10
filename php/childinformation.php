@@ -152,7 +152,17 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){
 		<div class="row no-task-padding">
 			<div class="col">
 				<select name="grade" class="form-control form-control-md" required>
-					  <option>K</option>
+					<?php
+						$grades = ['K', '1', '2', '3', '4', '5', '6', '7', '8'];
+
+						foreach($grades as $grade){
+							if($child['grade'] == $grade)
+								echo "<option selected='selected'>".$grade."</option>";
+							else
+								echo "<option>".$grade."</option>";
+						}
+					?>
+					  <!-- <option>K</option>
 					  <option>1</option>
 					  <option>2</option>
 					  <option>3</option>
@@ -160,7 +170,7 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){
 					  <option>5</option>
 					  <option>6</option>
 					  <option>7</option>
-					  <option>8</option>
+					  <option>8</option> -->
 				</select>
 			</div>
 		</div>
@@ -175,11 +185,21 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){
 		<div class="row no-task-padding">
 	  		<div class="col">
 	  			<select name="shirtsize" class="form-control form-control-md" required>
-					  <option value="xs">Child X-Small(4-5)</option>
+	  				<?php
+	  					$shirts = ['xs' => 'Child X-Small(4-5)', 's' => 'Child Small(5-6)', 'm' => 'Child Medium(7-8)', 'lg' => 'Child X-Large(9-10)', 'xl' => 'Child X-Large(11-12)'];
+
+	  					foreach($shirts as $size => $desc){
+							if($child['shirtsize'] == $size)
+								echo "<option selected='selected' value='".$size."'>".$desc."</option>";
+							else
+								echo "<option value='".$size."'>".$desc."</option>";
+						}
+	  				?>
+					  <!-- <option value="xs">Child X-Small(4-5)</option>
 					  <option value="s">Child Small(5-6)</option>
 					  <option value="m">Child Medium(7-8)</option>
 					  <option value="lg">Child X-Large(9-10)</option>
-					  <option value="xl">Child X-Large(11-12)</option>
+					  <option value="xl">Child X-Large(11-12)</option> -->
 				</select>
 			</div>
 		</div>
@@ -192,11 +212,21 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){
 		<div class="row no-task-padding">
 			<div class="col">
 				<select name="numshirts" class="form-control form-control-md" required>
-					  <option value=1>1 T-Shirt: Free</option>
+					<?php
+						$prices = ['1' => '1 T-Shirt: Free', '2' => '2 T-Shirts: $15', '3' => '3 T-Shirts: $30', '4' => '4 T-Shirts: $45', '5' => '5 T-Shirts: $60'];
+
+						foreach($prices as $amt => $price){
+							if($child['numshirts'] == $amt)
+								echo "<option selected='selected' value='".$amt."'>".$price."</option>";
+							else
+								echo "<option value='".$amt."'>".$price."</option>";
+						}
+					?>
+					  <!-- <option value=1>1 T-Shirt: Free</option>
 					  <option value=2>2 T-Shirts: $15</option>
 					  <option value=3>3 T-Shirts: $30</option>
 					  <option value=4>4 T-Shirts: $45</option>
-					  <option value=5>5 T-Shirts: $60</option>
+					  <option value=5>5 T-Shirts: $60</option> -->
 				</select>
 			</div>
 		</div>

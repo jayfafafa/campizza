@@ -31,6 +31,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 		.":doctorphone, :insurance, :policyholder, :illnesses, :allergies, :medication, "
 		.":medicationnames, :activities, :activitiesnames, :medicaltreatments, :medicaltreatmentsnames, "
 		.":immunizations, :tetanusdate, :comments)";
+
+
 		
 		if($stmt = $conn->prepare($sql)){
 			if($stmt->execute(array(
@@ -58,6 +60,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 				){
 				//after successful insertion redirect to childdisplay.php
 				header("location: childdisplay.php");
+				//echo $_POST['gender'];
 				}
 		} else {
 			echo "oops something went wrong";
@@ -153,8 +156,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 			<div class="row">
 		  		<div class="col">
 				<select class="form-control form-control-md" name="gender">
-						<option>Female</option>
-						<option>Male</option>
+						<option value="Female" selected="selected">Female</option>
+						<option value="Male">Male</option>
 				</select>
 				</div>
 			</div>
@@ -361,8 +364,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 			</div>
 		</div>
 	</div>
-	
-	<input type="hidden" id="gender" name="gender" value="">
 
 
 	<!-- Submit -->
@@ -385,10 +386,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 	</script>
 	
-	<script type="text/javascript">
+	<!-- <script type="text/javascript">
 		$(".dropdown-menu").click(function() {
 			$("#gender").val($(this).data('value'));
-	</script>
+	</script> -->
 
 
 

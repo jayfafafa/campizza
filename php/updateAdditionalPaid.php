@@ -30,11 +30,17 @@ $stmtAmount = $conn->query("SELECT currentyear FROM YearlySessionWeeks");
 $campInfo = $stmtAmount->fetch(PDO::FETCH_ASSOC);
 $year = $campInfo["currentyear"];
 
+$sqlCurrentAmount = $conn->query("SELECT credit FROM ChildrenDynamic WHERE childid=".$_POST['childid']." AND registeredyear=".$year);
+$rCurrentAmount = $sqlCurrentAmount->fetch(PDO::FETCH_ASSOC);
+$rCurrentAmount = $rCurrentAmount['credit'];
+
+$newAmount = $rCurrentAmount + $_POST['amount'];
+
 if($_SERVER["REQUEST_METHOD"] == "POST") {
 	$sql = "UPDATE ChildrenDynamic SET credit=:credit WHERE childid=".$_POST['childid']." AND registeredyear=".$year;
 		
 		$data = [
-			':credit' => $_POST['amount']
+			':credit' => $newAmount
 	];
 		
 	if($stmt = $conn->prepare($sql)){

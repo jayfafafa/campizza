@@ -520,7 +520,7 @@ unset($conn);
 			</div>
 
 			<div class="form-check">
-			    <input type="checkbox" class="form-check-input" id="exampleCheck1" name="emergencyauthorized1" value=1>
+			    <input type="checkbox" class="form-check-input" id="exampleCheck1" name="emergencyauthorized1" value=1 required>
 			    <label class="form-check-label" for="exampleCheck1">This person is authorized to pick up my camper(s).</label>
 			  </div>
 	<!-- Emergency Contact Top Part -->
@@ -580,7 +580,7 @@ unset($conn);
 				</div>
 			</div>
 			<div class="form-check">
-			    <input type="checkbox" class="form-check-input" id="exampleCheck2" name="emergencyauthorized2" value=1>
+			    <input type="checkbox" class="form-check-input" id="exampleCheck2" name="emergencyauthorized2" value=1 required>
 			    <label class="form-check-label" for="exampleCheck2">This person is authorized to pick up my camper(s).</label>
 			</div>
 	<!-- Submit -->
