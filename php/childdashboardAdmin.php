@@ -71,7 +71,7 @@ if ($_SERVER['HTTPS'] != "on") {
 	</nav>
 
 		<div style="background-color: white; max-width: 2000px; margin-top: 5px;">
-			<form action="logout.php" method "post">
+			<form action="logout.php" method="post">
 				<div style="float: right;">  
 					<input class="btn btn-danger top-buffer" type="submit" style="margin-right:40px;margin:right;" value="Sign Out">
 				</div>
@@ -92,13 +92,13 @@ if ($_SERVER['HTTPS'] != "on") {
 				<hr>
 				<div class="row">
 					<div class="col my-auto" style="padding-bottom: 20px;">
-						<a href="./childregistration.php" type="button" class="btn btn btn-success" style="border-color: white;color: gray;">+ Click Here to Add Camper</a>
+						<a href="./childregistration.php" type="button" class="btn btn btn-success" style="border-color: white;">+ Click Here to Add Camper</a>
 					</div>        
 				</div>
 <?php
 $parentid=$_SESSION['id'];
 
-$stmt = $conn->query("SELECT childid, firstname, lastname 
+$stmt = $conn->query("SELECT childid, parentid, firstname, lastname 
 	FROM Children");
 
 $stmtAmount = $conn->query("SELECT * FROM YearlySessionWeeks");
@@ -106,6 +106,8 @@ $campInfo = $stmtAmount->fetch(PDO::FETCH_ASSOC);
 $activeweeks = $campInfo["activeweeks"];
 
 while ( $row = $stmt->fetch(PDO::FETCH_ASSOC) ) {
+	$stmtParentInfo = $conn->query("SELECT * FROM Parents WHERE parentid=".$row['parentid']);
+	$parentInfo = $stmtParentInfo->fetch(PDO::FETCH_ASSOC);
 ?>
 				<div class="row" style="padding-bottom:50px; margin: auto;">
 					    <div class="col">
@@ -113,7 +115,9 @@ while ( $row = $stmt->fetch(PDO::FETCH_ASSOC) ) {
 								<div class="card-body">
 					              <div class="d-flex justify-content-between align-items-center">
 					              	<a class="card-text"></a>
-					              	<h3 style="font-size:20px!important;"><?php echo $row['firstname'] . " " . $row['lastname'] ?></h3>
+					              	<h3><?php echo $row['firstname'] . " " . $row['lastname'] . "<br>" . $parentInfo['address1'] . "<br>" . $parentInfo['city'] ?></h3>
+					              	<h5><?php echo $parentInfo['guardiannamefirst1'] . " " . $parentInfo['guardiannamelast1'] . "<br>" . $parentInfo["guardianemail1"] ?></h5>
+					              	<h5><?php echo $parentInfo['guardiannamefirst2'] . " " . $parentInfo['guardiannamelast2'] . "<br>" . $parentInfo["guardianemail2"] ?></h5>
 					              		<div style="">
 						                  <a href="editchild.php?childid=<?php echo $row['childid']; ?>" role="button" class="btn btn-sm btn-secondary">Edit</a>
 						                  <button onclick="deleteChildById(<?php echo $row['childid']; ?>)" id="deletecamper" class="btn btn-sm btn-danger">Delete</button>
