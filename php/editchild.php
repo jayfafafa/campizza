@@ -109,8 +109,18 @@ unset($conn);
 			<div class="row">
 		  		<div class="col">
 					<select class="form-control form-control-md" name="gender">
-						<option>Female</option>
-						<option>Male</option>
+						<?php
+							if($child['gender']=="Male"){
+								echo '<option value="Female">Female</option>
+										<option value="Male" selected="selected">Male</option>';
+							} else{
+								echo '<option value="Female" selected="selected">Female</option>
+										<option value="Male">Male</option>'
+							}
+
+						?>
+						<!--<option value="Female">Female</option>
+						<option value="Male">Male</option>-->
 					</select>
 				</div>
 			</div>
