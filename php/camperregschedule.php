@@ -219,6 +219,34 @@ $stmtCurrentScheduleInfo = $conn->query($sqlCurrentScheduleInfo);
 $currentInfo = $stmtCurrentScheduleInfo->fetch(PDO::FETCH_ASSOC);
 
 
+//Session Limiting
+$sqlLimitsDates = "SELECT * FROM DatesSessionInfo"; //K-1
+$rLimitsDates = $conn->query($sqlLimitsDates);
+$limitsDates = $rLimitsDates->fetch(PDO::FETCH_ASSOC);
+
+$sqlLimitsCoconuts = "SELECT * FROM CoconutsSessionInfo"; //2-3
+$rLimitsCoconuts = $conn->query($sqlLimitsCoconuts);
+$limitsCoconuts = $rLimitsCoconuts->fetch(PDO::FETCH_ASSOC);
+
+$sqlLimitsTrees = "SELECT * FROM TreesSessionInfo"; //4-5
+$rLimitsTrees = $conn->query($sqlLimitsTrees);
+$limitsTrees = $rLimitsTrees->fetch(PDO::FETCH_ASSOC);
+
+$sqlLimitsYLeaders = "SELECT * FROM YoungLeadersSessionInfo"; //6-8
+$rLimitsYLeaders = $conn->query($sqlLimitsYLeaders);
+$limitsYLeaders = $rLimitsYLeaders->fetch(PDO::FETCH_ASSOC);
+
+$sqlLimits = "SELECT * FROM YearlySessionLimits";
+$rLimits = $conn->query($sqlLimits);
+$sessionLimits = $rLimits->fetch(PDO::FETCH_ASSOC);
+
+$sqlGrade = "SELECT grade FROM Children WHERE childid=".$_SESSION['childid'];
+$rGrade = $conn->query($sqlGrade);
+$gradeList = $rGrade->fetch(PDO::FETCH_ASSOC);
+$grade=$gradeList['grade'];
+
+
+
 unset($conn);
 ?>
 <!doctype html>
@@ -293,23 +321,64 @@ unset($conn);
 							  <tbody>
 <?php
 for($x = 1; $x <= $activeweeks; $x++){
+
+	$currentWeekAM = 'week'.$x.'am';
+	$currentWeekPM = 'week'.$x.'pm';
+	$sessionFullAM = FALSE;
+	$sessionFullPM = FALSE;
+
+	if(($grade == 'K' || $grade == '1') && $limitsDates[$currentWeekAM] >= $sessionLimits['dateslimitam']){
+		$sessionFullAM = TRUE;
+	}
+	if(($grade == 'K' || $grade == '1') && $limitsDates[$currentWeekPM] >= $sessionLimits['dateslimitpm']){
+		$sessionFullPM = TRUE;
+	}
+	if(($grade == '2' || $grade == '3') && $limitsCoconuts[$currentWeekAM] >= $sessionLimits['coconutslimitam']){
+		$sessionFullAM = TRUE;
+	}
+	if(($grade == '2' || $grade == '3') && $limitsCoconuts[$currentWeekPM] >= $sessionLimits['coconutslimitpm']){
+		$sessionFullPM = TRUE;
+	}
+	if(($grade == '4' || $grade == '5') && $limitsTrees[$currentWeekAM] >= $sessionLimits['treeslimitam']){
+		$sessionFullAM = TRUE;
+	}
+	if(($grade == '4' || $grade == '5') && $limitsTrees[$currentWeekPM] >= $sessionLimits['treeslimitpm']){
+		$sessionFullPM = TRUE;
+	}
+	if(($grade == '6' || $grade == '7' || $grade == '8') && $limitsYLeaders[$currentWeekAM] >= $sessionLimits['youngleaderslimitam']){
+		$sessionFullAM = TRUE;
+	}
+	if(($grade == '6' || $grade == '7' || $grade == '8') && $limitsYLeaders[$currentWeekPM] >= $sessionLimits['youngleaderslimitpm']){
+		$sessionFullPM = TRUE;
+	}
+
+
 		echo '<tr>';
 		echo '<th scope="row">Week '.$x.': '.substr($weekInfo['week'.$x.'start'], 5,2).'/'.substr($weekInfo['week'.$x.'start'], 8,2).'-'
 		.substr($weekInfo['week'.$x.'end'], 5,2).'/'.substr($weekInfo['week'.$x.'end'], 8,2).'</th>';
 		echo '<td>';
 	    echo '<div class="form-check">';
-	    if($currentInfo['week'.$x.'am'] == 0){
-			echo '<input name="week'.$x.'am" class="form-check-input" type="checkbox" value="1" id="week'.$x.'a" onchange= "doalert(this)">';
-		}else
-			echo '<input name="week'.$x.'am" class="form-check-input" type="checkbox" value="1" id="week'.$x.'a" onchange= "doalert(this)" checked>';
+	    if ($sessionFullAM && $currentInfo['week'.$x.'am'] == 0){
+		    echo '<p>FULL</p>';
+		}else{
+			if($currentInfo['week'.$x.'am'] == 0){
+				echo '<input name="week'.$x.'am" class="form-check-input" type="checkbox" value="1" id="week'.$x.'a" onchange= "doalert(this)">';
+			}else{
+				echo '<input name="week'.$x.'am" class="form-check-input" type="checkbox" value="1" id="week'.$x.'a" onchange= "doalert(this)" checked>';
+			}
+		}
 		echo '</div>';
 	    echo '</td>';
 	    echo '<td>';
 	    echo '<div class="form-check">';
-	    if($currentInfo['week'.$x.'pm'] == 0){
-			echo '<input name="week'.$x.'pm" class="form-check-input" type="checkbox" value="1" id="week'.$x.'b" onchange= "doalert(this)">';
-		}else{
-			echo '<input name="week'.$x.'pm" class="form-check-input" type="checkbox" value="1" id="week'.$x.'b" onchange= "doalert(this)" checked>';
+	    if($sessionFullPM && $currentInfo['week'.$x.'pm'] == 0){
+	    	echo '<p>FULL</p>';
+	    }else{
+		    if($currentInfo['week'.$x.'pm'] == 0){
+				echo '<input name="week'.$x.'pm" class="form-check-input" type="checkbox" value="1" id="week'.$x.'b" onchange= "doalert(this)">';
+			}else{
+				echo '<input name="week'.$x.'pm" class="form-check-input" type="checkbox" value="1" id="week'.$x.'b" onchange= "doalert(this)" checked>';
+			}
 		}
 		echo '</div>';
 	    echo '</td>';
