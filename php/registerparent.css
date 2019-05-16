@@ -27,6 +27,7 @@ span{
   background-color: #ccc;
 }
 
+
 /* Style the tab content */
 .tabcontent {
   display: none;
@@ -60,4 +61,3 @@ span{
     font-size: 20px;
     border-radius: 10px;
 }
-
