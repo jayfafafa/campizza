@@ -18,7 +18,7 @@ unset($conn); //unset connection to database
 $pdf = new PDF();
 $pdf->AddPage("P");
 $pdf->centreImage("erfTemplate.png");
-$pdf->AddFont("Questrial", "", "QuestrialRegular.php"); // Add custom font - Questrial
+//$pdf->AddFont("Questrial", "", "QuestrialRegular.php"); // Add custom font - Questrial
 $pdf->SetFont('Questrial','',8);
 
 // Position data locations and populate locations with data from database
