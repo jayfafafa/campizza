@@ -312,10 +312,10 @@ unset($conn);
 						    <table class="table table-bordered">
 							  <thead>
 							    <tr>
-							      <th scope="col">For Fullday, select Morning and Afternoon</th>
-							      <th scope="col">Morning: 8:30am - 12:00pm</th>
-							      <th scope="col">Afternoon: 12:30pm - 4:00pm</th>
-							      <th scope="col">Total</th>
+							      <th style = "width:35%" scope="col">For Full day, select Morning and Afternoon</th>
+							      <th style = "width:28%" scope="col">Morning: 8:30am - 12:00pm</th>
+							      <th style = "width:28%" scope="col">Afternoon: 12:30pm - 4:00pm</th>
+							      <th style = "width:9%" scope="col">Total</th>
 							    </tr>
 							  </thead>
 							  <tbody>
@@ -473,7 +473,7 @@ for($x = 1; $x <= $activeweeks; $x++){
 							    </tr> -->
 							    <tr>
 							      <th>Extended Care<br>7:00am to 8:30am and/or 4:00pm to 5:30pm</th>
-							      <td colspan="3">
+							      <td colspan="2">
 							      	<div class="form-check">
 									  <input name="extendedcare" class="form-check-input" type="checkbox" value="1" id="extcare" onchange= "doalert(this)">
 									</div>
