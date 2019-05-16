@@ -59,7 +59,7 @@ unset($conn);
 
 </head>
 
-<body style="background-color: #cccccc;">
+<body>
 
 	<nav class="navbar navbar-expand-sm navbar-light bg-white">
 		<div class="container">
@@ -81,25 +81,20 @@ unset($conn);
 		</div>
 	</nav>
 
-		<div style="background-color: white; margin-top: 3px;max-width: 2000px;max-height: 30px;">
-			<form action="logout.php" method "post">
-				<div style="float: right;">   
-					<input class="right" type="submit" value="Log Out" style="padding-right:40px;margin:right;background-color: Transparent;background-repeat:no-repeat;border: none;cursor:pointer;overflow: hidden;color:red">  
-				</div>
-				<div>
-					<a class="left" href="dashboard.php" role="button" style="padding-left:40px;background-color: Transparent;background-repeat:no-repeat;border: none;cursor:pointer;overflow: hidden;color:blue;">< Back to Dashboard</a>
-				</div>
-			</form>
-		</div>
 
 	<!--HTML-->
-	<div style="background-color: white; padding-left: 40px;padding-right: 40px;padding-bottom: 70px; padding-top: 30px;margin-bottom: 20px; margin-top:20px!important;max-width: 800px;margin: auto">
-    <h1 style = "padding-top: 10px;text-align: center;">
+	<div class="container" style="background-color: white; padding-left: 40px;padding-right: 40px;padding-bottom: 70px; margin-bottom: 20px; margin-top:20px!important;margin: auto">
 		<div class="container">
 			<div class="row">
 				<div class="d-flex top-buffer">
 					<h1><b>Camp Information Editor</b></h1>
 				</div>
+				<div class="ml-auto" style="padding-top: 20px;">
+						<form action="logout.php" method "post">
+							<a class="btn btn-primary top-buffer" href="dashboard.php" role="button">< Back to Dashboard</a>
+							<input class="btn btn-danger top-buffer" type="submit" value="Sign Out">
+						</form>
+					</div>
 			</div>
 			<div class = "row align-items-center" style="padding: 10px 2px;">
 				<button class="tablink" onclick="openPage('GroupLimits', this, 'red')" id="defaultOpen">Group Info.</button>
@@ -111,9 +106,9 @@ unset($conn);
 					  <h3 style="padding: 30px 40px;"><b>Group Limits</b></h3>
 					  <hr>
 					  	<form action="editSessionLimits.php" method="post">
-					  		<div class="row" align="center" style="padding-bottom:50px; margin: auto; max-width: 700px;">
+					  		<div class="row" align="center" style="padding-bottom:50px; margin: auto;">
 								<div class="col">
-									<div class="card" style = "background: white; margin:auto; max-width: 500px;max-height: 300px!important;font-size: 20px">
+									<div class="card" style = "background: white; margin:auto; font-size: 20px">
 										  <div class="card-body">
 										    <h5 class="card-title"><b>Group 1: Dates</b></h5>
 											  	<div class="row">
@@ -136,7 +131,7 @@ unset($conn);
 									</div>
 								</div>
 								<div class="col">
-									<div class="card" style = "background: white; margin:auto; max-width: 500px;max-height: 300px!important;font-size: 20px">
+									<div class="card" style = "background: white; margin:auto; font-size: 20px">
 										  <div class="card-body">
 										    <h5 class="card-title"><b>Group 2: Coconuts</b></h5>
 											  	<div class="row">
@@ -161,7 +156,7 @@ unset($conn);
 							</div>
 							<div class="row" align="center">
 								<div class="col">
-									<div class="card" style = "background: white; margin:auto; max-width: 500px;max-height: 300px!important;font-size: 20px">
+									<div class="card" style = "background: white; margin:auto; font-size: 20px">
 										  <div class="card-body">
 										    <h5 class="card-title"><b>Group 3: Trees</b></h5>
 											  	<div class="row">
@@ -184,7 +179,7 @@ unset($conn);
 									</div>
 								</div>
 								<div class="col">
-									<div class="card" style = "background: white; margin:auto; max-width: 500px;max-height: 300px!important;font-size: 20px">
+									<div class="card" style = "background: white; margin:auto; font-size: 20px">
 										  <div class="card-body">
 										    <h5 class="card-title"><b>Group 4: Young Leaders</b></h5>
 											  	<div class="row">
@@ -224,7 +219,7 @@ unset($conn);
 						<hr>
 							<div class="row" align="center">
 								<div class="col">
-									<div class="card" style = "background: white; margin:auto; max-width: 500px;max-height: 300px!important;font-size: 15px">
+									<div class="card" style = "background: white; margin:auto; font-size: 15px">
 										  <div class="card-body">
 										    <h5 class="card-title"><b>Week 1</b></h5>
 											  	<div class="row">
@@ -247,7 +242,7 @@ unset($conn);
 									</div>
 								</div>
 								<div class="col">
-									<div class="card" style = "background: white; margin:auto; max-width: 500px;max-height: 300px!important;font-size: 15px">
+									<div class="card" style = "background: white; margin:auto; font-size: 15px">
 										  <div class="card-body">
 										    <h5 class="card-title"><b>Week 2</b></h5>
 											  	<div class="row">
@@ -272,7 +267,7 @@ unset($conn);
 							</div>
 							<div class="row" align="center">
 								<div class="col">
-									<div class="card" style = "background: white; margin:auto; max-width: 500px;max-height: 300px!important;font-size: 15px">
+									<div class="card" style = "background: white; margin:auto; font-size: 15px">
 										  <div class="card-body">
 										    <h5 class="card-title"><b>Week 3</b></h5>
 											  	<div class="row">
@@ -295,7 +290,7 @@ unset($conn);
 									</div>
 								</div>
 								<div class="col">
-									<div class="card" style = "background: white; margin:auto; max-width: 500px;max-height: 300px!important;font-size: 15px">
+									<div class="card" style = "background: white; margin:auto; font-size: 15px">
 										  <div class="card-body">
 										    <h5 class="card-title"><b>Week 4</b></h5>
 											  	<div class="row">
@@ -320,7 +315,7 @@ unset($conn);
 							</div>
 							<div class="row" align="center">
 								<div class="col">
-									<div class="card" style = "background: white; margin:auto; max-width: 500px;max-height: 300px!important;font-size: 15px">
+									<div class="card" style = "background: white; margin:auto; font-size: 15px">
 										  <div class="card-body">
 										    <h5 class="card-title"><b>Week 5</b></h5>
 											  	<div class="row">
@@ -343,7 +338,7 @@ unset($conn);
 									</div>
 								</div>
 								<div class="col">
-									<div class="card" style = "background: white; margin:auto; max-width: 500px;max-height: 300px!important;font-size: 15px">
+									<div class="card" style = "background: white; margin:auto; font-size: 15px">
 										  <div class="card-body">
 										    <h5 class="card-title"><b>Week 6</b></h5>
 											  	<div class="row">
@@ -368,7 +363,7 @@ unset($conn);
 							</div>
 							<div class="row" align="center">
 								<div class="col">
-									<div class="card" style = "background: white; margin:auto; max-width: 500px;max-height: 300px!important;font-size: 15px">
+									<div class="card" style = "background: white; margin:auto; font-size: 15px">
 										  <div class="card-body">
 										    <h5 class="card-title"><b>Week 7</b></h5>
 											  	<div class="row">
@@ -391,7 +386,7 @@ unset($conn);
 									</div>
 								</div>
 								<div class="col">
-									<div class="card" style = "background: white; margin:auto; max-width: 500px;max-height: 300px!important;font-size: 15px">
+									<div class="card" style = "background: white; margin:auto; font-size: 15px">
 										  <div class="card-body">
 										    <h5 class="card-title"><b>Week 8</b></h5>
 											  	<div class="row">
@@ -416,7 +411,7 @@ unset($conn);
 							</div>
 							<div class="row" align="center">
 								<div class="col">
-									<div class="card" style = "background: white; margin:auto; max-width: 500px;max-height: 400px!important;font-size: 15px;">
+									<div class="card" style = "background: white; margin:auto; font-size: 15px;">
 										  <div class="card-body">
 										    <h5 class="card-title"><b>Other Edits</b></h5>
 											  	<div class="row">
@@ -463,7 +458,7 @@ unset($conn);
 					  <hr>
 					  <div class="row" align="center">
 								<div class="col">
-									<div class="card" style="background: #5F5F5F; color: white; margin:auto; max-width: 500px;max-height: 400px!important;font-size: 15px;">
+									<div class="card" style="background: #5F5F5F; color: white; margin:auto; font-size: 15px;">
 										  <div class="card-body">
 										    <h5 class="card-title"><b>Just In Case: Pricings</b></h5>
 											  	<div class="row">
@@ -496,7 +491,7 @@ unset($conn);
 							</div>
 					  <div class="row" align="center">
 								<div class="col">
-									<div class="card" style = "background: white; margin:auto; max-width: 500px;max-height: 400px!important;font-size: 15px">
+									<div class="card" style = "background: white; margin:auto; font-size: 15px">
 										  <div class="card-body">
 										    <h5 class="card-title"><b>Pricing For One Week (Early)</b></h5>
 											  	<div class="row">
@@ -527,7 +522,7 @@ unset($conn);
 									</div>
 								</div>
 								<div class="col">
-									<div class="card" style = "background: white; margin:auto; max-width: 500px;max-height: 400px!important;font-size: 15px">
+									<div class="card" style = "background: white; margin:auto; font-size: 15px">
 										  <div class="card-body">
 										    <h5 class="card-title"><b>Pricing For One Week (Late)</b></h5>
 											  	<div class="row">
@@ -560,7 +555,7 @@ unset($conn);
 							</div>
 							<div class="row" align="center">
 								<div class="col">
-									<div class="card" style = "background: white; margin:auto; max-width: 500px;max-height: 400px!important;font-size: 15px">
+									<div class="card" style = "background: white; margin:auto; font-size: 15px">
 										  <div class="card-body">
 										    <h5 class="card-title"><b>Pricing For Holiday Week (Early)</b></h5>
 											  	<div class="row">
@@ -591,7 +586,7 @@ unset($conn);
 									</div>
 								</div>
 								<div class="col">
-									<div class="card" style = "background: white; margin:auto; max-width: 500px;max-height: 400px!important;font-size: 15px">
+									<div class="card" style = "background: white; margin:auto; font-size: 15px">
 										  <div class="card-body">
 										    <h5 class="card-title"><b>Pricing For Holiday Week (Late)</b></h5>
 											  	<div class="row">
@@ -624,7 +619,7 @@ unset($conn);
 							</div>
 							<div class="row" align="center">
 								<div class="col">
-									<div class="card" style = "background: white; margin:auto; max-width: 500px;max-height: 400px!important;font-size: 15px">
+									<div class="card" style = "background: white; margin:auto; font-size: 15px">
 										  <div class="card-body">
 										    <h5 class="card-title"><b>Other Edits</b></h5>
 											  	<div class="row">
