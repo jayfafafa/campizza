@@ -114,7 +114,7 @@ unset($conn);
 
 </head>
 
-<body style="background-color: #cccccc;">
+<body>
 
 	<nav class="navbar navbar-expand-sm navbar-light bg-white">
 		<div class="container">
@@ -134,24 +134,23 @@ unset($conn);
 			</div>
 		</div>
 	</nav>
-<div style="background-color: white; margin-top: 3px;max-width: 2000px;max-height: 30px;">
-			<form action="logout.php" method "post">
-				<div style="float: right;">   
-					<input class="right" type="submit" value="Log Out" style="padding-right:40px;margin:right;background-color: Transparent;background-repeat:no-repeat;border: none;cursor:pointer;overflow: hidden;color:red">  
-				</div>
-				<div>
-					<a class="left" href="dashboard.php" role="button" style="padding-left:40px;background-color: Transparent;background-repeat:no-repeat;border: none;cursor:pointer;overflow: hidden;color:blue;">< Back to Dashboard</a>
-				</div>
-			</form>
-		</div>
 
 <form role="form" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
 
 	<!-- Html Lookout -->
 <div class="ml-auto" style="text-align: right; margin-right: 20px;">
 </div>
-<div class="container" style="background-color: white; padding-left: 40px;padding-right: 40px;padding-bottom: 70px; padding-top: 30px;margin-bottom: 20px; margin-top:20px!important;max-width: 800px;margin: auto">
-    <h1 style = "padding-top: 10px;text-align: center;">Camp Izza Registration Form</h1>
+<div class="container" style="background-color: white; padding-left: 40px;padding-right: 40px;padding-bottom: 70px; padding-top: 30px;margin-bottom: 20px; margin-top:20px!important;margin: auto">
+	<div class="row">
+		<h1 style = "padding-top: 10px;margin-left: 30px">Camp Izza Registration Form</h1>
+	    <div class="ml-auto" style="margin-right: 30px;">
+			<form action="logout.php" method "post">
+				<a class="btn btn-primary top-buffer" href="dashboard.php" role="button">< Back to Dashboard</a>
+				<input class="btn btn-danger top-buffer" type="submit" value="Sign Out">
+			</form>
+		</div>
+		
+	</div>
 
   	<div class="container">
 
@@ -233,28 +232,28 @@ unset($conn);
 
 			<div class="row task-padding">
 				<div class="col">
-			    	<p>Phone Number 1: (e.g 1234567890)<b style = "color: #DC143C;">*</b></p>
+			    	<p>Phone Number 1:<b style = "color: #DC143C;">*</b></p>
 			    </div>
 			</div>
 
 			<div class="row no-task-padding">
 				<div class="col">
 					<div class="input-group mb-3">
-					  <input name="guardianphone1" type="tel" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" class="form-control" aria-label="Text input with segmented dropdown button" <?php if($parent['guardian1phone1'] != NULL){ echo 'value='.$parent['guardian1phone1'];}?> required>
+					  <input name="guardianphone1" type="text" class="form-control" aria-label="Text input with segmented dropdown button" <?php if($parent['guardian1phone1'] != NULL){ echo 'value='.$parent['guardian1phone1'];}?> required>
 					</div>
 				</div>
 			</div>
 			
 			<div class="row task-padding">
 				<div class="col">
-			    	<p>Phone Number 2: (e.g 1234567890)<b style = "color: #DC143C;">*</b></p>
+			    	<p>Phone Number 2: <b style = "color: #DC143C;">*</b></p>
 			    </div>
 			</div>
 
 			<div class="row no-task-padding">
 				<div class="col">
 					<div class="input-group mb-3">
-					  <input name="guardianphone2" type="tel" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" class="form-control" aria-label="Text input with segmented dropdown button" <?php if($parent['guardian1phone2'] != NULL){ echo 'value='.$parent['guardian1phone2'];}?> required>
+					  <input name="guardianphone2" type="text" class="form-control" aria-label="Text input with segmented dropdown button" <?php if($parent['guardian1phone2'] != NULL){ echo 'value='.$parent['guardian1phone2'];}?> required>
 					</div>
 				</div>
 			</div>
@@ -303,14 +302,14 @@ unset($conn);
 
 			<div class="row task-padding">
 				<div class="col">
-			    	<p>Phone Number: (e.g 1234567890)</p>
+			    	<p>Phone Number: </p>
 			    </div>
 			</div>
 
 			<div class="row no-task-padding">
 				<div class="col">
 					<div class="input-group mb-3">
-					  <input name="phone3" type="tel" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" class="form-control" aria-label="Text input with segmented dropdown button" <?php if($parent['guardian2phone1'] != NULL){ echo 'value='.$parent['guardian2phone1'];}?> >
+					  <input name="phone3" type="text" class="form-control" aria-label="Text input with segmented dropdown button" <?php if($parent['guardian2phone1'] != NULL){ echo 'value='.$parent['guardian2phone1'];}?> >
 					</div>
 				</div>
 			</div>
@@ -318,21 +317,21 @@ unset($conn);
 
 			<div class="row task-padding">
 				<div class="col">
-			    	<p>Phone Number 2: (e.g 1234567890)</p>
+			    	<p>Phone Number 2: </p>
 			    </div>
 			</div>
 
 			<div class="row no-task-padding">
 				<div class="col">
 					<div class="input-group mb-3">
-					  <input name="phone4" type="tel" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" class="form-control" aria-label="Text input with segmented dropdown button" <?php if($parent['guardian2phone2'] != NULL){ echo 'value='.$parent['guardian2phone2'];}?> >
+					  <input name="phone4" type="text" class="form-control" aria-label="Text input with segmented dropdown button" <?php if($parent['guardian2phone2'] != NULL){ echo 'value='.$parent['guardian2phone2'];}?> >
 					</div>
 				</div>
 			</div>
 	<!-- Address Part International/US Area-->
 		<div class="row margin-data">
   			<div class="col">
-	  				<span class="input-group-text"><p style = "font-family:times; font-size:25px;padding-top: 10px;">Area of Residence</p></span>
+	  				<span class="input-group-text"><p style = "font-family:times; font-size:25px;padding-top: 10px;">Residence</p></span>
   			</div>
   		</div>
 
@@ -447,7 +446,7 @@ unset($conn);
 		  		</div>
 		  		<div class="row no-task-padding">
 			  		<div class="col">
-						<input name="country" type="text" times-label="City" class="form-control" <?php if($parent['country'] != NULL){ echo 'value='.$parent['country'];}?> >
+						<input style = "color:black" name="country" type="text" placeholder="United States"  times-label="City" class="form-control" <?php if($parent['country'] != NULL){ echo 'value='.$parent['country'];}?> >
 					</div>
 
 				</div>
