@@ -89,7 +89,7 @@ if ($_SERVER['HTTPS'] != "on") {
 				<hr>
 				<div class="row">
 					<div class="col my-auto" style="padding-bottom: 20px;">
-						<a href="./childregistration.php" type="button" class="btn btn btn-success" style="border-color: white">+ Click Here to Add Camper</a>
+						<a href="./childregistration.php" role="button" class="btn btn-success" >+ Click Here to Add Camper</a>
 					</div>        
 				</div>
 <?php
@@ -108,18 +108,19 @@ while ( $row = $stmt->fetch(PDO::FETCH_ASSOC) ) {
 				<div class="row" style="padding-bottom:50px">
 					    <div class="col">
 							<div class="card" style="border-color:grey">
-								<div class="card-body">
-					              <div class="d-flex justify-content-between align-items-center">
-					              	<a class="card-text"></a>
-					              	<h3><?php echo $row['firstname'] . " " . $row['lastname'] ?></h3>
-					              		<div>
-						                  <a href="editchild.php?childid=<?php echo $row['childid']; ?>" role="button" class="btn btn-sm btn-secondary">Edit Camper</a>
-						                  <button onclick="deleteChildById(<?php echo $row['childid']; ?>)" id="deletecamper" class="btn btn-sm btn-danger">Delete Camper</button>
-						                </div>
+								<div class="row">
+									<div class="col">
+					              		<h2 style="padding-top: 20px; padding-right:50px; padding-left: 50px; padding-bottom: 20px;"><?php echo $row['firstname'] . " " . $row['lastname'] ?></h2>
+					              	</div>
+
+					              	<div div class="col" style="text-align: right;">
+					              			<button style="font-size:15px;margin-top: 25px; margin-right: 10px;margin-left: 40px" onclick="location.href = '/childinformation.php?childid=<?php echo $row['childid'] ?>';" class="btn btn-sm btn-success" style="border-color: gray">Add/Edit Summer Session Schedule</button>
+						                  <a style="margin-top: 25px; margin-right: 10px;font-size:15px;" href="editchild.php?childid=<?php echo $row['childid']; ?>" role="button" class="btn btn-sm btn-secondary">Edit Camper</a>
+						                  <button style="font-size:15px;margin-top: 25px; margin-right: 10px" onclick="deleteChildById(<?php echo $row['childid']; ?>)" id="deletecamper" class="btn btn-sm btn-danger">Delete Camper</button>
+						               </div>
 					              </div>
-					            </div>
-					            <button onclick="location.href = '/childinformation.php?childid=<?php echo $row['childid'] ?>';" class="btn btn-sm btn-success" style="border-color: gray">Add/Edit Summer Session</button>
 					            <div style='overflow: auto;' class="card-header">
+					            	<h5 style="margin: auto">Summer Session Schedule:</h5>
 					            	<table class="table table-bordered " style = "background: white;">
 									  <thead>
 									    <tr>
