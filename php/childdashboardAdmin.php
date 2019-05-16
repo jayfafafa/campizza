@@ -70,21 +70,17 @@ if ($_SERVER['HTTPS'] != "on") {
 		</div>
 	</nav>
 
-		<div style="background-color: white; max-width: 2000px; margin-top: 5px;">
-			<form action="logout.php" method="post">
-				<div style="float: right;">  
-					<input class="btn btn-danger top-buffer" type="submit" style="margin-right:40px;margin:right;" value="Sign Out">
-				</div>
-				<a class="btn btn-primary top-buffer" href="dashboard.php" role="button" style="margin-left:40px;margin-bottom: 3px;">< Back to Dashboard</a>
-			</form>
-		</div>
-
 	<!--HTML-->
 	<div style="background-color: white; padding-left: 40px;padding-right: 40px;padding-bottom: 70px; padding-top: 30px;margin-bottom: 20px; margin-top:20px!important;margin: 20px 20px">
-		<div class="container">
 			<div class="row">
 					<div class="d-flex top-buffer">
 						<h3>Camper Dashboard</h3>
+					</div>
+					<div class="ml-auto">
+						<form action="logout.php" method "post">
+							<a class="btn btn-primary top-buffer" href="dashboard.php" role="button">< Back to Dashboard</a>
+							<input class="btn btn-danger top-buffer" type="submit" value="Sign Out">
+						</form>
 					</div>
 				</div>
 				<div class="row"><p align="center">This page allows you to add, remove, and edit your camper information.</p>
@@ -92,7 +88,7 @@ if ($_SERVER['HTTPS'] != "on") {
 				<hr>
 				<div class="row">
 					<div class="col my-auto" style="padding-bottom: 20px;">
-						<a href="./childregistration.php" type="button" class="btn btn btn-success" style="border-color: white;">+ Click Here to Add Camper</a>
+						<a href="./childregistration.php" role="button" class="btn btn-success" >+ Click Here to Add Camper</a>
 					</div>        
 				</div>
 <?php
@@ -111,21 +107,46 @@ while ( $row = $stmt->fetch(PDO::FETCH_ASSOC) ) {
 ?>
 				<div class="row" style="padding-bottom:50px; margin: auto;">
 					    <div class="col">
-							<div class="card" style="border-color:grey;">
-								<div class="card-body">
+							<div class="card" style="border-color:black">
+								<div class="row">
+								<div class="col">
+									<h2 style="padding-top: 20px; padding-right:50px; padding-left: 50px"><?php echo $row['firstname'] . " " . $row['lastname'] ?></h2>
+								</div>
+								<div class="col-8" style="text-align: right;">
+									<button style="font-size:15px;margin-top: 25px; margin-right: 10px;margin-left: 40px" onclick="location.href = '/childinformation.php?childid=<?php echo $row['childid'] ?>';" class="btn btn-sm btn-success" style="border-color: gray">Add/Edit Summer Session Schedule</button>
+						            <a style="margin-top: 25px; margin-right: 10px;font-size:15px;" href="editchild.php?childid=<?php echo $row['childid']; ?>" role="button" class="btn btn-sm btn-secondary">Edit Camper</a>
+						            <button style="font-size:15px;margin-top: 25px; margin-right: 10px" onclick="deleteChildById(<?php echo $row['childid']; ?>)" id="deletecamper" class="btn btn-sm btn-danger">Delete Camper</button>
+						        </div>
+						        </div>
+						        <hr>
+								<div class="card-body" style="border-color:black">
 					              <div class="d-flex justify-content-between align-items-center">
 					              	<a class="card-text"></a>
-					              	<h3><?php echo $row['firstname'] . " " . $row['lastname'] . "<br>" . $parentInfo['address1'] . "<br>" . $parentInfo['city'] ?></h3>
-					              	<h5><?php echo $parentInfo['guardiannamefirst1'] . " " . $parentInfo['guardiannamelast1'] . "<br>" . $parentInfo["guardianemail1"] ?></h5>
-					              	<h5><?php echo $parentInfo['guardiannamefirst2'] . " " . $parentInfo['guardiannamelast2'] . "<br>" . $parentInfo["guardianemail2"] ?></h5>
-					              		<div style="">
-						                  <a href="editchild.php?childid=<?php echo $row['childid']; ?>" role="button" class="btn btn-sm btn-secondary">Edit</a>
-						                  <button onclick="deleteChildById(<?php echo $row['childid']; ?>)" id="deletecamper" class="btn btn-sm btn-danger">Delete</button>
-						                </div>
+					              	<div class="col">
+					              		<h5 style="margin: auto">Address</h5>
+					              		<?php echo $parentInfo['address1'] . "<br>" . $parentInfo['city'] ?>
+					              	</div>
+					              	<div class="col">
+					              		<h5 style="margin: auto" >Guardian 1</h5>
+					              		<?php echo $parentInfo['guardiannamefirst1'] . " " . $parentInfo['guardiannamelast1'] . "<br>" . $parentInfo["guardianemail1"] ?>
+					              	</div>
+					              	<div class="col">
+						              	<?php 
+						              	if (($parentInfo['guardiannamefirst2'] == "") Or ($parentInfo["guardianemail2"] == ""))
+						              	{
+						              		echo "";
+						              	}
+						              	else
+						              	{
+						              		echo "<h5 style='margin: auto'>Guardian 2</h5>";
+						              		echo $parentInfo['guardiannamefirst2'] . " " . $parentInfo['guardiannamelast2'] . "<br>" . $parentInfo["guardianemail2"];
+						              	}
+						           		?>
+					              	</div>
+					              	</div>
 					              </div>
-					            </div>
-					            <button onclick="location.href = '/childinformation.php?childid=<?php echo $row['childid'] ?>';" class="btn btn-sm btn-success" style="border-color: gray">Add/Edit Summer Session</button>
-					            <div style='overflow: auto;' class="card-header">
+					            <div style='overflow: auto;' class="card-header" style="border-color:black">
+					            	<h5 style="margin: auto">Summer Session Schedule:</h5>
 					            	<table class="table table-bordered " style = "background: white; margin:auto">
 									  <thead>
 									    <tr>
@@ -174,7 +195,7 @@ while ( $row = $stmt->fetch(PDO::FETCH_ASSOC) ) {
 									</table>
 					            </div>
 						        <div class="row">
-						        	<div class="col-5">
+						        	<div class="col-4">
 						            <div class="d-flex justify-content-between align-items-center">
 						            	<h3 style="padding-left: 20px; margin-top: 20px">Amount Paid: $<?php echo $registerInfo['price']?></h3>
 						            </div>
@@ -184,7 +205,7 @@ while ( $row = $stmt->fetch(PDO::FETCH_ASSOC) ) {
 						            </div>
 						            <div class="col" style="padding-left: 20px; margin:auto">
 						            <div class="row">
-						            
+						 
 						            <form action="erfGenerator.php" method="post" id="erfform">									
 										<div class="col-2"></div>
 						            	<div class="col">
