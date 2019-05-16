@@ -141,10 +141,10 @@ include ('connection.php');
 <!--     <h3 style = "text-align: center;"></h3> -->
   	<div class="container" style="padding-bottom: 10px; border-color: black;">
   	<div class="row"> 
-  		<div class="col" style="font-size: 10px;background: #f2f2f2; margin-top: 10px;">
+  		<div class="col" style="font-size: 12px;background: #f2f2f2; margin-top: 10px;">
   			<table>
   		  <tr>
-		    <td colspan="2" valign="top"style="font-size: 20px; text-align: center;padding-top: 10px;padding-bottom: 5px;"><b>Terms and Conditions</b>
+		    <td colspan="2" valign="top"style="font-size: 25px; text-align: center;padding-top: 10px;padding-bottom: 5px;"><b>Terms and Conditions</b>
 		    </td>
 		  </tr>
 		  <tr>
