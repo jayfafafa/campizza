@@ -206,14 +206,26 @@ while ( $row = $stmt->fetch(PDO::FETCH_ASSOC) ) {
 						            <div class="col" style="padding-left: 20px; margin:auto">
 						            <div class="row">
 						 
+						            <form action="erfGenerator.php" method="post" id="erfform">									
+										<div class="col-2"></div>
+						            	<div class="col">
+											<input type="hidden" name="childid" value="<?php echo $row['childid'] ?>">
+						            		<!-- <a class="btn btn-primary top-buffer" href="" type="submit" form="erfform" style="margin:auto" role="button">Generate Emergency Form</a> -->
+											<input class="btn btn-primary top-buffer" type="submit" style="margin:auto" value="Generate Emergency Form" >
+						            	</div>
+									</form>
+										
+										
+										
 						            <form action="updateAdditionalPaid.php" method="post">
-						            		<a class="btn btn-primary top-buffer" href="" style="margin:auto; margin-right: 40px; margin-left: 20px" role="button">Generate Emergency Form</a>
+						            	<div class="col-2"></div>
+						            	<div class="col">
 						            		Update Credit: <input type="number" step="0.01" name="amount">
 						            		<input type="hidden" name="childid" value="<?php echo $row['childid'] ?>">
 						            		<input type="submit" value="Submit" >
-						            </div>
-
+						            	</div>
 						            </form>
+						            </div>
 						            </div>
 						            </div>
 					            </div>
