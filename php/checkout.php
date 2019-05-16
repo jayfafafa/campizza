@@ -420,7 +420,7 @@ unset($conn);
 	      // 2. Make a request to your server
 	      return actions.payment.execute().then((json) => {
 	      		document.getElementsByClassName('tablinks')[0].click();
-                alert('Payment Complete!');
+                //alert('Payment Complete!');
 				postRefreshPage();
                 //you can access information here
 
