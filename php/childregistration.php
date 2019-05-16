@@ -197,12 +197,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 				<div class="row task-padding">
 					<div class="col">
-						<p>Phone Number: (e.g 1234567890)<b style = "color: #DC143C;">*</b></p>
+						<p>Phone Number: <b style = "color: #DC143C;">*</b></p>
 					</div>
 		  		</div>
 		  		<div class="row no-task-padding">
 					<div class="col">
-						<input type="tel" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" name="doctorphone" times-label="Physician Number" class="form-control" required>
+						<input type="text" name="doctorphone" times-label="Physician Number" class="form-control" required>
 					</div>
 				</div>
 
@@ -268,9 +268,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 		  		</div>
 		  		<div class="row no-task-padding">
 		  			<div class="col-2">
-					<select class="form-control form-control-lg" name="medication">
-						<option>Yes</option>
+					<select class="form-control form-control-md" name="medication">
 						<option>No</option>
+						<option>Yes</option>
 					</select>
 					</div>
 					<div class="col">
@@ -287,9 +287,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 			  	</div>
 		  		<div class="row no-task-padding">
 		  			<div class="col-2">
-					<select class="form-control form-control-lg" name="activities">
-						<option>Yes</option>
+					<select class="form-control form-control-md" name="activities">
 						<option>No</option>
+						<option>Yes</option>
 					</select>
 					</div>
 					<div class="col">
@@ -304,9 +304,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 			  	</div>
 		  		<div class="row no-task-padding">
 		  			<div class="col-2">
-					<select class="form-control form-control-lg" name="medicaltreatments">
-						<option>Yes</option>
+					<select class="form-control form-control-md" name="medicaltreatments">
 						<option>No</option>
+						<option>Yes</option>
 					</select>
 					</div>
 					<div class="col">
@@ -322,9 +322,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 			  	</div>
 		  		<div class="row no-task-padding">
 		  			<div class="col-2">
-					<select class="form-control form-control-lg" name="immunizations">
-						<option>Yes</option>
+					<select class="form-control form-control-md" name="immunizations">
 						<option>No</option>
+						<option>Yes</option>
 					</select>
 					</div>
 				</div>
