@@ -1,18 +1,6 @@
 <?php
-require('fpdf/fpdf.php');
-
-class PDF extends FPDF
-{
-// Page template setter
-function Header()
-{
-    // Template set
-    $this->Image('erfTemplate.png', -5, -5, 215, 310);
-	$this->SetRightMargin(0.1);
-}
-}
-
-include ("connection.php"); //setup connection with database
+require("connection.php"); //setup connection with database
+require("imageScaler.php");
 
 
 // query database
@@ -28,98 +16,105 @@ unset($conn); //unset connection to database
 
 // Instanciation of inherited class
 $pdf = new PDF();
-$pdf->AliasNbPages();
-$pdf->AddPage();
-$pdf->SetFont('Times','',8);
+$pdf->AddPage("P");
+$pdf->centreImage("erfTemplate.png");
+$pdf->AddFont("Questrial", "", "QuestrialRegular.php"); // Add custom font - Questrial
+$pdf->SetFont('Questrial','',8);
 
 // Position data locations and populate locations with data from database
-$pdf->SetXY(5, 34); 
+$pdf->SetXY(16, 54); 
 $pdf->Write(0, $row['firstname'] ." ". $row['lastname']); 
-$pdf->SetXY(105, 34); 
+$pdf->SetXY(109, 54); 
 $pdf->Write(0, $row['grade']);
-$pdf->SetXY(139, 34); 
+$pdf->SetXY(139, 54); 
 $pdf->Write(0, $row['school']);
 
-$pdf->SetXY(5, 46); 
+$pdf->SetXY(16, 64); 
 $pdf->Write(0, $row['address1']);
-$pdf->SetXY(105, 46); 
-$pdf->Write(0, $row['dob']);
-$pdf->SetXY(155, 46); 
+$ogdob = $row['dob'];
+$splitdob = explode("-", $ogdob);
+$newdob = $splitdob[1]."/".$splitdob[2]."/".$splitdob[0];
+$pdf->SetXY(109, 64);
+$pdf->Write(0, $newdob);
 $dob = new DateTime($row['dob']);
 $currentDate = new DateTime();
 $difference = $currentDate->diff($dob);
+$pdf->SetXY(154, 64);
 $pdf->Write(0, $difference->y); //calculate age via dob - dateobj
-$pdf->SetXY(172, 46); 
+$pdf->SetXY(169, 64); 
 $pdf->Write(0, $row['gender']);
 
-$pdf->SetXY(18, 54); 
+$pdf->SetXY(28, 70); 
 $pdf->Write(0, $row['guardiannamefirst1']. " ".$row['guardiannamelast1']);
-$pdf->SetXY(118, 54); 
+$pdf->SetXY(120, 70); 
 $pdf->Write(0, $row['guardian1phone1']);
-$pdf->SetXY(168, 54); 
+$pdf->SetXY(165, 70); 
 $pdf->Write(0, $row['guardian1phone2']);
 
-$pdf->SetXY(18, 63); 
+$pdf->SetXY(28, 77); 
 $pdf->Write(0, $row['guardiannamefirst2']." ".$row['guardiannamelast2']);
-$pdf->SetXY(118, 63); 
+$pdf->SetXY(120, 77); 
 $pdf->Write(0, $row['guardian2phone1']);
-$pdf->SetXY(168, 63); 
+$pdf->SetXY(165, 77); 
 $pdf->Write(0, $row['guardian2phone2']);
 
-$pdf->SetXY(18, 71); 
+$pdf->SetXY(27, 84); 
 $pdf->Write(0, $row['guardianemail1']);
 
-$pdf->SetXY(18, 79); 
+$pdf->SetXY(27, 91); 
 $pdf->Write(0, $row['guardianemail2']);
 
 
-$pdf->SetXY(5, 102); 
+$pdf->SetXY(16, 110); 
 $pdf->Write(0, $row['emergencynamefirst1']." ".$row['emergencynamelast1']);
-$pdf->SetXY(87, 102); 
+$pdf->SetXY(91, 110); 
 $pdf->Write(0, $row['emergencyphone1']);
-$pdf->SetXY(157, 102); 
+$pdf->SetXY(154, 110); 
 $pdf->Write(0, $row['emergencyrelationship1']);
 
-$pdf->SetXY(5, 111); 
+$pdf->SetXY(16, 117); 
 $pdf->Write(0, $row['emergencynamefirst2']." ".$row['emergencynamelast2']);
-$pdf->SetXY(87, 111); 
+$pdf->SetXY(91, 117); 
 $pdf->Write(0, $row['emergencyphone2']);
-$pdf->SetXY(157, 111); 
+$pdf->SetXY(154, 117); 
 $pdf->Write(0, $row['emergencyrelationship2']);
 
 
-$pdf->SetXY(24, 145); 
+$pdf->SetXY(34, 145); 
 $pdf->Write(0, $row['doctorname']);
-$pdf->SetXY(121, 145); 
+$pdf->SetXY(122, 145); 
 $pdf->Write(0, $row['doctorphone']);
-$pdf->SetXY(172, 145); 
+$pdf->SetXY(168, 145); 
 $pdf->Write(0, $row['insurance']);
 
-$pdf->SetXY(42, 154); 
+$pdf->SetXY(50, 151); 
 $pdf->Write(0, $row['illnesses']);
-$pdf->SetXY(123, 154); 
+$pdf->SetXY(124, 151); 
 $pdf->Write(0, $row['policyholder']);
 
-$pdf->SetXY(5, 166); 
+$pdf->SetXY(16, 162); 
 $pdf->Write(0, $row['medication']);
-$pdf->SetXY(73, 166); 
+$pdf->SetXY(78, 162); 
 $pdf->Write(0, $row['medicationnames']);
-$pdf->SetXY(140, 166); 
+$pdf->SetXY(139, 162); 
 $pdf->Write(0, $row['allergies']);
 
-$pdf->SetXY(33, 178); 
+$pdf->SetXY(44, 172); 
 $pdf->Write(0, $row['activities']);
-$pdf->SetXY(73, 178); 
+$pdf->SetXY(78, 172); 
 $pdf->Write(0, $row['activitiesnames']);
-$pdf->SetXY(140, 178); 
+$pdf->SetXY(139, 172); 
 $pdf->Write(0, $row['immunizations']);
 
-$pdf->SetXY(5, 190); 
+$pdf->SetXY(16, 181); 
 $pdf->Write(0, $row['medicaltreatments']);
-$pdf->SetXY(73, 190); 
+$pdf->SetXY(78, 181); 
 $pdf->Write(0, $row['medicaltreatmentsnames']);
-$pdf->SetXY(140, 190); 
-$pdf->Write(0, $row['tetanusdate']);
+$ogtet = $row['tetanusdate'];
+$splittet = explode("-", $ogtet);
+$newtet = $splittet[1]."/".$splittet[2]."/".$splittet[0];
+$pdf->SetXY(139, 181); 
+$pdf->Write(0, $newtet);
 
 $weekstart = substr($dates['week1start'], 5);
 $weekend = substr($dates['week1end'], 5);
@@ -269,9 +264,9 @@ if ($row['week1am'] == 1 && $row['week1pm'] == 1) {
 	$reginfo = 	"12:30pm - 4:00pm";
 }
 
-$pdf->SetXY(9, 204); 
+$pdf->SetXY(18, 193); 
 $pdf->Write(0, $regdate);
-$pdf->SetXY(15, 208); 
+$pdf->SetXY(24, 196); 
 $pdf->Write(0, $reginfo);
 
 $weekstart = substr($dates['week2start'], 5);
@@ -422,9 +417,9 @@ if ($row['week2am'] == 1 && $row['week2pm'] == 1) {
 	$reginfo = 	"12:30pm - 4:00pm";
 }
 
-$pdf->SetXY(60, 204);
+$pdf->SetXY(64, 193);
 $pdf->Write(0, $regdate);
-$pdf->SetXY(64, 208); 
+$pdf->SetXY(68, 196); 
 $pdf->Write(0, $reginfo);
 
 $weekstart = substr($dates['week3start'], 5);
@@ -575,9 +570,9 @@ if ($row['week3am'] == 1 && $row['week3pm'] == 1) {
 	$reginfo = 	"12:30pm - 4:00pm";
 }
 
-$pdf->SetXY(114, 204); 
+$pdf->SetXY(114, 193); 
 $pdf->Write(0, $regdate);
-$pdf->SetXY(117, 208); 
+$pdf->SetXY(117, 196); 
 $pdf->Write(0, $reginfo);
 
 $weekstart = substr($dates['week4start'], 5);
@@ -728,9 +723,9 @@ if ($row['week4am'] == 1 && $row['week4pm'] == 1) {
 	$reginfo = 	"12:30pm - 4:00pm";
 }
 
-$pdf->SetXY(166, 204); 
+$pdf->SetXY(160, 193); 
 $pdf->Write(0, $regdate);
-$pdf->SetXY(170, 208); 
+$pdf->SetXY(165, 196); 
 $pdf->Write(0, $reginfo);
 
 $weekstart = substr($dates['week5start'], 5);
@@ -881,9 +876,9 @@ if ($row['week5am'] == 1 && $row['week5pm'] == 1) {
 	$reginfo = 	"12:30pm - 4:00pm";
 }
 
-$pdf->SetXY(9, 215); 
+$pdf->SetXY(20, 201); 
 $pdf->Write(0, $regdate);
-$pdf->SetXY(15, 219); 
+$pdf->SetXY(24, 204); 
 $pdf->Write(0, $reginfo);
 
 $weekstart = substr($dates['week6start'], 5);
@@ -1034,9 +1029,9 @@ if ($row['week6am'] == 1 && $row['week6pm'] == 1) {
 	$reginfo = 	"12:30pm - 4:00pm";
 }
 
-$pdf->SetXY(60, 215); 
+$pdf->SetXY(64, 201); 
 $pdf->Write(0, $regdate);
-$pdf->SetXY(64, 219); 
+$pdf->SetXY(68, 204); 
 $pdf->Write(0, $reginfo);
 
 $weekstart = substr($dates['week7start'], 5);
@@ -1187,9 +1182,9 @@ if ($row['week7am'] == 1 && $row['week7pm'] == 1) {
 	$reginfo = 	"12:30pm - 4:00pm";
 }
 
-$pdf->SetXY(114, 215); 
+$pdf->SetXY(114, 201); 
 $pdf->Write(0, $regdate);
-$pdf->SetXY(117, 219); 
+$pdf->SetXY(117, 204); 
 $pdf->Write(0, $reginfo);
 
 $weekstart = substr($dates['week8start'], 5);
@@ -1340,9 +1335,9 @@ if ($row['week8am'] == 1 && $row['week8pm'] == 1) {
 	$reginfo = 	"12:30pm - 4:00pm";
 }
 
-$pdf->SetXY(166, 215); 
+$pdf->SetXY(160, 201); 
 $pdf->Write(0, $regdate);
-$pdf->SetXY(170, 219); 
+$pdf->SetXY(165, 204); 
 $pdf->Write(0, $reginfo);
 
 if ($row['extendedcare'] == 1) {
@@ -1351,13 +1346,12 @@ if ($row['extendedcare'] == 1) {
 else {
     $extcare = "No";
 }
-$pdf->SetXY(65, 229); 
+$pdf->SetXY(71, 213); 
 $pdf->Write(0, $extcare);
 
-$pdf->SetXY(21, 237); 
+$pdf->SetXY(31, 219); 
 $pdf->Write(0, $row['comments']);
 
 $pdf->Output();
-
 
 ?>

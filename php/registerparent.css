@@ -26,6 +26,10 @@ span{
 .tab button.active {
   background-color: #ccc;
 }
+input:placeholder-shown {
+    color: black !important;
+}
+
 
 /* Style the tab content */
 .tabcontent {
@@ -60,4 +64,3 @@ span{
     font-size: 20px;
     border-radius: 10px;
 }
-

@@ -155,23 +155,109 @@ function toggle(source) {
 			<div class="row margin-data">
 				<div class="col">
 
-	
-					<input type="checkbox" onClick="toggle(this)" /> Toggle All<br/>
-					
-					<?php
+				<input type="checkbox" onClick="toggle(this)" /> Toggle All<br/>
+				<br>
+				
+					<div class="row">
+					  <div class="col-4">
+						<div class="list-group" id="list-tab" role="tablist">
+						  <a class="list-group-item list-group-item-action active" id="list-personal-list" data-toggle="list" href="#list-personal" role="tab" aria-controls="personal">Personal Details</a>
+						  <a class="list-group-item list-group-item-action" id="list-weeks-list" data-toggle="list" href="#list-weeks" role="tab" aria-controls="weeks">Weeks</a>
+						  <a class="list-group-item list-group-item-action" id="list-medical-list" data-toggle="list" href="#list-medical" role="tab" aria-controls="medical">Medical Info</a>
+						  <a class="list-group-item list-group-item-action" id="list-parentguard-list" data-toggle="list" href="#list-parentguard" role="tab" aria-controls="parentguard">Parent/Guardian</a>
+						  <a class="list-group-item list-group-item-action" id="list-emergency-list" data-toggle="list" href="#list-emergency" role="tab" aria-controls="emergency">Emergency</a>
+						  <a class="list-group-item list-group-item-action" id="list-payments-list" data-toggle="list" href="#list-payments" role="tab" aria-controls="payments">Payments</a>
+						</div>
+					  </div>
+					  <div class="col-8">
+						<div class="tab-content" id="nav-tabContent">
+						
+							<!-- Personal Details Tab -->
+							<div class="tab-pane fade show active" id="list-personal" role="tabpanel" aria-labelledby="list-personal-list">
+							<?php
 
-					foreach ($_SESSION['attributes'] as $k => $v){
-						echo '<div class="form-check">';
-			    		echo '<input type="checkbox" class="form-check-input" id="attribute" name="'.$k.'" value=1>'.$v.'<br>';
-						echo '</div>';
-					}
+							foreach (array_slice($_SESSION['attributes'], 0, 9) as $k => $v){
+								echo '<div class="form-check">';
+								echo '<input type="checkbox" class="form-check-input" id="attribute" name="'.$k.'" value=1>'.$v.'<br>';
+								echo '</div>';
+							}
 
-					?>
+							?>
+							</div>
+						  
+							<!-- Weeks Tab -->
+							<div class="tab-pane fade" id="list-weeks" role="tabpanel" aria-labelledby="list-weeks-list">
+							<?php
 
+							foreach (array_slice($_SESSION['attributes'], 9, 17) as $k => $v){
+								echo '<div class="form-check">';
+								echo '<input type="checkbox" class="form-check-input" id="attribute" name="'.$k.'" value=1>'.$v.'<br>';
+								echo '</div>';
+							}
+
+							?>
+							</div>
+							
+							<!-- Medical Info Tab -->
+							<div class="tab-pane fade" id="list-medical" role="tabpanel" aria-labelledby="list-medical-list">
+							<?php
+
+							foreach (array_slice($_SESSION['attributes'], 26, 14) as $k => $v){
+								echo '<div class="form-check">';
+								echo '<input type="checkbox" class="form-check-input" id="attribute" name="'.$k.'" value=1>'.$v.'<br>';
+								echo '</div>';
+							}
+
+							?>
+							</div>
+							
+							<!-- Parent/Guardian Tab -->
+							<div class="tab-pane fade" id="list-parentguard" role="tabpanel" aria-labelledby="list-parentguard-list">
+							<?php
+
+							foreach (array_slice($_SESSION['attributes'], 40, 15) as $k => $v){
+								echo '<div class="form-check">';
+								echo '<input type="checkbox" class="form-check-input" id="attribute" name="'.$k.'" value=1>'.$v.'<br>';
+								echo '</div>';
+							}
+
+							?>
+							</div>
+							
+							<!-- Emergency Tab -->
+							<div class="tab-pane fade" id="list-emergency" role="tabpanel" aria-labelledby="list-emergency-list">
+							<?php
+
+							foreach (array_slice($_SESSION['attributes'], 55, 10) as $k => $v){
+								echo '<div class="form-check">';
+								echo '<input type="checkbox" class="form-check-input" id="attribute" name="'.$k.'" value=1>'.$v.'<br>';
+								echo '</div>';
+							}
+
+							?>
+							</div>
+							
+							<!-- Payments Tab -->
+							<div class="tab-pane fade" id="list-payments" role="tabpanel" aria-labelledby="list-payments-list">
+							<?php
+
+							foreach (array_slice($_SESSION['attributes'], 65, 2) as $k => $v){
+								echo '<div class="form-check">';
+								echo '<input type="checkbox" class="form-check-input" id="attribute" name="'.$k.'" value=1>'.$v.'<br>';
+								echo '</div>';
+							}
+
+							?>
+							</div>
+						  
+						</div>
+					  </div>
+					</div>
 				</div>
 			</div>
-
+			<br>
 			<input type="submit" value="Submit">
+			<br>
 
 		</div>
 	</form>

@@ -132,19 +132,24 @@ unset($conn);
 					<a class="nav-item nav-link" href="http://campizza.com/contact">Contact</a>
 				</div>
 			</div>
-		
 		</div>
 	</nav>
 
-
 <form role="form" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-	<!-- Html Lookout -->
-<div class="container" style = "background: white; margin-top: 20px;">
 
-    <h1 style = "padding-top: 40px;text-align: center;">Registration for Camp Izza</h1>
-    <div class="ml-auto">
-		<a class="btn btn-primary top-buffer" href="dashboard.php" role="button">< Back to Dashboard</a>
-							
+	<!-- Html Lookout -->
+<div class="ml-auto" style="text-align: right; margin-right: 20px;">
+</div>
+<div class="container" style="background-color: white; padding-left: 40px;padding-right: 40px;padding-bottom: 70px; padding-top: 30px;margin-bottom: 20px; margin-top:20px!important;margin: auto">
+	<div class="row">
+		<h1 style = "padding-top: 15px;margin-left: 30px">Camp Izza Registration Form</h1>
+	    <div class="ml-auto" style="margin-right: 30px;">
+			<form action="logout.php" method "post">
+				<a class="btn btn-primary top-buffer" href="dashboard.php" role="button">< Back to Dashboard</a>
+				<input class="btn btn-danger top-buffer" type="submit" value="Sign Out">
+			</form>
+		</div>
+		
 	</div>
 
   	<div class="container">
@@ -227,28 +232,28 @@ unset($conn);
 
 			<div class="row task-padding">
 				<div class="col">
-			    	<p>Phone Number 1: (e.g 1234567890)<b style = "color: #DC143C;">*</b></p>
+			    	<p>Phone Number 1:<b style = "color: #DC143C;">*</b></p>
 			    </div>
 			</div>
 
 			<div class="row no-task-padding">
 				<div class="col">
 					<div class="input-group mb-3">
-					  <input name="guardianphone1" type="tel" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" class="form-control" aria-label="Text input with segmented dropdown button" <?php if($parent['guardian1phone1'] != NULL){ echo 'value='.$parent['guardian1phone1'];}?> required>
+					  <input name="guardianphone1" type="text" class="form-control" aria-label="Text input with segmented dropdown button" <?php if($parent['guardian1phone1'] != NULL){ echo 'value='.$parent['guardian1phone1'];}?> required>
 					</div>
 				</div>
 			</div>
 			
 			<div class="row task-padding">
 				<div class="col">
-			    	<p>Phone Number 2: (e.g 1234567890)<b style = "color: #DC143C;">*</b></p>
+			    	<p>Phone Number 2: <b style = "color: #DC143C;">*</b></p>
 			    </div>
 			</div>
 
 			<div class="row no-task-padding">
 				<div class="col">
 					<div class="input-group mb-3">
-					  <input name="guardianphone2" type="tel" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" class="form-control" aria-label="Text input with segmented dropdown button" <?php if($parent['guardian1phone2'] != NULL){ echo 'value='.$parent['guardian1phone2'];}?> required>
+					  <input name="guardianphone2" type="text" class="form-control" aria-label="Text input with segmented dropdown button" <?php if($parent['guardian1phone2'] != NULL){ echo 'value='.$parent['guardian1phone2'];}?> required>
 					</div>
 				</div>
 			</div>
@@ -297,14 +302,14 @@ unset($conn);
 
 			<div class="row task-padding">
 				<div class="col">
-			    	<p>Phone Number: (e.g 1234567890)</p>
+			    	<p>Phone Number: </p>
 			    </div>
 			</div>
 
 			<div class="row no-task-padding">
 				<div class="col">
 					<div class="input-group mb-3">
-					  <input name="phone3" type="tel" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" class="form-control" aria-label="Text input with segmented dropdown button" <?php if($parent['guardian2phone1'] != NULL){ echo 'value='.$parent['guardian2phone1'];}?> >
+					  <input name="phone3" type="text" class="form-control" aria-label="Text input with segmented dropdown button" <?php if($parent['guardian2phone1'] != NULL){ echo 'value='.$parent['guardian2phone1'];}?> >
 					</div>
 				</div>
 			</div>
@@ -312,21 +317,21 @@ unset($conn);
 
 			<div class="row task-padding">
 				<div class="col">
-			    	<p>Phone Number 2: (e.g 1234567890)</p>
+			    	<p>Phone Number 2: </p>
 			    </div>
 			</div>
 
 			<div class="row no-task-padding">
 				<div class="col">
 					<div class="input-group mb-3">
-					  <input name="phone4" type="tel" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" class="form-control" aria-label="Text input with segmented dropdown button" <?php if($parent['guardian2phone2'] != NULL){ echo 'value='.$parent['guardian2phone2'];}?> >
+					  <input name="phone4" type="text" class="form-control" aria-label="Text input with segmented dropdown button" <?php if($parent['guardian2phone2'] != NULL){ echo 'value='.$parent['guardian2phone2'];}?> >
 					</div>
 				</div>
 			</div>
 	<!-- Address Part International/US Area-->
 		<div class="row margin-data">
   			<div class="col">
-	  				<span class="input-group-text"><p style = "font-family:times; font-size:25px;padding-top: 10px;">Area of Residence</p></span>
+	  				<span class="input-group-text"><p style = "font-family:times; font-size:25px;padding-top: 10px;">Residence</p></span>
   			</div>
   		</div>
 
@@ -441,7 +446,7 @@ unset($conn);
 		  		</div>
 		  		<div class="row no-task-padding">
 			  		<div class="col">
-						<input name="country" type="text" times-label="City" class="form-control" <?php if($parent['country'] != NULL){ echo 'value='.$parent['country'];}?> >
+						<input name="country" type="text" placeholder="United States"  times-label="City" class="form-control" <?php if($parent['country'] != NULL){ echo 'value='.$parent['country'];}?> >
 					</div>
 
 				</div>
@@ -501,21 +506,21 @@ unset($conn);
 
 			<div class="row task-padding">
 				<div class="col">
-			    	<p>Phone Number: (e.g 1234567890)<b style = "color: #DC143C;">*</b></p>
+			    	<p>Phone Number: <b style = "color: #DC143C;">*</b></p>
 			    </div>
 			</div>
 		<!--Phone Number-->
 			<div class="row no-task-padding">
 				<div class="col">
 					<div class="input-group mb-3">
-					  <input name="emergencyphone1" type="tel" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" class="form-control" aria-label="Text input with segmented dropdown button" <?php if($parent['emergencyphone1'] != NULL){ echo 'value='.$parent['emergencyphone1'];}?> required>
+					  <input name="emergencyphone1" type="text"  class="form-control" aria-label="Text input with segmented dropdown button" <?php if($parent['emergencyphone1'] != NULL){ echo 'value='.$parent['emergencyphone1'];}?> required>
 					</div>
 				</div>
 			</div>
 
-			<div class="form-check">
-			    <input name="emergencyauthorized1" type="checkbox" class="form-check-input" id="exampleCheck1" value=1 <?php if($parent['emergencyauthorized1'] != 0){ echo "checked"; }?> >
-			    <label class="form-check-label" for="exampleCheck1">This person is authorized to pick up my camper(s).</label>
+			<div class="custom-control custom-checkbox">
+			    <input name="emergencyauthorized1" type="checkbox" style="width: 1000px" class="custom-control-input" id="exampleCheck1" value=1 <?php if($parent['emergencyauthorized1'] != 0){ echo "checked"; }?> >
+			    <label class="custom-control-label" for="exampleCheck1">This person is authorized to pick up my camper(s).</label>
 			  </div>
 	<!-- Emergency Contact Top Part -->
   		<div class="row margin-data">
@@ -562,20 +567,20 @@ unset($conn);
 		<!--Phone Number-->
 			<div class="row task-padding">
 				<div class="col">
-			    	<p>Phone Number: (e.g 1234567890)<b style = "color: #DC143C;">*</b></p>
+			    	<p>Phone Number: <b style = "color: #DC143C;">*</b></p>
 			    </div>
 			</div>
 
 			<div class="row no-task-padding">
 				<div class="col">
 					<div class="input-group mb-3">
-							<input name="emergencyphone2" type="tel" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" class="form-control" aria-label="Text input with segmented dropdown button" <?php if($parent['emergencyphone2'] != NULL){ echo 'value='.$parent['emergencyphone2'];}?> >
+							<input name="emergencyphone2" type="text" class="form-control" aria-label="Text input with segmented dropdown button" <?php if($parent['emergencyphone2'] != NULL){ echo 'value='.$parent['emergencyphone2'];}?> >
 					</div>
 				</div>
 			</div>
-			<div class="form-check">
-			    <input name="emergencyauthorized2" type="checkbox" class="form-check-input" id="exampleCheck2" value=1 <?php if($parent['emergencyauthorized2'] != 0){ echo "checked"; }?> >
-			    <label class="form-check-label" for="exampleCheck2">This person is authorized to pick up my camper(s).</label>
+			<div class="custom-control custom-checkbox">
+			    <input name="emergencyauthorized2" type="checkbox" class="custom-control-input" id="exampleCheck2" value=1 <?php if($parent['emergencyauthorized2'] != 0){ echo "checked"; }?> >
+			    <label class="custom-control-label" for="exampleCheck2">This person is authorized to pick up my camper(s).</label>
 			</div>
 	<!-- Submit -->
 		<div class="row margin-data" style = "padding-bottom: 50px;padding-top: 10px;" align="center">
