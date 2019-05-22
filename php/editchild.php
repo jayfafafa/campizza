@@ -115,7 +115,7 @@ unset($conn);
 										<option value="Male" selected="selected">Male</option>';
 							} else{
 								echo '<option value="Female" selected="selected">Female</option>
-										<option value="Male">Male</option>'
+										<option value="Male">Male</option>';
 							}
 
 						?>
