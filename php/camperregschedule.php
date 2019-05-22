@@ -360,6 +360,7 @@ for($x = 1; $x <= $activeweeks; $x++){
 	    echo '<div class="form-check">';
 	    if ($sessionFullAM && $currentInfo['week'.$x.'am'] == 0){
 		    echo '<p>FULL</p>';
+		    echo '<input type="hidden" name="week'.$x.'am" id="week'.$x.'a">';
 		}else{
 			if($currentInfo['week'.$x.'am'] == 0){
 				echo '<input name="week'.$x.'am" class="form-check-input" type="checkbox" value="1" id="week'.$x.'a" onchange= "doalert(this)">';
@@ -372,7 +373,8 @@ for($x = 1; $x <= $activeweeks; $x++){
 	    echo '<td>';
 	    echo '<div class="form-check">';
 	    if($sessionFullPM && $currentInfo['week'.$x.'pm'] == 0){
-	    	echo '<p>FULL</p>';
+		    echo '<p>FULL</p>';
+		    echo '<input type="hidden" name="week'.$x.'pm" id="week'.$x.'b" value="0">';
 	    }else{
 		    if($currentInfo['week'.$x.'pm'] == 0){
 				echo '<input name="week'.$x.'pm" class="form-check-input" type="checkbox" value="1" id="week'.$x.'b" onchange= "doalert(this)">';
@@ -386,91 +388,7 @@ for($x = 1; $x <= $activeweeks; $x++){
 	    echo '</tr>';
 
 	}
-?>							    <!-- <tr>
-							      <th scope="row">Week 1</th>
-							      <td>
-							     	<div class="form-check">
-									  <input name="week1am" class="form-check-input" type="checkbox" value="1" id="week1a" onchange= "doalert(this)">
-									</div>
-							      </td>
-							      <td>
-							      	<div class="form-check">
-									  <input name="week1pm" class="form-check-input" type="checkbox" value="1" id="week1b" onchange= "doalert(this)">
-									</div>
-							      </td>
-							      <td id="week1price">0</td>
-							    </tr>
-
-							    <tr>
-							      <th scope="row">Week 2</th>
-							      <td>
-							     	<div class="form-check">
-									  <input name="week2am" class="form-check-input" type="checkbox" value="1" id="week2a" onchange= "doalert(this)">
-									</div>
-							      </td>
-							      <td>
-							      	<div class="form-check">
-									  <input name="week2pm" class="form-check-input" type="checkbox" value="1" id="week2b" onchange= "doalert(this)">
-									</div>
-							      </td>
-							      <td id="week2price">0</td>
-							    </tr>
-							    <tr>
-							      <th scope="row">Week 3</th>
-							      <td>
-							     	<div class="form-check">
-									  <input name="week3am" class="form-check-input" type="checkbox" value="1" id="week3a" onchange= "doalert(this)">
-									</div>
-							      </td>
-							      <td>
-							      	<div class="form-check">
-									  <input name="week3pm" class="form-check-input" type="checkbox" value="1" id="week3b" onchange= "doalert(this)">
-									</div>
-							      </td>
-							      <td id="week3price">0</td>
-							    </tr>
-							    <tr>
-							      <th scope="row">Week 4</th>
-							      <td>
-							     	<div class="form-check">
-									  <input name="week4am" class="form-check-input" type="checkbox" value="1" id="week4a" onchange= "doalert(this)">
-									</div>
-							      </td>
-							      <td>
-							      	<div class="form-check">
-									  <input name="week4pm" class="form-check-input" type="checkbox" value="1" id="week4b" onchange= "doalert(this)">
-									</div>
-							      </td>
-							      <td id="week4price">0</td>
-							    </tr>
-							    <tr>
-							      <th scope="row">Week 5</th>
-							      <td>
-							     	<div class="form-check">
-									  <input name="week5am" class="form-check-input" type="checkbox" value="1" id="week5a" onchange= "doalert(this)">
-									</div>
-							      </td>
-							      <td>
-							      	<div class="form-check">
-									  <input name="week5pm" class="form-check-input" type="checkbox" value="1" id="week5b" onchange= "doalert(this)">
-									</div>
-							      </td>
-							      <td id="week5price">0</td>
-							    </tr>
-							    <tr>
-							      <th scope="row">Week 6</th>
-							      <td>
-							     	<div class="form-check">
-									  <input name="week6am" class="form-check-input" type="checkbox" value="1" id="week6a" onchange= "doalert(this)">
-									</div>
-							      </td>
-							      <td>
-							      	<div class="form-check">
-									  <input name="week6pm" class="form-check-input" type="checkbox" value="1" id="week6b" onchange= "doalert(this)">
-									</div>
-							      </td>
-							      <td id="week6price">0</td>
-							    </tr> -->
+?>
 							    <tr>
 							      <th>Extended Care<br>7:00am to 8:30am and/or 4:00pm to 5:30pm</th>
 							      <td colspan="2">
@@ -512,7 +430,8 @@ for($x = 1; $x <= $activeweeks; $x++){
 		if(document.getElementById('extcare').checked == false)
 		{
 			for (var i = 1; i <= 6; i++) {
-				if(document.getElementById("week"+String(i)+"a").checked == true && document.getElementById("week"+String(i)+"b").checked == true)
+				if(document.getElementById("week"+String(i)+"a").checked == true && 
+					document.getElementById("week"+String(i)+"b").checked == true)
 				{
 					if(String(i) == holWeek ) { //holiday week full 
 						$('#week'+String(i)+'price').text(<?php echo $yearlyPrices['holidayweekfull'.$eOrL]; ?>);
@@ -520,7 +439,8 @@ for($x = 1; $x <= $activeweeks; $x++){
 						$('#week'+String(i)+'price').text(<?php echo $yearlyPrices['oneweekfull'.$eOrL]; ?>);
 					}
 				}
-				else if (document.getElementById("week"+String(i)+"a").checked == true && document.getElementById("week"+String(i)+"b").checked == false) 
+				else if (document.getElementById("week"+String(i)+"a").checked == true && 
+					document.getElementById("week"+String(i)+"b").checked == false)
 				{
 					if(String(i) == holWeek )  { //holiday week am
 						$('#week'+String(i)+'price').text(<?php echo $yearlyPrices['holidayweekam'.$eOrL]; ?>);
@@ -528,7 +448,8 @@ for($x = 1; $x <= $activeweeks; $x++){
 						$('#week'+String(i)+'price').text(<?php echo $yearlyPrices['oneweekam'.$eOrL]; ?>);
 					}
 				}
-				else if (document.getElementById("week"+String(i)+"a").checked == false && document.getElementById("week"+String(i)+"b").checked == true) 
+				else if (document.getElementById("week"+String(i)+"a").checked == false && 
+					document.getElementById("week"+String(i)+"b").checked == true)
 				{
 					if(String(i) == holWeek ) { //holiday week pm
 						$('#week'+String(i)+'price').text(<?php echo $yearlyPrices['holidayweekpm'.$eOrL]; ?>);
@@ -545,7 +466,8 @@ for($x = 1; $x <= $activeweeks; $x++){
 		else
 		{
 			for (var i = 1; i <= 6; i++) {
-				if(document.getElementById("week"+String(i)+"a").checked == true && document.getElementById("week"+String(i)+"b").checked == true)
+				if(document.getElementById("week"+String(i)+"a").checked == true && 
+					document.getElementById("week"+String(i)+"b").checked == true)
 				{
 					if(String(i) == holWeek ) { //holiday week full 
 						$('#week'+String(i)+'price').text(<?php echo $yearlyPrices['holidayweekfull'.$eOrL] + ( $extendedCareCost * 4.00 ); ?>);
@@ -553,7 +475,8 @@ for($x = 1; $x <= $activeweeks; $x++){
 						$('#week'+String(i)+'price').text(<?php echo $yearlyPrices['oneweekfull'.$eOrL] + ( $extendedCareCost * 5.00 ); ?>);
 					}
 				}
-				else if (document.getElementById("week"+String(i)+"a").checked == true && document.getElementById("week"+String(i)+"b").checked == false) 
+				else if (document.getElementById("week"+String(i)+"a").checked == true && 
+					document.getElementById("week"+String(i)+"b").checked == false)
 				{
 					if(String(i) == holWeek )  { //holiday week am
 						$('#week'+String(i)+'price').text(<?php echo $yearlyPrices['holidayweekam'.$eOrL] + ( $extendedCareCost * 4.00 ); ?>);
@@ -561,7 +484,8 @@ for($x = 1; $x <= $activeweeks; $x++){
 						$('#week'+String(i)+'price').text(<?php echo $yearlyPrices['oneweekam'.$eOrL] + ( $extendedCareCost * 5.00 ); ?>);
 					}
 				}
-				else if (document.getElementById("week"+String(i)+"a").checked == false && document.getElementById("week"+String(i)+"b").checked == true) 
+				else if (document.getElementById("week"+String(i)+"a").checked == false && 
+					document.getElementById("week"+String(i)+"b").checked == true)
 				{
 					if(String(i) == holWeek ) { //holiday week pm
 						$('#week'+String(i)+'price').text(<?php echo $yearlyPrices['holidayweekpm'.$eOrL] + ( $extendedCareCost * 4.00 ); ?>);

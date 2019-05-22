@@ -264,7 +264,7 @@ unset($conn);
 		echo "<div class = 'row'> 
 			<div class = 'col-6'> <p style = 'padding-top: 10px'> Amount Previously Paid: </p></div>
 			<div class='col' style='text-align: center;'><p style='text-align: center; font-size: 15px;'></p></div>
-			<div class='col' style='text-align: right;'> <p style='text-align: right; font-size: 15px;padding-top: 10px'>- $".$currentBalance."</p></div>
+			<div class='col' style='text-align: right;'> <p style='text-align: right; font-size: 15px;padding-top: 10px'>$".$currentBalance."</p></div>
 		</div>";
 	}
 
@@ -272,17 +272,17 @@ unset($conn);
 	if($_SESSION['credit'] > 0 && $_SESSION['total'] > 0){
 		if($_SESSION['credit'] > $_SESSION['total']){
 			echo "<div class = 'row'> 
-			<div class = 'col-6'> <p style = 'padding-top: 10px'> Account Credit : </p></div>
+			<div class = 'col-6'> <p style = 'padding-top: 10px'> Account Credit Applied: </p></div>
 			<div class='col' style='text-align: center;'><p style='text-align: center; font-size: 15px;'></p></div>
-			<div class='col' style='text-align: right;'> <p style='text-align: right; font-size: 15px;padding-top: 10px'>- $".$_SESSION['total'].".00</p></div>
+			<div class='col' style='text-align: right;'> <p style='text-align: right; font-size: 15px;padding-top: 10px'>$".$_SESSION['total'].".00</p></div>
 			</div>";
 			$_SESSION['credit'] = $_SESSION['credit'] - $_SESSION['total'];
 			$_SESSION['total'] = 0;
 		}else{
 			echo "<div class = 'row'> 
-			<div class = 'col-6'> <p style = 'padding-top: 10px'> Account Credit : </p></div>
+			<div class = 'col-6'> <p style = 'padding-top: 10px'> Account Credit Applied: </p></div>
 			<div class='col' style='text-align: center;'><p style='text-align: center; font-size: 15px;'></p></div>
-			<div class='col' style='text-align: right;'> <p style='text-align: right; font-size: 15px;padding-top: 10px'>- $".$_SESSION['credit']."</p></div>
+			<div class='col' style='text-align: right;'> <p style='text-align: right; font-size: 15px;padding-top: 10px'>$".$_SESSION['credit']."</p></div>
 			</div>";
 			$_SESSION['total'] = $_SESSION['total'] - $_SESSION['credit'];
 			$_SESSION['credit'] = 0;
