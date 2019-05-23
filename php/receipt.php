@@ -50,7 +50,14 @@ if($balance['credit'] > $_SESSION['credit']){
 	$data[':price'] = $data[':price'] + ($balance['credit'] - $_SESSION['credit']);
 }
 
-$sqlEmail = "SELECT guardianemail1, guardianemail2 FROM Parents WHERE parentid=".$_SESSION['id'];
+
+//fetch parentID for specified child from database
+$sqlChildPID = "SELECT parentid FROM Children WHERE childid=".$_SESSION['childid'];
+$stmtChildPID = $conn->query($sqlChildPID);
+$childPID = $stmtChildPID->fetch(PDO::FETCH_ASSOC);
+
+//obtain guaradian email w/ child's related parentID
+$sqlEmail = "SELECT guardianemail1, guardianemail2 FROM Parents WHERE parentid=".$childPID['parentid'];
 $stmtEmail = $conn->query($sqlEmail);
 $email = $stmtEmail->fetch(PDO::FETCH_ASSOC);
 
