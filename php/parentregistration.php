@@ -112,6 +112,20 @@ unset($conn);
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    
+    <style type="text/css">
+    	.custom-checkbox-lg .custom-control-label::before,
+		.custom-checkbox-lg .custom-control-label::after {
+		  width: 30px;
+		  height: 30px;
+		}
+
+		.custom-control-label{
+		  margin: auto;
+		  padding-top: 5px;
+		  padding-left: 10px;
+		}
+    </style>
 
 </head>
 
@@ -519,9 +533,9 @@ unset($conn);
 				</div>
 			</div>
 
-			<div class="form-check">
-			    <input type="checkbox" class="form-check-input" id="exampleCheck1" name="emergencyauthorized1" value=1 required>
-			    <label class="form-check-label" for="exampleCheck1">This person is authorized to pick up my camper(s).</label>
+			<div class="custom-control custom-checkbox custom-checkbox-lg">
+			    <input type="checkbox" class="custom-control-input" id="exampleCheck1" name="emergencyauthorized1" value=1 required>
+			    <label class="custom-control-label" for="exampleCheck1">This person is authorized to pick up my camper(s).</label>
 			  </div>
 	<!-- Emergency Contact Top Part -->
   		<div class="row margin-data">
@@ -579,9 +593,9 @@ unset($conn);
 					</div>
 				</div>
 			</div>
-			<div class="form-check">
-			    <input type="checkbox" class="form-check-input" id="exampleCheck2" name="emergencyauthorized2" value=1 required>
-			    <label class="form-check-label" for="exampleCheck2">This person is authorized to pick up my camper(s).</label>
+			<div class="custom-control custom-checkbox custom-checkbox-lg">
+			    <input type="checkbox" class="custom-control-input" id="exampleCheck2" name="emergencyauthorized2" value=1 required>
+			    <label class="custom-control-label" for="exampleCheck2">This person is authorized to pick up my camper(s).</label>
 			</div>
 	<!-- Submit -->
 		<div class="row margin-data" style = "padding-bottom: 50px;padding-top: 10px;" align="center">
