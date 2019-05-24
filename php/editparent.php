@@ -112,6 +112,20 @@ unset($conn);
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 
+
+    <style type="text/css">
+    	.custom-checkbox-lg .custom-control-label::before,
+		.custom-checkbox-lg .custom-control-label::after {
+		  width: 30px;
+		  height: 30px;
+		}
+
+		.custom-control-label{
+		  margin: auto;
+		  padding-top: 5px;
+		  padding-left: 10px;
+		}
+    </style>
 </head>
 
 <body>
@@ -518,7 +532,7 @@ unset($conn);
 				</div>
 			</div>
 
-			<div class="custom-control custom-checkbox">
+			<div class="custom-control custom-checkbox custom-checkbox-lg">
 			    <input name="emergencyauthorized1" type="checkbox" style="width: 1000px" class="custom-control-input" id="exampleCheck1" value=1 <?php if($parent['emergencyauthorized1'] != 0){ echo "checked"; }?> >
 			    <label class="custom-control-label" for="exampleCheck1">This person is authorized to pick up my camper(s).</label>
 			  </div>
@@ -578,7 +592,7 @@ unset($conn);
 					</div>
 				</div>
 			</div>
-			<div class="custom-control custom-checkbox">
+			<div class="custom-control custom-checkbox custom-checkbox-lg">
 			    <input name="emergencyauthorized2" type="checkbox" class="custom-control-input" id="exampleCheck2" value=1 <?php if($parent['emergencyauthorized2'] != 0){ echo "checked"; }?> >
 			    <label class="custom-control-label" for="exampleCheck2">This person is authorized to pick up my camper(s).</label>
 			</div>
