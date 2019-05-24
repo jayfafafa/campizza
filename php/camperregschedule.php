@@ -266,7 +266,20 @@ unset($conn);
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 
+    <style type="text/css">
+    	.custom-checkbox-lg .custom-control-label::before,
+		.custom-checkbox-lg .custom-control-label::after {
+		  width: 30px;
+		  height: 30px;
+		}
+		td input[type="checkbox"] {
+		    float: left;
+		    margin: 0 auto;
+		    width: 100%;
+		}
+    </style>
 </head>
+
 
 <body>
 
@@ -354,33 +367,35 @@ for($x = 1; $x <= $activeweeks; $x++){
 
 
 		echo '<tr>';
-		echo '<th scope="row">Week '.$x.': '.substr($weekInfo['week'.$x.'start'], 5,2).'/'.substr($weekInfo['week'.$x.'start'], 8,2).'-'
-		.substr($weekInfo['week'.$x.'end'], 5,2).'/'.substr($weekInfo['week'.$x.'end'], 8,2).'</th>';
+		echo '<th scope="row"><div style="padding-top:5px">Week '.$x.': '.substr($weekInfo['week'.$x.'start'], 5,2).'/'.substr($weekInfo['week'.$x.'start'], 8,2).'-'
+		.substr($weekInfo['week'.$x.'end'], 5,2).'/'.substr($weekInfo['week'.$x.'end'], 8,2).'</div></th>';
 		echo '<td>';
-	    echo '<div class="form-check">';
+	    echo '<div class="custom-control custom-checkbox custom-checkbox-lg">';
 	    if ($sessionFullAM && $currentInfo['week'.$x.'am'] == 0){
 		    echo '<p>FULL</p>';
 		    echo '<input type="hidden" name="week'.$x.'am" id="week'.$x.'a">';
 		}else{
 			if($currentInfo['week'.$x.'am'] == 0){
-				echo '<input name="week'.$x.'am" class="form-check-input" type="checkbox" value="1" id="week'.$x.'a" onchange= "doalert(this)">';
+				echo '<input name="week'.$x.'am" class="custom-control-input" type="checkbox" value="1" id="week'.$x.'a" onchange= "doalert(this)"> <label class="custom-control-label" for="week'.$x.'a"></label>';
 			}else{
-				echo '<input name="week'.$x.'am" class="form-check-input" type="checkbox" value="1" id="week'.$x.'a" onchange= "doalert(this)" checked>';
+				echo '<input name="week'.$x.'am" class="custom-control-input" type="checkbox" value="1" id="week'.$x.'a" onchange= "doalert(this)" checked> <label class="custom-control-label" for="week'.$x.'a"></label>';
 			}
+			echo "<p></p>";
 		}
 		echo '</div>';
 	    echo '</td>';
 	    echo '<td>';
-	    echo '<div class="form-check">';
+	    echo '<div class="custom-control custom-checkbox custom-checkbox-lg">';
 	    if($sessionFullPM && $currentInfo['week'.$x.'pm'] == 0){
 		    echo '<p>FULL</p>';
 		    echo '<input type="hidden" name="week'.$x.'pm" id="week'.$x.'b" value="0">';
 	    }else{
 		    if($currentInfo['week'.$x.'pm'] == 0){
-				echo '<input name="week'.$x.'pm" class="form-check-input" type="checkbox" value="1" id="week'.$x.'b" onchange= "doalert(this)">';
+				echo '<input name="week'.$x.'pm" class="custom-control-input" type="checkbox" value="1" id="week'.$x.'b" onchange= "doalert(this)"> <label class="custom-control-label" for="week'.$x.'b"></label>';
 			}else{
-				echo '<input name="week'.$x.'pm" class="form-check-input" type="checkbox" value="1" id="week'.$x.'b" onchange= "doalert(this)" checked>';
+				echo '<input name="week'.$x.'pm" class="custom-control-input" type="checkbox" value="1" id="week'.$x.'b" onchange= "doalert(this)" checked> <label class="custom-control-label" for="week'.$x.'b"></label>';
 			}
+			echo "<p></p>";
 		}
 		echo '</div>';
 	    echo '</td>';
@@ -392,8 +407,9 @@ for($x = 1; $x <= $activeweeks; $x++){
 							    <tr>
 							      <th>Extended Care<br>7:00am to 8:30am and/or 4:00pm to 5:30pm</th>
 							      <td colspan="2">
-							      	<div class="form-check">
-									  <input name="extendedcare" class="form-check-input" type="checkbox" value="1" id="extcare" onchange= "doalert(this)">
+							      	<div class="custom-control custom-checkbox custom-checkbox-lg">
+									  <input name="extendedcare" class="custom-control-input" type="checkbox" value="1" id="extcare" onchange= "doalert(this)">
+									  <label class="custom-control-label" for="extcare"></label>
 									</div>
 							      </td>
 							    </tr>
