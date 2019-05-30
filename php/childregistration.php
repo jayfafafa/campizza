@@ -314,10 +314,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 					</div>
 				</div>
 
-    		<!-- Has your child recieved all current immunizations? (Needs a yes)-->
+    		<!-- Has your child received all current immunizations? (Needs a yes)-->
     		    <div class="row initial-task-padding">
 				  		<div class="col">
-				  			<p>Has your child recieved all current immunizations?<b style = "color: #DC143C;">*</b></p>
+				  			<p>Has your child received all current immunizations?<b style = "color: #DC143C;">*</b></p>
 				  		</div>
 			  	</div>
 		  		<div class="row no-task-padding">
