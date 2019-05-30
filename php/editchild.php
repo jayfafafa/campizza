@@ -301,7 +301,7 @@ unset($conn);
 					<div class='col'>
 			            <div class="form-group">
 			                <div class='input-group date'>
-			                    <input type='date' name="tetanusdate" class="form-control" <?php if($child['tetanusdate'] != NULL){ echo 'value='.$child['tetanusdate'];}?> />
+			                    <input type='date' name="tetanusdate" class="form-control" <?php if($child['tetanusdate'] != NULL){ echo 'value='.$child['tetanusdate'];}?> required/>
 			                    <!-- <span class="input-group-addon">
 			                        <span class="glyphicon glyphicon-calendar"></span>
 			                    </span> -->

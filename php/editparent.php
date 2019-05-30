@@ -533,7 +533,7 @@ unset($conn);
 			</div>
 
 			<div class="custom-control custom-checkbox custom-checkbox-lg">
-			    <input name="emergencyauthorized1" type="checkbox" style="width: 1000px" class="custom-control-input" id="exampleCheck1" value=1 <?php if($parent['emergencyauthorized1'] != 0){ echo "checked"; }?> >
+			    <input name="emergencyauthorized1" type="checkbox" style="width: 1000px" class="custom-control-input" id="exampleCheck1" value=1 <?php if($parent['emergencyauthorized1'] != 0){ echo "checked"; }?> required>
 			    <label class="custom-control-label" for="exampleCheck1">This person is authorized to pick up my camper(s).</label>
 			  </div>
 	<!-- Emergency Contact Top Part -->
@@ -593,7 +593,7 @@ unset($conn);
 				</div>
 			</div>
 			<div class="custom-control custom-checkbox custom-checkbox-lg">
-			    <input name="emergencyauthorized2" type="checkbox" class="custom-control-input" id="exampleCheck2" value=1 <?php if($parent['emergencyauthorized2'] != 0){ echo "checked"; }?> >
+			    <input name="emergencyauthorized2" type="checkbox" class="custom-control-input" id="exampleCheck2" value=1 <?php if($parent['emergencyauthorized2'] != 0){ echo "checked"; }?> required>
 			    <label class="custom-control-label" for="exampleCheck2">This person is authorized to pick up my camper(s).</label>
 			</div>
 	<!-- Submit -->
