@@ -50,7 +50,7 @@ include ('connection.php');
 		'week8' => 0
 	);
 	
-	if( strtotime($currDate) < strtotime($weekInfo['week1start']) ) {
+	if( strtotime($currDate) < strtotime("2019-06-01") ) {
 		$eOrL = 'early';
 	} else {
 		$eOrL = 'late';
@@ -61,17 +61,37 @@ include ('connection.php');
 	} else {
 		$extendedCareCost = 0;
 	}
+
+	$sqlEarlybird = "SELECT * FROM ChildrenEarlyBird WHERE childid=".$_SESSION['childid']." AND registeredyear=".$weekInfo['currentyear'];
+	$stmtEarlybird = $conn->query($sqlEarlybird);
+	$earlyBirdInfo = $stmtEarlybird->fetch(PDO::FETCH_ASSOC);
+
 	
 	for($x = 1; $x <= $weekInfo['activeweeks']; $x++){ //Including extended care
 		if($data[':week'.$x.'am'] == 1 && $data[':week'.$x.'pm'] == 1 ) { //both am & pm [full day]
-			if($x == $weekInfo['holidayweek']) $prices['week'.$x] = $yearlyPrices['holidayweekfull'.$eOrL] + ( $extendedCareCost * 4.00 ); //Holiday Full
-			else $prices['week'.$x] = $yearlyPrices['oneweekfull'.$eOrL] + ( $extendedCareCost * 5.00 ); //not holiday
+			if($earlyBirdInfo['week'.$x.'am'] == 1 && $earlyBirdInfo['week'.$x.'pm'] == 1 ){
+				if($x == $weekInfo['holidayweek']) $prices['week'.$x] = $yearlyPrices['holidayweekfullearly'] + ( $extendedCareCost * 4.00 ); //Holiday Full
+				else $prices['week'.$x] = $yearlyPrices['oneweekfullearly'] + ( $extendedCareCost * 5.00 ); //not holiday
+			}else{
+				if($x == $weekInfo['holidayweek']) $prices['week'.$x] = $yearlyPrices['holidayweekfull'.$eOrL] + ( $extendedCareCost * 4.00 ); //Holiday Full
+				else $prices['week'.$x] = $yearlyPrices['oneweekfull'.$eOrL] + ( $extendedCareCost * 5.00 ); //not holiday
+			}
 		} else if($data[':week'.$x.'am'] == 1) { //week# am only
-			if($x == $weekInfo['holidayweek']) $prices['week'.$x] = $yearlyPrices['holidayweekam'.$eOrL] + ( $extendedCareCost * 4.00 ); //am HOliday
-			else $prices['week'.$x] = $yearlyPrices['oneweekam'.$eOrL] + ( $extendedCareCost * 5.00 ); //am reg
+			if($earlyBirdInfo['week'.$x.'am'] == 1){
+				if($x == $weekInfo['holidayweek']) $prices['week'.$x] = $yearlyPrices['holidayweekamearly'] + ( $extendedCareCost * 4.00 ); //am HOliday
+				else $prices['week'.$x] = $yearlyPrices['oneweekamearly'] + ( $extendedCareCost * 5.00 ); //am reg
+			}else{
+				if($x == $weekInfo['holidayweek']) $prices['week'.$x] = $yearlyPrices['holidayweekam'.$eOrL] + ( $extendedCareCost * 4.00 ); //am HOliday
+				else $prices['week'.$x] = $yearlyPrices['oneweekam'.$eOrL] + ( $extendedCareCost * 5.00 ); //am reg
+			}
 		} else if($data[':week'.$x.'pm'] == 1){//week# pm only
-			if($x == $weekInfo['holidayweek']) $prices['week'.$x] = $yearlyPrices['holidayweekpm'.$eOrL] + ( $extendedCareCost * 4.00 );//pm HOliday
-			else $prices['week'.$x] = $yearlyPrices['oneweekpm'.$eOrL] + ( $extendedCareCost * 5.00 );//pm reg
+			if($earlyBirdInfo['week'.$x.'pm'] == 1){
+				if($x == $weekInfo['holidayweek']) $prices['week'.$x] = $yearlyPrices['holidayweekpmearly'] + ( $extendedCareCost * 4.00 );//pm HOliday
+				else $prices['week'.$x] = $yearlyPrices['oneweekpmearly'] + ( $extendedCareCost * 5.00 );//pm reg
+			}else{
+				if($x == $weekInfo['holidayweek']) $prices['week'.$x] = $yearlyPrices['holidayweekpm'.$eOrL] + ( $extendedCareCost * 4.00 );//pm HOliday
+				else $prices['week'.$x] = $yearlyPrices['oneweekpm'.$eOrL] + ( $extendedCareCost * 5.00 );//pm reg
+			}
 		}
 	}
 

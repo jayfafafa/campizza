@@ -200,7 +200,7 @@ $activeweeks = $weekInfo["activeweeks"];
 date_default_timezone_set('America/Los_Angeles');
 $currDate = date('Y-m-d', time());
 
-if( strtotime($currDate) < strtotime($weekInfo['week1start']) ) {
+if( strtotime($currDate) < strtotime("2019-06-01") ) {
 	$eOrL = 'early';
 } else {
 	$eOrL = 'late';

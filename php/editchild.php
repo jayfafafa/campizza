@@ -323,7 +323,7 @@ unset($conn);
 		</div>
 		<div class="row no-task-padding">
 			<div class="col">
-				<textarea class="form-control" name="comments" placeholder="Comments." <?php if($child['comments'] != NULL){ echo 'value='.$child['comments'];}?> ></textarea>
+				<textarea class="form-control" name="comments" placeholder="Comments."><?php if($child['comments'] != NULL){ echo $child['comments'];}?></textarea>
 			</div>
 		</div>
 	</div>

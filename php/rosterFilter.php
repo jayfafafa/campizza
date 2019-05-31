@@ -83,6 +83,10 @@ $_SESSION['attributes'] = array(
 	'zippostalcode' => 'Zip/Postal Code',
 	'guardianemail1' => 'Guardian Email1',
 	'guardianemail2' => 'Guardian Email2',
+	'guardian1phone1' => 'Guardian1 Phone Number1',
+	'guardian1phone2' => 'Guardian1 Phone Number2',
+	'guardian2phone1' => 'Guardian2 Phone Number1',
+	'guardian2phone2' => 'Guardian2 Phone Number2',
 	'emergencynamefirst1' => 'Emergency First Name 1',
 	'emergencynamelast1' => 'Emergency Last Name 1',
 	'emergencyrelationship1' => 'Emergency Relationship 1',
@@ -215,7 +219,7 @@ function toggle(source) {
 							<div class="tab-pane fade" id="list-parentguard" role="tabpanel" aria-labelledby="list-parentguard-list">
 							<?php
 
-							foreach (array_slice($_SESSION['attributes'], 40, 15) as $k => $v){
+							foreach (array_slice($_SESSION['attributes'], 40, 19) as $k => $v){
 								echo '<div class="form-check">';
 								echo '<input type="checkbox" class="form-check-input" id="attribute" name="'.$k.'" value=1>'.$v.'<br>';
 								echo '</div>';
@@ -228,7 +232,7 @@ function toggle(source) {
 							<div class="tab-pane fade" id="list-emergency" role="tabpanel" aria-labelledby="list-emergency-list">
 							<?php
 
-							foreach (array_slice($_SESSION['attributes'], 55, 10) as $k => $v){
+							foreach (array_slice($_SESSION['attributes'], 59, 10) as $k => $v){
 								echo '<div class="form-check">';
 								echo '<input type="checkbox" class="form-check-input" id="attribute" name="'.$k.'" value=1>'.$v.'<br>';
 								echo '</div>';

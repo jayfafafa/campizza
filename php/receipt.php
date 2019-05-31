@@ -146,6 +146,21 @@ $message.='	<hr>
 	
 </div>';
 
+//If before early bird date then set stuff
+date_default_timezone_set('America/Los_Angeles');
+	$currDate = date('Y-m-d', time());
+if( strtotime($currDate) < strtotime("2019-06-01") ) {
+
+	$sqlEarlyBird = "UPDATE ChildrenEarlyBird SET week1am=:week1am, week1pm=:week1pm, week2am=:week2am,"
+		."week2pm=:week2pm, week3am=:week3am, week3pm=:week3pm, week4am=:week4am, "
+		."week4pm=:week4pm, week5am=:week5am, week5pm=:week5pm, week6am=:week6am, "
+		."week6pm=:week6pm, week7am=:week7am, week7pm=:week7pm, week8am=:week8am, week8pm=:week8pm "
+		."WHERE childid=".$_SESSION['childid']." AND registeredyear=".$weekInfo['currentyear'];
+
+	$stmtEarlyBird = $conn->prepare($sqlEarlyBird);
+	$stmtEarlyBird->execute(array_slice($data,0,16));
+}
+
 mail($to, $subject, $message, $headers);
 
 	if(isset($_POST['paid']) && $_POST['paid'] == "True") {
