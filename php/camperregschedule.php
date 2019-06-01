@@ -373,7 +373,7 @@ for($x = 1; $x <= $activeweeks; $x++){
 	    echo '<div class="custom-control custom-checkbox custom-checkbox-lg">';
 	    if ($sessionFullAM && $currentInfo['week'.$x.'am'] == 0){
 		    echo '<p>FULL</p>';
-		    echo '<input type="hidden" name="week'.$x.'am" id="week'.$x.'a">';
+		    echo '<input type="hidden" name="week'.$x.'am" id="week'.$x.'a" value="0">';
 		}else{
 			if($currentInfo['week'.$x.'am'] == 0){
 				echo '<input name="week'.$x.'am" class="custom-control-input" type="checkbox" value="1" id="week'.$x.'a" onchange= "doalert(this)"> <label class="custom-control-label" for="week'.$x.'a"></label>';
