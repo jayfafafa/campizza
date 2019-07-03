@@ -335,6 +335,14 @@ unset($conn);
 <?php
 for($x = 1; $x <= $activeweeks; $x++){
 
+	if( strtotime($currDate) > strtotime($weekInfo["week".$x."start"]) ) {
+		if($currentInfo['week'.$x.'am'] == 1)
+			echo '<input name="week'.$x.'am" type="hidden" value="1" id="week'.$x.'a">';
+		if($currentInfo['week'.$x.'pm'] == 1)
+			echo '<input name="week'.$x.'pm" type="hidden" value="1" id="week'.$x.'b">';
+		continue;
+	} 
+
 	$currentWeekAM = 'week'.$x.'am';
 	$currentWeekPM = 'week'.$x.'pm';
 	$sessionFullAM = FALSE;
@@ -446,6 +454,9 @@ for($x = 1; $x <= $activeweeks; $x++){
 		if(document.getElementById('extcare').checked == false)
 		{
 			for (var i = 1; i <= 6; i++) {
+				if(document.getElementById("week"+String(i)+"a") == null){
+					continue;
+				}
 				if(document.getElementById("week"+String(i)+"a").checked == true && 
 					document.getElementById("week"+String(i)+"b").checked == true)
 				{
@@ -482,6 +493,9 @@ for($x = 1; $x <= $activeweeks; $x++){
 		else
 		{
 			for (var i = 1; i <= 6; i++) {
+				if(document.getElementById("week"+String(i)+"a") == null){
+					continue;
+				}
 				if(document.getElementById("week"+String(i)+"a").checked == true && 
 					document.getElementById("week"+String(i)+"b").checked == true)
 				{
